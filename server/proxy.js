@@ -64,20 +64,7 @@ app.post("/api/claude", rateLimit, async (req, res) => {
   if (!prompt) return res.status(400).json({ error: "prompt is required" });
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": process.env.CLAUDE_API_KEY,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens,
-        system: system || "You are a helpful horticultural assistant for Harvestpedia.",
-        messages: [{ role: "user", content: prompt }],
-      }),
-    });
+    const result = await HP.claude("your prompt here", "optional system prompt");
 
     if (!response.ok) {
       const err = await response.text();

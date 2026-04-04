@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Recipes – Harvestpedia</title>
+<link rel="stylesheet" href="../css/style.css"/>
+<style>
+  .recipe-hero {
+    padding:2.5rem 1.5rem 2rem; text-align:center;
+    background:linear-gradient(135deg,#fff8f0 0%,#fef5e7 100%);
+  }
+  .recipe-hero h1 { font-size:2rem; font-weight:700; color:#1a3a1a; }
+  .recipe-hero p  { color:#6b7280; margin-top:.4rem; }
+
+  .recipe-wrap { max-width:900px; margin:0 auto; padding:2rem 1.5rem; }
+
+  /* Search & options */
+  .recipe-search-box {
+    background:#fff; border:1px solid #e5e7eb; border-radius:14px;
+    padding:1.5rem; margin-bottom:1.5rem;
+  }
+  .recipe-search-box h2 { font-size:1rem; font-weight:600; margin-bottom:1rem; color:#1a3a1a; }
+  .recipe-input-row { display:flex; gap:8px; margin-bottom:1rem; }
+  #recipe-ingredient-input {
+    flex:1; padding:10px 14px; border:1.5px solid #e5e7eb; border-radius:10px;
+    font-size:14px; color:#1a3a1a; outline:none; transition:border-color .15s;
+  }
+  #recipe-ingredient-input:focus { border-color:#3B6D11; }
+  .add-btn {
+    padding:10px 18px; background:#3B6D11; color:#fff; border:none;
+    border-radius:10px; font-weight:600; cursor:pointer; font-size:14px;
+    transition:background .2s;
+  }
+  .add-btn:hover { background:#2d5209; }
+
+  .chips-row { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1rem; min-height:28px; }
+  .chip {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:4px 10px 4px 12px; background:#f0faf0; border:1px solid #d1fae5;
+    border-radius:99px; font-size:13px; color:#065f46; font-weight:500;
+  }
+  .chip button { background:none; border:none; cursor:pointer; color:#9ca3af; font-size:13px; padding:0; }
+  .chip button:hover { color:#ef4444; }
+
+  .options-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+  .options-row label { font-size:13px; color:#374151; display:flex; align-items:center; gap:6px; }
+  .options-row select {
+    padding:5px 10px; border:1.5px solid #e5e7eb; border-radius:8px;
+    font-size:13px; color:#374151; background:#fff; outline:none;
+  }
+  .gen-btn {
+    margin-left:auto; padding:10px 24px; background:#BA7517; color:#fff;
+    border:none; border-radius:10px; font-weight:700; cursor:pointer; font-size:14px;
+    transition:background .2s;
+  }
+  .gen-btn:hover { background:#8c5a10; }
+  .gen-btn:disabled { background:#9ca3af; cursor:not-allowed; }
+
+  /* Quick picks */
+  .quick-picks { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem; }
+  .qp-btn {
+    padding:6px 14px; border:1.5px solid #e5e7eb; border-radius:99px;
+    font-size:12px; font-weight:500; cursor:pointer; background:#fff; color:#374151;
+    transition:all .15s;
+  }
+  .qp-btn:hover { border-color:#3B6D11; background:#f5f9f0; color:#3B6D11; }
+
+  /* Recipe output */
+  .recipe-output { display:none; }
+  .recipe-card {
+    background:#fff; border:1px solid #e5e7eb; border-radius:14px;
+    padding:2rem; margin-bottom:1.5rem;
+  }
+  .recipe-card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:1rem; }
+  .recipe-card-title  { font-size:1.3rem; font-weight:700; color:#1a3a1a; }
+  .recipe-card-meta   { font-size:12px; color:#9ca3af; margin-top:4px; }
+  .recipe-actions { display:flex; gap:8px; }
+  .icon-btn { padding:6px 10px; border:1.5px solid #e5e7eb; border-radius:8px; background:#fff; cursor:pointer; font-size:14px; transition:all .15s; }
+  .icon-btn:hover { border-color:#3B6D11; background:#f5f9f0; }
+
+  .recipe-body { font-size:14px; line-height:1.8; color:#374151; }
+  .recipe-body h3 { font-size:1rem; font-weight:700; color:#1a3a1a; margin:1.2rem 0 0.5rem; }
+  .recipe-body ul, .recipe-body ol { padding-left:1.25rem; }
+  .recipe-body li { margin-bottom:.3rem; }
+  .recipe-body strong { color:#1a3a1a; }
+
+  .loading-state {
+    text-align:center; padding:3rem; color:#6b7280;
+    display:flex; flex-direction:column; align-items:center; gap:12px;
+  }
+  .spinner {
+    width:36px; height:36px; border:3px solid #e5e7eb; border-top-color:#3B6D11;
+    border-radius:50%; animation:spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  .new-recipe-btn {
+    display:block; width:100%; padding:12px; text-align:center;
+    background:#f5f9f0; border:1.5px dashed #c3e6cb; border-radius:12px;
+    color:#3B6D11; font-weight:600; cursor:pointer; font-size:14px;
+    transition:background .15s; margin-top:.5rem;
+  }
+  .new-recipe-btn:hover { background:#e8f4e8; }
+</style>
+<script src="/Harvestpedia/js/api.js"></script>
+<script src="Harvestpedia/js/darkmode.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">🌿 Harvestpedia</a>
+  <div class="nav-links">
+    <a href="../fruits/fruits.html">Fruits</a>
+    <a href="../vegetables/vegetables.html">Vegetables</a>
+    <a href="../plants/plants.html">Plants</a>
+    <a href="recipes.html" class="active">Recipes</a>
+    <button class="dm-toggle" id="dm-toggle"></button>
+  </div>
+</nav>
+
+<section class="recipe-hero">
+  <h1>🍳 AI Recipe Generator</h1>
+  <p>Add ingredients from your harvest and get personalised recipes.</p>
+</section>
+
+<main class="recipe-wrap">
+
+  <div class="recipe-search-box">
+    <h2>What do you have?</h2>
+
+    <div class="recipe-input-row">
+      <input type="text" id="recipe-ingredient-input" placeholder="Type an ingredient e.g. mango, spinach, basil…"/>
+      <button class="add-btn" onclick="addIngredient()">Add</button>
+    </div>
+
+    <div class="chips-row" id="chips-row">
+      <span style="font-size:13px;color:#9ca3af;align-self:center">No ingredients added yet</span>
+    </div>
+
+    <div class="options-row">
+      <label>Meal type
+        <select id="meal-type">
+          <option value="any">Any</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack / Smoothie</option>
+          <option value="dessert">Dessert</option>
+        </select>
+      </label>
+      <label>Diet
+        <select id="diet-pref">
+          <option value="none">No preference</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="gluten-free">Gluten-free</option>
+        </select>
+      </label>
+      <button class="gen-btn" id="gen-btn" disabled onclick="generateRecipe()">Generate Recipe ✨</button>
+    </div>
+  </div>
+
+  <!-- Quick picks -->
+  <p style="font-size:12px;color:#9ca3af;margin-bottom:6px;">Quick combos</p>
+  <div class="quick-picks">
+    <button class="qp-btn" onclick="quickPick(['Mango','Banana','Strawberry'])">🥤 Tropical Smoothie</button>
+    <button class="qp-btn" onclick="quickPick(['Spinach','Garlic','Tomato'])">🥗 Garden Salad</button>
+    <button class="qp-btn" onclick="quickPick(['Apple','Pear','Cinnamon'])">🍮 Autumn Dessert</button>
+    <button class="qp-btn" onclick="quickPick(['Basil','Tomato','Garlic'])">🍝 Italian Classic</button>
+    <button class="qp-btn" onclick="quickPick(['Broccoli','Carrot','Ginger'])">🍲 Stir Fry</button>
+  </div>
+
+  <!-- Output -->
+  <div class="recipe-output" id="recipe-output">
+    <div class="loading-state hidden" id="recipe-loading">
+      <div class="spinner"></div>
+      <p>Cooking up your recipe with AI…</p>
+    </div>
+
+    <div id="recipe-card-area"></div>
+
+    <button class="new-recipe-btn" id="new-recipe-btn" onclick="generateRecipe()">
+      🔄 Generate another variation
+    </button>
+  </div>
+
+</main>
+
+<script src="../js/api.js"></script>
+<script>
+let ingredients = [];
+
+// ── Ingredient management ─────────────────────────────────
+function addIngredient() {
+  const input = document.getElementById("recipe-ingredient-input");
+  const val   = input.value.trim();
+  if (!val || ingredients.includes(val)) { input.value = ""; return; }
+  if (ingredients.length >= 8) { alert("Max 8 ingredients"); return; }
+  ingredients.push(val);
+  input.value = "";
+  renderChips();
+}
+
+document.getElementById("recipe-ingredient-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") addIngredient();
+});
+
+function removeIngredient(name) {
+  ingredients = ingredients.filter(i => i !== name);
+  renderChips();
+}
+
+function renderChips() {
+  const row = document.getElementById("chips-row");
+  if (!ingredients.length) {
+    row.innerHTML = `<span style="font-size:13px;color:#9ca3af;align-self:center">No ingredients added yet</span>`;
+    document.getElementById("gen-btn").disabled = true;
+    return;
+  }
+  row.innerHTML = ingredients.map(i => `
+    <span class="chip">${i}<button onclick="removeIngredient('${i}')">✕</button></span>
+  `).join("");
+  document.getElementById("gen-btn").disabled = false;
+}
+
+function quickPick(items) {
+  ingredients = [...items];
+  renderChips();
+}
+
+// ── Recipe generation ─────────────────────────────────────
+async function generateRecipe() {
+  if (!ingredients.length) return;
+
+  const mealType = document.getElementById("meal-type").value;
+  const diet     = document.getElementById("diet-pref").value;
+
+  document.getElementById("recipe-output").style.display = "block";
+  document.getElementById("recipe-loading").classList.remove("hidden");
+  document.getElementById("recipe-card-area").innerHTML = "";
+  document.getElementById("new-recipe-btn").style.display = "none";
+
+  const prompt = `
+You are a creative chef for Harvestpedia, a horticultural & food platform.
+
+Create a detailed recipe using these ingredients: ${ingredients.join(", ")}.
+Meal type preference: ${mealType === "any" ? "any" : mealType}.
+Dietary preference: ${diet === "none" ? "no restriction" : diet}.
+
+Return the recipe in this EXACT format (use these exact headings):
+
+**[Recipe Name]**
+
+⏱ Prep time: X mins | 🍳 Cook time: X mins | 👤 Serves: X
+
+**Description**
+A short appetising 2-sentence description.
+
+**Ingredients**
+- ingredient 1
+- ingredient 2
+...
+
+**Instructions**
+1. Step one
+2. Step two
+...
+
+**Nutrition tip**
+One sentence about a health benefit of the main ingredient.
+
+**Chef's tip**
+One practical cooking tip.
+`;
+
+  try {
+    const result = await HP.claude(prompt,
+      "You are a helpful recipe assistant. Always respond with well-structured, practical recipes."
+    );
+    renderRecipe(result.result);
+  } catch (err) {
+    document.getElementById("recipe-card-area").innerHTML = `
+      <div style="text-align:center;padding:2rem;color:#ef4444">
+        ⚠️ Could not generate recipe. Please check your API proxy is running.
+      </div>`;
+  } finally {
+    document.getElementById("recipe-loading").classList.add("hidden");
+    document.getElementById("new-recipe-btn").style.display = "block";
+  }
+}
+
+function renderRecipe(text) {
+  // Convert markdown-like text to HTML
+  let html = text
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/^- (.+)$/gm, "<li>$1</li>")
+    .replace(/^(\d+)\. (.+)$/gm, "<li>$2</li>")
+    .replace(/<li>/g, "<li>")
+    .split("\n\n").map(para => {
+      if (para.startsWith("<strong>") && para.trim().endsWith("</strong>")) {
+        return `<h3>${para.replace(/<\/?strong>/g,"")}</h3>`;
+      }
+      if (para.includes("<li>")) {
+        const tag = para.match(/^\d/) ? "ol" : "ul";
+        return `<${tag}>${para}</${tag}>`;
+      }
+      if (para.trim()) return `<p>${para}</p>`;
+      return "";
+    }).join("\n");
+
+  document.getElementById("recipe-card-area").innerHTML = `
+    <div class="recipe-card">
+      <div class="recipe-card-header">
+        <div>
+          <div class="recipe-card-title">Your Recipe</div>
+          <div class="recipe-card-meta">Made with: ${ingredients.join(" · ")}</div>
+        </div>
+        <div class="recipe-actions">
+          <button class="icon-btn" title="Print" onclick="window.print()">🖨️</button>
+          <button class="icon-btn" title="Copy" onclick="navigator.clipboard.writeText(document.getElementById('recipe-text').innerText)">📋</button>
+        </div>
+      </div>
+      <div class="recipe-body" id="recipe-text">${html}</div>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>

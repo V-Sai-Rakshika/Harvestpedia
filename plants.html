@@ -183,6 +183,8 @@
     @media(max-width:900px){nav{padding:14px 24px;}.page-hero{padding:120px 24px 60px;}.filter-bar{padding:0 24px;}.diff-bar{padding:10px 24px;}.plants-section{padding:36px 24px 60px;}.footer-grid{grid-template-columns:1fr 1fr;}footer{padding:48px 24px 32px;}}
     @media(max-width:600px){#plant-grid{grid-template-columns:1fr;}.nav-links{display:none;}.footer-grid{grid-template-columns:1fr;}}
   </style>
+  <script src="/Harvestpedia/js/api.js"></script>
+  <script src="Harvestpedia/js/darkmode.js"></script>
 </head>
 <body>
 
@@ -193,13 +195,15 @@
     <li><a href="fruits.html">Fruits</a></li>
     <li><a href="vegetables.html">Vegetables</a></li>
     <li><a href="plants.html" class="active">Plants</a></li>
-    <li><a href="#" class="nav-cta">Explore Now</a></li>
+    <button class="dm-toggle" id="dm-toggle"></button>
+    <li><a href="index.html" class="nav-cta">Explore Now</a></li>
   </ul>
 </nav>
 
 <div class="page-hero">
   <div class="breadcrumb">
-    <a href="index.html">🏠 Home</a><span>›</span><span>Plants</span>
+    <a href="index.html">🏠 Home</a><span>›</span>
+    <span>Plants</span>
   </div>
   <div class="hero-layout">
     <div class="hero-left">
@@ -296,9 +300,20 @@
       <div class="footer-logo"><div class="footer-leaf">🌿</div>Harvestpedia</div>
       <p>Your trusted plant-based knowledge platform. Explore, learn, and grow with nature's best.</p>
     </div>
-    <div class="footer-col"><h5>Explore</h5><a href="fruits.html">Fruits</a><a href="vegetables.html">Vegetables</a><a href="plants.html">Plants</a></div>
-    <div class="footer-col"><h5>Learn</h5><a href="#">Grow Guides</a><a href="#">Care Tips</a><a href="#">Seasonal Guide</a></div>
-    <div class="footer-col"><h5>About</h5><a href="#">Our Mission</a><a href="#">Contact</a></div>
+    <div class="footer-col"><h5>Explore</h5>
+        <a href="fruits.html">Fruits</a>
+        <a href="vegetables.html">Vegetables</a>
+        <a href="plants.html">Plants</a>
+    </div>
+    <div class="footer-col"><h5>Learn</h5>
+        <a href="#">Grow Guides</a>
+        <a href="#">Care Tips</a>
+        <a href="seasonal.html">Seasonal Guide</a>
+    </div>
+    <div class="footer-col"><h5>About</h5
+        ><a href="#">Our Mission</a>
+        <a href="#">Contact</a>
+    </div>
   </div>
   <div class="footer-bottom"><span>© 2025 Harvestpedia. All rights reserved.</span><span>Made with 🌿 for nature lovers</span></div>
 </footer>

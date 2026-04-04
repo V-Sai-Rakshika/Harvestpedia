@@ -442,6 +442,8 @@
       #fruit-grid { grid-template-columns: 1fr; }
     }
   </style>
+  <script src="/Harvestpedia/js/api.js"></script>
+  <script src="Harvestpedia/js/darkmode.js"></script>
 </head>
 <body>
 
@@ -454,9 +456,10 @@
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="fruits.html" class="active">Fruits</a></li>
-    <li><a href="#">Vegetables</a></li>
-    <li><a href="#">Plants</a></li>
-    <li><a href="#" class="nav-cta">Explore Now</a></li>
+    <li><a href="vegetables.html">Vegetables</a></li>
+    <li><a href="plants.html">Plants</a></li>
+    <button class="dm-toggle" id="dm-toggle"></button>
+    <li><a href="vegetables.html" class="nav-cta">Explore Now</a></li>
   </ul>
 </nav>
 
@@ -557,9 +560,9 @@
     <div class="footer-col">
       <h5>Explore</h5>
       <a href="fruits.html">Fruits</a>
-      <a href="#">Vegetables</a>
-      <a href="#">Plants &amp; Herbs</a>
-      <a href="#">Seasonal Guide</a>
+      <a href="vegetables.html">Vegetables</a>
+      <a href="plants.html">Plants &amp; Herbs</a>
+      <a href="seasonal.html">Seasonal Guide</a>
     </div>
     <div class="footer-col">
       <h5>Learn</h5>
@@ -585,36 +588,62 @@
    FRUIT DATA — extend this array to add more
    ────────────────────────────────────────── */
 const fruits = [
-  { name:'Apple',        family:'Rosaceae',      season:'autumn', cal:52,  emoji:'🍎', img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&q=80', nutrients:['Fiber','Quercetin','Vit C'] },
-  { name:'Apricot',      family:'Rosaceae',      season:'spring', cal:48,  emoji:'🍊', img:'https://images.unsplash.com/photo-1598110750624-9b5a69a37d58?w=500&q=80', nutrients:['Vit A','Beta-carotene','Potassium'] },
-  { name:'Avocado',      family:'Lauraceae',     season:'year',   cal:160, emoji:'🥑', img:'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=500&q=80', nutrients:['Healthy fats','Potassium','Vit K'] },
-  { name:'Banana',       family:'Musaceae',      season:'year',   cal:89,  emoji:'🍌', img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&q=80', nutrients:['Potassium','Vit B6','Magnesium'] },
-  { name:'Blueberry',    family:'Ericaceae',     season:'summer', cal:57,  emoji:'🫐', img:'https://images.unsplash.com/photo-1457296898342-cdd24585d095?w=500&q=80', nutrients:['Anthocyanins','Vit C','Fiber'] },
-  { name:'Cherry',       family:'Rosaceae',      season:'summer', cal:50,  emoji:'🍒', img:'https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=500&q=80', nutrients:['Melatonin','Antioxidants','Vit C'] },
-  { name:'Coconut',      family:'Arecaceae',     season:'year',   cal:354, emoji:'🥥', img:'https://images.unsplash.com/photo-1555181126-cf46a03827c0?w=500&q=80', nutrients:['MCTs','Electrolytes','Iron'] },
-  { name:'Dragon Fruit', family:'Cactaceae',     season:'summer', cal:60,  emoji:'🐉', img:'https://images.unsplash.com/photo-1527325678964-54921661f888?w=500&q=80', nutrients:['Vit C','Iron','Magnesium'] },
-  { name:'Durian',       family:'Malvaceae',     season:'summer', cal:147, emoji:'🌵', img:'https://images.unsplash.com/photo-1590593161967-67217d18c3f4?w=500&q=80', nutrients:['Vit C','Potassium','Iron'] },
-  { name:'Fig',          family:'Moraceae',      season:'autumn', cal:74,  emoji:'🍈', img:'https://images.unsplash.com/photo-1601379329542-31f75ef4ab73?w=500&q=80', nutrients:['Fiber','Calcium','Iron'] },
-  { name:'Grape',        family:'Vitaceae',      season:'autumn', cal:67,  emoji:'🍇', img:'https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=500&q=80', nutrients:['Resveratrol','Vit K','Antioxidants'] },
-  { name:'Grapefruit',   family:'Rutaceae',      season:'winter', cal:42,  emoji:'🍊', img:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&q=80', nutrients:['Vit C','Vit A','Lycopene'] },
-  { name:'Guava',        family:'Myrtaceae',     season:'year',   cal:68,  emoji:'🍈', img:'https://images.unsplash.com/photo-1536511132770-e5058c7e8c46?w=500&q=80', nutrients:['Vit C','Lycopene','Folate'] },
-  { name:'Jackfruit',    family:'Moraceae',      season:'summer', cal:95,  emoji:'🌿', img:'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=500&q=80', nutrients:['Vit B6','Fiber','Potassium'] },
-  { name:'Kiwi',         family:'Actinidiaceae', season:'winter', cal:61,  emoji:'🥝', img:'https://images.unsplash.com/photo-1585059895524-72359e06133a?w=500&q=80', nutrients:['Vit C','Vit K','Fiber'] },
-  { name:'Lemon',        family:'Rutaceae',      season:'year',   cal:29,  emoji:'🍋', img:'https://images.unsplash.com/photo-1504382262782-5b4ece78642b?w=500&q=80', nutrients:['Vit C','Citric acid','Hesperidin'] },
-  { name:'Lychee',       family:'Sapindaceae',   season:'spring', cal:66,  emoji:'🍈', img:'https://images.unsplash.com/photo-1563746924237-f81d8a3a784f?w=500&q=80', nutrients:['Vit C','Copper','Potassium'] },
-  { name:'Mango',        family:'Anacardiaceae', season:'summer', cal:60,  emoji:'🥭', img:'https://images.unsplash.com/photo-1553279768-865429fa0078?w=500&q=80', nutrients:['Vit A','Vit C','Folate'] },
-  { name:'Melon',        family:'Cucurbitaceae', season:'summer', cal:34,  emoji:'🍈', img:'https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=500&q=80', nutrients:['Vit A','Vit C','Hydration'] },
-  { name:'Orange',       family:'Rutaceae',      season:'winter', cal:47,  emoji:'🍊', img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=500&q=80', nutrients:['Vit C','Folate','Flavonoids'] },
-  { name:'Papaya',       family:'Caricaceae',    season:'year',   cal:43,  emoji:'🍈', img:'https://images.unsplash.com/photo-1526318472351-c75fcf070305?w=500&q=80', nutrients:['Vit C','Papain','Folate'] },
-  { name:'Peach',        family:'Rosaceae',      season:'summer', cal:39,  emoji:'🍑', img:'https://images.unsplash.com/photo-1595475884562-073c30d45670?w=500&q=80', nutrients:['Vit C','Potassium','Niacin'] },
-  { name:'Pear',         family:'Rosaceae',      season:'autumn', cal:57,  emoji:'🍐', img:'https://images.unsplash.com/photo-1596699046458-a1fc7e32040b?w=500&q=80', nutrients:['Fiber','Vit K','Copper'] },
-  { name:'Pineapple',    family:'Bromeliaceae',  season:'spring', cal:50,  emoji:'🍍', img:'https://images.unsplash.com/photo-1439882121527-a37a4d53edfe?w=500&q=80', nutrients:['Bromelain','Vit C','Manganese'] },
-  { name:'Plum',         family:'Rosaceae',      season:'summer', cal:46,  emoji:'🍑', img:'https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=80', nutrients:['Vit C','Vit K','Antioxidants'] },
-  { name:'Pomegranate',  family:'Lythraceae',    season:'autumn', cal:83,  emoji:'🍎', img:'https://images.unsplash.com/photo-1516741272665-74b6d0e55dac?w=500&q=80', nutrients:['Punicalagins','Vit C','Folate'] },
-  { name:'Raspberry',    family:'Rosaceae',      season:'summer', cal:52,  emoji:'🍓', img:'https://images.unsplash.com/photo-1495379572396-5f27a279ee91?w=500&q=80', nutrients:['Fiber','Vit C','Manganese'] },
-  { name:'Starfruit',    family:'Oxalidaceae',   season:'summer', cal:31,  emoji:'⭐', img:'https://images.unsplash.com/photo-1527325678964-54921661f888?w=500&q=80', nutrients:['Vit C','Fiber','Copper'] },
-  { name:'Strawberry',   family:'Rosaceae',      season:'spring', cal:32,  emoji:'🍓', img:'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=500&q=80', nutrients:['Vit C','Folate','Manganese'] },
-  { name:'Watermelon',   family:'Cucurbitaceae', season:'summer', cal:30,  emoji:'🍉', img:'https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=500&q=80', nutrients:['Lycopene','Vit A','Hydration'] },
+  { name:'Apple', family:'Rosaceae', season:'autumn', cal:52, img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&q=80', nutrients:['Fiber','Quercetin','Vit C'] },
+  { name:'Apricot', family:'Rosaceae', season:'spring', cal:48, img:'https://media.istockphoto.com/id/165089494/photo/apricots-with-leaves.jpg?s=612x612&w=0&k=20&c=Hma--a5rdJ_4TAHVaeY-YjURQhiXr1J8cNP3fEpMiq8=', nutrients:['Vit A','Beta-carotene','Potassium'] },
+  { name:'Avocado', family:'Lauraceae', season:'year', cal:160, img:'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=500&q=80', nutrients:['Healthy fats','Potassium','Vit K'] },
+  { name:'Banana', family:'Musaceae', season:'year', cal:89, img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&q=80', nutrients:['Potassium','Vit B6','Magnesium'] },
+  { name:'Blueberry', family:'Ericaceae', season:'summer', cal:57, img:'https://images.unsplash.com/photo-1457296898342-cdd24585d095?w=500&q=80', nutrients:['Anthocyanins','Vit C','Fiber'] },
+  { name:'Cherry', family:'Rosaceae', season:'summer', cal:50, img:'https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=500&q=80', nutrients:['Melatonin','Antioxidants','Vit C'] },
+  { name:'Coconut', family:'Arecaceae', season:'year', cal:354, img:'https://plus.unsplash.com/premium_photo-1680497044033-5dc96f699b81?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y29jb251dHxlbnwwfHwwfHx8MA%3D%3D', nutrients:['MCTs','Electrolytes','Iron'] },
+  { name:'Dragon Fruit', family:'Cactaceae', season:'summer', cal:60, img:'https://images.unsplash.com/photo-1527325678964-54921661f888?w=500&q=80', nutrients:['Vit C','Iron','Magnesium'] },
+  { name:'Durian', family:'Malvaceae', season:'summer', cal:147, img:'https://images.unsplash.com/photo-1588482415422-a061902e00a4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZHVyaWFufGVufDB8fDB8fHww', nutrients:['Vit C','Potassium','Iron'] },
+  { name:'Fig', family:'Moraceae', season:'autumn', cal:74, img:'https://images.unsplash.com/photo-1601379760591-1d89ae6ee1b7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlnfGVufDB8fDB8fHww', nutrients:['Fiber','Calcium','Iron'] },
+  { name:'Grape', family:'Vitaceae', season:'autumn', cal:67, img:'https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=500&q=80', nutrients:['Resveratrol','Vit K','Antioxidants'] },
+  { name:'Grapefruit', family:'Rutaceae', season:'winter', cal:42, img:'https://images.unsplash.com/photo-1671624759854-ced22d6a6d28?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3JhcGVmcnVpdHxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Vit A','Lycopene'] },
+  { name:'Guava', family:'Myrtaceae', season:'year', cal:68, img:'https://images.unsplash.com/photo-1536511132770-e5058c7e8c46?w=500&q=80', nutrients:['Vit C','Lycopene','Folate'] },
+  { name:'Jackfruit', family:'Moraceae', season:'summer', cal:95, img:'https://media.istockphoto.com/id/1172008120/photo/ripe-jackfruit.jpg?s=612x612&w=0&k=20&c=NEA7tNPbN45d165iLQBFQ7XmeyC8_6rQSSq4NuNJYIY=', nutrients:['Vit B6','Fiber','Potassium'] },
+  { name:'Kiwi', family:'Actinidiaceae', season:'winter', cal:61, img:'https://images.unsplash.com/photo-1585059895524-72359e06133a?w=500&q=80', nutrients:['Vit C','Vit K','Fiber'] },
+  { name:'Lemon', family:'Rutaceae', season:'year', cal:29, img:'https://images.unsplash.com/photo-1568569350062-ebfa3cb195df?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGxlbW9ufGVufDB8fDB8fHww', nutrients:['Vit C','Citric acid','Hesperidin'] },
+  { name:'Lychee', family:'Sapindaceae', season:'spring', cal:66, img:'https://plus.unsplash.com/premium_photo-1722961407854-fcc0004b4929?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bHljaGVlfGVufDB8fDB8fHww', nutrients:['Vit C','Copper','Potassium'] },
+  { name:'Mango', family:'Anacardiaceae', season:'summer', cal:60, img:'https://media.istockphoto.com/id/168370138/photo/mango.jpg?s=612x612&w=0&k=20&c=ENq2BrUV8dNH2rth_ZYBBtS9RWDwCbI25SfulxirmnQ=', nutrients:['Vit A','Vit C','Folate'] },
+  { name:'Melon', family:'Cucurbitaceae', season:'summer', cal:34, img:'https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=500&q=80', nutrients:['Vit A','Vit C','Hydration'] },
+  { name:'Orange', family:'Rutaceae', season:'winter', cal:47, img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=500&q=80', nutrients:['Vit C','Folate','Flavonoids'] },
+  { name:'Papaya', family:'Caricaceae', season:'year', cal:43, img:'https://images.unsplash.com/photo-1526318472351-c75fcf070305?w=500&q=80', nutrients:['Vit C','Papain','Folate'] },
+  { name:'Peach', family:'Rosaceae', season:'summer', cal:39, img:'https://media.istockphoto.com/id/1369429481/photo/ripe-peaches-with-thyme-leaves-in-a-plate-on-a-wooden-board-on-a-background.jpg?s=612x612&w=0&k=20&c=tEQJ-8dQ0B4PU8CmPSKJUSGJykcysIkeZ0RGBEbK97Y=', nutrients:['Vit C','Potassium','Niacin'] },
+  { name:'Pear', family:'Rosaceae', season:'autumn', cal:57, img:'https://media.istockphoto.com/id/1766780576/photo/podium-for-exhibitions-and-product-presentations-material-stone-fruit-beautiful-green.jpg?s=612x612&w=0&k=20&c=lhvwq5VkrmNPj-wPhOBfVRgARiAiW_M-2qI1APxlNB4=', nutrients:['Fiber','Vit K','Copper'] },
+  { name:'Pineapple', family:'Bromeliaceae', season:'spring', cal:50, img:'https://images.unsplash.com/photo-1621409443141-46c42dc0afb5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGluZWFwcGxlfGVufDB8fDB8fHww', nutrients:['Bromelain','Vit C','Manganese'] },
+  { name:'Plum', family:'Rosaceae', season:'summer', cal:46, img:'https://plus.unsplash.com/premium_photo-1690272333523-5cfd5405015d?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGx1bXxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Vit K','Antioxidants'] },
+  { name:'Pomegranate', family:'Lythraceae', season:'autumn', cal:83, img:'https://media.istockphoto.com/id/877321098/photo/ripe-pomegranate-fruits.jpg?s=612x612&w=0&k=20&c=btD4lMY0XPDNC7YuP5dxsgWJl90seFS01d51CuNj0-Q=', nutrients:['Punicalagins','Vit C','Folate'] },
+  { name:'Raspberry', family:'Rosaceae', season:'summer', cal:52, img:'https://plus.unsplash.com/premium_photo-1675731118517-c85b8cd0904c?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmFzYmVycnl8ZW58MHx8MHx8fDA%3D', nutrients:['Fiber','Vit C','Manganese'] },
+  { name:'Starfruit', family:'Oxalidaceae', season:'summer', cal:31, img:'https://media.istockphoto.com/id/1288568529/photo/fresh-starfruit-on-a-wooden-background.jpg?s=612x612&w=0&k=20&c=lUvi2sbVo8Fy8mkWdVDijl3d_QhUEanizJG1ISZtCQA=', nutrients:['Vit C','Fiber','Copper'] },
+  { name:'Strawberry', family:'Rosaceae', season:'spring', cal:32, img:'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=500&q=80', nutrients:['Vit C','Folate','Manganese'] },
+  { name:'Watermelon', family:'Cucurbitaceae', season:'summer', cal:30, img:'https://images.unsplash.com/photo-1652031552021-50bcc01121a7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdhdGVybWVsb258ZW58MHx8MHx8fDA%3D', nutrients:['Lycopene','Vit A','Hydration'] },
+  { name:'Passion Fruit', family:'Passifloraceae', season:'summer', cal:97, img:'https://media.istockphoto.com/id/1443741202/photo/sliced-passion-fruit-fresh-passion-fruit-on-a-yellow-background.jpg?s=612x612&w=0&k=20&c=pcjq-GsjKLm3is88j6tNUN2Bj6bjPmaJ1qsnKx-3iyA=', nutrients:['Vit C','Vit A','Fiber','Antioxidants'] },
+  { name:'Mulberry', family:'Moraceae', season:'summer', cal:43, img:'https://images.unsplash.com/photo-1660418056478-66fa71ceb526?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVsYmVycnl8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Iron','Fiber','Antioxidants'] },
+  { name:'Mandarin', family:'Rutaceae', season:'winter', cal:53, img:'https://images.unsplash.com/photo-1603638925702-37e1936b6d19?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbmRhcmlufGVufDB8fDB8fHww', nutrients:['Vit C','Vit A','Folate','Beta-carotene'] },
+  { name:'Cranberry', family:'Ericaceae', season:'autumn', cal:46, img:'https://images.unsplash.com/photo-1586811124870-46ade1cd8651?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JhbmJlcnJ5fGVufDB8fDB8fHww', nutrients:['Vit C','Fiber','Proanthocyanidins','Antioxidants'] },
+  { name:'Blackberry', family:'Rosaceae', season:'summer', cal:43, img:'https://images.unsplash.com/photo-1669562064740-e7d35af4cdb3?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2tiZXJyeXxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Custard Apple', family:'Annonaceae', season:'winter', cal:94, img:'https://media.istockphoto.com/id/172865600/photo/custard-apple.webp?a=1&b=1&s=612x612&w=0&k=20&c=lDAX5DZ9Hge-7hMVAdJZguphmpuOG0m9ka_W7LK5MP0=', nutrients:['Vit C','Fiber','Calcium','Magnesium'] },
+  { name:'Sapota', family:'Sapotaceae', season:'winter', cal:83, img:'https://media.istockphoto.com/id/2246831827/photo/fresh-organic-chemical-free-sapodilla-sweet-and-taste-fruit-with-green-leaf-on-wooden.webp?a=1&b=1&s=612x612&w=0&k=20&c=0Gjdm52PUY418F-82XTmOZpgv9Q5BhWco3DNmfbSyqI=', nutrients:['Fiber','Vit C','Complex carbs'] },
+  { name:'Tamarind', family:'Fabaceae', season:'summer', cal:239, img:'https://media.istockphoto.com/id/465156986/photo/freshly-picked-ripe-thai-tamarinds.jpg?s=612x612&w=0&k=20&c=JRXcRa2pn0P9nN27EJRziyp2a5vTVo7ktJVGUqwg7uw=', nutrients:['Vit C','Iron','Potassium','Tartaric acid'] },
+  { name:'Physalis', family:'Solanaceae', season:'summer', cal:53, img:'https://images.unsplash.com/photo-1506176874237-f0abdd2041a0?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UGh5c2FsaXN8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Vit A','Fiber'] },
+  { name:'Rambutan', family:'Sapindaceae', season:'summer', cal:68, img:'https://plus.unsplash.com/premium_photo-1725623971827-5cd7b970fb09?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8UmFtYnV0YW58ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Fiber','Iron'] },
+  { name:'Persimmon', family:'Ebenaceae', season:'autumn', cal:70, img:'https://media.istockphoto.com/id/627156576/photo/persimmon-fruit.jpg?s=612x612&w=0&k=20&c=IdhHm4Em6zThAqCOGaDpks6RHjwuCi2q31ZTvRflxUg=', nutrients:['Vit A','Vit C','Fiber'] },
+  { name:'Pomelo', family:'Rutaceae', season:'winter', cal:38, img:'https://media.istockphoto.com/id/97170294/photo/pummelo.jpg?s=612x612&w=0&k=20&c=EVTE1bL2upyTT_YHKM12dlwUH-wWxmZ2nD77sxPpqd0=', nutrients:['Vit C','Vit A','Folate'] },
+  { name:'Jujube', family:'Rhamnaceae', season:'autumn', cal:79, img:'https://images.unsplash.com/photo-1537203374277-c6cf7cebea4a?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SnVqdWJlfGVufDB8fDB8fHww', nutrients:['Vit C','Antioxidants','Fiber'] },
+  { name:'Star Gooseberry',family:'Grossulariaceae',season:'summer', cal:44, img:'https://m.media-amazon.com/images/I/71OTbc2WAWL._AC_UF1000,1000_QL80_.jpg', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Longan', family:'Sapindaceae', season:'summer', cal:60, img:'https://media.istockphoto.com/id/2167567881/photo/longan-is-a-sweet-fruit-so-it-is-high-in-carbohydrates-and-sucrose-glucose-which-helps-to.jpg?s=612x612&w=0&k=20&c=ercjxmTY6Otl0Y52t59WoJtZGPu2ftrT6YH3w5Fyyyg=', nutrients:['Vit C','Iron','Fiber'] },
+  { name:'Loquat', family:'Rosaceae', season:'spring', cal:47, img:'https://media.istockphoto.com/id/526145786/photo/close-up-view-of-some-loquat-fruit.jpg?s=612x612&w=0&k=20&c=IosCpl-gb_PdxRmWbm7cvONUUfWXW47tcnci-Bndfkg=', nutrients:['Vit A','Vit C','Fiber'] },
+  { name:'Kumquat', family:'Rutaceae', season:'winter', cal:71, img:'https://images.unsplash.com/photo-1670843837142-8c4452916f8e?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8S3VtcXVhdHxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Fiber','Flavonoids'] },
+  { name:'Salak', family:'Arecaceae', season:'year', cal:82, img:'https://m.media-amazon.com/images/I/41VjwksZciL._AC_UF1000,1000_QL80_.jpg', nutrients:['Starch','Fiber','Vit C'] },
+  { name:'Ackee', family:'Sapindaceae', season:'summer', cal:156, img:'https://media.istockphoto.com/id/1209977865/photo/ripe-ackee-on-tree.jpg?s=612x612&w=0&k=20&c=mOdfEZH1eVFOjaaTjkte3_TkgHHOGzhoXNmiDnjKuJU=', nutrients:['Healthy fats','Vit C','Protein'] },
+  { name:'Breadfruit', family:'Moraceae', season:'summer', cal:103, img:'https://www.foodandwine.com/thmb/2Q0QoLrhj9RWQSlReV5QUeDnvXk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Why-Breadfruit-Is-the-Superfood-Youre-Missing-Out-On-FT-BLOG0525-01-f09de5083fe544c3ae684e56953da2ae.jpg', nutrients:['Complex carbs','Fiber','Vit C'] },
+  { name:'Carambola', family:'Oxalidaceae', season:'summer', cal:31, img:'https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2025/01/befunky-collage-2025-01-04t181143-1735994469.webp', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Cherimoya', family:'Annonaceae', season:'winter', cal:74, img:'https://www.marthastewart.com/thmb/xHEY0vtNE2yh9VGu1W07fRe8--I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1194272165-51e7420e52c946adaf076c720650345f.jpg', nutrients:['Vit C','Fiber','Potassium'] },
+  { name:'Sapodilla', family:'Sapotaceae', season:'winter', cal:83, img:'https://specialtyproduce.com/sppics/8433.png', nutrients:['Fiber','Vit C','Complex carbs'] },
+  { name:'Santol', family:'Meliaceae', season:'summer', cal:61, img:'https://media.philstar.com/photos/2025/07/09/6_2025-07-09_16-55-51.jpg', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Mangaba', family:'Anacardiaceae', season:'summer', cal:61, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRch0E1_9J2KK6d5UxhaGHgF1zagFTChtl2nA&s', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Canistel', family:'Sapotaceae', season:'autumn', cal:155, img:'https://m.media-amazon.com/images/I/4125ihCkbtL._AC_UF1000,1000_QL80_.jpg', nutrients:['Complex carbs','Vit A','Fiber'] }
 ];
 
 /* ── STATE ── */

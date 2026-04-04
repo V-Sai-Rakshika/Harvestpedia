@@ -216,6 +216,8 @@
     }
     @media(max-width:480px) { #veg-grid { grid-template-columns:1fr; } }
   </style>
+  <script src="/Harvestpedia/js/api.js"></script>
+  <script src="Harvestpedia/js/darkmode.js"></script>
 </head>
 <body>
 
@@ -229,8 +231,9 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="fruits.html">Fruits</a></li>
     <li><a href="vegetables.html" class="active">Vegetables</a></li>
-    <li><a href="#">Plants</a></li>
-    <li><a href="#" class="nav-cta">Explore Now</a></li>
+    <li><a href="plants.html">Plants</a></li>
+    <button class="dm-toggle" id="dm-toggle"></button>
+    <li><a href="plants.html" class="nav-cta">Explore Now</a></li>
   </ul>
 </nav>
 
@@ -319,15 +322,21 @@
     </div>
     <div class="footer-col">
       <h5>Explore</h5>
-      <a href="fruits.html">Fruits</a><a href="vegetables.html">Vegetables</a><a href="#">Plants &amp; Herbs</a><a href="#">Seasonal Guide</a>
+      <a href="fruits.html">Fruits</a>
+      <a href="vegetables.html">Vegetables</a>
+      <a href="plants.html">Plants &amp; Herbs</a>
+      <a href="seasonal.html">Seasonal Guide</a>
     </div>
     <div class="footer-col">
       <h5>Learn</h5>
-      <a href="#">Nutrition Facts</a><a href="#">Health Benefits</a><a href="#">Grow at Home</a>
+      <a href="#">Nutrition Facts</a>
+      <a href="#">Health Benefits</a><a href="#">Grow at Home</a>
     </div>
     <div class="footer-col">
       <h5>About</h5>
-      <a href="#">Our Mission</a><a href="#">Contributors</a><a href="#">Contact</a>
+      <a href="#">Our Mission</a>
+      <a href="#">Contributors</a>
+      <a href="#">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -341,55 +350,56 @@
    VEGETABLE DATA — your exact array, with emoji added
    ══════════════════════════════════════════════════════ */
 const vegetables = [
-  { name:'Potato',           family:'Root',             season:'year',   cal:77,  emoji:'🥔', img:'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=700&q=80', nutrients:['Vit C','Potassium','Complex carbs'] },
-  { name:'Sweet Potato',     family:'Root',             season:'autumn', cal:86,  emoji:'🍠', img:'https://images.unsplash.com/photo-1730815048561-45df6f7f331d?w=700&q=80', nutrients:['Vit A','Vit C','Fiber'] },
-  { name:'Carrot',           family:'Root',             season:'autumn', cal:41,  emoji:'🥕', img:'https://images.unsplash.com/photo-1633380110125-f6e685676160?w=700&q=80', nutrients:['Vit A','Fiber','Antioxidants'] },
-  { name:'Onion',            family:'Root',             season:'year',   cal:40,  emoji:'🧅', img:'https://plus.unsplash.com/premium_photo-1668076517573-fa01307d87ad?w=700&q=80', nutrients:['Vit C','Fiber','Quercetin'] },
-  { name:'Garlic',           family:'Root',             season:'autumn', cal:149, emoji:'🧄', img:'https://images.unsplash.com/photo-1636210589096-a53d5dacd702?w=700&q=80', nutrients:['Vit C','Allicin','Manganese'] },
-  { name:'Beetroot',         family:'Root',             season:'autumn', cal:43,  emoji:'🫐', img:'https://images.unsplash.com/photo-1503623758111-863eb2abd7a9?w=700&q=80', nutrients:['Folate','Vit C','Nitrates'] },
-  { name:'Radish',           family:'Root',             season:'spring', cal:16,  emoji:'🌶️', img:'https://images.unsplash.com/photo-1585369496178-144fd937f249?w=700&q=80', nutrients:['Vit C','Fiber','Antioxidants'] },
-  { name:'Turnip',           family:'Root',             season:'autumn', cal:28,  emoji:'🥔', img:'https://images.unsplash.com/photo-1555447740-03e40562af94?w=700&q=80', nutrients:['Vit C','Fiber','Glucosinolates'] },
-  { name:'Rutabaga',         family:'Root',             season:'autumn', cal:37,  emoji:'🥔', img:'https://www.allrecipes.com/thmb/KqcH-lDP_FG2mAyHiIc21zGlXow=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Rutabaga-3000-x-2000-017e4663eda4400d888e1203764778b1.png', nutrients:['Vit C','Fiber','Calcium'] },
-  { name:'Celeriac',         family:'Root',             season:'autumn', cal:42,  emoji:'🥦', img:'https://cdn-prod.medicalnewstoday.com/content/images/articles/320/320374/celeriac-chopped-on-a-fabric-surface.jpg', nutrients:['Vit K','Fiber','Phosphorus'] },
-  { name:'Cassava',          family:'Root',             season:'year',   cal:160, emoji:'🍠', img:'https://media.istockphoto.com/id/614051680/photo/fresh-tapioca-cassava-root-kerala-india.jpg?s=612x612', nutrients:['Complex carbs','Manganese','Vit C'] },
-  { name:'Ginger',           family:'Root',             season:'year',   cal:80,  emoji:'🫚', img:'https://plus.unsplash.com/premium_photo-1675364893053-180a3c6e0119?w=700&q=80', nutrients:['Gingerol','Vit B6','Magnesium'] },
-  { name:'Turmeric',         family:'Root',             season:'year',   cal:312, emoji:'🟡', img:'https://images.unsplash.com/photo-1606951444141-e5533feb55be?w=700&q=80', nutrients:['Curcumin','Antioxidants','Iron'] },
-  { name:'Daikon',           family:'Root',             season:'autumn', cal:18,  emoji:'⚪', img:'https://plus.unsplash.com/premium_photo-1723485627473-7227c17bf7ef?w=700&q=80', nutrients:['Vit C','Fiber','Nitrates'] },
-  { name:'Parsnip',          family:'Root',             season:'autumn', cal:75,  emoji:'🥕', img:'https://springforestfarm.com/wp-content/uploads/2021/03/parsnips.jpg?w=1024', nutrients:['Vit C','Fiber','Potassium'] },
-  { name:'Spinach',          family:'Leafy',            season:'year',   cal:23,  emoji:'🥬', img:'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=700&q=80', nutrients:['Vit A','Vit K','Iron','Folate'] },
-  { name:'Kale',             family:'Leafy',            season:'autumn', cal:35,  emoji:'🥬', img:'https://images.unsplash.com/photo-1685504513848-df0dd6893cec?w=700&q=80', nutrients:['Vit A','Vit K','Calcium','Fiber'] },
-  { name:'Cabbage',          family:'Leafy',            season:'year',   cal:25,  emoji:'🥬', img:'https://plus.unsplash.com/premium_photo-1702489575687-204529449d94?w=700&q=80', nutrients:['Vit C','Fiber','Vit K'] },
-  { name:'Lettuce',          family:'Leafy',            season:'year',   cal:15,  emoji:'🥬', img:'https://green-goblin.in/cdn/shop/files/LettuceLeafy1webp.webp?v=1709991868', nutrients:['Vit A','Vit K','Fiber'] },
-  { name:'Swiss Chard',      family:'Leafy',            season:'summer', cal:19,  emoji:'🥬', img:'https://images.unsplash.com/photo-1679595044391-3c42b0f351b5?w=700&q=80', nutrients:['Vit K','Vit A','Magnesium'] },
-  { name:'Mustard Greens',   family:'Leafy',            season:'winter', cal:27,  emoji:'🌿', img:'https://www.realsimple.com/thmb/uyydrzQ-N69JxwXRgYcf8yIzXjw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/mustard-greens-GettyImages-826950112-ef085baa1d7f441189940c08b415c55c.jpg', nutrients:['Vit A','Vit C','Calcium','Fiber'] },
-  { name:'Bok Choy',         family:'Leafy',            season:'winter', cal:13,  emoji:'🥬', img:'https://euphoricgreens.in/cdn/shop/files/76ED0A65-B037-4776-8192-891462B0AB08.jpg?v=1719324826', nutrients:['Vit A','Vit C','Vit K','Fiber'] },
-  { name:'Collard Greens',   family:'Leafy',            season:'winter', cal:33,  emoji:'🥬', img:'https://media.istockphoto.com/id/522865796/photo/collard-greens.jpg?s=612x612', nutrients:['Vit A','Vit K','Calcium','Fiber'] },
-  { name:'Arugula',          family:'Leafy',            season:'spring', cal:25,  emoji:'🌿', img:'https://plus.unsplash.com/premium_photo-1673469223112-235e51d1dfb0?w=700&q=80', nutrients:['Vit K','Folate','Antioxidants'] },
-  { name:'Romaine',          family:'Leafy',            season:'summer', cal:17,  emoji:'🥬', img:'https://draxe.com/wp-content/uploads/2015/02/RomaineLettuceNutritionThumbnail.jpg', nutrients:['Vit A','Vit C','Folate','Fiber'] },
-  { name:'Lettuce Iceberg',  family:'Leafy',            season:'year',   cal:14,  emoji:'🥬', img:'https://agribegri.com/_next/image?url=https%3A%2F%2Fdujjhct8zer0r.cloudfront.net%2Fmedia%2Fprod_image%2F6fbc32ec06999d59405ed36e821732f8-11-02-23-15-39-13.webp&w=1920&q=90', nutrients:['Vit K','Vit A','Fiber'] },
-  { name:'Broccoli',         family:'Cruciferous',      season:'autumn', cal:34,  emoji:'🥦', img:'https://plus.unsplash.com/premium_photo-1702403157830-9df749dc6c1e?w=700&q=80', nutrients:['Vit C','Vit K','Fiber','Sulforaphane'] },
-  { name:'Cauliflower',      family:'Cruciferous',      season:'autumn', cal:25,  emoji:'🥦', img:'https://images.unsplash.com/photo-1566842600175-97dca489844f?w=700&q=80', nutrients:['Vit C','Fiber','Vit K','Folate'] },
-  { name:'Brussels Sprouts', family:'Cruciferous',      season:'autumn', cal:43,  emoji:'🥦', img:'https://images.unsplash.com/photo-1614087434853-25e6e8357217?w=700&q=80', nutrients:['Vit C','Vit K','Fiber','Folate'] },
-  { name:'Kohlrabi',         family:'Cruciferous',      season:'autumn', cal:41,  emoji:'🥦', img:'https://images.unsplash.com/photo-1623490439625-758205dc3219?w=700&q=80', nutrients:['Vit C','Fiber','Vit B6','Potassium'] },
-  { name:'Cabbage Red',      family:'Cruciferous',      season:'autumn', cal:25,  emoji:'🥬', img:'https://media.istockphoto.com/id/1291000510/photo/red-cabbage-on-white-background.webp?a=1&b=1&s=612x612', nutrients:['Vit C','Fiber','Anthocyanins'] },
-  { name:'Tomato',           family:'Fruit-vegetable',  season:'summer', cal:18,  emoji:'🍅', img:'https://plus.unsplash.com/premium_photo-1661811820259-2575b82101bf?w=700&q=80', nutrients:['Vit C','Vit K','Lycopene'] },
-  { name:'Bell Pepper',      family:'Fruit-vegetable',  season:'summer', cal:20,  emoji:'🫑', img:'https://images.unsplash.com/photo-1601648764658-cf37e8c89b70?w=700&q=80', nutrients:['Vit C','Vit A','Fiber'] },
-  { name:'Chili Pepper',     family:'Fruit-vegetable',  season:'summer', cal:40,  emoji:'🌶️', img:'https://images.unsplash.com/photo-1599987662084-97832741bfa2?w=700&q=80', nutrients:['Vit C','Capsaicin','Vit A'] },
-  { name:'Cucumber',         family:'Fruit-vegetable',  season:'summer', cal:15,  emoji:'🥒', img:'https://images.unsplash.com/photo-1587411768638-ec71f8e33b78?q=80&w=880', nutrients:['Vit K','Fiber','Hydration'] },
-  { name:'Zucchini',         family:'Fruit-vegetable',  season:'summer', cal:17,  emoji:'🥒', img:'https://images.unsplash.com/photo-1691480291894-75229c2bfd44?w=700&q=80', nutrients:['Vit C','Vit A','Fiber'] },
-  { name:'Eggplant',         family:'Fruit-vegetable',  season:'summer', cal:25,  emoji:'🍆', img:'https://images.unsplash.com/photo-1604245437608-50c6bb8d4ee5?w=700&q=80', nutrients:['Fiber','Vit K','Antioxidants'] },
-  { name:'Okra',             family:'Fruit-vegetable',  season:'summer', cal:33,  emoji:'🌿', img:'https://images.unsplash.com/photo-1425543103986-22abb7d7e8d2?w=700&q=80', nutrients:['Vit C','Folate','Fiber'] },
-  { name:'Pumpkin',          family:'Fruit-vegetable',  season:'autumn', cal:26,  emoji:'🎃', img:'https://images.unsplash.com/photo-1692680919402-95fc56f99225?w=700&q=80', nutrients:['Vit A','Fiber','Vit C'] },
-  { name:'Butternut Squash', family:'Fruit-vegetable',  season:'autumn', cal:45,  emoji:'🎃', img:'https://media.istockphoto.com/id/471688238/photo/butternut-squash.webp?a=1&b=1&s=612x612', nutrients:['Vit A','Vit C','Fiber'] },
-  { name:'Acorn Squash',     family:'Fruit-vegetable',  season:'autumn', cal:38,  emoji:'🎃', img:'https://images.unsplash.com/photo-1560513977-6faee53459d7?w=700&q=80', nutrients:['Vit A','Fiber','Potassium'] },
-  { name:'Parsley',          family:'Herb',             season:'summer', cal:36,  emoji:'🌿', img:'https://nurserylive.com/cdn/shop/products/nurserylive-seeds-parsley-organic-herb-seeds-16969159999628.jpg?v=1634204493', nutrients:['Vit K','Vit C','Antioxidants'] },
-  { name:'Coriander',        family:'Herb',             season:'spring', cal:23,  emoji:'🌿', img:'https://images.unsplash.com/photo-1535189487909-a262ad10c165?w=700&q=80', nutrients:['Vit K','Vit C','Antioxidants'] },
-  { name:'Cilantro',         family:'Herb',             season:'spring', cal:23,  emoji:'🌿', img:'https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/277/277627/bunch-of-fresh-coriander-or-cilantro-on-a-wooden-table.jpg?w=1155', nutrients:['Vit K','Vit C','Antioxidants'] },
-  { name:'Mint',             family:'Herb',             season:'summer', cal:70,  emoji:'🌿', img:'https://theaffordableorganicstore.com/cdn/shop/files/1713181721.jpg?v=1744630667', nutrients:['Vit A','Vit C','Antioxidants'] },
-  { name:'Rosemary',         family:'Herb',             season:'year',   cal:131, emoji:'🌿', img:'https://images.unsplash.com/photo-1726994803809-0e065bd4b25b?w=700&q=80', nutrients:['Vit B6','Iron','Antioxidants'] },
-  { name:'Thyme',            family:'Herb',             season:'summer', cal:101, emoji:'🌿', img:'https://plus.unsplash.com/premium_photo-1726138617688-e6bfd9f0de5c?w=700&q=80', nutrients:['Vit C','Vit A','Antioxidants'] },
-  { name:'Basil',            family:'Herb',             season:'summer', cal:23,  emoji:'🌿', img:'https://plus.unsplash.com/premium_photo-1725899523683-838307ab1552?w=700&q=80', nutrients:['Vit K','Vit A','Antioxidants'] },
+  { name:'Potato',           family:'Root',      season:'year',      cal:77,  img:'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG90YXRvfGVufDB8fDB8fHww', nutrients:['Vit C','Potassium','Complex carbs'] },
+  { name:'Sweet Potato',     family:'Root',      season:'autumn',    cal:86,  img:'https://images.unsplash.com/photo-1730815048561-45df6f7f331d?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3dlZXQlMjBwb3RhdG98ZW58MHx8MHx8fDA%3D', nutrients:['Vit A','Vit C','Fiber'] },
+  { name:'Carrot',           family:'Root',      season:'autumn',    cal:41,  img:'https://images.unsplash.com/photo-1633380110125-f6e685676160?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2Fycm90fGVufDB8fDB8fHww', nutrients:['Vit A','Fiber','Antioxidants'] },
+  { name:'Onion',            family:'Root',      season:'year',      cal:40,  img:'https://plus.unsplash.com/premium_photo-1668076517573-fa01307d87ad?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8b25pb258ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Fiber','Quercetin'] },
+  { name:'Garlic',           family:'Root',      season:'autumn',    cal:149, img:'https://images.unsplash.com/photo-1636210589096-a53d5dacd702?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FybGljfGVufDB8fDB8fHww', nutrients:['Vit C','Allicin','Manganese'] },
+  { name:'Beetroot',         family:'Root',      season:'autumn',    cal:43,  img:'https://images.unsplash.com/photo-1503623758111-863eb2abd7a9?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmVldHJvb3R8ZW58MHx8MHx8fDA%3D', nutrients:['Folate','Vit C','Nitrates'] },
+  { name:'Radish',           family:'Root',      season:'spring',    cal:16,  img:'https://images.unsplash.com/photo-1585369496178-144fd937f249?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFkaXNofGVufDB8fDB8fHww', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Turnip',           family:'Root',      season:'autumn',    cal:28,  img:'https://images.unsplash.com/photo-1555447740-03e40562af94?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8VHVybmlwfGVufDB8fDB8fHww', nutrients:['Vit C','Fiber','Glucosinolates'] },
+  { name:'Rutabaga',         family:'Root',      season:'autumn',    cal:37,  img:'https://www.allrecipes.com/thmb/KqcH-lDP_FG2mAyHiIc21zGlXow=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Rutabaga-3000-x-2000-017e4663eda4400d888e1203764778b1.png', nutrients:['Vit C','Fiber','Calcium'] },
+  { name:'Celeriac',         family:'Root',      season:'autumn',    cal:42,  img:'https://cdn-prod.medicalnewstoday.com/content/images/articles/320/320374/celeriac-chopped-on-a-fabric-surface.jpg', nutrients:['Vit K','Fiber','Phosphorus'] },
+  { name:'Cassava',          family:'Root',      season:'year',      cal:160, img:'https://media.istockphoto.com/id/614051680/photo/fresh-tapioca-cassava-root-kerala-india.jpg?s=612x612&w=0&k=20&c=XUhUqjkrMZrd8F0tUSXR0fsyB9zxiEWBD3brMAhotKg=', nutrients:['Complex carbs','Manganese','Vit C'] },
+  { name:'Ginger',           family:'Root',      season:'year',      cal:80,  img:'https://plus.unsplash.com/premium_photo-1675364893053-180a3c6e0119?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z2luZ2VyfGVufDB8fDB8fHww', nutrients:['Gingerol','Vit B6','Magnesium'] },
+  { name:'Turmeric',         family:'Root',      season:'year',      cal:312, img:'https://images.unsplash.com/photo-1606951444141-e5533feb55be?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVybWVyaWN8ZW58MHx8MHx8fDA%3D', nutrients:['Curcumin','Antioxidants','Iron'] },
+  { name:'Daikon',           family:'Root',      season:'autumn',    cal:18,  img:'https://plus.unsplash.com/premium_photo-1723485627473-7227c17bf7ef?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RGFpa29ufGVufDB8fDB8fHww', nutrients:['Vit C','Fiber','Nitrates'] },
+  { name:'Parsnip',          family:'Root',      season:'autumn',    cal:75,  img:'https://springforestfarm.com/wp-content/uploads/2021/03/parsnips.jpg?w=1024', nutrients:['Vit C','Fiber','Potassium'] },
+  { name:'Spinach',          family:'Leafy',     season:'year',      cal:23,  img:'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3BpbmFjaHxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit A','Vit K','Iron','Folate'] },
+  { name:'Kale',             family:'Leafy',     season:'autumn',    cal:35,  img:'https://images.unsplash.com/photo-1685504513848-df0dd6893cec?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a2FsZXxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit A','Vit K','Calcium','Fiber'] },
+  { name:'Cabbage',          family:'Leafy',     season:'year',      cal:25,  img:'https://plus.unsplash.com/premium_photo-1702489575687-204529449d94?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2FiYmFnZXxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Fiber','Vit K'] },
+  { name:'Lettuce',          family:'Leafy',     season:'year',      cal:15,  img:'https://green-goblin.in/cdn/shop/files/LettuceLeafy1webp.webp?v=1709991868', nutrients:['Vit A','Vit K','Fiber'] },
+  { name:'Swiss Chard',      family:'Leafy',     season:'summer',    cal:19,  img:'https://images.unsplash.com/photo-1679595044391-3c42b0f351b5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U3dpc3MlMjBDaGFyZHxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit K','Vit A','Magnesium'] },
+  { name:'Mustard Greens',   family:'Leafy',     season:'winter',    cal:27,  img:'https://www.realsimple.com/thmb/uyydrzQ-N69JxwXRgYcf8yIzXjw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/mustard-greens-GettyImages-826950112-ef085baa1d7f441189940c08b415c55c.jpg', nutrients:['Vit A','Vit C','Calcium','Fiber'] },
+  { name:'Bok Choy',         family:'Leafy',     season:'winter',    cal:13,  img:'https://euphoricgreens.in/cdn/shop/files/76ED0A65-B037-4776-8192-891462B0AB08.jpg?v=1719324826', nutrients:['Vit A','Vit C','Vit K','Fiber'] },
+  { name:'Collard Greens',   family:'Leafy',     season:'winter',    cal:33,  img:'https://media.istockphoto.com/id/522865796/photo/collard-greens.jpg?s=612x612&w=0&k=20&c=b32eT3kiz8zQJ7BDRgOr5sqta-FLMn0bmyD-sKDCd3Y=', nutrients:['Vit A','Vit K','Calcium','Fiber'] },
+  { name:'Arugula',          family:'Leafy',     season:'spring',    cal:25,  img:'https://plus.unsplash.com/premium_photo-1673469223112-235e51d1dfb0?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QXJ1Z3VsYXxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit K','Folate','Antioxidants'] },
+  { name:'Romaine',          family:'Leafy',     season:'summer',    cal:17,  img:'https://draxe.com/wp-content/uploads/2015/02/RomaineLettuceNutritionThumbnail.jpg', nutrients:['Vit A','Vit C','Folate','Fiber'] },
+  { name:'Broccoli',         family:'Cruciferous', season:'autumn',  cal:34,  img:'https://plus.unsplash.com/premium_photo-1702403157830-9df749dc6c1e?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnJvY2NvbGl8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Vit K','Fiber','Sulforaphane'] },
+  { name:'Cauliflower',      family:'Cruciferous', season:'autumn',  cal:25,  img:'https://images.unsplash.com/photo-1566842600175-97dca489844f?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2F1bGlmbG93ZXJ8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Fiber','Vit K','Folate'] },
+  { name:'Brussels Sprouts', family:'Cruciferous', season:'autumn',  cal:43,  img:'https://images.unsplash.com/photo-1614087434853-25e6e8357217?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QnJ1c3NlbHMlMjBTcHJvdXRzfGVufDB8fDB8fHww', nutrients:['Vit C','Vit K','Fiber','Folate'] },
+  { name:'Kohlrabi',         family:'Cruciferous', season:'autumn',  cal:41,  img:'https://images.unsplash.com/photo-1623490439625-758205dc3219?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8S29obHJhYml8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Fiber','Vit B6','Potassium'] },
+  { name:'Cabbage Red',      family:'Cruciferous', season:'autumn',  cal:25,  img:'https://media.istockphoto.com/id/1291000510/photo/red-cabbage-on-white-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=1_T4uSTDh3Dcj_Vdmsh0eImlHv8yoqGa2rgqaieJYIc=', nutrients:['Vit C','Fiber','Anthocyanins'] },
+  { name:'Tomato',           family:'Fruit‑vegetable', season:'summer', cal:18,  img:'https://plus.unsplash.com/premium_photo-1661811820259-2575b82101bf?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dG9tYXRvfGVufDB8fDB8fHww', nutrients:['Vit C','Vit K','Lycopene'] },
+  { name:'Bell Pepper',      family:'Fruit‑vegetable', season:'summer', cal:20,  img:'https://images.unsplash.com/photo-1601648764658-cf37e8c89b70?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVsbCUyMHBlcHBlcnxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Vit A','Fiber'] },
+  { name:'Chili Pepper',     family:'Fruit‑vegetable', season:'summer', cal:40,  img:'https://images.unsplash.com/photo-1599987662084-97832741bfa2?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2hpbGklMjBwZXBwZXJ8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Capsaicin','Vit A'] },
+  { name:'Cucumber',         family:'Fruit‑vegetable', season:'summer', cal:15,  img:'https://images.unsplash.com/photo-1587411768638-ec71f8e33b78?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', nutrients:['Vit K','Fiber','Hydration'] },
+  { name:'Zucchini',         family:'Fruit‑vegetable', season:'summer', cal:17,  img:'https://images.unsplash.com/photo-1691480291894-75229c2bfd44?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8enVjY2hpbml8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Vit A','Fiber'] },
+  { name:'Eggplant',         family:'Fruit‑vegetable', season:'summer', cal:25,  img:'https://images.unsplash.com/photo-1604245437608-50c6bb8d4ee5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGVnZ3BsYW50fGVufDB8fDB8fHww', nutrients:['Fiber','Vit K','Antioxidants'] },
+  { name:'Okra',             family:'Fruit‑vegetable', season:'summer', cal:33,  img:'https://images.unsplash.com/photo-1425543103986-22abb7d7e8d2?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b2tyYXxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Folate','Fiber'] },
+  { name:'Pumpkin',          family:'Fruit‑vegetable', season:'autumn', cal:26,  img:'https://images.unsplash.com/photo-1692680919402-95fc56f99225?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHVtcGtpbnxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit A','Fiber','Vit C'] },
+  { name:'Butternut Squash', family:'Fruit‑vegetable', season:'autumn', cal:45,  img:'https://media.istockphoto.com/id/471688238/photo/butternut-squash.webp?a=1&b=1&s=612x612&w=0&k=20&c=0okhHv73TeL3NHr1BV-vvDYUBAAB9mR2LE3XCHnaHR8=', nutrients:['Vit A','Vit C','Fiber'] },
+  { name:'Acorn Squash',     family:'Fruit‑vegetable', season:'autumn', cal:38,  img:'https://images.unsplash.com/photo-1560513977-6faee53459d7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWNvcm4lMjBTcXVhc2h8ZW58MHx8MHx8fDA%3D', nutrients:['Vit A','Fiber','Potassium'] },
+  { name:'Parsley',          family:'Herb',      season:'summer',    cal:36,  img:'https://nurserylive.com/cdn/shop/products/nurserylive-seeds-parsley-organic-herb-seeds-16969159999628.jpg?v=1634204493', nutrients:['Vit K','Vit C','Antioxidants'] },
+  { name:'Coriander',        family:'Herb',      season:'spring',    cal:23,  img:'https://images.unsplash.com/photo-1535189487909-a262ad10c165?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29yaWFuZGVyfGVufDB8fDB8fHww', nutrients:['Vit K','Vit C','Antioxidants'] },
+  { name:'Cilantro',         family:'Herb',      season:'spring',    cal:23,  img:'https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/277/277627/bunch-of-fresh-coriander-or-cilantro-on-a-wooden-table.jpg?w=1155&h=1444', nutrients:['Vit K','Vit C','Antioxidants'] },
+  { name:'Mint',             family:'Herb',      season:'summer',    cal:70,  img:'https://theaffordableorganicstore.com/cdn/shop/files/1713181721.jpg?v=1744630667', nutrients:['Vit A','Vit C','Antioxidants'] },
+  { name:'Rosemary',         family:'Herb',      season:'year',      cal:131, img:'https://images.unsplash.com/photo-1726994803809-0e065bd4b25b?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Um9zZW1hcnl8ZW58MHx8MHx8fDA%3D', nutrients:['Vit B6','Iron','Antioxidants'] },
+  { name:'Thyme',            family:'Herb',      season:'summer',    cal:101, img:'https://plus.unsplash.com/premium_photo-1726138617688-e6bfd9f0de5c?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VGh5bWV8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Vit A','Antioxidants'] },
+  { name:'Basil',            family:'Herb',      season:'summer',    cal:23,  img:'https://plus.unsplash.com/premium_photo-1725899523683-838307ab1552?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QmFzaWx8ZW58MHx8MHx8fDA%3D', nutrients:['Vit K','Vit A','Antioxidants'] },
+  { name:'Lettuce Iceberg',  family:'Leafy',     season:'year',      cal:14,  img:'https://agribegri.com/_next/image?url=https%3A%2F%2Fdujjhct8zer0r.cloudfront.net%2Fmedia%2Fprod_image%2F6fbc32ec06999d59405ed36e821732f8-11-02-23-15-39-13.webp&w=1920&q=90', nutrients:['Vit K','Vit A','Fiber'] }
 ];
+
 
 const seasonMap = { summer:'☀️ Summer', spring:'🌸 Spring', autumn:'🍂 Autumn', winter:'❄️ Winter', year:'🌿 Year-round' };
 const familyEmoji = { Root:'🥕', Leafy:'🥬', Cruciferous:'🥦', 'Fruit-vegetable':'🍅', Herb:'🌿' };

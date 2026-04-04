@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nutrition Comparison – Harvestpedia</title>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  .compare-hero {
+    padding: 2.5rem 1.5rem 2rem; text-align: center;
+    background: linear-gradient(135deg, #f5f9f0 0%, #e8f4e8 100%);
+  }
+  .compare-hero h1 { font-size: 2rem; font-weight: 700; color: #1a3a1a; }
+  .compare-hero p  { color: #6b7280; margin-top: 0.4rem; }
+
+  .compare-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  /* Item picker */
+  .picker-section { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:1.5rem; margin-bottom:1.5rem; }
+  .picker-section h2 { font-size:1rem; font-weight:600; color:#1a3a1a; margin-bottom:1rem; }
+  .picker-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:8px; }
+  .pick-item {
+    display:flex; align-items:center; gap:8px; padding:8px 12px;
+    border:1.5px solid #e5e7eb; border-radius:10px; cursor:pointer;
+    font-size:13px; font-weight:500; color:#374151; transition:all .15s;
+    background:#fff;
+  }
+  .pick-item:hover { border-color:#3B6D11; background:#f5f9f0; }
+  .pick-item.selected { border-color:#3B6D11; background:#3B6D11; color:#fff; }
+  .pick-item .emoji { font-size:1.2rem; }
+
+  /* Selected bar */
+  .selected-bar {
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    padding:0.75rem 1rem; background:#f9fafb; border-radius:10px; margin-bottom:1rem;
+  }
+  .sel-tag {
+    display:flex; align-items:center; gap:5px; padding:4px 10px 4px 12px;
+    background:#fff; border:1px solid #d1fae5; border-radius:99px; font-size:13px;
+    color:#065f46;
+  }
+  .sel-tag button { background:none; border:none; cursor:pointer; color:#6b7280; font-size:14px; padding:0 0 0 4px; }
+  .sel-tag button:hover { color:#ef4444; }
+  .compare-btn {
+    margin-left:auto; padding:8px 20px; background:#3B6D11; color:#fff;
+    border:none; border-radius:8px; font-weight:600; cursor:pointer; font-size:14px;
+    transition:background .2s;
+  }
+  .compare-btn:hover { background:#2d5209; }
+  .compare-btn:disabled { background:#9ca3af; cursor:not-allowed; }
+
+  /* Chart area */
+  .chart-section { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:1.5rem; margin-bottom:1.5rem; }
+  .chart-tabs { display:flex; gap:4px; border-bottom:1.5px solid #e5e7eb; margin-bottom:1.5rem; }
+  .chart-tab {
+    padding:7px 16px; border:none; background:none; cursor:pointer;
+    font-size:13px; font-weight:500; color:#6b7280;
+    border-bottom:2px solid transparent; margin-bottom:-1.5px; transition:all .15s;
+  }
+  .chart-tab.active { color:#3B6D11; border-bottom-color:#3B6D11; }
+  .chart-panel { display:none; }
+  .chart-panel.active { display:block; }
+  .chart-wrap { position:relative; height:320px; }
+
+  /* Comparison table */
+  .comp-table { width:100%; border-collapse:collapse; font-size:13px; }
+  .comp-table th, .comp-table td {
+    padding:10px 14px; text-align:left; border-bottom:1px solid #f3f4f6;
+  }
+  .comp-table th { font-weight:600; color:#374151; background:#f9fafb; }
+  .comp-table td:first-child { color:#6b7280; font-size:12px; }
+  .best-val { background:#d1fae5; color:#065f46; border-radius:6px; padding:2px 8px; font-weight:600; }
+
+  .loading-msg { text-align:center; padding:2rem; color:#6b7280; font-size:1rem; }
+  .hidden { display:none; }
+
+  /* Color palette for up to 5 items */
+  :root {
+    --c0:#3B6D11; --c1:#BA7517; --c2:#0F6E56; --c3:#534AB7; --c4:#993C1D;
+  }
+</style>
+<script src="/Harvestpedia/js/api.js"></script>
+<script src="Harvestpedia/js/darkmode.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">🌿 Harvestpedia</a>
+  <div class="nav-links">
+    <a href="fruits.html">Fruits</a>
+    <a href="vegetables.html">Vegetables</a>
+    <a href="plants.html">Plants</a>
+    <a href="search.html">Search</a>
+    <button class="dm-toggle" id="dm-toggle"></button>
+  </div>
+</nav>
+
+<section class="compare-hero">
+  <h1>📊 Nutrition Comparison</h1>
+  <p>Select up to 5 items and compare their nutrition side by side.</p>
+</section>
+
+<main class="compare-wrap">
+
+  <!-- Item Picker -->
+  <div class="picker-section">
+    <h2>Choose items to compare (max 5)</h2>
+
+    <p style="font-size:12px;color:#6b7280;margin-bottom:8px;">🍎 Fruits</p>
+    <div class="picker-grid" id="fruits-picker"></div>
+
+    <p style="font-size:12px;color:#6b7280;margin:12px 0 8px;">🥦 Vegetables</p>
+    <div class="picker-grid" id="vegs-picker"></div>
+  </div>
+
+  <!-- Selected bar -->
+  <div class="selected-bar" id="selected-bar">
+    <span style="font-size:13px;color:#9ca3af;">No items selected</span>
+    <button class="compare-btn" id="compare-btn" disabled>Compare</button>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-msg hidden" id="loading">⏳ Fetching nutrition data…</div>
+
+  <!-- Results -->
+  <div class="chart-section hidden" id="results-section">
+    <div class="chart-tabs">
+      <button class="chart-tab active" data-panel="bar">Bar Chart</button>
+      <button class="chart-tab" data-panel="radar">Radar</button>
+      <button class="chart-tab" data-panel="table">Table</button>
+    </div>
+
+    <div class="chart-panel active" id="panel-bar">
+      <div class="chart-wrap"><canvas id="bar-chart"></canvas></div>
+    </div>
+    <div class="chart-panel" id="panel-radar">
+      <div class="chart-wrap"><canvas id="radar-chart"></canvas></div>
+    </div>
+    <div class="chart-panel" id="panel-table">
+      <div style="overflow-x:auto"><table class="comp-table" id="comp-table"></table></div>
+    </div>
+  </div>
+
+</main>
+
+<script src="../js/api.js"></script>
+<script>
+// ── Data ──────────────────────────────────────────────────
+// Static nutrition per 100g – extend to match your full dataset
+const NUTRITION_DB = {
+  Apple:      { calories:52,  protein:0.3, carbs:14,  fat:0.2, fiber:2.4, vitaminC:4.6,  potassium:107 },
+  Mango:      { calories:60,  protein:0.8, carbs:15,  fat:0.4, fiber:1.6, vitaminC:36.4, potassium:168 },
+  Banana:     { calories:89,  protein:1.1, carbs:23,  fat:0.3, fiber:2.6, vitaminC:8.7,  potassium:358 },
+  Strawberry: { calories:32,  protein:0.7, carbs:7.7, fat:0.3, fiber:2.0, vitaminC:58.8, potassium:153 },
+  Orange:     { calories:47,  protein:0.9, carbs:12,  fat:0.1, fiber:2.4, vitaminC:53.2, potassium:181 },
+  Blueberry:  { calories:57,  protein:0.7, carbs:14,  fat:0.3, fiber:2.4, vitaminC:9.7,  potassium:77  },
+  Pineapple:  { calories:50,  protein:0.5, carbs:13,  fat:0.1, fiber:1.4, vitaminC:47.8, potassium:109 },
+  Grape:      { calories:62,  protein:0.6, carbs:17,  fat:0.2, fiber:0.9, vitaminC:3.2,  potassium:191 },
+  Watermelon: { calories:30,  protein:0.6, carbs:7.6, fat:0.2, fiber:0.4, vitaminC:8.1,  potassium:112 },
+  Cherry:     { calories:50,  protein:1.0, carbs:12,  fat:0.3, fiber:1.6, vitaminC:7.0,  potassium:222 },
+  Peach:      { calories:39,  protein:0.9, carbs:10,  fat:0.3, fiber:1.5, vitaminC:6.6,  potassium:190 },
+  Pear:       { calories:57,  protein:0.4, carbs:15,  fat:0.1, fiber:3.1, vitaminC:4.3,  potassium:116 },
+
+  Tomato:     { calories:18,  protein:0.9, carbs:3.9, fat:0.2, fiber:1.2, vitaminC:13.7, potassium:237 },
+  Carrot:     { calories:41,  protein:0.9, carbs:10,  fat:0.2, fiber:2.8, vitaminC:5.9,  potassium:320 },
+  Broccoli:   { calories:34,  protein:2.8, carbs:7.0, fat:0.4, fiber:2.6, vitaminC:89.2, potassium:316 },
+  Spinach:    { calories:23,  protein:2.9, carbs:3.6, fat:0.4, fiber:2.2, vitaminC:28.1, potassium:558 },
+  Potato:     { calories:77,  protein:2.0, carbs:17,  fat:0.1, fiber:2.2, vitaminC:19.7, potassium:421 },
+  "Bell Pepper":{ calories:31, protein:1.0,carbs:6.0, fat:0.3, fiber:2.1, vitaminC:127.7,potassium:211 },
+  Cucumber:   { calories:15,  protein:0.7, carbs:3.6, fat:0.1, fiber:0.5, vitaminC:2.8,  potassium:147 },
+  Onion:      { calories:40,  protein:1.1, carbs:9.3, fat:0.1, fiber:1.7, vitaminC:7.4,  potassium:146 },
+  Garlic:     { calories:149, protein:6.4, carbs:33,  fat:0.5, fiber:2.1, vitaminC:31.2, potassium:401 },
+  Cabbage:    { calories:25,  protein:1.3, carbs:5.8, fat:0.1, fiber:2.5, vitaminC:36.6, potassium:170 },
+};
+
+const FRUITS = ["Apple","Mango","Banana","Strawberry","Orange","Blueberry","Pineapple","Grape","Watermelon","Cherry","Peach","Pear"];
+const VEGS   = ["Tomato","Carrot","Broccoli","Spinach","Potato","Bell Pepper","Cucumber","Onion","Garlic","Cabbage"];
+const EMOJIS = {Apple:"🍎",Mango:"🥭",Banana:"🍌",Strawberry:"🍓",Orange:"🍊",Blueberry:"🫐",Pineapple:"🍍",Grape:"🍇",Watermelon:"🍉",Cherry:"🍒",Peach:"🍑",Pear:"🍐",Tomato:"🍅",Carrot:"🥕",Broccoli:"🥦",Spinach:"🌿",Potato:"🥔","Bell Pepper":"🫑",Cucumber:"🥒",Onion:"🧅",Garlic:"🧄",Cabbage:"🥬"};
+const COLORS  = ["#3B6D11","#BA7517","#0F6E56","#534AB7","#993C1D"];
+const METRICS = ["calories","protein","carbs","fat","fiber","vitaminC","potassium"];
+const LABELS  = {calories:"Calories (kcal)",protein:"Protein (g)",carbs:"Carbs (g)",fat:"Fat (g)",fiber:"Fiber (g)",vitaminC:"Vitamin C (mg)",potassium:"Potassium (mg)"};
+
+// ── State ─────────────────────────────────────────────────
+let selected = [];
+let barChartInst = null, radarChartInst = null;
+
+// ── Render pickers ────────────────────────────────────────
+function renderPicker(containerId, items) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = items.map(name => `
+    <div class="pick-item" data-name="${name}" onclick="toggleItem('${name}')">
+      <span class="emoji">${EMOJIS[name]||"🌿"}</span>${name}
+    </div>
+  `).join("");
+}
+renderPicker("fruits-picker", FRUITS);
+renderPicker("vegs-picker", VEGS);
+
+// ── Toggle item selection ─────────────────────────────────
+function toggleItem(name) {
+  const idx = selected.indexOf(name);
+  if (idx === -1) {
+    if (selected.length >= 5) return;
+    selected.push(name);
+  } else {
+    selected.splice(idx, 1);
+  }
+  syncUI();
+}
+
+function syncUI() {
+  // Update picker chips
+  document.querySelectorAll(".pick-item").forEach(el => {
+    el.classList.toggle("selected", selected.includes(el.dataset.name));
+  });
+
+  // Update selected bar
+  const bar = document.getElementById("selected-bar");
+  if (selected.length === 0) {
+    bar.innerHTML = `<span style="font-size:13px;color:#9ca3af;">No items selected</span><button class="compare-btn" id="compare-btn" disabled>Compare</button>`;
+  } else {
+    const tags = selected.map(n => `
+      <span class="sel-tag">${EMOJIS[n]||""} ${n}
+        <button onclick="toggleItem('${n}')">✕</button>
+      </span>`).join("");
+    bar.innerHTML = `${tags}<button class="compare-btn" id="compare-btn" ${selected.length<2?"disabled":""} onclick="runCompare()">Compare ${selected.length > 0 ? selected.length : ""}</button>`;
+  }
+}
+
+// ── Run comparison ─────────────────────────────────────────
+async function runCompare() {
+  if (selected.length < 2) return;
+
+  document.getElementById("loading").classList.remove("hidden");
+  document.getElementById("results-section").classList.add("hidden");
+
+  // Get nutrition data (from static DB, could also call Claude API)
+  const data = selected.map(name => ({
+    name,
+    emoji: EMOJIS[name] || "🌿",
+    nutrition: NUTRITION_DB[name] || {}
+  }));
+
+  document.getElementById("loading").classList.add("hidden");
+  renderCharts(data);
+  document.getElementById("results-section").classList.remove("hidden");
+}
+
+// ── Render charts ─────────────────────────────────────────
+function renderCharts(data) {
+  renderBar(data);
+  renderRadar(data);
+  renderTable(data);
+}
+
+function renderBar(data) {
+  if (barChartInst) barChartInst.destroy();
+  const ctx = document.getElementById("bar-chart").getContext("2d");
+  barChartInst = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: METRICS.map(m => LABELS[m].split(" ")[0]),
+      datasets: data.map((item, i) => ({
+        label: item.emoji + " " + item.name,
+        data: METRICS.map(m => item.nutrition[m] || 0),
+        backgroundColor: COLORS[i] + "cc",
+        borderColor: COLORS[i],
+        borderWidth: 1.5,
+        borderRadius: 4,
+      })),
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position:"top", labels:{ font:{size:12}, boxWidth:12 } } },
+      scales: {
+        x: { grid:{display:false}, ticks:{font:{size:11}} },
+        y: { beginAtZero:true, grid:{color:"#f3f4f6"}, ticks:{font:{size:11}} },
+      },
+    },
+  });
+}
+
+function renderRadar(data) {
+  if (radarChartInst) radarChartInst.destroy();
+  const ctx = document.getElementById("radar-chart").getContext("2d");
+
+  // Normalise values 0–100 per metric
+  const maxPerMetric = METRICS.map(m => Math.max(...data.map(d => d.nutrition[m] || 0)));
+  radarChartInst = new Chart(ctx, {
+    type: "radar",
+    data: {
+      labels: METRICS.map(m => LABELS[m].split(" ")[0]),
+      datasets: data.map((item, i) => ({
+        label: item.emoji + " " + item.name,
+        data: METRICS.map((m, mi) => maxPerMetric[mi] ? ((item.nutrition[m] || 0) / maxPerMetric[mi]) * 100 : 0),
+        backgroundColor: COLORS[i] + "33",
+        borderColor: COLORS[i],
+        borderWidth: 2,
+        pointBackgroundColor: COLORS[i],
+        pointRadius: 3,
+      })),
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend:{ position:"top", labels:{font:{size:12}, boxWidth:12} } },
+      scales: { r: { beginAtZero:true, max:100, grid:{color:"#f3f4f6"}, ticks:{display:false} } },
+    },
+  });
+}
+
+function renderTable(data) {
+  const table = document.getElementById("comp-table");
+  const maxVals = {};
+  METRICS.forEach(m => { maxVals[m] = Math.max(...data.map(d => d.nutrition[m] || 0)); });
+
+  const headers = `<tr><th>Nutrient (per 100g)</th>${data.map(d=>`<th>${d.emoji} ${d.name}</th>`).join("")}</tr>`;
+  const rows = METRICS.map(m => {
+    const cells = data.map(d => {
+      const v = d.nutrition[m] ?? "–";
+      const isBest = v === maxVals[m];
+      return `<td>${isBest ? `<span class="best-val">${v}</span>` : v}</td>`;
+    }).join("");
+    return `<tr><td>${LABELS[m]}</td>${cells}</tr>`;
+  }).join("");
+
+  table.innerHTML = `<thead>${headers}</thead><tbody>${rows}</tbody>`;
+}
+
+// ── Chart tabs ────────────────────────────────────────────
+document.querySelectorAll(".chart-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".chart-tab, .chart-panel").forEach(el => el.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById(`panel-${tab.dataset.panel}`).classList.add("active");
+  });
+});
+</script>
+</body>
+</html>

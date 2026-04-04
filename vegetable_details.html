@@ -1,578 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="page-title">Vegetable Detail – Harvestpedia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --green-50:#f0f9f0; --green-100:#d4edda; --green-200:#a8d5b5;
-      --green-400:#5aab6f; --green-600:#2d7a45; --green-800:#1a4f2b;
-      --earth-50:#fdf6ee; --earth-100:#f5e6d0; --earth-300:#d4a96a; --earth-500:#a0703a;
-      --veg-50:#f4fbf0; --veg-100:#dff2d0; --veg-200:#b8e49a;
-      --veg-400:#6dbf3e; --veg-600:#3d8a1a; --veg-700:#2d6b12; --veg-800:#214d0a;
-      --cream:#fdfaf5; --warm-white:#fffef9;
-      --text-dark:#1c2b1e; --text-mid:#3d5440; --text-muted:#6b8070;
-      --shadow-sm:0 2px 12px rgba(30,60,35,.07);
-      --shadow-md:0 8px 32px rgba(30,60,35,.11);
-      --shadow-lg:0 18px 60px rgba(30,60,35,.14);
-      --radius-sm:12px; --radius-md:20px; --radius-lg:32px;
-    }
-    html { scroll-behavior:smooth; }
-    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text-dark); overflow-x:hidden; }
-
-    /* NAV */
-    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:16px 48px; background:rgba(253,250,245,.9); backdrop-filter:blur(16px); border-bottom:1px solid rgba(90,171,111,.12); transition:box-shadow .3s; }
-    nav.scrolled { box-shadow:0 4px 24px rgba(30,60,35,.08); }
-    .nav-logo { display:flex; align-items:center; gap:10px; font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--green-800); text-decoration:none; }
-    .nav-logo-leaf { width:34px; height:34px; background:linear-gradient(135deg,var(--green-400),var(--green-600)); border-radius:50% 12px 50% 12px; display:flex; align-items:center; justify-content:center; font-size:16px; box-shadow:0 4px 14px rgba(45,122,69,.3); }
-    .nav-links { display:flex; align-items:center; gap:6px; list-style:none; }
-    .nav-links a { text-decoration:none; color:var(--text-mid); font-size:14px; font-weight:500; padding:8px 18px; border-radius:50px; transition:all .2s; }
-    .nav-links a:hover, .nav-links a.active { background:var(--veg-50); color:var(--veg-600); }
-    .nav-cta { background:var(--green-600)!important; color:white!important; box-shadow:0 4px 14px rgba(45,122,69,.3); }
-
-    /* HERO */
-    .veg-hero {
-      padding:120px 48px 0;
-      background:linear-gradient(160deg, var(--veg-50) 0%, var(--warm-white) 55%);
-      position:relative; overflow:hidden; min-height:520px; display:flex; align-items:flex-end;
-    }
-    .veg-hero::before { content:''; position:absolute; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle,rgba(109,191,62,.09) 0%,transparent 70%); top:-250px; right:-150px; pointer-events:none; animation:blobFloat 9s ease-in-out infinite; }
-    @keyframes blobFloat { 0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(20px,-20px) scale(1.03);}66%{transform:translate(-10px,15px) scale(.98);} }
-
-    .hero-inner { display:grid; grid-template-columns:1fr 420px; gap:60px; width:100%; position:relative; z-index:1; align-items:flex-end; }
-    .hero-left { padding-bottom:48px; }
-    .breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-muted); margin-bottom:24px; }
-    .breadcrumb a { text-decoration:none; color:var(--veg-600); }
-    .breadcrumb span { opacity:.5; }
-    .veg-tag { display:inline-flex; align-items:center; gap:6px; background:var(--veg-50); border:1px solid var(--veg-200); color:var(--veg-600); font-size:11px; font-weight:700; padding:5px 14px; border-radius:50px; letter-spacing:.8px; text-transform:uppercase; margin-bottom:16px; }
-    .veg-hero-name { font-family:'Playfair Display',serif; font-size:clamp(52px,7vw,88px); font-weight:700; line-height:1; color:var(--text-dark); margin-bottom:10px; }
-    .veg-hero-family { font-size:16px; color:var(--text-muted); margin-bottom:24px; font-style:italic; }
-    .hero-pills { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; }
-    .hero-pill { font-size:12px; font-weight:600; padding:5px 14px; border-radius:50px; background:white; color:var(--veg-600); border:1px solid var(--veg-200); box-shadow:var(--shadow-sm); }
-    .hero-quick-stats { display:flex; gap:20px; flex-wrap:wrap; }
-    .quick-stat { background:white; border-radius:var(--radius-sm); padding:16px 22px; text-align:center; border:1px solid rgba(109,191,62,.12); box-shadow:var(--shadow-sm); min-width:100px; }
-    .quick-stat .val { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--veg-600); line-height:1; }
-    .quick-stat .lbl { font-size:11px; color:var(--text-muted); margin-top:4px; }
-
-    /* Vegetable image panel */
-    .veg-img-panel { position:relative; align-self:flex-end; height:400px; display:flex; align-items:flex-end; justify-content:center; }
-    .veg-img-wrap { width:340px; height:340px; border-radius:50%; overflow:hidden; position:relative; box-shadow:0 24px 80px rgba(61,138,26,.2); border:6px solid white; background:var(--veg-50); }
-    .veg-img-wrap img { width:100%; height:100%; object-fit:cover; animation:imgFloat 6s ease-in-out infinite; }
-    @keyframes imgFloat { 0%,100%{transform:scale(1) translateY(0);}50%{transform:scale(1.04) translateY(-6px);} }
-    .family-ribbon { position:absolute; top:20px; left:-10px; background:var(--veg-600); color:white; font-size:11px; font-weight:700; letter-spacing:.5px; padding:6px 18px 6px 14px; border-radius:0 50px 50px 0; box-shadow:0 4px 12px rgba(61,138,26,.3); }
-
-    /* TABS */
-    .tabs-bar { position:sticky; top:72px; z-index:100; background:white; border-bottom:1px solid rgba(90,171,111,.10); box-shadow:0 4px 20px rgba(30,60,35,.05); }
-    .tabs-inner { display:flex; padding:0 48px; overflow-x:auto; }
-    .tab-btn { display:flex; align-items:center; gap:8px; padding:16px 24px; font-size:14px; font-weight:600; color:var(--text-muted); cursor:pointer; border:none; background:transparent; white-space:nowrap; border-bottom:3px solid transparent; transition:all .2s; font-family:'DM Sans',sans-serif; }
-    .tab-btn:hover { color:var(--veg-600); }
-    .tab-btn.active { color:var(--veg-600); border-bottom-color:var(--veg-600); }
-
-    /* CONTENT GRID */
-    .content-grid { display:grid; grid-template-columns:1fr 340px; gap:32px; padding:48px 48px 80px; max-width:1400px; margin:0 auto; }
-
-    /* INFO SECTIONS */
-    .info-section { background:white; border-radius:var(--radius-lg); border:1px solid rgba(109,191,62,.10); box-shadow:var(--shadow-sm); margin-bottom:24px; overflow:hidden; }
-    .section-header { display:flex; align-items:center; gap:12px; padding:22px 28px 0; }
-    .section-icon { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
-    .section-icon.veg   { background:var(--veg-50); }
-    .section-icon.earth { background:var(--earth-50); }
-    .section-header h2 { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--text-dark); }
-    .section-body { padding:20px 28px 28px; }
-
-    /* LOADING */
-    .ai-loading { display:flex; flex-direction:column; align-items:center; gap:16px; padding:40px; text-align:center; }
-    .spinner { width:48px; height:48px; border-radius:50%; border:3px solid var(--veg-100); border-top-color:var(--veg-600); animation:spin .8s linear infinite; }
-    @keyframes spin { to { transform:rotate(360deg); } }
-    .ai-loading p { font-size:14px; color:var(--text-muted); }
-    .ai-label { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--veg-600); background:var(--veg-50); padding:4px 12px; border-radius:50px; border:1px solid var(--veg-100); }
-
-    .ai-error { padding:24px; text-align:center; background:var(--earth-50); border-radius:var(--radius-sm); margin:16px; }
-    .ai-error p { font-size:14px; color:var(--earth-500); margin-bottom:12px; }
-    .retry-btn { background:var(--veg-600); color:white; border:none; cursor:pointer; padding:8px 20px; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; }
-
-    /* MACRO BARS */
-    .macro-bars { display:flex; flex-direction:column; gap:14px; margin-bottom:24px; }
-    .macro-bar-row { display:flex; flex-direction:column; gap:6px; }
-    .macro-bar-row .label-row { display:flex; justify-content:space-between; align-items:center; font-size:12px; }
-    .macro-bar-row .label-row .mname { font-weight:600; color:var(--text-mid); }
-    .macro-bar-row .label-row .amount { font-weight:700; color:var(--text-dark); }
-    .bar-track { height:8px; background:var(--veg-100); border-radius:50px; overflow:hidden; }
-    .bar-fill { height:100%; border-radius:50px; transition:width 1s cubic-bezier(.34,1.56,.64,1); }
-    .bar-carb    { background:linear-gradient(90deg,#6dbf3e,#3d8a1a); }
-    .bar-protein { background:linear-gradient(90deg,#d4a96a,#a0703a); }
-    .bar-fat     { background:linear-gradient(90deg,#f4c97e,#d4a96a); }
-    .bar-fiber   { background:linear-gradient(90deg,#5aab6f,#2d7a45); }
-
-    /* VM GRID */
-    .vm-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-    .vm-card { background:var(--veg-50); border:1px solid var(--veg-100); border-radius:var(--radius-sm); padding:12px 14px; text-align:center; transition:all .25s; cursor:default; }
-    .vm-card:hover { background:var(--veg-100); transform:translateY(-2px); box-shadow:var(--shadow-sm); }
-    .vm-name { font-size:12px; font-weight:600; color:var(--text-mid); margin-bottom:4px; }
-    .vm-val  { font-size:16px; font-weight:700; color:var(--veg-600); }
-    .vm-unit { font-size:10px; color:var(--text-muted); }
-    .vm-dv   { font-size:10px; color:var(--veg-400); margin-top:3px; }
-
-    /* BENEFITS */
-    .benefit-list { display:flex; flex-direction:column; gap:14px; }
-    .benefit-item { display:flex; align-items:flex-start; gap:14px; padding:16px; border-radius:var(--radius-sm); background:var(--veg-50); border:1px solid var(--veg-100); transition:all .25s; }
-    .benefit-item:hover { background:var(--veg-100); transform:translateX(3px); }
-    .benefit-icon { width:36px; height:36px; border-radius:10px; background:var(--veg-600); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
-    .benefit-text h4 { font-size:14px; font-weight:600; color:var(--text-dark); margin-bottom:4px; }
-    .benefit-text p  { font-size:13px; color:var(--text-muted); line-height:1.6; }
-
-    /* CONSUMPTION */
-    .consumption-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-    .cons-card { background:var(--earth-50); border:1px solid var(--earth-100); border-radius:var(--radius-sm); padding:18px; }
-    .cons-card h4 { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:var(--earth-500); margin-bottom:10px; }
-    .cons-card p  { font-size:13px; color:var(--text-mid); line-height:1.7; }
-
-    /* WHO */
-    .who-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    .who-tag { display:flex; align-items:center; gap:8px; background:var(--veg-50); border:1px solid var(--veg-100); border-radius:var(--radius-sm); padding:10px 14px; font-size:13px; font-weight:500; color:var(--text-mid); }
-    .who-dot { width:8px; height:8px; border-radius:50%; background:var(--veg-400); flex-shrink:0; }
-
-    /* SIDEBAR */
-    .sidebar-card { background:white; border-radius:var(--radius-lg); border:1px solid rgba(109,191,62,.10); box-shadow:var(--shadow-sm); padding:24px; margin-bottom:20px; position:sticky; top:140px; }
-    .sidebar-card h3 { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--text-dark); margin-bottom:16px; }
-    .score-wrap { text-align:center; margin-bottom:16px; }
-    .score-ring { display:inline-block; position:relative; width:100px; height:100px; }
-    .score-ring svg { transform:rotate(-90deg); }
-    .score-ring .track { fill:none; stroke:var(--veg-100); stroke-width:8; }
-    .score-ring .fill  { fill:none; stroke:var(--veg-600); stroke-width:8; stroke-linecap:round; transition:stroke-dashoffset 1.2s cubic-bezier(.34,1.56,.64,1); }
-    .score-num { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--veg-600); }
-    .score-label { font-size:12px; color:var(--text-muted); margin-top:4px; }
-
-    .mini-nutrients { display:flex; flex-direction:column; gap:10px; }
-    .mini-row { display:flex; align-items:center; justify-content:space-between; font-size:13px; }
-    .mini-row .n { color:var(--text-muted); }
-    .mini-row .v { font-weight:700; color:var(--text-dark); }
-    .mini-bar { height:4px; background:var(--veg-100); border-radius:50px; margin:3px 0 6px; overflow:hidden; }
-    .mini-bar-fill { height:100%; background:var(--veg-400); border-radius:50px; transition:width .8s ease; }
-
-    .grow-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:14px; border-radius:50px; background:var(--veg-600); color:white; border:none; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; box-shadow:0 6px 20px rgba(61,138,26,.3); transition:all .25s; text-decoration:none; margin-top:16px; }
-    .grow-btn:hover { background:var(--veg-800); transform:translateY(-2px); }
-
-    /* GROW STEP */
-    .grow-step { display:flex; gap:16px; align-items:flex-start; padding:18px; background:white; border:1px solid rgba(109,191,62,.12); border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); transition:all .25s; }
-    .grow-step:hover { transform:translateX(4px); box-shadow:var(--shadow-md); }
-    .grow-step-num { width:36px; height:36px; border-radius:50%; background:var(--veg-600); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; flex-shrink:0; }
-
-    /* RELATED NAV */
-    .related-nav { display:flex; gap:10px; margin-top:12px; }
-    .related-card { flex:1; background:var(--veg-50); border:1px solid var(--veg-100); border-radius:var(--radius-sm); padding:12px; text-align:center; cursor:pointer; text-decoration:none; transition:all .2s; }
-    .related-card:hover { background:var(--veg-100); transform:translateY(-2px); }
-    .related-card .r-name { font-size:13px; font-weight:600; color:var(--veg-600); }
-    .related-card .r-label { font-size:10px; color:var(--text-muted); margin-top:2px; }
-
-    footer { background:var(--green-800); color:white; padding:60px 48px 40px; }
-    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
-    .footer-logo { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
-    .footer-leaf { width:28px; height:28px; background:var(--green-400); border-radius:50% 10px 50% 10px; display:flex; align-items:center; justify-content:center; font-size:13px; }
-    .footer-brand p { font-size:13px; opacity:.65; line-height:1.7; max-width:230px; }
-    .footer-col h5 { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; opacity:.5; margin-bottom:18px; }
-    .footer-col a { display:block; color:rgba(255,255,255,.75); font-size:14px; text-decoration:none; margin-bottom:10px; transition:color .2s; cursor:pointer; }
-    .footer-col a:hover { color:var(--green-200); }
-    .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:28px; display:flex; align-items:center; justify-content:space-between; font-size:12px; opacity:.5; }
-
-    @media(max-width:1024px) {
-      nav { padding:14px 24px; }
-      .veg-hero { padding:110px 24px 0; }
-      .hero-inner { grid-template-columns:1fr; }
-      .veg-img-panel { display:none; }
-      .tabs-inner { padding:0 24px; }
-      .content-grid { grid-template-columns:1fr; padding:32px 24px 60px; }
-      .sidebar-card { position:relative; top:0; }
-      .footer-grid { grid-template-columns:1fr 1fr; }
-      footer { padding:48px 24px 32px; }
-    }
-    @media(max-width:600px) {
-      .consumption-grid,.who-grid,.vm-grid { grid-template-columns:1fr; }
-      .nav-links { display:none; }
-      .footer-grid { grid-template-columns:1fr; }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vegetable Details – Harvestpedia</title>
+<script src="../js/darkmode.js"></script>
+<link rel="stylesheet" href="../css/style.css"/>
+<style>
+  :root {
+    --bg-primary:#ffffff; --bg-secondary:#f5f9f0; --bg-card:#ffffff;
+    --text-primary:#1a3a1a; --text-muted:#6b7280; --border-color:#e5e7eb;
+    --navbar-bg:rgba(255,255,255,0.85); --shadow:0 2px 8px rgba(0,0,0,0.08);
+    --accent-green:#3B6D11; --accent-amber:#BA7517;
+  }
+  [data-theme="dark"] {
+    --bg-primary:#111a11; --bg-secondary:#1a2a1a; --bg-card:#1e2d1e;
+    --text-primary:#e8f4e8; --text-muted:#9ca3af; --border-color:#2d4a2d;
+    --navbar-bg:rgba(17,26,17,0.92); --shadow:0 2px 8px rgba(0,0,0,0.4);
+    --accent-green:#5a9e20; --accent-amber:#d48a2a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg-primary); color: var(--text-primary); font-family: system-ui, sans-serif; }
+  .navbar { position: sticky; top: 0; z-index: 100; background: var(--navbar-bg); border-bottom: 1px solid var(--border-color); backdrop-filter: blur(12px); padding: 0 1.5rem; display: flex; align-items: center; height: 56px; gap: 2rem; }
+  .nav-logo { font-size: 1.1rem; font-weight: 700; color: var(--accent-green); text-decoration: none; }
+  .nav-links { display: flex; gap: 1.25rem; flex: 1; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; transition: color .15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent-green); }
+  .dm-toggle { background: none; border: 1.5px solid var(--border-color); border-radius: 8px; padding: 4px 10px; cursor: pointer; font-size: 1.1rem; color: var(--text-primary); transition: border-color .2s; }
+  .dm-toggle:hover { border-color: var(--accent-green); }
+  .back-bar { padding: .9rem 1.5rem; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--text-muted); font-size: 13px; font-weight: 500; transition: color .15s; }
+  .back-link:hover { color: var(--accent-green); }
+  .hero { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 2.5rem 1.5rem 2rem; text-align: center; border-bottom: 1px solid var(--border-color); }
+  [data-theme="dark"] .hero { background: linear-gradient(135deg, #1a2a1a 0%, #1e3a1e 100%); }
+  .hero-emoji { font-size: 4rem; display: block; margin-bottom: .75rem; }
+  .hero h1 { font-size: 2rem; font-weight: 700; color: var(--text-primary); }
+  .hero-sub { color: var(--text-muted); margin-top: .4rem; font-size: .95rem; }
+  .hero-actions { display: flex; gap: 10px; justify-content: center; margin-top: 1.25rem; flex-wrap: wrap; }
+  .btn { padding: 8px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all .2s; }
+  .btn-primary { background: var(--accent-green); color: #fff; }
+  .btn-primary:hover { opacity: .88; }
+  .btn-outline { background: transparent; border: 1.5px solid var(--border-color); color: var(--text-primary); }
+  .btn-outline:hover { border-color: var(--accent-green); color: var(--accent-green); }
+  .content { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 600px) { .content { grid-template-columns: 1fr; } }
+  .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.25rem 1.5rem; }
+  .card.full { grid-column: 1 / -1; }
+  .card h2 { font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 1rem; }
+  .nut-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nut-item { display: flex; justify-content: space-between; align-items: center; padding: 7px 10px; background: var(--bg-secondary); border-radius: 8px; font-size: 13px; }
+  .nut-label { color: var(--text-muted); }
+  .nut-val { font-weight: 600; color: var(--text-primary); }
+  .benefits-list { display: flex; flex-direction: column; gap: 8px; }
+  .benefit-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.5; }
+  .benefit-dot { width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+  .season-grid { display: flex; gap: 6px; flex-wrap: wrap; }
+  .season-pill { padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+  .pill-peak { background: #d1fae5; color: #065f46; }
+  .pill-good { background: #fef3c7; color: #92400e; }
+  .pill-low  { background: #f3f4f6; color: #6b7280; }
+  [data-theme="dark"] .pill-peak { background: #064e3b; color: #6ee7b7; }
+  [data-theme="dark"] .pill-good { background: #78350f; color: #fcd34d; }
+  [data-theme="dark"] .pill-low  { background: #374151; color: #9ca3af; }
+  .tips-list { display: flex; flex-direction: column; gap: 10px; }
+  .tip-item { padding: 10px 14px; background: var(--bg-secondary); border-radius: 10px; border-left: 3px solid var(--accent-green); font-size: 13px; line-height: 1.5; }
+  .tag-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { padding: 4px 12px; background: #e1f5ee; color: #0F6E56; border-radius: 99px; font-size: 12px; font-weight: 500; }
+  [data-theme="dark"] .tag { background: #064e3b; color: #6ee7b7; }
+  .loading-overlay { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px; gap: 16px; }
+  .spinner { width: 36px; height: 36px; border: 3px solid var(--border-color); border-top-color: var(--accent-green); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { color: var(--text-muted); font-size: 14px; }
+  .error-box { text-align: center; padding: 2rem; color: var(--text-muted); }
+  .error-box h3 { color: #dc2626; margin-bottom: .5rem; }
+  .hidden { display: none !important; }
+  .prose { font-size: 14px; line-height: 1.7; color: var(--text-primary); }
+</style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav id="navbar">
-  <a class="nav-logo" href="index.html">
-    <div class="nav-logo-leaf">🌿</div>
-    Harvestpedia
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="fruits.html">Fruits</a></li>
-    <li><a href="vegetables.html" class="active">Vegetables</a></li>
-    <li><a href="#">Plants</a></li>
-    <li><a href="#" class="nav-cta">Explore Now</a></li>
-  </ul>
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">🌿 Harvestpedia</a>
+  <div class="nav-links">
+    <a href="../fruits.html">Fruits</a>
+    <a href="../vegetables.html" class="active">Vegetables</a>
+    <a href="../plants.html">Plants</a>
+    <a href="../search.html">🔍 Search</a>
+    <a href="../seasonal.html">🗓️ Calendar</a>
+    <a href="../compare.html">📊 Compare</a>
+    <a href="../recipes.html">🍳 Recipes</a>
+  </div>
+  <button class="dm-toggle" id="dm-toggle"></button>
 </nav>
-
-<!-- HERO -->
-<div class="veg-hero">
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="breadcrumb">
-        <a href="index.html">🏠 Home</a><span>›</span>
-        <a href="vegetables.html">Vegetables</a><span>›</span>
-        <span id="bc-name">…</span>
-      </div>
-      <div class="veg-tag" id="veg-tag">🥦 Vegetable</div>
-      <h1 class="veg-hero-name" id="veg-name">–</h1>
-      <div class="veg-hero-family" id="veg-family">–</div>
-      <div class="hero-pills" id="hero-pills"></div>
-      <div class="hero-quick-stats">
-        <div class="quick-stat"><div class="val" id="qs-cal">–</div><div class="lbl">kcal/100g</div></div>
-        <div class="quick-stat"><div class="val" id="qs-water">–</div><div class="lbl">% Water</div></div>
-        <div class="quick-stat"><div class="val" id="qs-gi">–</div><div class="lbl">Glycemic Index</div></div>
-        <div class="quick-stat"><div class="val" id="qs-season">–</div><div class="lbl">Season</div></div>
-      </div>
-    </div>
-    <div class="veg-img-panel">
-      <div class="veg-img-wrap">
-        <img id="veg-img" src="" alt="" />
-      </div>
-      <div class="family-ribbon" id="family-ribbon">🥦 Vegetable</div>
-    </div>
+<div class="back-bar"><a href="../vegetables.html" class="back-link">← Back to Vegetables</a></div>
+<div class="hero" id="hero" style="display:none">
+  <span class="hero-emoji" id="hero-emoji">🥦</span>
+  <h1 id="hero-name">Vegetable</h1>
+  <p class="hero-sub" id="hero-sub"></p>
+  <div class="hero-actions">
+    <a id="btn-recipe" href="../recipes.html" class="btn btn-primary">🍳 Find Recipes</a>
+    <a id="btn-compare" href="../compare.html" class="btn btn-outline">📊 Compare Nutrition</a>
   </div>
 </div>
-
-<!-- TABS -->
-<div class="tabs-bar">
-  <div class="tabs-inner">
-    <button class="tab-btn active" data-tab="nutrition">🔬 Nutrition</button>
-    <button class="tab-btn" data-tab="benefits">💚 Health Benefits</button>
-    <button class="tab-btn" data-tab="consumption">🍽️ How to Eat</button>
-    <button class="tab-btn" data-tab="grow">🌱 Grow at Home</button>
-  </div>
+<div class="loading-overlay" id="loading">
+  <div class="spinner"></div>
+  <p class="loading-text" id="loading-text">Loading vegetable details...</p>
 </div>
-
-<!-- CONTENT -->
-<div class="content-grid">
-  <div id="main-col">
-    <div class="info-section" id="tab-nutrition">
-      <div class="section-header"><div class="section-icon veg">🔬</div><h2>Nutritional Information</h2></div>
-      <div class="section-body" id="nutrition-body"><div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ AI Generating</span><p>Fetching full nutritional data…</p></div></div>
-    </div>
-    <div class="info-section" id="tab-benefits" style="display:none;">
-      <div class="section-header"><div class="section-icon veg">💚</div><h2>Health Benefits</h2></div>
-      <div class="section-body" id="benefits-body"><div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ AI Generating</span><p>Analysing health benefits…</p></div></div>
-    </div>
-    <div class="info-section" id="tab-consumption" style="display:none;">
-      <div class="section-header"><div class="section-icon earth">🍽️</div><h2>Consumption Guide</h2></div>
-      <div class="section-body" id="consumption-body"><div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ AI Generating</span><p>Building your consumption guide…</p></div></div>
-    </div>
-    <div class="info-section" id="tab-grow" style="display:none;">
-      <div class="section-header"><div class="section-icon veg">🌱</div><h2>Grow at Home</h2></div>
-      <div class="section-body" id="grow-body"><div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ AI Generating</span><p>Preparing grow guide…</p></div></div>
-    </div>
-  </div>
-
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sidebar-card">
-      <h3>Nutrition Score</h3>
-      <div class="score-wrap">
-        <div class="score-ring">
-          <svg viewBox="0 0 100 100" width="100" height="100">
-            <circle class="track" cx="50" cy="50" r="42"/>
-            <circle class="fill" id="score-arc" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264"/>
-          </svg>
-          <div class="score-num" id="score-num">–</div>
-        </div>
-        <div class="score-label" id="score-label">Loading…</div>
-      </div>
-      <div class="mini-nutrients" id="mini-nutrients">
-        <div class="ai-loading" style="padding:10px;"><div class="spinner" style="width:24px;height:24px;border-width:2px;"></div></div>
-      </div>
-      <a class="grow-btn" href="#" id="grow-link">🌱 Learn to Grow</a>
-    </div>
-
-    <!-- Related vegetables -->
-    <div class="sidebar-card" id="related-card">
-      <h3>Same Family</h3>
-      <div class="related-nav" id="related-nav"></div>
-    </div>
-  </div>
+<div class="error-box hidden" id="error-box">
+  <h3>Couldn't load details</h3>
+  <p id="error-msg">Make sure the proxy server is running on port 3001.</p>
+  <button class="btn btn-primary" style="margin-top:1rem" onclick="location.reload()">Retry</button>
 </div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo"><div class="footer-leaf">🌿</div>Harvestpedia</div>
-      <p>Your trusted plant-based knowledge platform.</p>
-    </div>
-    <div class="footer-col"><h5>Explore</h5><a href="fruits.html">Fruits</a><a href="vegetables.html">Vegetables</a><a href="#">Plants &amp; Herbs</a></div>
-    <div class="footer-col"><h5>Learn</h5><a href="#">Nutrition Facts</a><a href="#">Health Benefits</a><a href="#">Grow at Home</a></div>
-    <div class="footer-col"><h5>About</h5><a href="#">Our Mission</a><a href="#">Contact</a></div>
-  </div>
-  <div class="footer-bottom"><span>© 2025 Harvestpedia. All rights reserved.</span><span>Made with 🌿 for nature lovers</span></div>
-</footer>
-
+<div class="content hidden" id="content">
+  <div class="card"><h2>🧪 Nutrition (per 100g)</h2><div class="nut-grid" id="nut-grid"></div></div>
+  <div class="card"><h2>💚 Health Benefits</h2><div class="benefits-list" id="benefits-list"></div></div>
+  <div class="card"><h2>📅 Best Season (India)</h2><div class="season-grid" id="season-grid"></div><p id="season-note" style="margin-top:.75rem;font-size:13px;color:var(--text-muted)"></p></div>
+  <div class="card"><h2>🏷️ Tags</h2><div class="tag-row" id="tag-row"></div></div>
+  <div class="card full"><h2>💡 Cooking &amp; Buying Tips</h2><div class="tips-list" id="tips-list"></div></div>
+  <div class="card full"><h2>📖 About</h2><div class="prose" id="about-prose"></div></div>
+</div>
+<script src="../js/api.js"></script>
 <script>
-/* ═══════════════════════════════════════════
-   FULL VEGETABLE DATA — exact array from user
-   ═══════════════════════════════════════════ */
-const vegetables = [
-  { name:'Potato',           family:'Root',            season:'year',   cal:77,  emoji:'🥔', img:'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=700&q=80', nutrients:['Vit C','Potassium','Complex carbs'] },
-  { name:'Sweet Potato',     family:'Root',            season:'autumn', cal:86,  emoji:'🍠', img:'https://images.unsplash.com/photo-1730815048561-45df6f7f331d?w=700&q=80', nutrients:['Vit A','Vit C','Fiber'] },
-  { name:'Carrot',           family:'Root',            season:'autumn', cal:41,  emoji:'🥕', img:'https://images.unsplash.com/photo-1633380110125-f6e685676160?w=700&q=80', nutrients:['Vit A','Fiber','Antioxidants'] },
-  { name:'Onion',            family:'Root',            season:'year',   cal:40,  emoji:'🧅', img:'https://plus.unsplash.com/premium_photo-1668076517573-fa01307d87ad?w=700&q=80', nutrients:['Vit C','Fiber','Quercetin'] },
-  { name:'Garlic',           family:'Root',            season:'autumn', cal:149, emoji:'🧄', img:'https://images.unsplash.com/photo-1636210589096-a53d5dacd702?w=700&q=80', nutrients:['Vit C','Allicin','Manganese'] },
-  { name:'Beetroot',         family:'Root',            season:'autumn', cal:43,  emoji:'🫐', img:'https://images.unsplash.com/photo-1503623758111-863eb2abd7a9?w=700&q=80', nutrients:['Folate','Vit C','Nitrates'] },
-  { name:'Radish',           family:'Root',            season:'spring', cal:16,  emoji:'🌶️', img:'https://images.unsplash.com/photo-1585369496178-144fd937f249?w=700&q=80', nutrients:['Vit C','Fiber','Antioxidants'] },
-  { name:'Turnip',           family:'Root',            season:'autumn', cal:28,  emoji:'🥔', img:'https://images.unsplash.com/photo-1555447740-03e40562af94?w=700&q=80', nutrients:['Vit C','Fiber','Glucosinolates'] },
-  { name:'Rutabaga',         family:'Root',            season:'autumn', cal:37,  emoji:'🥔', img:'https://www.allrecipes.com/thmb/KqcH-lDP_FG2mAyHiIc21zGlXow=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Rutabaga-3000-x-2000-017e4663eda4400d888e1203764778b1.png', nutrients:['Vit C','Fiber','Calcium'] },
-  { name:'Celeriac',         family:'Root',            season:'autumn', cal:42,  emoji:'🥦', img:'https://cdn-prod.medicalnewstoday.com/content/images/articles/320/320374/celeriac-chopped-on-a-fabric-surface.jpg', nutrients:['Vit K','Fiber','Phosphorus'] },
-  { name:'Cassava',          family:'Root',            season:'year',   cal:160, emoji:'🍠', img:'https://media.istockphoto.com/id/614051680/photo/fresh-tapioca-cassava-root-kerala-india.jpg?s=612x612', nutrients:['Complex carbs','Manganese','Vit C'] },
-  { name:'Ginger',           family:'Root',            season:'year',   cal:80,  emoji:'🫚', img:'https://plus.unsplash.com/premium_photo-1675364893053-180a3c6e0119?w=700&q=80', nutrients:['Gingerol','Vit B6','Magnesium'] },
-  { name:'Turmeric',         family:'Root',            season:'year',   cal:312, emoji:'🟡', img:'https://images.unsplash.com/photo-1606951444141-e5533feb55be?w=700&q=80', nutrients:['Curcumin','Antioxidants','Iron'] },
-  { name:'Daikon',           family:'Root',            season:'autumn', cal:18,  emoji:'⚪', img:'https://plus.unsplash.com/premium_photo-1723485627473-7227c17bf7ef?w=700&q=80', nutrients:['Vit C','Fiber','Nitrates'] },
-  { name:'Parsnip',          family:'Root',            season:'autumn', cal:75,  emoji:'🥕', img:'https://springforestfarm.com/wp-content/uploads/2021/03/parsnips.jpg?w=1024', nutrients:['Vit C','Fiber','Potassium'] },
-  { name:'Spinach',          family:'Leafy',           season:'year',   cal:23,  emoji:'🥬', img:'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=700&q=80', nutrients:['Vit A','Vit K','Iron','Folate'] },
-  { name:'Kale',             family:'Leafy',           season:'autumn', cal:35,  emoji:'🥬', img:'https://images.unsplash.com/photo-1685504513848-df0dd6893cec?w=700&q=80', nutrients:['Vit A','Vit K','Calcium','Fiber'] },
-  { name:'Cabbage',          family:'Leafy',           season:'year',   cal:25,  emoji:'🥬', img:'https://plus.unsplash.com/premium_photo-1702489575687-204529449d94?w=700&q=80', nutrients:['Vit C','Fiber','Vit K'] },
-  { name:'Lettuce',          family:'Leafy',           season:'year',   cal:15,  emoji:'🥬', img:'https://green-goblin.in/cdn/shop/files/LettuceLeafy1webp.webp?v=1709991868', nutrients:['Vit A','Vit K','Fiber'] },
-  { name:'Swiss Chard',      family:'Leafy',           season:'summer', cal:19,  emoji:'🥬', img:'https://images.unsplash.com/photo-1679595044391-3c42b0f351b5?w=700&q=80', nutrients:['Vit K','Vit A','Magnesium'] },
-  { name:'Mustard Greens',   family:'Leafy',           season:'winter', cal:27,  emoji:'🌿', img:'https://www.realsimple.com/thmb/uyydrzQ-N69JxwXRgYcf8yIzXjw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/mustard-greens-GettyImages-826950112-ef085baa1d7f441189940c08b415c55c.jpg', nutrients:['Vit A','Vit C','Calcium','Fiber'] },
-  { name:'Bok Choy',         family:'Leafy',           season:'winter', cal:13,  emoji:'🥬', img:'https://euphoricgreens.in/cdn/shop/files/76ED0A65-B037-4776-8192-891462B0AB08.jpg?v=1719324826', nutrients:['Vit A','Vit C','Vit K','Fiber'] },
-  { name:'Collard Greens',   family:'Leafy',           season:'winter', cal:33,  emoji:'🥬', img:'https://media.istockphoto.com/id/522865796/photo/collard-greens.jpg?s=612x612', nutrients:['Vit A','Vit K','Calcium','Fiber'] },
-  { name:'Arugula',          family:'Leafy',           season:'spring', cal:25,  emoji:'🌿', img:'https://plus.unsplash.com/premium_photo-1673469223112-235e51d1dfb0?w=700&q=80', nutrients:['Vit K','Folate','Antioxidants'] },
-  { name:'Romaine',          family:'Leafy',           season:'summer', cal:17,  emoji:'🥬', img:'https://draxe.com/wp-content/uploads/2015/02/RomaineLettuceNutritionThumbnail.jpg', nutrients:['Vit A','Vit C','Folate','Fiber'] },
-  { name:'Lettuce Iceberg',  family:'Leafy',           season:'year',   cal:14,  emoji:'🥬', img:'https://agribegri.com/_next/image?url=https%3A%2F%2Fdujjhct8zer0r.cloudfront.net%2Fmedia%2Fprod_image%2F6fbc32ec06999d59405ed36e821732f8-11-02-23-15-39-13.webp&w=1920&q=90', nutrients:['Vit K','Vit A','Fiber'] },
-  { name:'Broccoli',         family:'Cruciferous',     season:'autumn', cal:34,  emoji:'🥦', img:'https://plus.unsplash.com/premium_photo-1702403157830-9df749dc6c1e?w=700&q=80', nutrients:['Vit C','Vit K','Fiber','Sulforaphane'] },
-  { name:'Cauliflower',      family:'Cruciferous',     season:'autumn', cal:25,  emoji:'🥦', img:'https://images.unsplash.com/photo-1566842600175-97dca489844f?w=700&q=80', nutrients:['Vit C','Fiber','Vit K','Folate'] },
-  { name:'Brussels Sprouts', family:'Cruciferous',     season:'autumn', cal:43,  emoji:'🥦', img:'https://images.unsplash.com/photo-1614087434853-25e6e8357217?w=700&q=80', nutrients:['Vit C','Vit K','Fiber','Folate'] },
-  { name:'Kohlrabi',         family:'Cruciferous',     season:'autumn', cal:41,  emoji:'🥦', img:'https://images.unsplash.com/photo-1623490439625-758205dc3219?w=700&q=80', nutrients:['Vit C','Fiber','Vit B6','Potassium'] },
-  { name:'Cabbage Red',      family:'Cruciferous',     season:'autumn', cal:25,  emoji:'🥬', img:'https://media.istockphoto.com/id/1291000510/photo/red-cabbage-on-white-background.webp?a=1&b=1&s=612x612', nutrients:['Vit C','Fiber','Anthocyanins'] },
-  { name:'Tomato',           family:'Fruit-vegetable', season:'summer', cal:18,  emoji:'🍅', img:'https://plus.unsplash.com/premium_photo-1661811820259-2575b82101bf?w=700&q=80', nutrients:['Vit C','Vit K','Lycopene'] },
-  { name:'Bell Pepper',      family:'Fruit-vegetable', season:'summer', cal:20,  emoji:'🫑', img:'https://images.unsplash.com/photo-1601648764658-cf37e8c89b70?w=700&q=80', nutrients:['Vit C','Vit A','Fiber'] },
-  { name:'Chili Pepper',     family:'Fruit-vegetable', season:'summer', cal:40,  emoji:'🌶️', img:'https://images.unsplash.com/photo-1599987662084-97832741bfa2?w=700&q=80', nutrients:['Vit C','Capsaicin','Vit A'] },
-  { name:'Cucumber',         family:'Fruit-vegetable', season:'summer', cal:15,  emoji:'🥒', img:'https://images.unsplash.com/photo-1587411768638-ec71f8e33b78?q=80&w=880', nutrients:['Vit K','Fiber','Hydration'] },
-  { name:'Zucchini',         family:'Fruit-vegetable', season:'summer', cal:17,  emoji:'🥒', img:'https://images.unsplash.com/photo-1691480291894-75229c2bfd44?w=700&q=80', nutrients:['Vit C','Vit A','Fiber'] },
-  { name:'Eggplant',         family:'Fruit-vegetable', season:'summer', cal:25,  emoji:'🍆', img:'https://images.unsplash.com/photo-1604245437608-50c6bb8d4ee5?w=700&q=80', nutrients:['Fiber','Vit K','Antioxidants'] },
-  { name:'Okra',             family:'Fruit-vegetable', season:'summer', cal:33,  emoji:'🌿', img:'https://images.unsplash.com/photo-1425543103986-22abb7d7e8d2?w=700&q=80', nutrients:['Vit C','Folate','Fiber'] },
-  { name:'Pumpkin',          family:'Fruit-vegetable', season:'autumn', cal:26,  emoji:'🎃', img:'https://images.unsplash.com/photo-1692680919402-95fc56f99225?w=700&q=80', nutrients:['Vit A','Fiber','Vit C'] },
-  { name:'Butternut Squash', family:'Fruit-vegetable', season:'autumn', cal:45,  emoji:'🎃', img:'https://media.istockphoto.com/id/471688238/photo/butternut-squash.webp?a=1&b=1&s=612x612', nutrients:['Vit A','Vit C','Fiber'] },
-  { name:'Acorn Squash',     family:'Fruit-vegetable', season:'autumn', cal:38,  emoji:'🎃', img:'https://images.unsplash.com/photo-1560513977-6faee53459d7?w=700&q=80', nutrients:['Vit A','Fiber','Potassium'] },
-  { name:'Parsley',          family:'Herb',            season:'summer', cal:36,  emoji:'🌿', img:'https://nurserylive.com/cdn/shop/products/nurserylive-seeds-parsley-organic-herb-seeds-16969159999628.jpg?v=1634204493', nutrients:['Vit K','Vit C','Antioxidants'] },
-  { name:'Coriander',        family:'Herb',            season:'spring', cal:23,  emoji:'🌿', img:'https://images.unsplash.com/photo-1535189487909-a262ad10c165?w=700&q=80', nutrients:['Vit K','Vit C','Antioxidants'] },
-  { name:'Cilantro',         family:'Herb',            season:'spring', cal:23,  emoji:'🌿', img:'https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/277/277627/bunch-of-fresh-coriander-or-cilantro-on-a-wooden-table.jpg?w=1155', nutrients:['Vit K','Vit C','Antioxidants'] },
-  { name:'Mint',             family:'Herb',            season:'summer', cal:70,  emoji:'🌿', img:'https://theaffordableorganicstore.com/cdn/shop/files/1713181721.jpg?v=1744630667', nutrients:['Vit A','Vit C','Antioxidants'] },
-  { name:'Rosemary',         family:'Herb',            season:'year',   cal:131, emoji:'🌿', img:'https://images.unsplash.com/photo-1726994803809-0e065bd4b25b?w=700&q=80', nutrients:['Vit B6','Iron','Antioxidants'] },
-  { name:'Thyme',            family:'Herb',            season:'summer', cal:101, emoji:'🌿', img:'https://plus.unsplash.com/premium_photo-1726138617688-e6bfd9f0de5c?w=700&q=80', nutrients:['Vit C','Vit A','Antioxidants'] },
-  { name:'Basil',            family:'Herb',            season:'summer', cal:23,  emoji:'🌿', img:'https://plus.unsplash.com/premium_photo-1725899523683-838307ab1552?w=700&q=80', nutrients:['Vit K','Vit A','Antioxidants'] },
-];
-
-const seasonMap = { summer:'☀️ Summer', spring:'🌸 Spring', autumn:'🍂 Autumn', winter:'❄️ Winter', year:'🌿 Year-round' };
-const familyEmoji = { Root:'🥕', Leafy:'🥬', Cruciferous:'🥦', 'Fruit-vegetable':'🍅', Herb:'🌿' };
-
-/* ── Cache ── */
-function ck(n,t){ return `hp_veg_${n.replace(/\s/g,'_')}_${t}`; }
-function getC(n,t){ try{ return JSON.parse(sessionStorage.getItem(ck(n,t))); }catch{ return null; } }
-function setC(n,t,d){ try{ sessionStorage.setItem(ck(n,t),JSON.stringify(d)); }catch{} }
-
-/* ── Vegetable from URL ── */
-const urlP = new URLSearchParams(location.search);
-const vegName = urlP.get('veg') || 'Broccoli';
-const veg = vegetables.find(v => v.name === vegName) || vegetables.find(v=>v.name==='Broccoli');
-
-/* ── Static fill ── */
-document.getElementById('page-title').textContent    = `${veg.name} – Harvestpedia`;
-document.getElementById('bc-name').textContent       = veg.name;
-document.getElementById('veg-tag').textContent       = `${veg.emoji} ${veg.family}`;
-document.getElementById('veg-name').textContent      = veg.name;
-document.getElementById('veg-family').textContent    = `Family: ${veg.family} · ${(seasonMap[veg.season]||veg.season)}`;
-document.getElementById('veg-img').src               = veg.img;
-document.getElementById('veg-img').alt               = veg.name;
-document.getElementById('family-ribbon').textContent = `${familyEmoji[veg.family]||'🥬'} ${veg.family}`;
-document.getElementById('qs-cal').textContent        = veg.cal;
-document.getElementById('qs-season').textContent     = (seasonMap[veg.season]||'').split(' ').slice(1).join(' ') || 'Year-round';
-document.getElementById('grow-link').href            = `grow-guide.html?veg=${encodeURIComponent(veg.name)}`;
-
-veg.nutrients.forEach(n => {
-  const s = document.createElement('span');
-  s.className = 'hero-pill'; s.textContent = n;
-  document.getElementById('hero-pills').appendChild(s);
-});
-
-/* ── Related vegetables (same family) ── */
-const related = vegetables.filter(v => v.family === veg.family && v.name !== veg.name).slice(0,3);
-const relNav = document.getElementById('related-nav');
-if(related.length){
-  related.forEach(r => {
-    const a = document.createElement('a');
-    a.className = 'related-card';
-    a.href = `vegetable-detail.html?veg=${encodeURIComponent(r.name)}`;
-    a.innerHTML = `<div style="font-size:24px;margin-bottom:4px;">${r.emoji}</div><div class="r-name">${r.name}</div><div class="r-label">${r.cal} kcal</div>`;
-    relNav.appendChild(a);
-  });
-} else {
-  document.getElementById('related-card').style.display = 'none';
+const VEG_EMOJIS={tomato:"🍅",carrot:"🥕",broccoli:"🥦",spinach:"🌿",potato:"🥔",bellpepper:"🫑",cucumber:"🥒",onion:"🧅",garlic:"🧄",cabbage:"🥬",cauliflower:"🥦",corn:"🌽",eggplant:"🍆",peas:"🫛",radish:"🥕"};
+function getEmoji(n){return VEG_EMOJIS[n.toLowerCase().replace(/[\s-]+/g,'')] || "🥦";}
+async function loadDetail(){
+  const name = new URLSearchParams(window.location.search).get("name") || "Broccoli";
+  document.title = name + " – Harvestpedia";
+  document.getElementById("hero-emoji").textContent = getEmoji(name);
+  document.getElementById("hero-name").textContent = name;
+  document.getElementById("hero-sub").textContent = "Detailed nutrition, benefits & cooking tips";
+  document.getElementById("hero").style.display = "";
+  localStorage.setItem("hp-recipe-prefill", name);
+  document.getElementById("btn-compare").href = "../compare.html?item=" + encodeURIComponent(name);
+  document.getElementById("loading-text").textContent = "Fetching " + name + " details...";
+  try {
+    const raw = await HP.claude(
+      `Give me detailed info about the vegetable: ${name}. Respond ONLY with JSON (no markdown):\n{"tagline":"...","about":"...","nutrition":{"Calories":"XX kcal","Carbs":"XXg","Fiber":"XXg","Protein":"XXg","Fat":"XXg","Vitamin C":"XX% DV","Iron":"XX% DV","Potassium":"XXXmg"},"benefits":["..."],"seasons":{"peak":["Month"],"good":["Month"],"low":["Month"]},"season_note":"...","tips":["..."],"tags":["..."]}`,
+      "You are a nutrition expert. Return valid JSON only, no markdown."
+    );
+    const data = JSON.parse(raw.replace(/```json|```/g,"").trim());
+    document.getElementById("hero-sub").textContent = data.tagline || "";
+    const ng = document.getElementById("nut-grid"); ng.innerHTML="";
+    for(const [l,v] of Object.entries(data.nutrition||{})) ng.innerHTML+=`<div class="nut-item"><span class="nut-label">${l}</span><span class="nut-val">${v}</span></div>`;
+    document.getElementById("benefits-list").innerHTML=(data.benefits||[]).map(b=>`<div class="benefit-item"><div class="benefit-dot"></div><span>${b}</span></div>`).join("");
+    const sg=document.getElementById("season-grid"); sg.innerHTML="";
+    (data.seasons?.peak||[]).forEach(m=>sg.innerHTML+=`<span class="season-pill pill-peak">🌟 ${m}</span>`);
+    (data.seasons?.good||[]).forEach(m=>sg.innerHTML+=`<span class="season-pill pill-good">✅ ${m}</span>`);
+    (data.seasons?.low||[]).forEach(m=>sg.innerHTML+=`<span class="season-pill pill-low">〰️ ${m}</span>`);
+    document.getElementById("season-note").textContent = data.season_note||"";
+    document.getElementById("tips-list").innerHTML=(data.tips||[]).map(t=>`<div class="tip-item">${t}</div>`).join("");
+    document.getElementById("tag-row").innerHTML=(data.tags||[]).map(t=>`<span class="tag">${t}</span>`).join("");
+    document.getElementById("about-prose").innerHTML=`<p>${data.about||""}</p>`;
+    document.getElementById("loading").classList.add("hidden");
+    document.getElementById("content").classList.remove("hidden");
+  } catch(err){
+    console.error(err);
+    document.getElementById("loading").classList.add("hidden");
+    document.getElementById("error-box").classList.remove("hidden");
+    document.getElementById("error-msg").textContent = `Could not load details for "${name}". Make sure the proxy is running.`;
+  }
 }
-
-/* ── Claude API ── */
-async function askClaude(prompt){
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:1000, messages:[{role:'user',content:prompt}] })
-  });
-  if(!res.ok) throw new Error('API '+res.status);
-  const d = await res.json();
-  const txt = d.content.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
-  return JSON.parse(txt);
-}
-
-function errHTML(tab){ return `<div class="ai-error"><p>Could not load data. Ensure the Anthropic API key is configured.</p><button class="retry-btn" onclick="retry('${tab}')">↻ Retry</button></div>`; }
-function retry(tab){ document.getElementById(`${tab}-body`).innerHTML=`<div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ Retrying</span><p>Please wait…</p></div>`; loaders[tab](); }
-
-/* ── NUTRITION ── */
-async function loadNutrition(){
-  const c=getC(veg.name,'nutrition'); if(c){renderNutrition(c);return;}
-  try{
-    const d=await askClaude(`You are a nutrition database. Return ONLY valid JSON, no markdown or extra text. Full nutrition for ${veg.name} (Family: ${veg.family}) per 100g raw edible portion.
-{"water":"X%","glycemicIndex":N,"score":N,"macros":{"carbs":{"g":N,"percent_dv":N},"protein":{"g":N,"percent_dv":N},"fat":{"g":N,"percent_dv":N},"fiber":{"g":N,"percent_dv":N},"sugar":{"g":N}},"vitamins":[{"name":"Vitamin C","amount":"Xmg","percent_dv":N},{"name":"Vitamin A","amount":"Xμg","percent_dv":N},{"name":"Vitamin K","amount":"Xμg","percent_dv":N},{"name":"Vitamin B6","amount":"Xmg","percent_dv":N},{"name":"Folate","amount":"Xμg","percent_dv":N},{"name":"Vitamin E","amount":"Xmg","percent_dv":N}],"minerals":[{"name":"Potassium","amount":"Xmg","percent_dv":N},{"name":"Calcium","amount":"Xmg","percent_dv":N},{"name":"Iron","amount":"Xmg","percent_dv":N},{"name":"Magnesium","amount":"Xmg","percent_dv":N},{"name":"Phosphorus","amount":"Xmg","percent_dv":N},{"name":"Manganese","amount":"Xmg","percent_dv":N}],"phytonutrients":["a","b","c"]}`);
-    setC(veg.name,'nutrition',d); renderNutrition(d);
-  }catch(e){ document.getElementById('nutrition-body').innerHTML=errHTML('nutrition'); console.error(e); }
-}
-
-function renderNutrition(d){
-  document.getElementById('qs-water').textContent = (d.water||'').replace('%','')+'%';
-  document.getElementById('qs-gi').textContent    = d.glycemicIndex;
-  const sc = Math.min(100,Math.max(0,parseInt(d.score)||70));
-  document.getElementById('score-num').textContent  = sc;
-  document.getElementById('score-label').textContent = sc>=80?'Excellent':sc>=60?'Good':'Moderate';
-  const arc = document.getElementById('score-arc');
-  arc.style.strokeDashoffset = 264*(1-sc/100);
-  document.getElementById('mini-nutrients').innerHTML = ['carbs','protein','fat','fiber'].map(k=>{
-    const m=d.macros[k]; const pct=Math.min(100,m.percent_dv||0);
-    return `<div><div class="mini-row"><span class="n">${k.charAt(0).toUpperCase()+k.slice(1)}</span><span class="v">${m.g}g</span></div><div class="mini-bar"><div class="mini-bar-fill" style="width:${pct}%"></div></div></div>`;
-  }).join('');
-  document.getElementById('nutrition-body').innerHTML=`
-    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:16px;">Macronutrients <small style="font-size:13px;font-weight:400;color:var(--text-muted);">per 100g raw</small></h3>
-    <div class="macro-bars">
-      ${['carbs','protein','fat','fiber','sugar'].map(k=>{
-        const m=d.macros[k]; if(!m)return'';
-        const pct=k==='sugar'?Math.min(100,(parseFloat(m.g)||0)*4):Math.min(100,m.percent_dv||0);
-        const label={carbs:'Carbohydrates',protein:'Protein',fat:'Total Fat',fiber:'Dietary Fiber',sugar:'Sugars'}[k];
-        const cls={carbs:'carb',protein:'protein',fat:'fat',fiber:'fiber',sugar:'carb'}[k];
-        return `<div class="macro-bar-row"><div class="label-row"><span class="mname">${label}</span><span class="amount">${m.g}g${m.percent_dv?` <span style="font-size:11px;color:var(--text-muted);font-weight:400;">(${m.percent_dv}% DV)</span>`:''}</span></div><div class="bar-track"><div class="bar-fill bar-${cls}" style="width:${pct}%"></div></div></div>`;
-      }).join('')}
-    </div>
-    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin:24px 0 14px;">Vitamins</h3>
-    <div class="vm-grid">${d.vitamins.map(v=>`<div class="vm-card"><div class="vm-name">${v.name}</div><div class="vm-val">${v.amount.replace(/[a-zμ]/gi,'')}</div><div class="vm-unit">${v.amount.replace(/[\d.]/g,'')}</div><div class="vm-dv">${v.percent_dv}% DV</div></div>`).join('')}</div>
-    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin:24px 0 14px;">Minerals</h3>
-    <div class="vm-grid">${d.minerals.map(m=>`<div class="vm-card"><div class="vm-name">${m.name}</div><div class="vm-val">${m.amount.replace(/[a-zμ]/gi,'')}</div><div class="vm-unit">${m.amount.replace(/[\d.]/g,'')}</div><div class="vm-dv">${m.percent_dv}% DV</div></div>`).join('')}</div>
-    ${d.phytonutrients?.length?`<h3 style="font-family:'Playfair Display',serif;font-size:18px;margin:24px 0 14px;">Phytonutrients & Bioactive Compounds</h3><div style="display:flex;gap:8px;flex-wrap:wrap;">${d.phytonutrients.map(p=>`<span class="hero-pill">${p}</span>`).join('')}</div>`:''}
-  `;
-}
-
-/* ── BENEFITS ── */
-async function loadBenefits(){
-  const c=getC(veg.name,'benefits'); if(c){renderBenefits(c);return;}
-  try{
-    const d=await askClaude(`You are a nutrition expert. Return ONLY valid JSON. Health benefits for ${veg.name} (${veg.family}).
-{"benefits":[{"icon":"emoji","title":"title","description":"2 sentences"},{"icon":"emoji","title":"title","description":"2 sentences"},{"icon":"emoji","title":"title","description":"2 sentences"},{"icon":"emoji","title":"title","description":"2 sentences"},{"icon":"emoji","title":"title","description":"2 sentences"}],"whoShouldEat":["group1","group2","group3","group4","group5","group6"],"whoShouldAvoid":["cond1","cond2"],"bestFor":"one sentence"}`);
-    setC(veg.name,'benefits',d); renderBenefits(d);
-  }catch(e){ document.getElementById('benefits-body').innerHTML=errHTML('benefits'); }
-}
-function renderBenefits(d){
-  document.getElementById('benefits-body').innerHTML=`
-    ${d.bestFor?`<div style="background:var(--veg-50);border:1px solid var(--veg-200);border-radius:var(--radius-sm);padding:16px 20px;margin-bottom:20px;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--veg-600);">Top Benefit</span><p style="margin-top:6px;font-size:15px;color:var(--text-dark);font-weight:500;">${d.bestFor}</p></div>`:''}
-    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:14px;">Key Health Benefits</h3>
-    <div class="benefit-list">${d.benefits.map(b=>`<div class="benefit-item"><div class="benefit-icon">${b.icon}</div><div class="benefit-text"><h4>${b.title}</h4><p>${b.description}</p></div></div>`).join('')}</div>
-    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin:24px 0 14px;">Who Should Eat ${veg.name}?</h3>
-    <div class="who-grid">${d.whoShouldEat.map(w=>`<div class="who-tag"><div class="who-dot"></div>${w}</div>`).join('')}</div>
-    ${d.whoShouldAvoid?.length?`<h3 style="font-family:'Playfair Display',serif;font-size:18px;margin:24px 0 14px;">Cautions</h3><div style="background:var(--earth-50);border:1px solid var(--earth-100);border-radius:var(--radius-sm);padding:16px 20px;">${d.whoShouldAvoid.map(w=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:13px;color:var(--earth-500);">⚠️ ${w}</div>`).join('')}</div>`:''}
-  `;
-}
-
-/* ── CONSUMPTION ── */
-async function loadConsumption(){
-  const c=getC(veg.name,'consumption'); if(c){renderConsumption(c);return;}
-  try{
-    const d=await askClaude(`You are a nutrition expert. Return ONLY valid JSON. Consumption guide for ${veg.name} (${veg.family}).
-{"bestWayToEat":"2-3 sentences","bestTimeToEat":"2 sentences","dailyRecommended":"amount","pairsWith":["a","b","c","d"],"avoidWith":["x","y"],"rawVsCooked":"1-2 sentences","storageTips":"1-2 sentences","ripeness":"how to pick or prep","servingSuggestions":["s1","s2","s3"]}`);
-    setC(veg.name,'consumption',d); renderConsumption(d);
-  }catch(e){ document.getElementById('consumption-body').innerHTML=errHTML('consumption'); }
-}
-function renderConsumption(d){
-  document.getElementById('consumption-body').innerHTML=`
-    <div class="consumption-grid">
-      <div class="cons-card"><h4>🥗 Best way to eat</h4><p>${d.bestWayToEat}</p></div>
-      <div class="cons-card"><h4>⏰ Best time to eat</h4><p>${d.bestTimeToEat}</p></div>
-      <div class="cons-card"><h4>📏 Daily recommended</h4><p>${d.dailyRecommended}</p></div>
-      <div class="cons-card"><h4>🔥 Raw vs Cooked</h4><p>${d.rawVsCooked}</p></div>
-    </div>
-    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin:24px 0 14px;">Serving Suggestions</h3>
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      ${d.servingSuggestions.map((s,i)=>`<div style="display:flex;align-items:flex-start;gap:12px;padding:14px;background:var(--veg-50);border-radius:var(--radius-sm);border:1px solid var(--veg-100);"><span style="width:26px;height:26px;background:var(--veg-600);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">${i+1}</span><span style="font-size:14px;color:var(--text-mid);line-height:1.6;">${s}</span></div>`).join('')}
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
-      <div><h3 style="font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px;">✅ Pairs well with</h3><div style="display:flex;gap:8px;flex-wrap:wrap;">${d.pairsWith.map(pp=>`<span class="hero-pill">🤝 ${pp}</span>`).join('')}</div></div>
-      <div><h3 style="font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px;">⚠️ Avoid with</h3><div style="display:flex;gap:8px;flex-wrap:wrap;">${d.avoidWith.map(av=>`<span class="hero-pill" style="background:var(--earth-50);color:var(--earth-500);border-color:var(--earth-100);">🚫 ${av}</span>`).join('')}</div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
-      <div class="cons-card"><h4>🫙 Storage tips</h4><p>${d.storageTips}</p></div>
-      <div class="cons-card"><h4>🔍 How to select / prep</h4><p>${d.ripeness}</p></div>
-    </div>
-  `;
-}
-
-/* ── GROW ── */
-async function loadGrow(){
-  const c=getC(veg.name,'grow'); if(c){renderGrow(c);return;}
-  try{
-    const d=await askClaude(`You are a horticulture expert. Return ONLY valid JSON. Grow guide for ${veg.name} (${veg.family}).
-{"difficulty":"Easy|Moderate|Hard","timeToHarvest":"X weeks/months","climate":"desc","temperature":{"min":"°C","max":"°C","ideal":"°C"},"soil":"desc","soilPH":"range","water":"desc","sunlight":"desc","spacing":"dist","steps":[{"step":1,"title":"t","description":"2 sentences"},{"step":2,"title":"t","description":"2 sentences"},{"step":3,"title":"t","description":"2 sentences"},{"step":4,"title":"t","description":"2 sentences"},{"step":5,"title":"t","description":"2 sentences"}],"tips":["t1","t2","t3"],"pests":["p1","p2"],"canGrowIndoors":true}`);
-    setC(veg.name,'grow',d); renderGrow(d);
-  }catch(e){ document.getElementById('grow-body').innerHTML=errHTML('grow'); }
-}
-function renderGrow(d){
-  const dc={Easy:['var(--veg-50)','var(--veg-600)','var(--veg-200)'],Moderate:['var(--earth-50)','var(--earth-500)','var(--earth-100)'],Hard:['#fef2f2','#dc2626','#fecaca']}[d.difficulty]||['var(--veg-50)','var(--veg-600)','var(--veg-200)'];
-  document.getElementById('grow-body').innerHTML=`
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px;">
-      <span style="padding:6px 16px;border-radius:50px;font-size:12px;font-weight:700;background:${dc[0]};color:${dc[1]};border:1px solid ${dc[2]};">Difficulty: ${d.difficulty}</span>
-      <span style="padding:6px 16px;border-radius:50px;font-size:12px;font-weight:700;background:var(--veg-50);color:var(--veg-600);border:1px solid var(--veg-200);">⏱ ${d.timeToHarvest}</span>
-      ${d.canGrowIndoors?`<span style="padding:6px 16px;border-radius:50px;font-size:12px;font-weight:700;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">🏠 Can grow indoors</span>`:''}
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:28px;">
-      ${[['🌡️','Temperature',`${d.temperature.min} – ${d.temperature.max} (ideal ${d.temperature.ideal})`],['🌱','Soil',d.soil],['💧','Watering',d.water],['☀️','Sunlight',d.sunlight],['🧪','Soil pH',d.soilPH],['📏','Plant Spacing',d.spacing]].map(([ic,lb,vl])=>`<div style="background:var(--veg-50);border:1px solid var(--veg-100);border-radius:var(--radius-sm);padding:16px;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:6px;">${ic} ${lb}</div><div style="font-size:13px;color:var(--text-mid);line-height:1.6;">${vl}</div></div>`).join('')}
-    </div>
-    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:16px;">Step-by-step Guide</h3>
-    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
-      ${d.steps.map(s=>`<div class="grow-step"><div class="grow-step-num">${s.step}</div><div><h4 style="font-size:15px;font-weight:600;color:var(--text-dark);margin-bottom:5px;">${s.title}</h4><p style="font-size:13px;color:var(--text-muted);line-height:1.65;">${s.description}</p></div></div>`).join('')}
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-      <div><h3 style="font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px;">💡 Pro Tips</h3>${d.tips.map(t=>`<div style="display:flex;gap:8px;margin-bottom:8px;font-size:13px;color:var(--text-mid);"><span>✦</span>${t}</div>`).join('')}</div>
-      <div><h3 style="font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px;">🐛 Common Pests</h3>${d.pests.map(pp=>`<div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;font-size:13px;color:var(--earth-500);background:var(--earth-50);padding:6px 12px;border-radius:8px;">⚠️ ${pp}</div>`).join('')}</div>
-    </div>
-  `;
-}
-
-/* ── TABS ── */
-const sections={nutrition:'tab-nutrition',benefits:'tab-benefits',consumption:'tab-consumption',grow:'tab-grow'};
-const loaders={nutrition:loadNutrition,benefits:loadBenefits,consumption:loadConsumption,grow:loadGrow};
-const loaded={};
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const t=btn.dataset.tab;
-    Object.values(sections).forEach(id=>document.getElementById(id).style.display='none');
-    document.getElementById(sections[t]).style.display='block';
-    if(!loaded[t]){ loaded[t]=true; loaders[t](); }
-  });
-});
-loaded.nutrition=true; loadNutrition();
-window.addEventListener('scroll',()=>{ document.getElementById('navbar').classList.toggle('scrolled',scrollY>40); });
+loadDetail();
 </script>
 </body>
 </html>

@@ -1,692 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title id="page-title">Plant Guide – Harvestpedia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{
-      --green-50:#f0f9f0;--green-100:#d4edda;--green-200:#a8d5b5;--green-400:#5aab6f;--green-600:#2d7a45;--green-800:#1a4f2b;
-      --earth-50:#fdf6ee;--earth-100:#f5e6d0;--earth-300:#d4a96a;--earth-500:#a0703a;
-      --plant-50:#f0fdf4;--plant-100:#dcfce7;--plant-200:#bbf7d0;--plant-400:#4ade80;--plant-600:#16a34a;--plant-700:#15803d;--plant-800:#166534;
-      --sky-50:#f0f9ff;--sky-100:#e0f2fe;--sky-200:#bae6fd;--sky-600:#0284c7;--sky-800:#075985;
-      --amber-50:#fffbeb;--amber-100:#fef3c7;--amber-400:#fbbf24;--amber-600:#d97706;
-      --cream:#fdfaf5;--warm-white:#fffef9;
-      --text-dark:#1c2b1e;--text-mid:#3d5440;--text-muted:#6b8070;
-      --shadow-sm:0 2px 12px rgba(30,60,35,.07);--shadow-md:0 8px 32px rgba(30,60,35,.11);--shadow-lg:0 18px 60px rgba(30,60,35,.14);
-      --radius-sm:12px;--radius-md:20px;--radius-lg:32px;
-    }
-    html{scroll-behavior:smooth;}
-    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Plant Details – Harvestpedia</title>
+<script src="../js/darkmode.js"></script>
+<link rel="stylesheet" href="../css/style.css"/>
+<style>
+  :root {
+    --bg-primary:#ffffff; --bg-secondary:#f5f9f0; --bg-card:#ffffff;
+    --text-primary:#1a3a1a; --text-muted:#6b7280; --border-color:#e5e7eb;
+    --navbar-bg:rgba(255,255,255,0.85); --shadow:0 2px 8px rgba(0,0,0,0.08);
+    --accent-green:#3B6D11; --accent-amber:#BA7517; --accent-purple:#534AB7;
+  }
+  [data-theme="dark"] {
+    --bg-primary:#111a11; --bg-secondary:#1a2a1a; --bg-card:#1e2d1e;
+    --text-primary:#e8f4e8; --text-muted:#9ca3af; --border-color:#2d4a2d;
+    --navbar-bg:rgba(17,26,17,0.92); --shadow:0 2px 8px rgba(0,0,0,0.4);
+    --accent-green:#5a9e20; --accent-amber:#d48a2a; --accent-purple:#7c74e0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg-primary); color: var(--text-primary); font-family: system-ui, sans-serif; }
+  .navbar { position: sticky; top: 0; z-index: 100; background: var(--navbar-bg); border-bottom: 1px solid var(--border-color); backdrop-filter: blur(12px); padding: 0 1.5rem; display: flex; align-items: center; height: 56px; gap: 2rem; }
+  .nav-logo { font-size: 1.1rem; font-weight: 700; color: var(--accent-green); text-decoration: none; }
+  .nav-links { display: flex; gap: 1.25rem; flex: 1; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; transition: color .15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent-green); }
+  .dm-toggle { background: none; border: 1.5px solid var(--border-color); border-radius: 8px; padding: 4px 10px; cursor: pointer; font-size: 1.1rem; color: var(--text-primary); transition: border-color .2s; }
+  .dm-toggle:hover { border-color: var(--accent-green); }
+  .back-bar { padding: .9rem 1.5rem; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--text-muted); font-size: 13px; font-weight: 500; transition: color .15s; }
+  .back-link:hover { color: var(--accent-green); }
+  .hero { background: linear-gradient(135deg, #eeedfe 0%, #ddd8fc 100%); padding: 2.5rem 1.5rem 2rem; text-align: center; border-bottom: 1px solid var(--border-color); }
+  [data-theme="dark"] .hero { background: linear-gradient(135deg, #1e1b4b 0%, #2d2a6a 100%); }
+  .hero-emoji { font-size: 4rem; display: block; margin-bottom: .75rem; }
+  .hero h1 { font-size: 2rem; font-weight: 700; color: var(--text-primary); }
+  .hero-sub { color: var(--text-muted); margin-top: .4rem; font-size: .95rem; }
+  .hero-actions { display: flex; gap: 10px; justify-content: center; margin-top: 1.25rem; flex-wrap: wrap; }
+  .btn { padding: 8px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all .2s; }
+  .btn-primary { background: var(--accent-purple); color: #fff; }
+  .btn-primary:hover { opacity: .88; }
+  .btn-green { background: var(--accent-green); color: #fff; }
+  .btn-green:hover { opacity: .88; }
+  .btn-outline { background: transparent; border: 1.5px solid var(--border-color); color: var(--text-primary); }
+  .btn-outline:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
+  .content { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 600px) { .content { grid-template-columns: 1fr; } }
+  .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.25rem 1.5rem; }
+  .card.full { grid-column: 1 / -1; }
+  .card h2 { font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 1rem; }
 
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(253,250,245,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(90,171,111,.12);transition:box-shadow .3s;}
-    nav.scrolled{box-shadow:0 4px 24px rgba(30,60,35,.08);}
-    .nav-logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--green-800);text-decoration:none;}
-    .nav-logo-leaf{width:34px;height:34px;background:linear-gradient(135deg,var(--green-400),var(--green-600));border-radius:50% 12px 50% 12px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 4px 14px rgba(45,122,69,.3);}
-    .nav-links{display:flex;align-items:center;gap:6px;list-style:none;}
-    .nav-links a{text-decoration:none;color:var(--text-mid);font-size:14px;font-weight:500;padding:8px 18px;border-radius:50px;transition:all .2s;}
-    .nav-links a:hover,.nav-links a.active{background:var(--plant-50);color:var(--plant-600);}
-    .nav-cta{background:var(--green-600)!important;color:white!important;box-shadow:0 4px 14px rgba(45,122,69,.3);}
+  /* Care meter */
+  .care-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+  .care-label { width: 90px; color: var(--text-muted); flex-shrink: 0; }
+  .care-bar { flex: 1; height: 8px; background: var(--border-color); border-radius: 99px; overflow: hidden; }
+  .care-fill { height: 100%; border-radius: 99px; background: var(--accent-purple); transition: width .6s ease; }
+  .care-fill.green { background: var(--accent-green); }
+  .care-fill.amber { background: var(--accent-amber); }
+  .care-val { font-size: 11px; font-weight: 600; color: var(--text-muted); min-width: 30px; text-align: right; }
 
-    /* ═══ HERO ═══ */
-    .plant-hero{
-      padding:100px 48px 0;
-      min-height:560px;
-      background:linear-gradient(160deg,#f0fdf4 0%,var(--warm-white) 55%);
-      position:relative;overflow:hidden;
-    }
-    .plant-hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(74,222,128,.10) 0%,transparent 70%);top:-200px;right:-100px;pointer-events:none;animation:blob 9s ease-in-out infinite;}
-    @keyframes blob{0%,100%{transform:scale(1) translate(0,0);}50%{transform:scale(1.05) translate(-15px,15px);}}
+  .benefits-list { display: flex; flex-direction: column; gap: 8px; }
+  .benefit-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.5; }
+  .benefit-dot { width: 8px; height: 8px; background: var(--accent-purple); border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+  .season-grid { display: flex; gap: 6px; flex-wrap: wrap; }
+  .season-pill { padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+  .pill-peak { background: #d1fae5; color: #065f46; }
+  .pill-good { background: #fef3c7; color: #92400e; }
+  .pill-low  { background: #f3f4f6; color: #6b7280; }
+  [data-theme="dark"] .pill-peak { background: #064e3b; color: #6ee7b7; }
+  [data-theme="dark"] .pill-good { background: #78350f; color: #fcd34d; }
+  [data-theme="dark"] .pill-low  { background: #374151; color: #9ca3af; }
+  .tips-list { display: flex; flex-direction: column; gap: 10px; }
+  .tip-item { padding: 10px 14px; background: var(--bg-secondary); border-radius: 10px; border-left: 3px solid var(--accent-purple); font-size: 13px; line-height: 1.5; }
+  .tag-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { padding: 4px 12px; background: #eeedfe; color: #534AB7; border-radius: 99px; font-size: 12px; font-weight: 500; }
+  [data-theme="dark"] .tag { background: #3730a3; color: #c7d2fe; }
+  .loading-overlay { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px; gap: 16px; }
+  .spinner { width: 36px; height: 36px; border: 3px solid var(--border-color); border-top-color: var(--accent-purple); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { color: var(--text-muted); font-size: 14px; }
+  .error-box { text-align: center; padding: 2rem; color: var(--text-muted); }
+  .error-box h3 { color: #dc2626; margin-bottom: .5rem; }
+  .hidden { display: none !important; }
+  .prose { font-size: 14px; line-height: 1.7; color: var(--text-primary); }
 
-    .hero-grid{display:grid;grid-template-columns:1fr 440px;gap:48px;align-items:center;padding-bottom:48px;position:relative;z-index:1;}
-    .breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);margin-bottom:24px;}
-    .breadcrumb a{text-decoration:none;color:var(--plant-600);}
-    .breadcrumb span{opacity:.5;}
-    .plant-tag-hero{display:inline-flex;align-items:center;gap:6px;background:var(--plant-50);border:1px solid var(--plant-200);color:var(--plant-600);font-size:11px;font-weight:700;padding:5px 14px;border-radius:50px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:16px;}
-    .plant-hero-name{font-family:'Playfair Display',serif;font-size:clamp(44px,6vw,76px);font-weight:700;line-height:1.05;color:var(--text-dark);margin-bottom:8px;}
-    .plant-hero-latin{font-size:16px;color:var(--text-muted);font-style:italic;margin-bottom:16px;}
-    .plant-hero-desc{font-size:16px;color:var(--text-mid);line-height:1.75;margin-bottom:28px;max-width:540px;}
-    .hero-pills-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
-    .hero-pill{font-size:12px;font-weight:600;padding:5px 14px;border-radius:50px;background:white;color:var(--plant-600);border:1px solid var(--plant-200);box-shadow:var(--shadow-sm);}
-    .hero-pills-row .diff-pill-easy{background:#f0fdf4;color:#15803d;border-color:#bbf7d0;}
-    .hero-pills-row .diff-pill-moderate{background:var(--amber-50);color:var(--amber-600);border-color:#fde68a;}
-    .hero-pills-row .diff-pill-hard{background:#fff1f2;color:#be123c;border-color:#fecdd3;}
-
-    /* quick stats */
-    .quick-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-    .qs-card{background:white;border-radius:var(--radius-sm);padding:14px 16px;text-align:center;border:1px solid rgba(74,222,128,.12);box-shadow:var(--shadow-sm);}
-    .qs-icon{font-size:20px;margin-bottom:6px;}
-    .qs-val{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--plant-600);line-height:1.2;}
-    .qs-key{font-size:10px;color:var(--text-muted);margin-top:3px;text-transform:uppercase;letter-spacing:.5px;}
-
-    /* ═══ PLANT IMAGE PANEL ═══ */
-    .plant-img-panel{position:relative;display:flex;flex-direction:column;gap:16px;}
-    .plant-img-wrap{border-radius:var(--radius-lg);overflow:hidden;height:360px;box-shadow:0 20px 60px rgba(22,163,74,.18);border:4px solid white;position:relative;}
-    .plant-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s;animation:imgFloat 7s ease-in-out infinite;}
-    @keyframes imgFloat{0%,100%{transform:scale(1);}50%{transform:scale(1.04);}}
-    .type-badge{position:absolute;top:14px;left:14px;background:rgba(22,163,74,.9);color:white;font-size:11px;font-weight:700;padding:5px 14px;border-radius:50px;letter-spacing:.5px;backdrop-filter:blur(4px);}
-
-    /* Live weather card */
-    .live-weather-card{background:white;border-radius:var(--radius-md);border:1px solid rgba(74,222,128,.15);box-shadow:var(--shadow-sm);overflow:hidden;}
-    .lw-header{background:linear-gradient(90deg,var(--plant-600),var(--plant-700));padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
-    .lw-header .lw-title{color:white;font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;}
-    .lw-header .lw-city{color:rgba(255,255,255,.8);font-size:12px;}
-    .lw-body{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--plant-100);}
-    .lw-tile{background:white;padding:12px 14px;}
-    .lw-tile .lw-icon{font-size:18px;margin-bottom:4px;}
-    .lw-tile .lw-val{font-size:18px;font-weight:700;color:var(--text-dark);}
-    .lw-tile .lw-key{font-size:11px;color:var(--text-muted);}
-    .lw-compatibility{padding:12px 16px;background:var(--plant-50);border-top:1px solid var(--plant-100);}
-    .lw-compat-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:8px;}
-    .compat-bar-wrap{display:flex;align-items:center;gap:10px;}
-    .compat-track{flex:1;height:8px;background:var(--plant-100);border-radius:50px;overflow:hidden;}
-    .compat-fill{height:100%;border-radius:50px;transition:width 1s cubic-bezier(.34,1.56,.64,1);}
-    .compat-pct{font-size:13px;font-weight:700;min-width:36px;text-align:right;}
-    .compat-msg{font-size:12px;color:var(--text-muted);margin-top:6px;line-height:1.5;}
-    .lw-loading{padding:20px;text-align:center;font-size:13px;color:var(--text-muted);}
-
-    /* ═══ MAIN CONTENT ═══ */
-    .content-wrap{display:grid;grid-template-columns:1fr 340px;gap:32px;padding:48px 48px 80px;max-width:1400px;margin:0 auto;}
-
-    /* section cards */
-    .section-card{background:white;border-radius:var(--radius-lg);border:1px solid rgba(74,222,128,.10);box-shadow:var(--shadow-sm);margin-bottom:24px;overflow:hidden;}
-    .sc-header{display:flex;align-items:center;gap:12px;padding:22px 28px 16px;}
-    .sc-icon{width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-    .sc-icon.plant{background:var(--plant-50);}
-    .sc-icon.sky{background:var(--sky-50);}
-    .sc-icon.earth{background:var(--earth-50);}
-    .sc-icon.amber{background:var(--amber-50);}
-    .sc-header h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text-dark);}
-    .sc-body{padding:4px 28px 28px;}
-
-    /* GROW OVERVIEW GRID */
-    .grow-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
-    .go-card{background:var(--plant-50);border:1px solid var(--plant-100);border-radius:var(--radius-sm);padding:16px;}
-    .go-card .go-icon{font-size:22px;margin-bottom:8px;}
-    .go-card .go-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:4px;}
-    .go-card .go-val{font-size:14px;font-weight:700;color:var(--text-dark);line-height:1.4;}
-
-    /* STEPS */
-    .steps-list{display:flex;flex-direction:column;gap:0;}
-    .step-item{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--plant-100);position:relative;transition:all .2s;}
-    .step-item:last-child{border-bottom:none;}
-    .step-item:hover{padding-left:6px;}
-    .step-num{width:40px;height:40px;border-radius:50%;background:var(--plant-600);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0;box-shadow:0 4px 12px rgba(22,163,74,.3);}
-    .step-content h4{font-size:15px;font-weight:700;color:var(--text-dark);margin-bottom:6px;}
-    .step-content p{font-size:13px;color:var(--text-muted);line-height:1.7;}
-    .step-tip{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:11px;font-weight:600;color:var(--plant-600);background:var(--plant-50);padding:4px 10px;border-radius:50px;border:1px solid var(--plant-100);}
-
-    /* WATER & TEMP GAUGES */
-    .gauge-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
-    .gauge-card{background:var(--sky-50);border:1px solid var(--sky-200);border-radius:var(--radius-md);padding:20px;}
-    .gauge-card.temp{background:var(--amber-50);border-color:var(--amber-100);}
-    .gauge-card h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sky-600);margin-bottom:12px;}
-    .gauge-card.temp h4{color:var(--amber-600);}
-    .gauge-visual{display:flex;align-items:flex-end;gap:4px;height:60px;margin-bottom:8px;}
-    .gauge-bar{flex:1;border-radius:4px 4px 0 0;transition:height .8s cubic-bezier(.34,1.56,.64,1);}
-    .gauge-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);}
-    .gauge-main-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:4px;}
-    .gauge-main-val.water{color:var(--sky-600);}
-    .gauge-main-val.temp{color:var(--amber-600);}
-    .gauge-sub{font-size:12px;color:var(--text-muted);}
-
-    /* SCHEDULE */
-    .schedule-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
-    .day-pill{border-radius:var(--radius-sm);padding:10px 4px;text-align:center;}
-    .day-pill .day-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;color:var(--text-muted);}
-    .day-pill .day-icon{font-size:18px;}
-    .day-pill.water-day{background:var(--sky-50);border:1px solid var(--sky-200);}
-    .day-pill.water-day .day-name{color:var(--sky-600);}
-    .day-pill.rest-day{background:var(--plant-50);border:1px solid var(--plant-100);}
-
-    /* CARE CHECKLIST */
-    .care-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-    .care-item{display:flex;align-items:flex-start;gap:12px;padding:14px;background:var(--plant-50);border:1px solid var(--plant-100);border-radius:var(--radius-sm);transition:all .25s;}
-    .care-item:hover{background:var(--plant-100);transform:translateX(3px);}
-    .care-icon{width:32px;height:32px;border-radius:8px;background:var(--plant-600);color:white;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
-    .care-text h5{font-size:13px;font-weight:700;color:var(--text-dark);margin-bottom:3px;}
-    .care-text p{font-size:12px;color:var(--text-muted);line-height:1.5;}
-
-    /* PROBLEMS */
-    .problem-list{display:flex;flex-direction:column;gap:12px;}
-    .problem-item{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;padding:14px 16px;background:var(--earth-50);border:1px solid var(--earth-100);border-radius:var(--radius-sm);transition:all .2s;}
-    .problem-item:hover{border-color:var(--earth-300);transform:translateX(3px);}
-    .problem-icon{font-size:22px;}
-    .problem-info h5{font-size:13px;font-weight:700;color:var(--text-dark);margin-bottom:3px;}
-    .problem-info p{font-size:12px;color:var(--text-muted);line-height:1.5;}
-    .problem-fix{font-size:11px;font-weight:700;color:var(--plant-600);background:var(--plant-50);padding:4px 10px;border-radius:50px;white-space:nowrap;border:1px solid var(--plant-100);}
-
-    /* AI LOADING */
-    .ai-loading{display:flex;flex-direction:column;align-items:center;gap:16px;padding:48px;text-align:center;}
-    .spinner{width:48px;height:48px;border-radius:50%;border:3px solid var(--plant-100);border-top-color:var(--plant-600);animation:spin .8s linear infinite;}
-    @keyframes spin{to{transform:rotate(360deg);}}
-    .ai-loading p{font-size:14px;color:var(--text-muted);}
-    .ai-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plant-600);background:var(--plant-50);padding:4px 12px;border-radius:50px;border:1px solid var(--plant-100);}
-    .ai-error{padding:24px;text-align:center;background:var(--earth-50);border-radius:var(--radius-sm);margin:16px;}
-    .ai-error p{font-size:14px;color:var(--earth-500);margin-bottom:12px;}
-    .retry-btn{background:var(--plant-600);color:white;border:none;cursor:pointer;padding:8px 20px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;}
-
-    /* SIDEBAR */
-    .sidebar-card{background:white;border-radius:var(--radius-lg);border:1px solid rgba(74,222,128,.10);box-shadow:var(--shadow-sm);padding:24px;margin-bottom:20px;position:sticky;top:140px;}
-    .sidebar-card h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text-dark);margin-bottom:16px;}
-
-    /* Score ring */
-    .score-wrap{text-align:center;margin-bottom:16px;}
-    .score-ring{display:inline-block;position:relative;width:100px;height:100px;}
-    .score-ring svg{transform:rotate(-90deg);}
-    .score-ring .track{fill:none;stroke:var(--plant-100);stroke-width:8;}
-    .score-ring .fill{fill:none;stroke:var(--plant-600);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(.34,1.56,.64,1);}
-    .score-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--plant-600);}
-    .score-label{font-size:12px;color:var(--text-muted);margin-top:4px;}
-
-    .care-quick{display:flex;flex-direction:column;gap:10px;}
-    .cq-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--plant-50);border-radius:var(--radius-sm);border:1px solid var(--plant-100);}
-    .cq-icon{font-size:18px;flex-shrink:0;}
-    .cq-label{font-size:12px;color:var(--text-muted);}
-    .cq-val{font-size:13px;font-weight:700;color:var(--text-dark);margin-left:auto;}
-
-    .back-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:50px;background:var(--plant-600);color:white;border:none;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 6px 20px rgba(22,163,74,.3);transition:all .25s;text-decoration:none;margin-top:12px;}
-    .back-btn:hover{background:var(--plant-800);transform:translateY(-2px);}
-
-    footer{background:var(--green-800);color:white;padding:60px 48px 40px;}
-    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
-    .footer-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-    .footer-leaf{width:28px;height:28px;background:var(--green-400);border-radius:50% 10px 50% 10px;display:flex;align-items:center;justify-content:center;font-size:13px;}
-    .footer-brand p{font-size:13px;opacity:.65;line-height:1.7;max-width:230px;}
-    .footer-col h5{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.5;margin-bottom:18px;}
-    .footer-col a{display:block;color:rgba(255,255,255,.75);font-size:14px;text-decoration:none;margin-bottom:10px;transition:color .2s;cursor:pointer;}
-    .footer-col a:hover{color:var(--green-200);}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:28px;display:flex;align-items:center;justify-content:space-between;font-size:12px;opacity:.5;}
-
-    @media(max-width:1100px){.hero-grid,.content-wrap{grid-template-columns:1fr;}.sidebar-card{position:relative;top:0;}}
-    @media(max-width:900px){nav{padding:14px 24px;}.plant-hero{padding:100px 24px 0;}.content-wrap{padding:32px 24px 60px;}.grow-overview{grid-template-columns:repeat(2,1fr);}.care-grid{grid-template-columns:1fr;}.gauge-row{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr 1fr;}footer{padding:48px 24px 32px;}}
-    @media(max-width:600px){.nav-links{display:none;}.quick-stats{grid-template-columns:repeat(2,1fr);}.grow-overview{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;}}
-  </style>
+  /* Quick facts badges */
+  .facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .fact-item { padding: 8px 12px; background: var(--bg-secondary); border-radius: 8px; font-size: 12px; }
+  .fact-label { color: var(--text-muted); display: block; margin-bottom: 2px; }
+  .fact-val { font-weight: 600; color: var(--text-primary); font-size: 13px; }
+</style>
 </head>
 <body>
-
-<nav id="navbar">
-  <a class="nav-logo" href="index.html"><div class="nav-logo-leaf">🌿</div>Harvestpedia</a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="fruits.html">Fruits</a></li>
-    <li><a href="vegetables.html">Vegetables</a></li>
-    <li><a href="plants.html" class="active">Plants</a></li>
-    <li><a href="#" class="nav-cta">Explore Now</a></li>
-  </ul>
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">🌿 Harvestpedia</a>
+  <div class="nav-links">
+    <a href="../fruits.html">Fruits</a>
+    <a href="../vegetables.html">Vegetables</a>
+    <a href="../plants.html" class="active">Plants</a>
+    <a href="../search.html">🔍 Search</a>
+    <a href="../seasonal.html">🗓️ Calendar</a>
+    <a href="../compare.html">📊 Compare</a>
+    <a href="../recipes.html">🍳 Recipes</a>
+  </div>
+  <button class="dm-toggle" id="dm-toggle"></button>
 </nav>
-
-<!-- ═══ HERO ═══ -->
-<div class="plant-hero">
-  <div class="hero-grid">
-    <!-- LEFT: Text info -->
-    <div class="hero-left">
-      <div class="breadcrumb">
-        <a href="index.html">🏠 Home</a><span>›</span>
-        <a href="plants.html">Plants</a><span>›</span>
-        <span id="bc-name">…</span>
-      </div>
-      <div class="plant-tag-hero" id="plant-tag">🌱 Plant</div>
-      <h1 class="plant-hero-name" id="plant-name">–</h1>
-      <div class="plant-hero-latin" id="plant-latin">–</div>
-      <p class="plant-hero-desc" id="plant-desc">–</p>
-      <div class="hero-pills-row" id="hero-pills"></div>
-      <div class="quick-stats">
-        <div class="qs-card"><div class="qs-icon">💧</div><div class="qs-val" id="qs-water">–</div><div class="qs-key">Water needs</div></div>
-        <div class="qs-card"><div class="qs-icon">☀️</div><div class="qs-val" id="qs-light">–</div><div class="qs-key">Light</div></div>
-        <div class="qs-card"><div class="qs-icon">🌡️</div><div class="qs-val" id="qs-temp">–</div><div class="qs-key">Temperature</div></div>
-        <div class="qs-card"><div class="qs-icon">🏠</div><div class="qs-val" id="qs-type">–</div><div class="qs-key">Placement</div></div>
-      </div>
-    </div>
-
-    <!-- RIGHT: Plant image + live weather -->
-    <div class="plant-img-panel">
-      <!-- Plant image -->
-      <div class="plant-img-wrap">
-        <img id="plant-img" src="" alt=""/>
-        <div class="type-badge" id="type-badge">🏠 Indoor</div>
-      </div>
-
-      <!-- Live weather card -->
-      <div class="live-weather-card">
-        <div class="lw-header">
-          <span class="lw-title">🌤 Live Weather</span>
-          <span class="lw-city" id="lw-city">Detecting location…</span>
-        </div>
-        <div class="lw-body" id="lw-body">
-          <div class="lw-loading" style="grid-column:span 2;">📡 Loading weather data…</div>
-        </div>
-        <div class="lw-compatibility" id="lw-compat">
-          <div class="lw-compat-label">Plant suitability for today</div>
-          <div class="compat-bar-wrap">
-            <div class="compat-track"><div class="compat-fill" id="compat-fill" style="width:0%;background:var(--plant-600);"></div></div>
-            <div class="compat-pct" id="compat-pct">–%</div>
-          </div>
-          <div class="compat-msg" id="compat-msg">Calculating…</div>
-        </div>
-      </div>
-    </div>
+<div class="back-bar"><a href="../plants.html" class="back-link">← Back to Plants</a></div>
+<div class="hero" id="hero" style="display:none">
+  <span class="hero-emoji" id="hero-emoji">🪴</span>
+  <h1 id="hero-name">Plant</h1>
+  <p class="hero-sub" id="hero-sub"></p>
+  <div class="hero-actions">
+    <a id="btn-recipe" href="../recipes.html" class="btn btn-green">🍳 Find Recipes</a>
+    <a id="btn-compare" href="../compare.html" class="btn btn-outline">📊 Compare</a>
   </div>
 </div>
-
-<!-- ═══ MAIN CONTENT ═══ -->
-<div class="content-wrap">
-  <div id="main-col">
-
-    <!-- GROW OVERVIEW -->
-    <div class="section-card">
-      <div class="sc-header"><div class="sc-icon plant">🌱</div><h2>Grow Overview</h2></div>
-      <div class="sc-body" id="overview-body">
-        <div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ AI Generating</span><p>Building your grow overview…</p></div>
-      </div>
-    </div>
-
-    <!-- WATER & TEMPERATURE -->
-    <div class="section-card">
-      <div class="sc-header"><div class="sc-icon sky">💧</div><h2>Water & Temperature Guide</h2></div>
-      <div class="sc-body" id="water-body">
-        <div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ AI Generating</span><p>Calculating water & temp requirements…</p></div>
-      </div>
-    </div>
-
-    <!-- STEP-BY-STEP GROW GUIDE -->
-    <div class="section-card">
-      <div class="sc-header"><div class="sc-icon plant">📋</div><h2>Step-by-Step Growing Guide</h2></div>
-      <div class="sc-body" id="steps-body">
-        <div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ AI Generating</span><p>Writing your detailed grow guide…</p></div>
-      </div>
-    </div>
-
-    <!-- DAILY CARE -->
-    <div class="section-card">
-      <div class="sc-header"><div class="sc-icon amber">🌿</div><h2>Daily Care Checklist</h2></div>
-      <div class="sc-body" id="care-body">
-        <div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ AI Generating</span><p>Creating care checklist…</p></div>
-      </div>
-    </div>
-
-    <!-- PROBLEMS & FIXES -->
-    <div class="section-card">
-      <div class="sc-header"><div class="sc-icon earth">🐛</div><h2>Common Problems & Fixes</h2></div>
-      <div class="sc-body" id="problems-body">
-        <div class="ai-loading"><div class="spinner"></div><span class="ai-label">✦ AI Generating</span><p>Identifying common issues…</p></div>
-      </div>
-    </div>
-
-  </div><!-- /main-col -->
-
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sidebar-card">
-      <h3>Grow Score</h3>
-      <div class="score-wrap">
-        <div class="score-ring">
-          <svg viewBox="0 0 100 100" width="100" height="100">
-            <circle class="track" cx="50" cy="50" r="42"/>
-            <circle class="fill" id="score-arc" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264"/>
-          </svg>
-          <div class="score-num" id="score-num">–</div>
-        </div>
-        <div class="score-label" id="score-label">Beginner friendliness</div>
-      </div>
-      <div class="care-quick" id="care-quick">
-        <div class="cq-row"><span class="cq-icon">💧</span><span class="cq-label">Water</span><span class="cq-val" id="sq-water">–</span></div>
-        <div class="cq-row"><span class="cq-icon">☀️</span><span class="cq-label">Light</span><span class="cq-val" id="sq-light">–</span></div>
-        <div class="cq-row"><span class="cq-icon">🌡️</span><span class="cq-label">Temp range</span><span class="cq-val" id="sq-temp">–</span></div>
-        <div class="cq-row"><span class="cq-icon">🪴</span><span class="cq-label">Pot size</span><span class="cq-val" id="sq-pot">–</span></div>
-        <div class="cq-row"><span class="cq-icon">✂️</span><span class="cq-label">Prune</span><span class="cq-val" id="sq-prune">–</span></div>
-        <div class="cq-row"><span class="cq-icon">🌿</span><span class="cq-label">Fertilizer</span><span class="cq-val" id="sq-fert">–</span></div>
-      </div>
-      <a class="back-btn" href="plants.html">← Back to all plants</a>
-    </div>
+<div class="loading-overlay" id="loading">
+  <div class="spinner"></div>
+  <p class="loading-text" id="loading-text">Loading plant details...</p>
+</div>
+<div class="error-box hidden" id="error-box">
+  <h3>Couldn't load details</h3>
+  <p id="error-msg">Make sure the proxy server is running on port 3001.</p>
+  <button class="btn btn-primary" style="margin-top:1rem" onclick="location.reload()">Retry</button>
+</div>
+<div class="content hidden" id="content">
+  <div class="card">
+    <h2>🌱 Care Requirements</h2>
+    <div id="care-meters"></div>
+  </div>
+  <div class="card">
+    <h2>📋 Quick Facts</h2>
+    <div class="facts-grid" id="facts-grid"></div>
+  </div>
+  <div class="card">
+    <h2>💜 Benefits & Uses</h2>
+    <div class="benefits-list" id="benefits-list"></div>
+  </div>
+  <div class="card">
+    <h2>📅 Best Growing Season (India)</h2>
+    <div class="season-grid" id="season-grid"></div>
+    <p id="season-note" style="margin-top:.75rem;font-size:13px;color:var(--text-muted)"></p>
+  </div>
+  <div class="card full">
+    <h2>💡 Growing Tips</h2>
+    <div class="tips-list" id="tips-list"></div>
+  </div>
+  <div class="card full">
+    <h2>📖 About</h2>
+    <div class="prose" id="about-prose"></div>
+  </div>
+  <div class="card">
+    <h2>🏷️ Tags</h2>
+    <div class="tag-row" id="tag-row"></div>
   </div>
 </div>
-
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo"><div class="footer-leaf">🌿</div>Harvestpedia</div>
-      <p>Your trusted plant-based knowledge platform.</p>
-    </div>
-    <div class="footer-col"><h5>Explore</h5><a href="fruits.html">Fruits</a><a href="vegetables.html">Vegetables</a><a href="plants.html">Plants</a></div>
-    <div class="footer-col"><h5>Learn</h5><a href="#">Grow Guides</a><a href="#">Care Tips</a></div>
-    <div class="footer-col"><h5>About</h5><a href="#">Our Mission</a><a href="#">Contact</a></div>
-  </div>
-  <div class="footer-bottom"><span>© 2025 Harvestpedia. All rights reserved.</span><span>Made with 🌿 for nature lovers</span></div>
-</footer>
-
+<script src="../js/api.js"></script>
 <script>
-/* ═══ PLANT DATA (same as plants.html) ═══ */
-const plants = [
-  {name:'Aloe Vera',latin:'Aloe barbadensis miller',type:'indoor',difficulty:'easy',water:'Low',light:'Bright indirect',temp:'15–30°C',tags:['Medicinal','Succulent','Air purifier'],img:'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=700&q=80',desc:'A resilient succulent prized for its soothing gel. Near-zero maintenance and thrives in dry indoor conditions.'},
-  {name:'Snake Plant',latin:'Sansevieria trifasciata',type:'indoor',difficulty:'easy',water:'Low',light:'Low to bright',temp:'15–35°C',tags:['Air purifier','Low light','Beginner'],img:'https://images.unsplash.com/photo-1572688484438-313a6e50c333?w=700&q=80',desc:'One of the most forgiving houseplants. Filters formaldehyde and is almost impossible to kill.'},
-  {name:'Spider Plant',latin:'Chlorophytum comosum',type:'indoor',difficulty:'easy',water:'Moderate',light:'Indirect',temp:'13–27°C',tags:['Air purifier','Pet-safe','Beginner'],img:'https://images.unsplash.com/photo-1637967886160-fd78dc3ce3f5?w=700&q=80',desc:'Fast-growing and safe for pets. Produces charming baby plantlets you can propagate and share.'},
-  {name:'Peace Lily',latin:'Spathiphyllum wallisii',type:'indoor',difficulty:'easy',water:'Moderate',light:'Low to indirect',temp:'18–30°C',tags:['Flowering','Air purifier','Low light'],img:'https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?w=700&q=80',desc:'Elegant white blooms and powerful air-cleaning properties. Droops dramatically when thirsty — an easy watering cue.'},
-  {name:'Pothos',latin:'Epipremnum aureum',type:'indoor',difficulty:'easy',water:'Low',light:'Low to bright',temp:'15–30°C',tags:['Trailing','Air purifier','Beginner'],img:'https://images.unsplash.com/photo-1611211232932-da3113c5b960?w=700&q=80',desc:'Virtually indestructible trailing vine perfect for shelves and hanging baskets. Adapts to almost any light.'},
-  {name:'Monstera',latin:'Monstera deliciosa',type:'indoor',difficulty:'moderate',water:'Moderate',light:'Bright indirect',temp:'18–30°C',tags:['Tropical','Statement plant','Instagram-famous'],img:'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=700&q=80',desc:'The iconic split-leaf tropical creates stunning visual drama in any room and grows surprisingly fast.'},
-  {name:'ZZ Plant',latin:'Zamioculcas zamiifolia',type:'indoor',difficulty:'easy',water:'Very low',light:'Low to bright',temp:'15–35°C',tags:['Drought tolerant','Air purifier','Low light'],img:'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=700&q=80',desc:'Glossy dark-green leaves on sculptural stems. Thrives on neglect and stores water in its rhizomes.'},
-  {name:'Fiddle Leaf Fig',latin:'Ficus lyrata',type:'indoor',difficulty:'hard',water:'Moderate',light:'Bright direct',temp:'16–24°C',tags:['Statement plant','Tropical','Finicky'],img:'https://images.unsplash.com/photo-1598880940642-f48c53d1dce8?w=700&q=80',desc:'Bold, violin-shaped leaves make a stunning focal point. Sensitive to drafts and overwatering — rewarding for patient growers.'},
-  {name:'Rubber Plant',latin:'Ficus elastica',type:'indoor',difficulty:'moderate',water:'Low',light:'Bright indirect',temp:'15–30°C',tags:['Statement plant','Tropical','Air purifier'],img:'https://images.unsplash.com/photo-1683721003111-070ac4a0b888?w=700&q=80',desc:'Deep burgundy or green glossy leaves that command attention. Relatively forgiving once established.'},
-  {name:'Basil',latin:'Ocimum basilicum',type:'both',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'18–30°C',tags:['Herb','Edible','Kitchen garden'],img:'https://plus.unsplash.com/premium_photo-1725899523683-838307ab1552?w=700&q=80',desc:'Fragrant kitchen essential. Pinch flowers to extend harvest and keep it on a sunny windowsill.'},
-  {name:'Mint',latin:'Mentha spicata',type:'both',difficulty:'easy',water:'High',light:'Partial sun',temp:'15–25°C',tags:['Herb','Edible','Spreader'],img:'https://theaffordableorganicstore.com/cdn/shop/files/1713181721.jpg?v=1744630667',desc:'Incredibly vigorous herb best grown in containers to prevent it spreading everywhere. Loves moisture.'},
-  {name:'Rosemary',latin:'Salvia rosmarinus',type:'both',difficulty:'moderate',water:'Low',light:'Full sun',temp:'10–30°C',tags:['Herb','Edible','Drought tolerant'],img:'https://images.unsplash.com/photo-1726994803809-0e065bd4b25b?w=700&q=80',desc:'Aromatic Mediterranean herb that loves heat and well-drained soil. Evergreen and highly ornamental.'},
-  {name:'Lavender',latin:'Lavandula angustifolia',type:'outdoor',difficulty:'moderate',water:'Low',light:'Full sun',temp:'5–30°C',tags:['Flowering','Aromatic','Pollinator-friendly'],img:'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=700&q=80',desc:'Purple spikes of intensely fragrant flowers attract bees and butterflies. Excellent for borders and pots.'},
-  {name:'Tomato',latin:'Solanum lycopersicum',type:'outdoor',difficulty:'moderate',water:'High',light:'Full sun',temp:'18–30°C',tags:['Edible','Fruiting','Summer'],img:'https://plus.unsplash.com/premium_photo-1661811820259-2575b82101bf?w=700&q=80',desc:'Nothing beats a home-grown tomato. Requires consistent watering, staking, and plenty of sunshine.'},
-  {name:'Chili Pepper',latin:'Capsicum annuum',type:'both',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'18–35°C',tags:['Edible','Spicy','Fruiting'],img:'https://images.unsplash.com/photo-1599987662084-97832741bfa2?w=700&q=80',desc:'Compact plants that produce fiery fruits. Adapts well to pots and produces abundantly in warm weather.'},
-  {name:'Coriander',latin:'Coriandrum sativum',type:'both',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'17–27°C',tags:['Herb','Edible','Fast growing'],img:'https://images.unsplash.com/photo-1535189487909-a262ad10c165?w=700&q=80',desc:'Fast-growing herb used in cuisines worldwide. Best in cooler weather — bolts quickly in heat.'},
-  {name:'Sunflower',latin:'Helianthus annuus',type:'outdoor',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'18–35°C',tags:['Flowering','Edible seeds','Giant'],img:'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=700&q=80',desc:'Cheerful giants that track the sun. Seeds are edible and attract birds. Perfect for children to grow.'},
-  {name:'Marigold',latin:'Tagetes spp.',type:'outdoor',difficulty:'easy',water:'Low',light:'Full sun',temp:'15–35°C',tags:['Flowering','Pest repellent','Companion plant'],img:'https://images.unsplash.com/photo-1567696153798-9111f9cd3d0d?w=700&q=80',desc:'Vibrant orange and yellow blooms that naturally repel pests. Ideal companion for tomatoes and peppers.'},
-  {name:'Fern',latin:'Nephrolepis exaltata',type:'indoor',difficulty:'moderate',water:'High',light:'Indirect',temp:'16–24°C',tags:['Lush','Air purifier','Humidity lover'],img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80',desc:'Lush cascading fronds bring a rainforest feel indoors. Needs high humidity and consistent moisture.'},
-  {name:'Cactus',latin:'Cactaceae family',type:'indoor',difficulty:'easy',water:'Very low',light:'Full sun',temp:'10–40°C',tags:['Succulent','Drought tolerant','Beginner'],img:'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=700&q=80',desc:'The ultimate low-maintenance plant. Thrives on neglect, stores its own water, and comes in fascinating shapes.'},
-  {name:'Orchid',latin:'Phalaenopsis spp.',type:'indoor',difficulty:'hard',water:'Low',light:'Bright indirect',temp:'18–28°C',tags:['Flowering','Elegant','Exotic'],img:'https://images.unsplash.com/photo-1490750967868-88df5691cc51?w=700&q=80',desc:'Breathtaking blooms that last months. Requires good drainage and indirect light — not as difficult as its reputation suggests.'},
-  {name:'Curry Leaf',latin:'Murraya koenigii',type:'both',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'18–35°C',tags:['Herb','Edible','Aromatic'],img:'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=700&q=80',desc:'Fragrant leaves essential in South Indian cooking. Grows beautifully in containers in warm climates.'},
-  {name:'Jade Plant',latin:'Crassula ovata',type:'indoor',difficulty:'easy',water:'Low',light:'Bright indirect',temp:'13–23°C',tags:['Succulent','Lucky plant','Long-lived'],img:'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=700&q=80',desc:'A traditional symbol of good luck. Grows slowly into a handsome tree-like succulent lasting decades.'},
-  {name:'Money Plant',latin:'Epipremnum aureum',type:'indoor',difficulty:'easy',water:'Low',light:'Low to bright',temp:'15–30°C',tags:['Lucky','Air purifier','Trailing'],img:'https://images.unsplash.com/photo-1611211232932-da3113c5b960?w=700&q=80',desc:'Believed to bring prosperity in many cultures. Adapts to almost any indoor condition with minimal care.'},
-  {name:'Tulsi',latin:'Ocimum tenuiflorum',type:'both',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Sacred','Medicinal','Aromatic'],img:'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=700&q=80',desc:'Holy basil revered in Indian tradition for spiritual and medicinal properties. Thrives in warm sunny spots.'},
-  {name:'Lemon Tree',latin:'Citrus limon',type:'both',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Fruiting','Aromatic','Container-friendly'],img:'https://images.unsplash.com/photo-1504382262782-5b4ece78642b?w=700&q=80',desc:'Dwarf lemon varieties produce fragrant flowers and real fruit in large containers on sunny patios.'},
-  {name:'Bird of Paradise',latin:'Strelitzia reginae',type:'indoor',difficulty:'moderate',water:'Moderate',light:'Bright direct',temp:'18–30°C',tags:['Tropical','Statement plant','Flowering'],img:'https://images.unsplash.com/photo-1628170048471-4d7abdd93dda?w=700&q=80',desc:'Dramatic paddle-shaped leaves and exotic orange flowers. Loves as much sun as it can get indoors.'},
-  {name:'Bamboo',latin:'Bambusoideae family',type:'outdoor',difficulty:'easy',water:'Moderate',light:'Full sun to partial',temp:'10–35°C',tags:['Fast growing','Privacy screen','Tropical'],img:'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=700&q=80',desc:'Incredibly fast-growing grass that creates beautiful screens and windbreaks. Use barriers to control spread.'},
-  {name:'Thyme',latin:'Thymus vulgaris',type:'both',difficulty:'easy',water:'Low',light:'Full sun',temp:'10–30°C',tags:['Herb','Edible','Ground cover'],img:'https://plus.unsplash.com/premium_photo-1726138617688-e6bfd9f0de5c?w=700&q=80',desc:'Hardy aromatic herb that creeps beautifully over edges and rocks. Drought-tolerant once established.'},
-  {name:'Hibiscus',latin:'Hibiscus rosa-sinensis',type:'both',difficulty:'moderate',water:'High',light:'Full sun',temp:'20–35°C',tags:['Flowering','Tropical','Edible'],img:'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=700&q=80',desc:'Stunning large trumpet flowers in vivid colours. Blooms prolifically with regular feeding and sun.'},
-  {name:'Jasmine',latin:'Jasminum sambac',type:'both',difficulty:'moderate',water:'Moderate',light:'Full sun to partial',temp:'15–30°C',tags:['Fragrant','Flowering','Climber'],img:'https://images.unsplash.com/photo-1490750967868-88df5691cc51?w=700&q=80',desc:'Intoxicatingly fragrant white blossoms. Train up a trellis and enjoy the evening fragrance from June to August.'},
-];
+const PLANT_EMOJIS={basil:"🌿",aloevera:"🌵",lavender:"💜",mint:"🌱",rosemary:"🌿",sunflower:"🌻",chilli:"🌶️",tomato:"🍅",rose:"🌹",jasmine:"🌸",tulsi:"🌿",bamboo:"🎍",fern:"🌿",succulent:"🪴",cactus:"🌵"};
+function getEmoji(n){return PLANT_EMOJIS[n.toLowerCase().replace(/[\s-]+/g,'')] || "🪴";}
 
-/* ── Cache ── */
-function ck(n,t){return `hp_plant_${n.replace(/\s/g,'_')}_${t}`;}
-function getC(n,t){try{return JSON.parse(sessionStorage.getItem(ck(n,t)));}catch{return null;}}
-function setC(n,t,d){try{sessionStorage.setItem(ck(n,t),JSON.stringify(d));}catch{}}
+function careFill(pct) {
+  const cls = pct<=33?"green":pct<=66?"amber":"";
+  return `<div class="care-fill ${cls}" style="width:${pct}%"></div>`;
+}
 
-/* ── Plant from URL ── */
-const urlP=new URLSearchParams(location.search);
-const plantName=urlP.get('plant')||'Monstera';
-const plant=plants.find(p=>p.name===plantName)||plants.find(p=>p.name==='Monstera');
+async function loadDetail(){
+  const name = new URLSearchParams(window.location.search).get("name") || "Basil";
+  document.title = name + " – Harvestpedia";
+  document.getElementById("hero-emoji").textContent = getEmoji(name);
+  document.getElementById("hero-name").textContent = name;
+  document.getElementById("hero-sub").textContent = "Growing guide, care tips & uses";
+  document.getElementById("hero").style.display = "";
+  localStorage.setItem("hp-recipe-prefill", name);
+  document.getElementById("btn-compare").href = "../compare.html?item=" + encodeURIComponent(name);
+  document.getElementById("loading-text").textContent = "Fetching " + name + " details...";
+  try {
+    const raw = await HP.claude(
+      `Give me detailed growing and care information about the plant: ${name}.
 
-/* ── Static fill ── */
-const typeLabel={indoor:'🏠 Indoor',outdoor:'🌳 Outdoor',both:'🌞 Indoor & Outdoor'};
-const diffLabel={easy:'🟢 Easy',moderate:'🟡 Moderate',hard:'🔴 Hard'};
-document.getElementById('page-title').textContent=`${plant.name} – Harvestpedia`;
-document.getElementById('bc-name').textContent=plant.name;
-document.getElementById('plant-tag').textContent=`🌱 ${plant.difficulty.charAt(0).toUpperCase()+plant.difficulty.slice(1)} Plant`;
-document.getElementById('plant-name').textContent=plant.name;
-document.getElementById('plant-latin').textContent=plant.latin;
-document.getElementById('plant-desc').textContent=plant.desc;
-document.getElementById('plant-img').src=plant.img;
-document.getElementById('plant-img').alt=plant.name;
-document.getElementById('type-badge').textContent=typeLabel[plant.type]||'🌱 Plant';
-document.getElementById('qs-water').textContent=plant.water;
-document.getElementById('qs-light').textContent=plant.light;
-document.getElementById('qs-temp').textContent=plant.temp;
-document.getElementById('qs-type').textContent=plant.type.charAt(0).toUpperCase()+plant.type.slice(1);
+Respond ONLY with valid JSON (no markdown, no extra text):
+{
+  "tagline": "one short sentence describing the plant",
+  "about": "2-3 sentences about the plant's origin, uses, and characteristics",
+  "care": {
+    "watering": 60,
+    "sunlight": 80,
+    "difficulty": 30
+  },
+  "facts": {
+    "Type": "Herb / Shrub / etc",
+    "Height": "XX-XX cm",
+    "Lifespan": "Annual / Perennial",
+    "Native to": "Region"
+  },
+  "benefits": ["benefit/use 1", "benefit/use 2", "benefit/use 3", "benefit/use 4"],
+  "seasons": {
+    "peak": ["Month1"],
+    "good": ["Month2", "Month3"],
+    "low": ["Month4"]
+  },
+  "season_note": "one sentence about growing in India",
+  "tips": ["growing tip 1", "tip 2", "tip 3"],
+  "tags": ["tag1", "tag2", "tag3"]
+}
 
-// sidebar quick
-document.getElementById('sq-water').textContent=plant.water;
-document.getElementById('sq-light').textContent=plant.light;
-document.getElementById('sq-temp').textContent=plant.temp;
-document.getElementById('sq-pot').textContent='–'; // filled by AI
-document.getElementById('sq-prune').textContent='–';
-document.getElementById('sq-fert').textContent='–';
+care values are 0-100 where 100 means maximum need (e.g. difficulty:90 = very hard to grow).`,
+      "You are a horticultural expert. Return valid JSON only, no markdown."
+    );
+    const data = JSON.parse(raw.replace(/```json|```/g,"").trim());
+    document.getElementById("hero-sub").textContent = data.tagline || "";
 
-// pills
-const pillsEl=document.getElementById('hero-pills');
-const diffPill=document.createElement('span');
-diffPill.className=`hero-pill diff-pill-${plant.difficulty}`;
-diffPill.textContent=diffLabel[plant.difficulty];
-pillsEl.appendChild(diffPill);
-plant.tags.forEach(t=>{
-  const s=document.createElement('span');
-  s.className='hero-pill'; s.textContent=t;
-  pillsEl.appendChild(s);
-});
+    // Care meters
+    const care = data.care || {};
+    const labels = {watering:"💧 Watering", sunlight:"☀️ Sunlight", difficulty:"🧑‍🌾 Difficulty"};
+    document.getElementById("care-meters").innerHTML = Object.entries(care).map(([k,v])=>
+      `<div class="care-row">
+        <span class="care-label">${labels[k]||k}</span>
+        <div class="care-bar">${careFill(v)}</div>
+        <span class="care-val">${v}%</span>
+      </div>`
+    ).join("");
 
-/* ═══ WEATHER API ═══ */
-async function fetchWeather(){
-  try{
-    const pos=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{timeout:8000}));
-    const {latitude:lat,longitude:lon}=pos.coords;
-    const apiKey='bd5e378503939ddaee76f12ad7a97608';
-    const res=await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
-    const d=await res.json();
-    const temp=Math.round(d.main.temp);
-    const humidity=d.main.humidity;
-    const desc=d.weather[0].description;
-    const city=d.name+(d.sys?.country?`, ${d.sys.country}`:'');
-    const wIcon=getWEmoji(d.weather[0].id);
+    // Facts
+    const fg = document.getElementById("facts-grid"); fg.innerHTML="";
+    for(const [l,v] of Object.entries(data.facts||{}))
+      fg.innerHTML += `<div class="fact-item"><span class="fact-label">${l}</span><span class="fact-val">${v}</span></div>`;
 
-    document.getElementById('lw-city').textContent='📍 '+city;
-    document.getElementById('lw-body').innerHTML=`
-      <div class="lw-tile"><div class="lw-icon">${wIcon}</div><div class="lw-val">${temp}°C</div><div class="lw-key">${desc}</div></div>
-      <div class="lw-tile"><div class="lw-icon">💧</div><div class="lw-val">${humidity}%</div><div class="lw-key">Humidity</div></div>
-      <div class="lw-tile"><div class="lw-icon">🌡️</div><div class="lw-val">${d.main.temp_min|0}–${d.main.temp_max|0}°C</div><div class="lw-key">Today's range</div></div>
-      <div class="lw-tile"><div class="lw-icon">💨</div><div class="lw-val">${Math.round(d.wind.speed*3.6)} km/h</div><div class="lw-key">Wind</div></div>`;
+    document.getElementById("benefits-list").innerHTML=(data.benefits||[]).map(b=>
+      `<div class="benefit-item"><div class="benefit-dot"></div><span>${b}</span></div>`
+    ).join("");
 
-    // Compatibility score
-    const [tMin,tMax]=plant.temp.replace(/[°C]/g,'').split('–').map(Number);
-    const tempScore=temp>=tMin&&temp<=tMax?100:Math.max(0,100-Math.min(Math.abs(temp-tMin),Math.abs(temp-tMax))*8);
-    const waterMap={Low:30,Moderate:50,High:70,'Very low':20};
-    const waterNeed=waterMap[plant.water]||50;
-    const humidScore=Math.max(0,100-Math.abs(humidity-waterNeed)*1.5);
-    const lightScore=d.clouds?.all<50?85:60;
-    const score=Math.round((tempScore*0.45+humidScore*0.35+lightScore*0.2));
-    const clampedScore=Math.min(100,Math.max(0,score));
-
-    const fill=document.getElementById('compat-fill');
-    const col=clampedScore>=70?'#16a34a':clampedScore>=45?'#d97706':'#dc2626';
-    fill.style.width=clampedScore+'%'; fill.style.background=col;
-    document.getElementById('compat-pct').textContent=clampedScore+'%';
-    document.getElementById('compat-pct').style.color=col;
-
-    let msg='';
-    if(clampedScore>=75) msg=`✅ Current weather in ${city} is excellent for growing ${plant.name}!`;
-    else if(clampedScore>=50) msg=`🟡 Conditions are acceptable. Monitor temperature (${temp}°C vs ideal ${plant.temp}).`;
-    else msg=`⚠️ Conditions need attention. Temperature (${temp}°C) may be outside ideal range ${plant.temp}.`;
-    document.getElementById('compat-msg').textContent=msg;
-
-    // Update score ring
-    const score2=plant.difficulty==='easy'?88:plant.difficulty==='moderate'?65:45;
-    document.getElementById('score-num').textContent=score2;
-    document.getElementById('score-label').textContent=plant.difficulty==='easy'?'Great for beginners':plant.difficulty==='moderate'?'Some experience needed':'For experienced growers';
-    document.getElementById('score-arc').style.strokeDashoffset=264*(1-score2/100);
-
-  }catch(err){
-    document.getElementById('lw-city').textContent='Location unavailable';
-    document.getElementById('lw-body').innerHTML='<div class="lw-loading" style="grid-column:span 2;">📍 Enable location access to see live weather compatibility.</div>';
-    document.getElementById('compat-msg').textContent='Enable location to check growing conditions.';
-    // Still set score from difficulty
-    const score2=plant.difficulty==='easy'?88:plant.difficulty==='moderate'?65:45;
-    document.getElementById('score-num').textContent=score2;
-    document.getElementById('score-label').textContent=plant.difficulty==='easy'?'Great for beginners':plant.difficulty==='moderate'?'Some experience needed':'For experienced growers';
-    document.getElementById('score-arc').style.strokeDashoffset=264*(1-score2/100);
+    const sg=document.getElementById("season-grid"); sg.innerHTML="";
+    (data.seasons?.peak||[]).forEach(m=>sg.innerHTML+=`<span class="season-pill pill-peak">🌟 ${m}</span>`);
+    (data.seasons?.good||[]).forEach(m=>sg.innerHTML+=`<span class="season-pill pill-good">✅ ${m}</span>`);
+    (data.seasons?.low||[]).forEach(m=>sg.innerHTML+=`<span class="season-pill pill-low">〰️ ${m}</span>`);
+    document.getElementById("season-note").textContent = data.season_note||"";
+    document.getElementById("tips-list").innerHTML=(data.tips||[]).map(t=>`<div class="tip-item">${t}</div>`).join("");
+    document.getElementById("tag-row").innerHTML=(data.tags||[]).map(t=>`<span class="tag">${t}</span>`).join("");
+    document.getElementById("about-prose").innerHTML=`<p>${data.about||""}</p>`;
+    document.getElementById("loading").classList.add("hidden");
+    document.getElementById("content").classList.remove("hidden");
+  } catch(err){
+    console.error(err);
+    document.getElementById("loading").classList.add("hidden");
+    document.getElementById("error-box").classList.remove("hidden");
+    document.getElementById("error-msg").textContent = `Could not load details for "${name}". Make sure the proxy is running.`;
   }
 }
-function getWEmoji(id){if(id>=200&&id<300)return'⛈️';if(id>=500&&id<600)return'🌧️';if(id===800)return'☀️';if(id>800)return'⛅';return'🌤️';}
-
-/* ═══ CLAUDE API ═══ */
-async function askClaude(prompt){
-  const res=await fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
-  });
-  if(!res.ok) throw new Error('API '+res.status);
-  const d=await res.json();
-  return JSON.parse(d.content.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim());
-}
-function errHTML(fn){return `<div class="ai-error"><p>Could not load data. Ensure Anthropic API key is configured.</p><button class="retry-btn" onclick="${fn}()">↻ Retry</button></div>`;}
-
-/* ═══ OVERVIEW ═══ */
-async function loadOverview(){
-  const c=getC(plant.name,'overview');if(c){renderOverview(c);return;}
-  try{
-    const d=await askClaude(`You are a plant expert. Return ONLY valid JSON. Overview for ${plant.name} (${plant.latin}), type: ${plant.type}, difficulty: ${plant.difficulty}.
-{"score":N,"potSize":"e.g. 15–20cm","pruneFreq":"e.g. Monthly","fertFreq":"e.g. Every 2 weeks in summer","soilType":"desc","repotting":"when to repot","toxicity":"toxic/non-toxic to pets and humans","origin":"geographic origin","overview":[{"icon":"emoji","label":"label","value":"value"},{"icon":"emoji","label":"label","value":"value"},{"icon":"emoji","label":"label","value":"value"},{"icon":"emoji","label":"label","value":"value"},{"icon":"emoji","label":"label","value":"value"},{"icon":"emoji","label":"label","value":"value"}]}`);
-    setC(plant.name,'overview',d);renderOverview(d);
-  }catch(e){document.getElementById('overview-body').innerHTML=errHTML('loadOverview');}
-}
-function renderOverview(d){
-  document.getElementById('sq-pot').textContent=d.potSize||'–';
-  document.getElementById('sq-prune').textContent=d.pruneFreq||'–';
-  document.getElementById('sq-fert').textContent=d.fertFreq||'–';
-  document.getElementById('overview-body').innerHTML=`
-    <div class="grow-overview">
-      ${d.overview.map(o=>`<div class="go-card"><div class="go-icon">${o.icon}</div><div class="go-label">${o.label}</div><div class="go-val">${o.value}</div></div>`).join('')}
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-      <div style="background:var(--plant-50);border:1px solid var(--plant-100);border-radius:var(--radius-sm);padding:16px;">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:6px;">🪴 Soil type</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">${d.soilType}</div>
-      </div>
-      <div style="background:${d.toxicity&&d.toxicity.toLowerCase().includes('toxic')?'#fff1f2':'var(--plant-50)'};border:1px solid ${d.toxicity&&d.toxicity.toLowerCase().includes('toxic')?'#fecdd3':'var(--plant-100)'};border-radius:var(--radius-sm);padding:16px;">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:${d.toxicity&&d.toxicity.toLowerCase().includes('toxic')?'#be123c':'var(--text-muted)'};margin-bottom:6px;">${d.toxicity&&d.toxicity.toLowerCase().includes('toxic')?'⚠️':'✅'} Pet & Child Safety</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">${d.toxicity}</div>
-      </div>
-      <div style="background:var(--earth-50);border:1px solid var(--earth-100);border-radius:var(--radius-sm);padding:16px;">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:6px;">🔄 Repotting</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">${d.repotting}</div>
-      </div>
-      <div style="background:var(--sky-50);border:1px solid var(--sky-200);border-radius:var(--radius-sm);padding:16px;">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:6px;">🌍 Origin</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">${d.origin}</div>
-      </div>
-    </div>`;
-}
-
-/* ═══ WATER & TEMP ═══ */
-async function loadWater(){
-  const c=getC(plant.name,'water');if(c){renderWater(c);return;}
-  try{
-    const d=await askClaude(`You are a plant care expert. Return ONLY valid JSON. Water and temperature guide for ${plant.name}.
-{"waterFreqSummer":"e.g. Every 3 days","waterFreqWinter":"e.g. Once a week","waterAmountMl":"e.g. 200–300ml per watering","wateringTip":"1 sentence tip","drainageImportant":true,"tempMin":N,"tempMax":N,"tempIdeal":N,"humidityPreferred":"e.g. 40–60%","tempTip":"1 sentence","weeklySchedule":["Water","Rest","Rest","Water","Rest","Rest","Rest"],"signs":{"overwater":"visible sign","underwater":"visible sign","tooHot":"visible sign","tooCold":"visible sign"}}`);
-    setC(plant.name,'water',d);renderWater(d);
-  }catch(e){document.getElementById('water-body').innerHTML=errHTML('loadWater');}
-}
-function renderWater(d){
-  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  const schedule=d.weeklySchedule||['Water','Rest','Rest','Water','Rest','Rest','Rest'];
-  document.getElementById('water-body').innerHTML=`
-    <div class="gauge-row">
-      <div class="gauge-card">
-        <h4>💧 Water requirements</h4>
-        <div class="gauge-main-val water">${plant.water}</div>
-        <div class="gauge-sub">${d.waterFreqSummer||'–'} in summer · ${d.waterFreqWinter||'–'} in winter</div>
-        <div style="margin-top:10px;font-size:12px;color:var(--text-muted);"><strong>Amount:</strong> ${d.waterAmountMl||'–'} per session</div>
-        <div style="margin-top:6px;font-size:12px;background:var(--sky-50);padding:8px 10px;border-radius:8px;border:1px solid var(--sky-200);color:var(--sky-800);">💡 ${d.wateringTip||'–'}</div>
-        ${d.drainageImportant?'<div style="margin-top:8px;font-size:12px;color:#be123c;font-weight:600;">⚠️ Ensure good drainage — sitting water causes root rot</div>':''}
-      </div>
-      <div class="gauge-card temp">
-        <h4>🌡️ Temperature range</h4>
-        <div class="gauge-main-val temp">${d.tempMin||'–'}–${d.tempMax||'–'}°C</div>
-        <div class="gauge-sub">Ideal: ${d.tempIdeal||'–'}°C · Humidity: ${d.humidityPreferred||'–'}</div>
-        <div style="margin-top:10px;">
-          <div style="display:flex;align-items:center;gap:8px;height:40px;">
-            ${Array.from({length:10},(_,i)=>{const t=d.tempMin+(d.tempMax-d.tempMin)*i/9;const isIdeal=Math.abs(t-d.tempIdeal)<(d.tempMax-d.tempMin)/4;return`<div style="flex:1;height:${20+i*2}px;border-radius:3px 3px 0 0;background:${isIdeal?'#16a34a':'#86efac'};transition:height .6s;"></div>`}).join('')}
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin-top:4px;"><span>${d.tempMin}°C</span><span>Ideal: ${d.tempIdeal}°C</span><span>${d.tempMax}°C</span></div>
-        </div>
-        <div style="margin-top:8px;font-size:12px;background:var(--amber-50);padding:8px 10px;border-radius:8px;border:1px solid var(--amber-100);color:var(--amber-600);">💡 ${d.tempTip||'–'}</div>
-      </div>
-    </div>
-
-    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin:20px 0 14px;">Weekly Watering Schedule</h3>
-    <div class="schedule-grid">
-      ${schedule.map((s,i)=>`<div class="day-pill ${s==='Water'?'water-day':'rest-day'}">
-        <div class="day-name">${days[i]||'Day '+(i+1)}</div>
-        <div class="day-icon">${s==='Water'?'💧':'🌿'}</div>
-      </div>`).join('')}
-    </div>
-
-    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin:24px 0 14px;">Warning Signs</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      ${[['💧🔴','Overwatered',d.signs?.overwater,'#fff1f2','#be123c','#fecdd3'],
-         ['💧🟡','Underwatered',d.signs?.underwater,'var(--amber-50)','var(--amber-600)','var(--amber-100)'],
-         ['🔥','Too Hot',d.signs?.tooHot,'#fff7ed','#c2410c','#fed7aa'],
-         ['❄️','Too Cold',d.signs?.tooCold,'var(--sky-50)','var(--sky-600)','var(--sky-200)']
-        ].map(([ic,lbl,val,bg,col,bord])=>`<div style="background:${bg};border:1px solid ${bord};border-radius:var(--radius-sm);padding:14px;">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:${col};margin-bottom:6px;">${ic} ${lbl}</div>
-          <div style="font-size:13px;color:var(--text-mid);">${val||'–'}</div>
-        </div>`).join('')}
-    </div>`;
-}
-
-/* ═══ STEPS ═══ */
-async function loadSteps(){
-  const c=getC(plant.name,'steps');if(c){renderSteps(c);return;}
-  try{
-    const d=await askClaude(`You are a plant expert. Return ONLY valid JSON. Detailed grow guide for ${plant.name} (${plant.latin}), type: ${plant.type}.
-{"steps":[{"step":1,"icon":"emoji","title":"title","desc":"2-3 sentences detail","tip":"pro tip 1 sentence"},{"step":2,"icon":"emoji","title":"title","desc":"2-3 sentences detail","tip":"pro tip"},{"step":3,"icon":"emoji","title":"title","desc":"2-3 sentences detail","tip":"pro tip"},{"step":4,"icon":"emoji","title":"title","desc":"2-3 sentences detail","tip":"pro tip"},{"step":5,"icon":"emoji","title":"title","desc":"2-3 sentences detail","tip":"pro tip"},{"step":6,"icon":"emoji","title":"title","desc":"2-3 sentences detail","tip":"pro tip"},{"step":7,"icon":"emoji","title":"title","desc":"2-3 sentences detail","tip":"pro tip"}]}`);
-    setC(plant.name,'steps',d);renderSteps(d);
-  }catch(e){document.getElementById('steps-body').innerHTML=errHTML('loadSteps');}
-}
-function renderSteps(d){
-  document.getElementById('steps-body').innerHTML=`
-    <div class="steps-list">
-      ${d.steps.map(s=>`<div class="step-item">
-        <div class="step-num">${s.step}</div>
-        <div class="step-content">
-          <h4>${s.icon} ${s.title}</h4>
-          <p>${s.desc}</p>
-          ${s.tip?`<div class="step-tip">💡 ${s.tip}</div>`:''}
-        </div>
-      </div>`).join('')}
-    </div>`;
-}
-
-/* ═══ CARE ═══ */
-async function loadCare(){
-  const c=getC(plant.name,'care');if(c){renderCare(c);return;}
-  try{
-    const d=await askClaude(`You are a plant expert. Return ONLY valid JSON. Daily/weekly care checklist for ${plant.name}.
-{"care":[{"icon":"emoji","title":"task","desc":"1-2 sentences","freq":"daily|weekly|monthly"},{"icon":"emoji","title":"task","desc":"1-2 sentences","freq":"daily|weekly|monthly"},{"icon":"emoji","title":"task","desc":"1-2 sentences","freq":"daily|weekly|monthly"},{"icon":"emoji","title":"task","desc":"1-2 sentences","freq":"daily|weekly|monthly"},{"icon":"emoji","title":"task","desc":"1-2 sentences","freq":"daily|weekly|monthly"},{"icon":"emoji","title":"task","desc":"1-2 sentences","freq":"daily|weekly|monthly"}]}`);
-    setC(plant.name,'care',d);renderCare(d);
-  }catch(e){document.getElementById('care-body').innerHTML=errHTML('loadCare');}
-}
-function renderCare(d){
-  const freqCol={daily:'var(--plant-600)',weekly:'var(--sky-600)',monthly:'var(--amber-600)'};
-  document.getElementById('care-body').innerHTML=`
-    <div class="care-grid">
-      ${d.care.map(c=>`<div class="care-item">
-        <div class="care-icon">${c.icon}</div>
-        <div class="care-text">
-          <h5>${c.title} <span style="font-size:10px;font-weight:700;color:${freqCol[c.freq]||'var(--text-muted)'};background:var(--plant-50);padding:2px 8px;border-radius:50px;margin-left:4px;">${c.freq}</span></h5>
-          <p>${c.desc}</p>
-        </div>
-      </div>`).join('')}
-    </div>`;
-}
-
-/* ═══ PROBLEMS ═══ */
-async function loadProblems(){
-  const c=getC(plant.name,'problems');if(c){renderProblems(c);return;}
-  try{
-    const d=await askClaude(`You are a plant expert. Return ONLY valid JSON. Common problems for ${plant.name}.
-{"problems":[{"icon":"emoji","problem":"name","cause":"1 sentence","fix":"short fix label","desc":"1-2 sentences"},{"icon":"emoji","problem":"name","cause":"1 sentence","fix":"short fix label","desc":"1-2 sentences"},{"icon":"emoji","problem":"name","cause":"1 sentence","fix":"short fix label","desc":"1-2 sentences"},{"icon":"emoji","problem":"name","cause":"1 sentence","fix":"short fix label","desc":"1-2 sentences"},{"icon":"emoji","problem":"name","cause":"1 sentence","fix":"short fix label","desc":"1-2 sentences"}]}`);
-    setC(plant.name,'problems',d);renderProblems(d);
-  }catch(e){document.getElementById('problems-body').innerHTML=errHTML('loadProblems');}
-}
-function renderProblems(d){
-  document.getElementById('problems-body').innerHTML=`
-    <div class="problem-list">
-      ${d.problems.map(p=>`<div class="problem-item">
-        <div class="problem-icon">${p.icon}</div>
-        <div class="problem-info">
-          <h5>${p.problem}</h5>
-          <p><strong>Cause:</strong> ${p.cause}</p>
-          <p style="margin-top:4px;">${p.desc}</p>
-        </div>
-        <div class="problem-fix">✓ ${p.fix}</div>
-      </div>`).join('')}
-    </div>`;
-}
-
-/* ═══ INIT ═══ */
-fetchWeather();
-loadOverview();
-loadWater();
-loadSteps();
-loadCare();
-loadProblems();
-window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',scrollY>40);});
+loadDetail();
 </script>
 </body>
 </html>

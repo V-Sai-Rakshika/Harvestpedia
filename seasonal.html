@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Seasonal Calendar – Harvestpedia</title>
+<link rel="stylesheet" href="../css/style.css"/>
+<style>
+  .cal-hero {
+    padding: 2.5rem 1.5rem 2rem; text-align:center;
+    background: linear-gradient(135deg, #e8f4e8 0%, #faf5e8 100%);
+  }
+  .cal-hero h1 { font-size:2rem; font-weight:700; color:#1a3a1a; }
+  .cal-hero p  { color:#6b7280; margin-top:.4rem; }
+
+  .cal-wrap { max-width:1000px; margin:0 auto; padding:2rem 1.5rem; }
+
+  /* Month strip */
+  .months-strip {
+    display:grid; grid-template-columns:repeat(12,1fr); gap:4px;
+    margin-bottom:2rem;
+  }
+  .month-btn {
+    padding:8px 4px; text-align:center; border:1.5px solid #e5e7eb;
+    border-radius:10px; cursor:pointer; font-size:11px; font-weight:600;
+    color:#6b7280; background:#fff; transition:all .15s; line-height:1.3;
+  }
+  .month-btn:hover  { border-color:#3B6D11; color:#3B6D11; }
+  .month-btn.active { background:#3B6D11; color:#fff; border-color:#3B6D11; }
+
+  /* Season legend */
+  .season-legend {
+    display:flex; gap:16px; flex-wrap:wrap; margin-bottom:1.5rem;
+    justify-content:center;
+  }
+  .leg-item { display:flex; align-items:center; gap:6px; font-size:12px; color:#374151; }
+  .leg-dot  { width:10px; height:10px; border-radius:50%; }
+
+  /* Filter tabs */
+  .filter-tabs { display:flex; gap:6px; margin-bottom:1.5rem; }
+  .filter-tab {
+    padding:6px 16px; border-radius:99px; font-size:13px; font-weight:500;
+    border:1.5px solid #e5e7eb; cursor:pointer; background:#fff; color:#6b7280;
+    transition:all .15s;
+  }
+  .filter-tab.active { background:#3B6D11; color:#fff; border-color:#3B6D11; }
+
+  /* Produce grid */
+  .produce-section { margin-bottom:2rem; }
+  .produce-section h3 {
+    font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.06em;
+    color:#9ca3af; margin-bottom:.75rem; padding-bottom:.5rem; border-bottom:1px solid #f3f4f6;
+  }
+  .produce-grid {
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:10px;
+  }
+  .produce-card {
+    background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+    padding:12px; text-align:center; cursor:pointer; transition:all .18s;
+    text-decoration:none; color:inherit;
+  }
+  .produce-card:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,.08); }
+  .produce-card .p-emoji { font-size:2rem; display:block; margin-bottom:4px; }
+  .produce-card .p-name  { font-size:12px; font-weight:600; color:#1a3a1a; }
+  .produce-card .p-tip   { font-size:10px; color:#6b7280; margin-top:2px; }
+
+  /* Season badge */
+  .produce-card.peak   { border-top:3px solid #3B6D11; }
+  .produce-card.good   { border-top:3px solid #BA7517; }
+  .produce-card.low    { border-top:3px solid #e5e7eb; }
+
+  .peak-badge {
+    display:inline-block; font-size:10px; font-weight:600; padding:1px 6px;
+    border-radius:99px; margin-top:4px;
+  }
+  .badge-peak { background:#d1fae5; color:#065f46; }
+  .badge-good { background:#fef3c7; color:#92400e; }
+  .badge-low  { background:#f3f4f6; color:#6b7280; }
+
+  /* Current month header */
+  .current-header {
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    gap:8px; margin-bottom:1.5rem;
+  }
+  .current-header h2 { font-size:1.4rem; font-weight:700; color:#1a3a1a; }
+  .current-header span { font-size:13px; color:#6b7280; }
+
+  /* Year overview mini heatmap */
+  .heatmap-section { margin-top:2rem; }
+  .heatmap-section h2 { font-size:1rem; font-weight:700; color:#1a3a1a; margin-bottom:1rem; }
+  .heatmap-table { width:100%; border-collapse:collapse; font-size:11px; }
+  .heatmap-table th { font-weight:600; color:#9ca3af; padding:4px 6px; text-align:center; }
+  .heatmap-table td { padding:5px 3px; text-align:center; }
+  .hm-cell {
+    display:block; width:28px; height:22px; border-radius:4px; margin:auto;
+    font-size:9px; line-height:22px; font-weight:600;
+  }
+  .hm-peak { background:#3B6D11; color:#fff; }
+  .hm-good { background:#BA7517; color:#fff; }
+  .hm-low  { background:#f3f4f6; color:#9ca3af; }
+  .hm-none { background:#fff; color:#e5e7eb; }
+</style>
+<script src="/Harvestpedia/js/api.js"></script>
+<script src="Harvestpedia/js/darkmode.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">🌿 Harvestpedia</a>
+  <div class="nav-links">
+    <a href="../fruits/fruits.html">Fruits</a>
+    <a href="../vegetables/vegetables.html">Vegetables</a>
+    <a href="../plants/plants.html">Plants</a>
+    <button class="dm-toggle" id="dm-toggle"></button>
+    <a href="#" class="active">Calendar</a>
+  </div>
+</nav>
+
+<section class="cal-hero">
+  <h1>🗓️ Seasonal Calendar</h1>
+  <p>Discover what's fresh and at peak flavour each month.</p>
+</section>
+
+<main class="cal-wrap">
+
+  <!-- Month strip -->
+  <div class="months-strip" id="months-strip"></div>
+
+  <!-- Legend -->
+  <div class="season-legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#3B6D11"></div> Peak season</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#BA7517"></div> Good availability</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#d1d5db"></div> Limited / off-season</div>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-type="all">All</button>
+    <button class="filter-tab" data-type="fruit">🍎 Fruits</button>
+    <button class="filter-tab" data-type="veg">🥦 Vegetables</button>
+  </div>
+
+  <!-- Month header -->
+  <div class="current-header">
+    <h2 id="month-title">—</h2>
+    <span id="month-subtitle"></span>
+  </div>
+
+  <!-- Produce grid -->
+  <div id="produce-area"></div>
+
+  <!-- Year overview heatmap -->
+  <div class="heatmap-section" id="heatmap-section"></div>
+</main>
+
+<script>
+// ============================================================
+// SEASONAL DATA
+// status per month (1-12): "peak" | "good" | "low" | null
+// ============================================================
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const MONTH_SEASON = ["Winter","Winter","Spring","Spring","Spring","Summer","Summer","Summer","Autumn","Autumn","Autumn","Winter"];
+
+const PRODUCE = [
+  // ── Fruits ──────────────────────────────────────────────
+  { name:"Apple",      emoji:"🍎", type:"fruit", url:"../fruits/fruit-detail.html?name=Apple",
+    season:[null,"low","low","low","low","low","good","peak","peak","peak","good","low"] },
+  { name:"Strawberry", emoji:"🍓", type:"fruit", url:"../fruits/fruit-detail.html?name=Strawberry",
+    season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
+  { name:"Mango",      emoji:"🥭", type:"fruit", url:"../fruits/fruit-detail.html?name=Mango",
+    season:["good","good","peak","peak","peak","peak","good","good","good","low","low","low"] },
+  { name:"Orange",     emoji:"🍊", type:"fruit", url:"../fruits/fruit-detail.html?name=Orange",
+    season:["peak","peak","peak","good","low",null,null,null,"low","good","peak","peak"] },
+  { name:"Watermelon", emoji:"🍉", type:"fruit", url:"../fruits/fruit-detail.html?name=Watermelon",
+    season:[null,null,null,null,null,"good","peak","peak","good",null,null,null] },
+  { name:"Banana",     emoji:"🍌", type:"fruit", url:"../fruits/fruit-detail.html?name=Banana",
+    season:["peak","peak","peak","peak","peak","good","good","good","peak","peak","peak","peak"] },
+  { name:"Blueberry",  emoji:"🫐", type:"fruit", url:"../fruits/fruit-detail.html?name=Blueberry",
+    season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
+  { name:"Grape",      emoji:"🍇", type:"fruit", url:"../fruits/fruit-detail.html?name=Grape",
+    season:[null,null,null,null,null,"low","good","peak","peak","good",null,null] },
+  { name:"Pineapple",  emoji:"🍍", type:"fruit", url:"../fruits/fruit-detail.html?name=Pineapple",
+    season:["low","low","good","peak","peak","peak","good","good","good","low","low","low"] },
+  { name:"Peach",      emoji:"🍑", type:"fruit", url:"../fruits/fruit-detail.html?name=Peach",
+    season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
+  { name:"Cherry",     emoji:"🍒", type:"fruit", url:"../fruits/fruit-detail.html?name=Cherry",
+    season:[null,null,null,null,"good","peak","peak","low",null,null,null,null] },
+  { name:"Pear",       emoji:"🍐", type:"fruit", url:"../fruits/fruit-detail.html?name=Pear",
+    season:[null,null,null,null,null,null,"low","good","peak","peak","good","low"] },
+
+  // ── Vegetables ──────────────────────────────────────────
+  { name:"Tomato",     emoji:"🍅", type:"veg", url:"../vegetables/vegetable-detail.html?name=Tomato",
+    season:[null,null,null,null,"good","peak","peak","peak","good","low",null,null] },
+  { name:"Carrot",     emoji:"🥕", type:"veg", url:"../vegetables/vegetable-detail.html?name=Carrot",
+    season:["peak","peak","good","good","good","good","good","good","peak","peak","peak","peak"] },
+  { name:"Broccoli",   emoji:"🥦", type:"veg", url:"../vegetables/vegetable-detail.html?name=Broccoli",
+    season:["good","good","peak","peak","good",null,null,null,"good","peak","peak","good"] },
+  { name:"Spinach",    emoji:"🌿", type:"veg", url:"../vegetables/vegetable-detail.html?name=Spinach",
+    season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] },
+  { name:"Cucumber",   emoji:"🥒", type:"veg", url:"../vegetables/vegetable-detail.html?name=Cucumber",
+    season:[null,null,null,null,"good","peak","peak","peak","good","low",null,null] },
+  { name:"Bell Pepper",emoji:"🫑", type:"veg", url:"../vegetables/vegetable-detail.html?name=Bell+Pepper",
+    season:[null,null,null,null,"good","peak","peak","peak","good","low",null,null] },
+  { name:"Onion",      emoji:"🧅", type:"veg", url:"../vegetables/vegetable-detail.html?name=Onion",
+    season:["peak","peak","peak","peak","peak","good","good","good","peak","peak","peak","peak"] },
+  { name:"Garlic",     emoji:"🧄", type:"veg", url:"../vegetables/vegetable-detail.html?name=Garlic",
+    season:["good","good","good","good","good","peak","peak","peak","good","good","good","good"] },
+  { name:"Cabbage",    emoji:"🥬", type:"veg", url:"../vegetables/vegetable-detail.html?name=Cabbage",
+    season:["peak","peak","good","good",null,null,null,null,"good","peak","peak","peak"] },
+  { name:"Potato",     emoji:"🥔", type:"veg", url:"../vegetables/vegetable-detail.html?name=Potato",
+    season:["peak","peak","peak","good","good","good","good","peak","peak","peak","peak","peak"] },
+];
+
+// ── State ─────────────────────────────────────────────────
+let currentMonth = new Date().getMonth(); // 0-indexed
+let activeType   = "all";
+
+// ── Month strip ───────────────────────────────────────────
+function renderMonthStrip() {
+  const el = document.getElementById("months-strip");
+  el.innerHTML = MONTHS.map((m, i) => `
+    <button class="month-btn ${i === currentMonth ? "active" : ""}"
+      onclick="selectMonth(${i})">${m}<br><small style="font-weight:400">${seasonEmoji(i)}</small></button>
+  `).join("");
+}
+
+function seasonEmoji(mi) {
+  const s = MONTH_SEASON[mi];
+  return s === "Spring" ? "🌸" : s === "Summer" ? "☀️" : s === "Autumn" ? "🍂" : "❄️";
+}
+
+function selectMonth(i) {
+  currentMonth = i;
+  renderMonthStrip();
+  renderProduce();
+}
+
+// ── Produce area ──────────────────────────────────────────
+function renderProduce() {
+  const mi = currentMonth;
+  const title = document.getElementById("month-title");
+  const sub   = document.getElementById("month-subtitle");
+  title.textContent = MONTH_NAMES[mi];
+  sub.textContent   = `${MONTH_SEASON[mi]} — best picks for this month`;
+
+  let data = PRODUCE.filter(p => activeType === "all" || p.type === activeType);
+  const peak = data.filter(p => p.season[mi] === "peak");
+  const good = data.filter(p => p.season[mi] === "good");
+  const low  = data.filter(p => p.season[mi] === "low");
+
+  let html = "";
+  if (peak.length) html += renderGroup("🌟 Peak Season", peak, mi);
+  if (good.length) html += renderGroup("✅ Good Availability", good, mi);
+  if (low.length)  html += renderGroup("⬇️ Limited", low, mi);
+  if (!peak.length && !good.length && !low.length) {
+    html = `<p style="color:#9ca3af;text-align:center;padding:2rem">No data for this selection.</p>`;
+  }
+  document.getElementById("produce-area").innerHTML = html;
+}
+
+function renderGroup(title, items, mi) {
+  const cards = items.map(p => {
+    const status = p.season[mi];
+    const badge = status === "peak" ? '<span class="peak-badge badge-peak">Peak</span>'
+                : status === "good" ? '<span class="peak-badge badge-good">Good</span>'
+                : '<span class="peak-badge badge-low">Low</span>';
+    return `
+      <a class="produce-card ${status}" href="${p.url}">
+        <span class="p-emoji">${p.emoji}</span>
+        <div class="p-name">${p.name}</div>
+        ${badge}
+      </a>`;
+  }).join("");
+  return `<div class="produce-section"><h3>${title} <span style="font-weight:400">(${items.length})</span></h3><div class="produce-grid">${cards}</div></div>`;
+}
+
+// ── Heatmap ───────────────────────────────────────────────
+function renderHeatmap() {
+  const items = PRODUCE.filter(p => activeType === "all" || p.type === activeType).slice(0, 15);
+  if (!items.length) { document.getElementById("heatmap-section").innerHTML = ""; return; }
+
+  const header = `<tr><th style="text-align:left">Item</th>${MONTHS.map(m=>`<th>${m}</th>`).join("")}</tr>`;
+  const rows = items.map(p => {
+    const cells = p.season.map((s, mi) => {
+      const cls = s === "peak" ? "hm-peak" : s === "good" ? "hm-good" : s === "low" ? "hm-low" : "hm-none";
+      const label = s === "peak" ? "▲" : s === "good" ? "●" : s === "low" ? "▽" : "";
+      return `<td><span class="hm-cell ${cls}" title="${MONTH_NAMES[mi]}: ${s||'off-season'}">${label}</span></td>`;
+    }).join("");
+    return `<tr><td style="font-size:12px;white-space:nowrap;padding:4px 6px">${p.emoji} ${p.name}</td>${cells}</tr>`;
+  }).join("");
+
+  document.getElementById("heatmap-section").innerHTML = `
+    <h2>📅 Year-at-a-glance</h2>
+    <div style="overflow-x:auto">
+      <table class="heatmap-table"><thead>${header}</thead><tbody>${rows}</tbody></table>
+    </div>
+  `;
+}
+
+// ── Filter tabs ───────────────────────────────────────────
+document.querySelectorAll(".filter-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    activeType = tab.dataset.type;
+    renderProduce();
+    renderHeatmap();
+  });
+});
+
+// ── Init ──────────────────────────────────────────────────
+renderMonthStrip();
+renderProduce();
+renderHeatmap();
+</script>
+</body>
+</html>

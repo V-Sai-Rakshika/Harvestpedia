@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Search – Harvestpedia</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  /* ── Search page styles ── */
+  .search-hero {
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+    background: var(--bg-secondary, #f5f9f0);
+  }
+  .search-hero h1 { font-size: 2rem; font-weight: 700; color: var(--text-primary, #1a3a1a); margin-bottom: 0.5rem; }
+  .search-hero p  { color: var(--text-muted, #6b7280); margin-bottom: 1.5rem; }
+
+  .search-bar-wrap {
+    max-width: 600px; margin: 0 auto;
+    display: flex; gap: 0; border-radius: 12px;
+    overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.1);
+  }
+  #global-input {
+    flex: 1; padding: 14px 20px; font-size: 1rem;
+    border: none; outline: none;
+    background: #fff; color: var(--text-primary, #1a3a1a);
+  }
+  #search-btn {
+    padding: 14px 24px; background: #3B6D11; color: #fff;
+    border: none; cursor: pointer; font-size: 1rem; font-weight: 600;
+    transition: background .2s;
+  }
+  #search-btn:hover { background: #2d5209; }
+
+  /* Filter pills */
+  .filter-pills {
+    display: flex; gap: 8px; justify-content: center;
+    flex-wrap: wrap; margin-top: 1rem;
+  }
+  .pill {
+    padding: 5px 14px; border-radius: 99px; font-size: 13px; cursor: pointer;
+    border: 1.5px solid transparent; transition: all .15s; font-weight: 500;
+  }
+  .pill.all    { background:#3B6D11; color:#fff; border-color:#3B6D11; }
+  .pill.fruits { background:#fff3e0; color:#854F0B; border-color:#FAC775; }
+  .pill.vegs   { background:#e1f5ee; color:#0F6E56; border-color:#9FE1CB; }
+  .pill.plants { background:#eeedfe; color:#534AB7; border-color:#CECBF6; }
+  .pill.inactive { background:#fff; color:#6b7280; border-color:#e0e0e0; }
+
+  /* Results area */
+  .results-wrap { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  .result-group { margin-bottom: 2rem; }
+  .result-group-title {
+    font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--text-muted, #6b7280); margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem; border-bottom: 1.5px solid #e5e7eb;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .count-badge {
+    background: #f3f4f6; color: #374151;
+    border-radius: 99px; font-size: 11px; padding: 1px 8px;
+  }
+
+  .result-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .result-card {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 14px 16px; cursor: pointer; transition: all .18s;
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none; color: inherit;
+  }
+  .result-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); transform: translateY(-2px); border-color: #c3e6cb; }
+  .result-emoji { font-size: 2rem; line-height: 1; }
+  .result-info strong { display: block; font-weight: 600; font-size: 14px; color: #1a3a1a; }
+  .result-info span   { font-size: 12px; color: #6b7280; }
+
+  /* Module color accents */
+  .result-card.fruit  { border-left: 3px solid #BA7517; }
+  .result-card.veg    { border-left: 3px solid #0F6E56; }
+  .result-card.plant  { border-left: 3px solid #534AB7; }
+
+  /* States */
+  .search-empty, .search-loading, .search-start {
+    text-align: center; padding: 3rem; color: #9ca3af;
+  }
+  .search-empty   { font-size: 1rem; }
+  .search-loading { font-size: 1.1rem; }
+  .search-start .big { font-size: 3rem; margin-bottom: 0.5rem; }
+  .highlight { background: #fef08a; border-radius: 3px; padding: 0 2px; }
+</style>
+<script src="/Harvestpedia/js/api.js"></script>
+<script src="Harvestpedia/js/darkmode.js"></script>
+</head>
+<body>
+
+<!-- ── Navbar (match your existing navbar) ── -->
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">🌿 Harvestpedia</a>
+  <div class="nav-links">
+    <a href="../fruits/fruits.html">Fruits</a>
+    <a href="../vegetables/vegetables.html">Vegetables</a>
+    <a href="../plants/plants.html">Plants</a>
+    <a href="search.html" class="active">Search</a>
+    <button class="dm-toggle" id="dm-toggle"></button>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="search-hero">
+  <h1>🔍 Search Everything</h1>
+  <p>Search across all fruits, vegetables, and plants in one place.</p>
+
+  <div class="search-bar-wrap">
+    <input type="text" id="global-input" placeholder="e.g. mango, tomato, basil…" autocomplete="off" />
+    <button id="search-btn">Search</button>
+  </div>
+
+  <div class="filter-pills">
+    <span class="pill all"     data-filter="all">All</span>
+    <span class="pill fruits inactive" data-filter="fruits">🍎 Fruits</span>
+    <span class="pill vegs    inactive" data-filter="vegs">🥦 Vegetables</span>
+    <span class="pill plants  inactive" data-filter="plants">🪴 Plants</span>
+  </div>
+</section>
+
+<!-- ── Results ── -->
+<main class="results-wrap">
+  <div id="search-state" class="search-start">
+    <div class="big">🌱</div>
+    <p>Start typing to search fruits, vegetables and plants.</p>
+  </div>
+  <div id="results-area" style="display:none"></div>
+</main>
+
+<script src="../js/api.js"></script>
+<script>
+// ============================================================
+// DATA — extend these arrays to match your actual data
+// Each item: { id, name, emoji, tags, module, detailUrl }
+// ============================================================
+const ALL_DATA = [
+  // ── Fruits ──
+  { id:"apple",      name:"Apple",      emoji:"🍎", tags:["red","sweet","fiber"],          module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Apple" },
+  { id:"mango",      name:"Mango",      emoji:"🥭", tags:["tropical","sweet","vitamin-c"], module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Mango" },
+  { id:"banana",     name:"Banana",     emoji:"🍌", tags:["tropical","potassium"],         module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Banana" },
+  { id:"strawberry", name:"Strawberry", emoji:"🍓", tags:["berry","vitamin-c","summer"],   module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Strawberry" },
+  { id:"grape",      name:"Grape",      emoji:"🍇", tags:["antioxidants","sweet"],         module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Grape" },
+  { id:"watermelon", name:"Watermelon", emoji:"🍉", tags:["summer","hydrating"],           module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Watermelon" },
+  { id:"orange",     name:"Orange",     emoji:"🍊", tags:["citrus","vitamin-c","winter"],  module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Orange" },
+  { id:"pineapple",  name:"Pineapple",  emoji:"🍍", tags:["tropical","bromelain"],         module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Pineapple" },
+  { id:"blueberry",  name:"Blueberry",  emoji:"🫐", tags:["berry","antioxidants"],         module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Blueberry" },
+  { id:"cherry",     name:"Cherry",     emoji:"🍒", tags:["summer","antioxidants"],        module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Cherry" },
+  { id:"peach",      name:"Peach",      emoji:"🍑", tags:["summer","sweet","fiber"],       module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Peach" },
+  { id:"pear",       name:"Pear",       emoji:"🍐", tags:["fiber","sweet"],                module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Pear" },
+
+  // ── Vegetables ──
+  { id:"tomato",    name:"Tomato",    emoji:"🍅", tags:["lycopene","salad","summer"],      module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Tomato" },
+  { id:"carrot",    name:"Carrot",    emoji:"🥕", tags:["vitamin-a","root","crunchy"],     module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Carrot" },
+  { id:"broccoli",  name:"Broccoli",  emoji:"🥦", tags:["cruciferous","fiber","vitamin-c"],module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Broccoli" },
+  { id:"spinach",   name:"Spinach",   emoji:"🌿", tags:["iron","leafy","protein"],         module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Spinach" },
+  { id:"potato",    name:"Potato",    emoji:"🥔", tags:["starchy","potassium"],            module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Potato" },
+  { id:"pepper",    name:"Bell Pepper",emoji:"🫑",tags:["vitamin-c","colorful"],           module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Bell+Pepper" },
+  { id:"cucumber",  name:"Cucumber",  emoji:"🥒", tags:["hydrating","low-calorie"],        module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Cucumber" },
+  { id:"onion",     name:"Onion",     emoji:"🧅", tags:["allium","antioxidants"],          module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Onion" },
+  { id:"garlic",    name:"Garlic",    emoji:"🧄", tags:["allium","antibacterial"],         module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Garlic" },
+  { id:"cabbage",   name:"Cabbage",   emoji:"🥬", tags:["cruciferous","fiber"],            module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Cabbage" },
+
+  // ── Plants ──
+  { id:"basil",      name:"Basil",      emoji:"🌿", tags:["herb","easy","aromatic"],        module:"plant", detailUrl:"../plants/plant-detail.html?name=Basil" },
+  { id:"aloe",       name:"Aloe Vera",  emoji:"🌵", tags:["succulent","medicinal","easy"],  module:"plant", detailUrl:"../plants/plant-detail.html?name=Aloe+Vera" },
+  { id:"lavender",   name:"Lavender",   emoji:"💜", tags:["herb","aromatic","medicinal"],   module:"plant", detailUrl:"../plants/plant-detail.html?name=Lavender" },
+  { id:"mint",       name:"Mint",       emoji:"🌱", tags:["herb","easy","aromatic"],        module:"plant", detailUrl:"../plants/plant-detail.html?name=Mint" },
+  { id:"rosemary",   name:"Rosemary",   emoji:"🌿", tags:["herb","aromatic","drought-tolerant"], module:"plant", detailUrl:"../plants/plant-detail.html?name=Rosemary" },
+  { id:"sunflower",  name:"Sunflower",  emoji:"🌻", tags:["annual","easy","full-sun"],      module:"plant", detailUrl:"../plants/plant-detail.html?name=Sunflower" },
+  { id:"chilli",     name:"Chilli",     emoji:"🌶️", tags:["spicy","warm-climate"],          module:"plant", detailUrl:"../plants/plant-detail.html?name=Chilli" },
+  { id:"tomato-p",   name:"Tomato (plant)", emoji:"🍅", tags:["vegetable","warm","beginner"],module:"plant", detailUrl:"../plants/plant-detail.html?name=Tomato" },
+];
+
+// ── State ──────────────────────────────────────────────────
+let activeFilter = "all";
+
+// ── Elements ───────────────────────────────────────────────
+const input      = document.getElementById("global-input");
+const btn        = document.getElementById("search-btn");
+const state      = document.getElementById("search-state");
+const resultsArea= document.getElementById("results-area");
+
+// ── Search logic ───────────────────────────────────────────
+function search(query) {
+  query = query.trim().toLowerCase();
+  if (!query) { showStart(); return; }
+
+  let data = ALL_DATA;
+  if (activeFilter !== "all") {
+    const map = { fruits:"fruit", vegs:"veg", plants:"plant" };
+    data = data.filter(d => d.module === map[activeFilter]);
+  }
+
+  const results = data.filter(item => {
+    const haystack = [item.name, ...item.tags].join(" ").toLowerCase();
+    return haystack.includes(query);
+  });
+
+  renderResults(results, query);
+}
+
+function renderResults(results, query) {
+  state.style.display    = "none";
+  resultsArea.style.display = "block";
+
+  if (results.length === 0) {
+    resultsArea.innerHTML = `<div class="search-empty">😕 No results for "<strong>${query}</strong>". Try a different term.</div>`;
+    return;
+  }
+
+  // Group by module
+  const groups = { fruit: [], veg: [], plant: [] };
+  results.forEach(r => groups[r.module].push(r));
+
+  const labels = { fruit: "🍎 Fruits", veg: "🥦 Vegetables", plant: "🪴 Plants" };
+  let html = "";
+
+  for (const [mod, items] of Object.entries(groups)) {
+    if (!items.length) continue;
+    html += `
+      <div class="result-group">
+        <div class="result-group-title">
+          ${labels[mod]}
+          <span class="count-badge">${items.length}</span>
+        </div>
+        <div class="result-grid">
+          ${items.map(item => `
+            <a class="result-card ${mod}" href="${item.detailUrl}">
+              <span class="result-emoji">${item.emoji}</span>
+              <div class="result-info">
+                <strong>${highlight(item.name, query)}</strong>
+                <span>${item.tags.slice(0,2).join(" · ")}</span>
+              </div>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    `;
+  }
+
+  resultsArea.innerHTML = html;
+}
+
+function highlight(text, query) {
+  const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")})`, "gi");
+  return text.replace(re, `<mark class="highlight">$1</mark>`);
+}
+
+function showStart() {
+  state.style.display    = "block";
+  resultsArea.style.display = "none";
+}
+
+// ── Filter pills ───────────────────────────────────────────
+document.querySelectorAll(".pill").forEach(pill => {
+  pill.addEventListener("click", () => {
+    document.querySelectorAll(".pill").forEach(p => p.classList.add("inactive"));
+    pill.classList.remove("inactive");
+    activeFilter = pill.dataset.filter;
+    search(input.value);
+  });
+});
+
+// ── Event listeners ────────────────────────────────────────
+btn.addEventListener("click", () => search(input.value));
+input.addEventListener("keydown", e => e.key === "Enter" && search(input.value));
+input.addEventListener("input", () => {
+  if (input.value.length >= 2) search(input.value);
+  else showStart();
+});
+
+// Pre-fill query from URL param (e.g. ?q=mango)
+const urlQ = new URLSearchParams(location.search).get("q");
+if (urlQ) { input.value = urlQ; search(urlQ); }
+</script>
+</body>
+</html>
