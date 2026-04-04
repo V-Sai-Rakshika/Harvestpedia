@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harvestpedia – Explore Nature's Nutrition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-50:  #f0f9f0;
+      --green-100: #d4edda;
+      --green-200: #a8d5b5;
+      --green-300: #72bb88;
+      --green-400: #5aab6f;
+      --green-600: #2d7a45;
+      --green-700: #236037;
+      --green-800: #1a4f2b;
+      --earth-50:  #fdf6ee;
+      --earth-100: #f5e6d0;
+      --earth-300: #d4a96a;
+      --earth-500: #a0703a;
+      --earth-700: #6b4520;
+      --cream:      #fdfaf5;
+      --warm-white: #fffef9;
+      --text-dark:  #1c2b1e;
+      --text-mid:   #3d5440;
+      --text-muted: #6b8070;
+      --shadow-sm:  0 2px 12px rgba(30,60,35,0.07);
+      --shadow-md:  0 6px 30px rgba(30,60,35,0.10);
+      --shadow-lg:  0 16px 60px rgba(30,60,35,0.13);
+      --radius-sm:  12px;
+      --radius-md:  20px;
+      --radius-lg:  32px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(253,250,245,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(90,171,111,0.12);
+      transition: box-shadow 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(30,60,35,0.08); }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--green-800); text-decoration: none;
+    }
+    .nav-logo-leaf {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--green-400), var(--green-600));
+      border-radius: 50% 12px 50% 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+    }
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-mid);
+      font-size: 14px; font-weight: 500;
+      padding: 8px 18px; border-radius: 50px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover  { background: var(--green-50); color: var(--green-600); }
+    .nav-links a.active { background: var(--green-50); color: var(--green-600); }
+    .nav-cta {
+      background: var(--green-600) !important;
+      color: white !important;
+      box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+    }
+    .nav-cta:hover { background: var(--green-800) !important; transform: translateY(-1px); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 48px 80px;
+      position: relative; overflow: hidden;
+      background: var(--warm-white);
+    }
+    .blob {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; z-index: 0;
+    }
+    .blob-1 {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(90,171,111,0.12) 0%, transparent 70%);
+      top: -200px; right: -150px;
+      animation: blobFloat 8s ease-in-out infinite;
+    }
+    .blob-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(212,169,106,0.10) 0%, transparent 70%);
+      bottom: -100px; left: -100px;
+      animation: blobFloat 10s ease-in-out infinite reverse;
+    }
+    .blob-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(90,171,111,0.08) 0%, transparent 70%);
+      top: 40%; left: 35%;
+      animation: blobFloat 12s ease-in-out infinite 2s;
+    }
+    @keyframes blobFloat {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(20px,-20px) scale(1.03); }
+      66%      { transform: translate(-10px,15px) scale(0.98); }
+    }
+
+    .hero-content { max-width: 560px; position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-50); border: 1px solid var(--green-200);
+      color: var(--green-600); font-size: 11px; font-weight: 700;
+      padding: 6px 14px; border-radius: 50px; margin-bottom: 24px;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 700; line-height: 1.08;
+      color: var(--text-dark); margin-bottom: 24px;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+    .hero-title .accent { color: var(--green-600); position: relative; display: inline-block; }
+    .hero-title .accent::after {
+      content: ''; position: absolute;
+      bottom: 2px; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--green-400), var(--earth-300));
+      border-radius: 3px;
+      animation: lineGrow 1s ease 0.8s both; transform-origin: left;
+    }
+    @keyframes lineGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    .hero-sub {
+      font-size: 17px; color: var(--text-muted); line-height: 1.7;
+      margin-bottom: 28px; font-weight: 400;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .search-wrap {
+      display: flex; margin-bottom: 24px; max-width: 460px;
+      animation: fadeUp 0.8s ease 0.35s both;
+    }
+    .search-input {
+      flex: 1; padding: 14px 20px;
+      border: 1.5px solid var(--green-200); border-right: none;
+      border-radius: 50px 0 0 50px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
+      background: white; color: var(--text-dark); outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--green-400); }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-btn {
+      padding: 14px 20px;
+      background: var(--green-600); color: white;
+      border: none; border-radius: 0 50px 50px 0;
+      cursor: pointer; font-size: 16px; transition: background 0.2s;
+    }
+    .search-btn:hover { background: var(--green-800); }
+
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      animation: fadeUp 0.8s ease 0.4s both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-600); color: white;
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+      padding: 14px 28px; border-radius: 50px; border: none; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(45,122,69,0.35);
+      transition: all 0.25s ease; text-decoration: none;
+    }
+    .btn-primary:hover { background: var(--green-800); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(45,122,69,0.4); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text-mid);
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+      padding: 13px 24px; border-radius: 50px; border: 1.5px solid var(--green-200);
+      cursor: pointer; transition: all 0.25s ease; text-decoration: none;
+    }
+    .btn-secondary:hover { border-color: var(--green-400); color: var(--green-600); background: var(--green-50); }
+
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 44px;
+      animation: fadeUp 0.8s ease 0.5s both;
+    }
+    .stat { display: flex; flex-direction: column; gap: 2px; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700; color: var(--text-dark); line-height: 1;
+    }
+    .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+    .stat-div { width: 1px; background: var(--green-100); }
+
+    .hero-visual {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 46%; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 100px 48px 80px 0;
+    }
+    .hero-fruit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px; width: 100%; max-width: 460px;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+    .fruit-hero-card {
+      border-radius: var(--radius-md); overflow: hidden;
+      position: relative; cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .fruit-hero-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--shadow-lg); }
+    .fruit-hero-card.large { grid-row: span 2; border-radius: var(--radius-lg); }
+    .fruit-hero-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.5s ease;
+    }
+    .fruit-hero-card:hover img { transform: scale(1.07); }
+    .fruit-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 22px 16px 16px;
+      background: linear-gradient(transparent, rgba(26,79,43,0.78));
+      color: white;
+    }
+    .fruit-overlay h4 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; }
+    .fruit-overlay span { font-size: 11px; opacity: 0.85; }
+    .fruit-hero-card.large .fruit-overlay h4 { font-size: 22px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS BASE ────────────────────────────── */
+    section { padding: 100px 48px; }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--green-600); margin-bottom: 12px;
+    }
+    .section-label::before { content: ''; width: 20px; height: 2px; background: var(--green-400); border-radius: 2px; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 50px);
+      font-weight: 700; color: var(--text-dark); line-height: 1.15; margin-bottom: 14px;
+    }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 540px; }
+
+    /* ── CATEGORIES ───────────────────────────────── */
+    .categories { background: var(--earth-50); }
+    .categories-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 52px;
+    }
+    .cat-card {
+      border-radius: var(--radius-lg); overflow: hidden;
+      background: white; cursor: pointer;
+      border: 1px solid rgba(90,171,111,0.10);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .cat-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .cat-img { height: 230px; overflow: hidden; position: relative; }
+    .cat-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .cat-card:hover .cat-img img { transform: scale(1.08); }
+    .cat-tag {
+      position: absolute; top: 14px; left: 14px;
+      background: white; border-radius: 50px;
+      padding: 4px 12px; font-size: 11px; font-weight: 700;
+      color: var(--green-600); box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .cat-body { padding: 22px 24px 24px; }
+    .cat-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;
+    }
+    .cat-body p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 18px; }
+    .cat-footer { display: flex; align-items: center; justify-content: space-between; }
+    .cat-count {
+      font-size: 12px; color: var(--text-muted); font-weight: 500;
+      background: var(--green-50); padding: 4px 12px; border-radius: 50px;
+      border: 1px solid var(--green-100);
+    }
+    .cat-arrow {
+      width: 36px; height: 36px; background: var(--green-600); color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 18px; transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(45,122,69,0.3);
+    }
+    .cat-card:hover .cat-arrow { background: var(--green-800); transform: translateX(2px); }
+
+    /* ── SEASONAL ─────────────────────────────────── */
+    .seasonal { background: var(--warm-white); }
+    .season-tabs { display: flex; gap: 8px; margin: 36px 0 40px; flex-wrap: wrap; }
+    .season-tab {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: 50px;
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      border: 1.5px solid var(--green-100);
+      color: var(--text-muted); background: var(--green-50);
+      transition: all 0.2s ease; user-select: none;
+    }
+    .season-tab:hover { border-color: var(--green-300); color: var(--green-600); }
+    .season-tab.active {
+      background: var(--green-600); color: white;
+      border-color: var(--green-600);
+      box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+    }
+    .seasonal-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 18px; transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .seasonal-card {
+      border-radius: var(--radius-md); overflow: hidden;
+      background: white; border: 1px solid rgba(90,171,111,0.10);
+      box-shadow: var(--shadow-sm); cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .seasonal-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .seasonal-img { height: 175px; overflow: hidden; position: relative; }
+    .seasonal-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .seasonal-card:hover .seasonal-img img { transform: scale(1.06); }
+    .seasonal-img .badge {
+      position: absolute; top: 10px; right: 10px;
+      width: 30px; height: 30px; background: white; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .seasonal-body { padding: 14px 16px 16px; }
+    .seasonal-body h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px; font-weight: 600; color: var(--text-dark); margin-bottom: 4px;
+    }
+    .seasonal-body .meta { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+    .seasonal-body .nutrients { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+    .pill {
+      font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 50px;
+      background: var(--green-50); color: var(--green-600); border: 1px solid var(--green-100);
+    }
+
+    /* ── FACT STRIP ───────────────────────────────── */
+    .fact-strip {
+      background: linear-gradient(135deg, var(--green-600) 0%, var(--green-800) 100%);
+      padding: 72px 48px; position: relative; overflow: hidden;
+    }
+    .fact-strip::before {
+      content: ''; position: absolute;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      top: -200px; right: -100px; pointer-events: none;
+    }
+    .fact-strip::after {
+      content: ''; position: absolute;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      bottom: -100px; left: 10%; pointer-events: none;
+    }
+    .fact-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; gap: 60px;
+      position: relative; z-index: 1;
+    }
+    .fact-emoji { font-size: 80px; flex-shrink: 0; animation: wobble 3s ease-in-out infinite; }
+    @keyframes wobble {
+      0%,100% { transform: rotate(-3deg) scale(1); }
+      50%      { transform: rotate(3deg) scale(1.05); }
+    }
+    .fact-content { color: white; }
+    .fact-content .label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; opacity: 0.7; margin-bottom: 12px;
+    }
+    .fact-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px,3vw,36px); font-weight: 700;
+      line-height: 1.25; margin-bottom: 14px;
+    }
+    .fact-content p { font-size: 15px; opacity: 0.8; line-height: 1.7; }
+    .fact-action {
+      margin-top: 24px; cursor: pointer; border: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--green-700);
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px;
+      padding: 11px 22px; border-radius: 50px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      transition: all 0.25s ease;
+    }
+    .fact-action:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    /* ── EXPLORE CTA ──────────────────────────────── */
+    .explore-cta { background: var(--earth-50); }
+    .explore-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 52px; }
+    .explore-card {
+      border-radius: var(--radius-lg); padding: 36px;
+      background: white; border: 1px solid rgba(90,171,111,0.10);
+      box-shadow: var(--shadow-sm); cursor: pointer;
+      transition: all 0.35s ease; position: relative; overflow: hidden;
+    }
+    .explore-card::before {
+      content: ''; position: absolute;
+      width: 200px; height: 200px; border-radius: 50%;
+      top: -80px; right: -60px; pointer-events: none;
+      transition: transform 0.5s ease;
+    }
+    .explore-card.g::before { background: radial-gradient(circle,rgba(90,171,111,0.1) 0%,transparent 70%); }
+    .explore-card.e::before { background: radial-gradient(circle,rgba(212,169,106,0.12) 0%,transparent 70%); }
+    .explore-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .explore-card:hover::before { transform: scale(1.5); }
+    .explore-icon { font-size: 40px; margin-bottom: 20px; display: block; transition: transform 0.3s ease; }
+    .explore-card:hover .explore-icon { transform: scale(1.1) rotate(-5deg); }
+    .explore-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;
+    }
+    .explore-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
+    .explore-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: var(--green-600);
+      text-decoration: none; transition: gap 0.2s ease;
+    }
+    .explore-card:hover .explore-link { gap: 10px; }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer { background: var(--green-800); color: white; padding: 60px 48px 40px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px; margin-bottom: 48px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-leaf {
+      width: 28px; height: 28px; background: var(--green-400);
+      border-radius: 50% 10px 50% 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+    }
+    .footer-brand p { font-size: 13px; opacity: 0.65; line-height: 1.7; max-width: 230px; }
+    .footer-col h5 {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; opacity: 0.5; margin-bottom: 18px;
+    }
+    .footer-col a {
+      display: block; color: rgba(255,255,255,0.75); font-size: 14px;
+      text-decoration: none; margin-bottom: 10px; transition: color 0.2s; cursor: pointer;
+    }
+    .footer-col a:hover { color: var(--green-200); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; opacity: 0.5;
+    }
+
+    /* ── SCROLL REVEAL ────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 14px 24px; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-visual { display: none; }
+      section { padding: 70px 24px; }
+      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .seasonal-grid { grid-template-columns: 1fr 1fr; }
+      .explore-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .fact-inner { flex-direction: column; gap: 24px; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .categories-grid { grid-template-columns: 1fr; }
+      .seasonal-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-leaf">🌿</div>
+    Harvestpedia
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="fruits.html">Fruits</a></li>
+    <li><a href="vegetables.html">Vegetables</a></li>
+    <li><a href="plants.html">Plants</a></li>
+    <li><a href="fruits.html" class="nav-cta">Explore Now</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">🌿 Plant-based Knowledge Platform</div>
+    <h1 class="hero-title">
+      Explore<br>
+      <span class="accent">Nature's</span><br>
+      Nutrition
+    </h1>
+    <p class="hero-sub">
+      Your complete guide to fruits, vegetables &amp; plants — from farm to table.
+      Discover nutritional profiles, health benefits, and how to grow your own.
+    </p>
+
+    <div class="search-wrap">
+      <input class="search-input" type="text" placeholder="Search fruits, vegetables, plants..." />
+      <button class="search-btn">🔍</button>
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn-primary" href="fruits.html">Start Exploring →</a>
+      <a class="btn-secondary" href="plants.html">🌱 Grow at Home</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">500+</span>
+        <span class="stat-label">Plant species</span>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <span class="stat-num">1,200+</span>
+        <span class="stat-label">Nutrition facts</span>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <span class="stat-num">80+</span>
+        <span class="stat-label">Grow guides</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero photo grid -->
+  <div class="hero-visual">
+    <div class="hero-fruit-grid">
+      <div class="fruit-hero-card large" style="height:100%;">
+        <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&q=80" alt="Apple" loading="lazy" />
+        <div class="fruit-overlay">
+          <h4>Apple</h4>
+          <span>Rich in fiber &amp; antioxidants</span>
+        </div>
+      </div>
+      <div class="fruit-hero-card" style="height:165px;">
+        <img src="https://media.istockphoto.com/id/168370138/photo/mango.jpg?s=612x612&w=0&k=20&c=ENq2BrUV8dNH2rth_ZYBBtS9RWDwCbI25SfulxirmnQ=" alt="Mango" loading="lazy" />
+        <div class="fruit-overlay">
+          <h4>Mango</h4>
+          <span>Vitamin A powerhouse</span>
+        </div>
+      </div>
+      <div class="fruit-hero-card" style="height:165px;">
+        <img src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=500&q=80" alt="Grapes" loading="lazy" />
+        <div class="fruit-overlay">
+          <h4>Grapes</h4>
+          <span>High in antioxidants</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CATEGORIES ── -->
+<section class="categories">
+  <div class="section-label">Browse by Category</div>
+  <h2 class="section-title">What are you looking for?</h2>
+  <p class="section-sub">Dive into our comprehensive database of plant-based foods, organized for easy exploration.</p>
+
+  <div class="categories-grid">
+    <div class="cat-card reveal">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&q=80" alt="Fruits" loading="lazy" />
+        <span class="cat-tag">Popular</span>
+      </div>
+      <div class="cat-body">
+        <h3>Fruits</h3>
+        <p>From tropical exotics to everyday favorites — discover flavors, nutrients, and seasonal picks from nature's sweetest gifts.</p>
+        <div class="cat-footer">
+          <span class="cat-count">240 varieties</span>
+          <a class="cat-arrow" href="fruits.html">→</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal delay-1">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&q=80" alt="Vegetables" loading="lazy" />
+        <span class="cat-tag">Trending</span>
+      </div>
+      <div class="cat-body">
+        <h3>Vegetables</h3>
+        <p>Explore the world of greens, roots, and cruciferous wonders. Find the perfect vegetable for your dietary needs.</p>
+        <div class="cat-footer">
+          <span class="cat-count">180 varieties</span>
+          <div class="cat-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal delay-2">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80" alt="Plants" loading="lazy" />
+        <span class="cat-tag">New</span>
+      </div>
+      <div class="cat-body">
+        <h3>Plants &amp; Herbs</h3>
+        <p>Medicinal herbs, aromatic spices, and indoor plants — learn to grow your own green companions at home.</p>
+        <div class="cat-footer">
+          <span class="cat-count">120 species</span>
+          <div class="cat-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEASONAL ── -->
+<section class="seasonal">
+  <div class="section-label">Seasonal Picks</div>
+  <h2 class="section-title">What's in season?</h2>
+  <p class="section-sub">Eat with the seasons for peak nutrition and flavor. Filter by season to discover what's freshest.</p>
+
+  <div class="season-tabs">
+    <div class="season-tab active" onclick="switchSeason(this,'summer')">☀️ Summer</div>
+    <div class="season-tab" onclick="switchSeason(this,'spring')">🌸 Spring</div>
+    <div class="season-tab" onclick="switchSeason(this,'autumn')">🍂 Autumn</div>
+    <div class="season-tab" onclick="switchSeason(this,'winter')">❄️ Winter</div>
+  </div>
+
+  <div class="seasonal-grid" id="seasonal-grid"></div>
+</section>
+
+<!-- ── FACT STRIP ── -->
+<div class="fact-strip">
+  <div class="fact-inner">
+    <div class="fact-emoji">🍊</div>
+    <div class="fact-content">
+      <div class="label">Did you know?</div>
+      <h2>One orange delivers your entire daily Vitamin C requirement</h2>
+      <p>Most people reach for supplements when nature already perfected the formula. A single medium orange packs 70mg of Vitamin C — surpassing the daily recommended intake — plus fibre, folate, and potassium.</p>
+      <button class="fact-action">Read Full Profile →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── EXPLORE CTA ── -->
+<section class="explore-cta">
+  <div class="section-label">Go deeper</div>
+  <h2 class="section-title">Beyond the basics</h2>
+  <p class="section-sub">From growing your own to understanding every nutrient — Harvestpedia has you covered.</p>
+
+  <div class="explore-grid">
+    <div class="explore-card g reveal" style="background:linear-gradient(135deg,#f0f9f0,#e8f5e8);">
+      <span class="explore-icon">🌱</span>
+      <h3>Grow at Home</h3>
+      <p>Step-by-step guides for growing fruits, vegetables, and herbs in your own garden or balcony — with live weather data tailored to your location.</p>
+      <a class="explore-link" href="#">Start Growing →</a>
+    </div>
+    <div class="explore-card e reveal delay-1" style="background:linear-gradient(135deg,#fdf6ee,#f7ede0);">
+      <span class="explore-icon">🔬</span>
+      <h3>Nutrition Deep Dives</h3>
+      <p>Detailed breakdowns of proteins, carbohydrates, vitamins, minerals and more. Understand exactly what goes into your body and why it matters.</p>
+      <a class="explore-link" href="#">Explore Nutrition →</a>
+    </div>
+    <div class="explore-card g reveal delay-1" style="background:linear-gradient(135deg,#f0f9f0,#fdf6ee);">
+      <span class="explore-icon">🩺</span>
+      <h3>Health Benefits</h3>
+      <p>Discover which foods are best for your goals — whether it's boosting immunity, managing weight, or improving gut health.</p>
+      <a class="explore-link" href="#">Explore Benefits →</a>
+    </div>
+    <div class="explore-card e reveal delay-2" style="background:linear-gradient(135deg,#fdf6ee,#f0f9f0);">
+      <span class="explore-icon">📅</span>
+      <h3>Seasonal Calendar</h3>
+      <p>A visual, interactive calendar showing what's in season month by month — across different climates and regions of the world.</p>
+      <a class="explore-link" href="#">View Calendar →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-leaf">🌿</div>
+        Harvestpedia
+      </div>
+      <p>Your trusted plant-based knowledge platform. Explore, learn, and grow with nature's best.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <a href="fruits.html">Fruits</a>
+      <a href="#">Vegetables</a>
+      <a href="#">Plants &amp; Herbs</a>
+      <a href="#">Seasonal Guide</a>
+    </div>
+    <div class="footer-col">
+      <h5>Learn</h5>
+      <a href="#">Nutrition Facts</a>
+      <a href="#">Health Benefits</a>
+      <a href="#">Grow at Home</a>
+      <a href="#">Recipes</a>
+    </div>
+    <div class="footer-col">
+      <h5>About</h5>
+      <a href="#">Our Mission</a>
+      <a href="#">Contributors</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Harvestpedia. All rights reserved.</span>
+    <span>Made with 🌿 for nature lovers</span>
+  </div>
+</footer>
+
+<script>
+  /* ── Seasonal Data ── */
+  const seasonData = {
+    summer: [
+      { name:'Mango',      meta:'Tropical · Peak: Jun–Aug',   img:'https://media.istockphoto.com/id/168370138/photo/mango.jpg?s=612x612&w=0&k=20&c=ENq2BrUV8dNH2rth_ZYBBtS9RWDwCbI25SfulxirmnQ=', pills:['Vit A','Vit C','Fiber'] },
+      { name:'Watermelon', meta:'Gourd · Peak: Jul–Sep',      img:'https://images.unsplash.com/photo-1652031552021-50bcc01121a7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdhdGVybWVsb258ZW58MHx8MHx8fDA%3D', pills:['Hydration','Lycopene'] },
+      { name:'Peach',      meta:'Stone fruit · Peak: Jul–Aug',img:'https://media.istockphoto.com/id/1369429481/photo/ripe-peaches-with-thyme-leaves-in-a-plate-on-a-wooden-board-on-a-background.jpg?s=612x612&w=0&k=20&c=tEQJ-8dQ0B4PU8CmPSKJUSGJykcysIkeZ0RGBEbK97Y=', pills:['Vit C','Potassium'] },
+      { name:'Cherry',     meta:'Stone fruit · Peak: Jun–Jul',img:'https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=400&q=80', pills:['Antioxidants','Melatonin'] },
+    ],
+    spring: [
+      { name:'Strawberry', meta:'Berry · Peak: Apr–Jun',       img:'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&q=80', pills:['Vit C','Folate'] },
+      { name:'Apricot',    meta:'Stone fruit · Peak: May–Jun', img:'https://media.istockphoto.com/id/165089494/photo/apricots-with-leaves.jpg?s=612x612&w=0&k=20&c=Hma--a5rdJ_4TAHVaeY-YjURQhiXr1J8cNP3fEpMiq8=', pills:['Beta-carotene','Vit A'] },
+      { name:'Pineapple',  meta:'Tropical · Peak: Mar–Jun',    img:'https://images.unsplash.com/photo-1621409443141-46c42dc0afb5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGluZWFwcGxlfGVufDB8fDB8fHww', pills:['Bromelain','Vit C'] },
+      { name:'Lychee',     meta:'Tropical · Peak: May–Jun',    img:'https://plus.unsplash.com/premium_photo-1722961407854-fcc0004b4929?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bHljaGVlfGVufDB8fDB8fHww', pills:['Vit C','Copper'] },
+    ],
+    autumn: [
+      { name:'Apple',       meta:'Pome · Peak: Sep–Nov',        img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=80', pills:['Fiber','Quercetin'] },
+      { name:'Pear',        meta:'Pome · Peak: Aug–Oct',        img:'https://media.istockphoto.com/id/1766780576/photo/podium-for-exhibitions-and-product-presentations-material-stone-fruit-beautiful-green.jpg?s=612x612&w=0&k=20&c=lhvwq5VkrmNPj-wPhOBfVRgARiAiW_M-2qI1APxlNB4=', pills:['Fiber','Vit K'] },
+      { name:'Pomegranate', meta:'Berry · Peak: Sep–Jan',       img:'https://media.istockphoto.com/id/877321098/photo/ripe-pomegranate-fruits.jpg?s=612x612&w=0&k=20&c=btD4lMY0XPDNC7YuP5dxsgWJl90seFS01d51CuNj0-Q=', pills:['Punicalagins','Antioxidants'] },
+      { name:'Grape',       meta:'Berry · Peak: Aug–Oct',       img:'https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=400&q=80', pills:['Resveratrol','Vit K'] },
+    ],
+    winter: [
+      { name:'Orange',     meta:'Citrus · Peak: Nov–Mar',  img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=400&q=80', pills:['Vit C','Folate'] },
+      { name:'Kiwi',       meta:'Berry · Peak: Dec–Feb',   img:'https://images.unsplash.com/photo-1585059895524-72359e06133a?w=400&q=80', pills:['Vit C','Vit K'] },
+      { name:'Grapefruit', meta:'Citrus · Peak: Dec–Apr',  img:'https://images.unsplash.com/photo-1671624759854-ced22d6a6d28?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3JhcGVmcnVpdHxlbnwwfHwwfHx8MA%3D%3D', pills:['Vit A','Vit C'] },
+      { name:'Banana',     meta:'Berry · Year-round',      img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80', pills:['Potassium','B6'] },
+    ]
+  };
+
+  function renderSeasonalCards(season) {
+    const grid = document.getElementById('seasonal-grid');
+    grid.style.opacity = '0';
+    grid.style.transform = 'translateY(14px)';
+    setTimeout(() => {
+      grid.innerHTML = seasonData[season].map(c => `
+        <div class="seasonal-card">
+          <div class="seasonal-img">
+            <img src="${c.img}" alt="${c.name}" loading="lazy" />
+            <div class="badge">${c.emoji}</div>
+          </div>
+          <div class="seasonal-body">
+            <h4>${c.name}</h4>
+            <div class="meta">${c.meta}</div>
+            <div class="nutrients">${c.pills.map(p=>`<span class="pill">${p}</span>`).join('')}</div>
+          </div>
+        </div>`).join('');
+      grid.style.transition = 'all 0.35s ease';
+      grid.style.opacity = '1';
+      grid.style.transform = 'translateY(0)';
+    }, 200);
+  }
+
+  function switchSeason(el, season) {
+    document.querySelectorAll('.season-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    renderSeasonalCards(season);
+  }
+
+  renderSeasonalCards('summer');
+
+  /* ── Scroll Reveal ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Navbar shadow on scroll ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+</body>
+</html>

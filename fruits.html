@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fruits – Harvestpedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-50:  #f0f9f0;
+      --green-100: #d4edda;
+      --green-200: #a8d5b5;
+      --green-300: #72bb88;
+      --green-400: #5aab6f;
+      --green-600: #2d7a45;
+      --green-700: #236037;
+      --green-800: #1a4f2b;
+      --earth-50:  #fdf6ee;
+      --earth-100: #f5e6d0;
+      --earth-300: #d4a96a;
+      --cream:      #fdfaf5;
+      --warm-white: #fffef9;
+      --text-dark:  #1c2b1e;
+      --text-mid:   #3d5440;
+      --text-muted: #6b8070;
+      --shadow-sm:  0 2px 12px rgba(30,60,35,0.07);
+      --shadow-md:  0 8px 32px rgba(30,60,35,0.11);
+      --shadow-lg:  0 18px 60px rgba(30,60,35,0.14);
+      --radius-sm:  12px;
+      --radius-md:  20px;
+      --radius-lg:  32px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(253,250,245,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(90,171,111,0.12);
+      transition: box-shadow 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(30,60,35,0.08); }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--green-800); text-decoration: none;
+    }
+    .nav-logo-leaf {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--green-400), var(--green-600));
+      border-radius: 50% 12px 50% 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+    }
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-mid);
+      font-size: 14px; font-weight: 500;
+      padding: 8px 18px; border-radius: 50px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover  { background: var(--green-50); color: var(--green-600); }
+    .nav-links a.active { background: var(--green-50); color: var(--green-600); }
+    .nav-cta {
+      background: var(--green-600) !important;
+      color: white !important;
+      box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+    }
+    .nav-cta:hover { background: var(--green-800) !important; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 140px 48px 80px;
+      background: var(--warm-white);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,171,111,0.10) 0%, transparent 70%);
+      top: -200px; right: -150px; pointer-events: none;
+      animation: blobFloat 9s ease-in-out infinite;
+    }
+    .page-hero::after {
+      content: ''; position: absolute;
+      width: 350px; height: 350px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,169,106,0.09) 0%, transparent 70%);
+      bottom: -100px; left: 5%; pointer-events: none;
+      animation: blobFloat 11s ease-in-out infinite reverse;
+    }
+    @keyframes blobFloat {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(20px,-20px) scale(1.03); }
+      66%      { transform: translate(-10px,15px) scale(0.98); }
+    }
+
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--text-muted);
+      margin-bottom: 24px; position: relative; z-index: 1;
+    }
+    .breadcrumb a { text-decoration: none; color: var(--green-600); }
+    .breadcrumb span { opacity: 0.5; }
+
+    .page-hero-inner {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 40px; position: relative; z-index: 1;
+    }
+    .page-hero-text { max-width: 580px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-50); border: 1px solid var(--green-200);
+      color: var(--green-600); font-size: 11px; font-weight: 700;
+      padding: 5px 14px; border-radius: 50px;
+      letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 18px;
+    }
+    .page-hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 700; line-height: 1.1;
+      color: var(--text-dark); margin-bottom: 16px;
+    }
+    .page-hero-text h1 .accent { color: var(--green-600); }
+    .page-hero-text p { font-size: 16px; color: var(--text-muted); line-height: 1.7; }
+
+    .hero-stats-row {
+      display: flex; gap: 24px; flex-shrink: 0;
+    }
+    .hero-stat-card {
+      background: white; border-radius: var(--radius-md);
+      padding: 20px 28px; text-align: center;
+      border: 1px solid rgba(90,171,111,0.12);
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-stat-card .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px; font-weight: 700; color: var(--green-600); line-height: 1;
+    }
+    .hero-stat-card .lbl { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      background: white;
+      border-bottom: 1px solid rgba(90,171,111,0.10);
+      padding: 0 48px;
+      position: sticky; top: 72px; z-index: 100;
+      box-shadow: 0 4px 20px rgba(30,60,35,0.05);
+    }
+    .filter-bar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0; gap: 16px; flex-wrap: wrap;
+    }
+
+    /* Season tabs */
+    .season-tabs { display: flex; gap: 6px; }
+    .season-tab {
+      display: flex; align-items: center; gap: 6px;
+      padding: 9px 18px; border-radius: 50px;
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      border: 1.5px solid var(--green-100);
+      color: var(--text-muted); background: var(--green-50);
+      transition: all 0.2s ease; user-select: none;
+      white-space: nowrap;
+    }
+    .season-tab:hover { border-color: var(--green-300); color: var(--green-600); }
+    .season-tab.active {
+      background: var(--green-600); color: white;
+      border-color: var(--green-600);
+      box-shadow: 0 3px 12px rgba(45,122,69,0.28);
+    }
+    .season-tab.all { background: var(--earth-50); border-color: var(--earth-100); color: var(--earth-500); }
+    .season-tab.all.active { background: var(--earth-500); color: white; border-color: var(--earth-500); box-shadow: 0 3px 12px rgba(160,112,58,0.28); }
+
+    /* Search & sort */
+    .filter-right { display: flex; align-items: center; gap: 10px; }
+    .filter-search {
+      display: flex; align-items: center;
+      background: var(--green-50); border: 1.5px solid var(--green-100);
+      border-radius: 50px; padding: 8px 16px; gap: 8px;
+      transition: border-color 0.2s;
+    }
+    .filter-search:focus-within { border-color: var(--green-400); }
+    .filter-search input {
+      border: none; background: transparent; outline: none;
+      font-family: 'DM Sans', sans-serif; font-size: 13px;
+      color: var(--text-dark); width: 180px;
+    }
+    .filter-search input::placeholder { color: var(--text-muted); }
+    .filter-search .icon { font-size: 14px; color: var(--text-muted); }
+
+    .sort-select {
+      padding: 9px 16px; border-radius: 50px;
+      border: 1.5px solid var(--green-100);
+      background: var(--green-50); color: var(--text-mid);
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+      cursor: pointer; outline: none;
+      transition: border-color 0.2s;
+    }
+    .sort-select:focus { border-color: var(--green-400); }
+
+    /* Alpha filter */
+    .alpha-bar {
+      background: var(--earth-50);
+      border-bottom: 1px solid rgba(90,171,111,0.08);
+      padding: 10px 48px;
+      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    }
+    .alpha-label { font-size: 11px; font-weight: 700; color: var(--text-muted); margin-right: 6px; text-transform: uppercase; letter-spacing: 1px; }
+    .alpha-btn {
+      width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; border: none; background: transparent;
+      font-size: 13px; font-weight: 600; color: var(--text-muted);
+      cursor: pointer; transition: all 0.2s ease;
+    }
+    .alpha-btn:hover { background: var(--green-100); color: var(--green-700); }
+    .alpha-btn.active { background: var(--green-600); color: white; border-radius: 10px; }
+    .alpha-btn.all-alpha { font-size: 11px; width: auto; padding: 0 10px; letter-spacing: 0.5px; }
+
+    /* ── FRUIT GRID ── */
+    .fruits-section { padding: 48px 48px 80px; }
+
+    .results-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 30px;
+    }
+    .results-count { font-size: 14px; color: var(--text-muted); }
+    .results-count strong { color: var(--text-dark); }
+    .view-toggle { display: flex; gap: 6px; }
+    .view-btn {
+      width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid var(--green-100);
+      background: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--text-muted); transition: all 0.2s;
+    }
+    .view-btn.active { background: var(--green-600); border-color: var(--green-600); color: white; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center; padding: 80px 20px; display: none;
+    }
+    .empty-state .icon { font-size: 64px; margin-bottom: 16px; opacity: 0.4; }
+    .empty-state h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text-dark); margin-bottom: 8px; }
+    .empty-state p { font-size: 14px; color: var(--text-muted); }
+
+    /* Fruit Grid */
+    #fruit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 22px;
+      transition: opacity 0.3s ease;
+    }
+    #fruit-grid.list-view {
+      grid-template-columns: 1fr;
+    }
+
+    /* ── FRUIT CARD ── */
+    .fruit-card {
+      border-radius: var(--radius-md);
+      background: white;
+      border: 1px solid rgba(90,171,111,0.10);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden; cursor: pointer;
+      transition: all 0.32s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+      animation: cardIn 0.5s ease both;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .fruit-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .fruit-card-img {
+      height: 200px; overflow: hidden; position: relative;
+      background: var(--green-50);
+    }
+    .fruit-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .fruit-card:hover .fruit-card-img img { transform: scale(1.08); }
+
+    /* Season badge */
+    .season-badge {
+      position: absolute; top: 12px; left: 12px;
+      padding: 4px 10px; border-radius: 50px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+      text-transform: uppercase; backdrop-filter: blur(8px);
+    }
+    .season-badge.summer { background: rgba(255,200,50,0.9);  color: #7a4f00; }
+    .season-badge.spring { background: rgba(255,160,180,0.9); color: #7a1f3a; }
+    .season-badge.autumn { background: rgba(220,120,50,0.9);  color: #6b2800; }
+    .season-badge.winter { background: rgba(130,200,255,0.9); color: #003a6b; }
+    .season-badge.year   { background: rgba(90,171,111,0.9);  color: #0f3d1e; }
+
+    /* Fav button */
+    .fav-btn {
+      position: absolute; top: 12px; right: 12px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: white; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition: all 0.2s ease; opacity: 0; transform: scale(0.8);
+    }
+    .fruit-card:hover .fav-btn { opacity: 1; transform: scale(1); }
+    .fav-btn:hover { transform: scale(1.15) !important; }
+    .fav-btn.active { opacity: 1; }
+
+    /* Quick info overlay */
+    .quick-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(26,79,43,0.7));
+      padding: 20px 14px 10px;
+      display: flex; gap: 6px; flex-wrap: wrap;
+      transform: translateY(100%); transition: transform 0.3s ease;
+    }
+    .fruit-card:hover .quick-info { transform: translateY(0); }
+    .quick-pill {
+      font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 50px;
+      background: rgba(255,255,255,0.22); color: white; border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .fruit-card-body { padding: 16px 18px 18px; }
+    .fruit-card-body .fruit-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 600; color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .fruit-card-body .fruit-family {
+      font-size: 11px; color: var(--text-muted); font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;
+    }
+    .fruit-card-body .fruit-meta {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cal-badge {
+      font-size: 12px; font-weight: 600; color: var(--green-600);
+      background: var(--green-50); padding: 3px 10px; border-radius: 50px;
+      border: 1px solid var(--green-100);
+    }
+    .detail-link {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 12px; font-weight: 700; color: var(--green-600);
+      text-decoration: none; transition: gap 0.2s;
+    }
+    .fruit-card:hover .detail-link { gap: 7px; }
+
+    /* ── LIST VIEW ── */
+    #fruit-grid.list-view .fruit-card {
+      display: flex; flex-direction: row; border-radius: var(--radius-sm);
+    }
+    #fruit-grid.list-view .fruit-card:hover { transform: translateY(-3px) scale(1); }
+    #fruit-grid.list-view .fruit-card-img {
+      width: 120px; height: 120px; flex-shrink: 0; border-radius: 0;
+    }
+    #fruit-grid.list-view .fruit-card-body {
+      display: flex; align-items: center; justify-content: space-between;
+      flex: 1; padding: 14px 20px;
+    }
+    #fruit-grid.list-view .fruit-card-body .fruit-family { margin-bottom: 0; }
+    #fruit-grid.list-view .season-badge { top: 8px; left: 8px; }
+    #fruit-grid.list-view .quick-info { display: none; }
+    #fruit-grid.list-view .fav-btn { top: 8px; right: 8px; opacity: 1; }
+
+    /* ── LETTER HEADERS ── */
+    .letter-header {
+      grid-column: 1 / -1;
+      display: flex; align-items: center; gap: 16px;
+      padding: 8px 0 4px;
+    }
+    .letter-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; font-weight: 700; color: var(--green-600); line-height: 1;
+    }
+    .letter-header .line { flex: 1; height: 1px; background: var(--green-100); }
+
+    /* ── LOAD MORE ── */
+    .load-more-wrap { text-align: center; padding: 20px 0 0; }
+    .load-more-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--green-600);
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+      padding: 13px 32px; border-radius: 50px;
+      border: 1.5px solid var(--green-200); cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .load-more-btn:hover { background: var(--green-600); color: white; border-color: var(--green-600); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--green-800); color: white; padding: 60px 48px 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+    .footer-logo {
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .footer-leaf { width: 28px; height: 28px; background: var(--green-400); border-radius: 50% 10px 50% 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .footer-brand p { font-size: 13px; opacity: 0.65; line-height: 1.7; max-width: 230px; }
+    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.5; margin-bottom: 18px; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.75); font-size: 14px; text-decoration: none; margin-bottom: 10px; transition: color 0.2s; cursor: pointer; }
+    .footer-col a:hover { color: var(--green-200); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; opacity: 0.5; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 14px 24px; }
+      .page-hero { padding: 120px 24px 60px; }
+      .filter-bar { padding: 0 24px; }
+      .alpha-bar { padding: 10px 24px; }
+      .fruits-section { padding: 36px 24px 60px; }
+      .page-hero-inner { flex-direction: column; align-items: flex-start; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 48px 24px 32px; }
+    }
+    @media (max-width: 700px) {
+      .hero-stats-row { display: none; }
+      #fruit-grid { grid-template-columns: 1fr 1fr; }
+      .filter-bar-inner { gap: 10px; }
+      .season-tabs { gap: 4px; overflow-x: auto; padding-bottom: 4px; }
+      .season-tab { padding: 7px 12px; font-size: 12px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 480px) {
+      #fruit-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-leaf">🌿</div>
+    Harvestpedia
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fruits.html" class="active">Fruits</a></li>
+    <li><a href="#">Vegetables</a></li>
+    <li><a href="#">Plants</a></li>
+    <li><a href="#" class="nav-cta">Explore Now</a></li>
+  </ul>
+</nav>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">🏠 Home</a>
+    <span>›</span>
+    <span>Fruits</span>
+  </div>
+  <div class="page-hero-inner">
+    <div class="page-hero-text">
+      <div class="hero-tag">🍎 Fruit Encyclopedia</div>
+      <h1>Explore <span class="accent">Nature's</span> Sweetest Gifts</h1>
+      <p>Browse our complete database of fruits — filter by season, search by name, and discover nutritional profiles, health benefits, and grow-at-home guides.</p>
+    </div>
+    <div class="hero-stats-row">
+      <div class="hero-stat-card">
+        <div class="num">240+</div>
+        <div class="lbl">Fruit varieties</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="num">4</div>
+        <div class="lbl">Seasonal picks</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="num">80+</div>
+        <div class="lbl">Grow guides</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FILTER BAR ── -->
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <div class="season-tabs" id="season-tabs">
+      <div class="season-tab all active" data-season="all">🌍 All</div>
+      <div class="season-tab" data-season="summer">☀️ Summer</div>
+      <div class="season-tab" data-season="spring">🌸 Spring</div>
+      <div class="season-tab" data-season="autumn">🍂 Autumn</div>
+      <div class="season-tab" data-season="winter">❄️ Winter</div>
+    </div>
+    <div class="filter-right">
+      <div class="filter-search">
+        <span class="icon">🔍</span>
+        <input id="search-input" type="text" placeholder="Search fruits..." />
+      </div>
+      <select class="sort-select" id="sort-select">
+        <option value="az">A → Z</option>
+        <option value="za">Z → A</option>
+        <option value="cal-low">Calories: Low first</option>
+        <option value="cal-high">Calories: High first</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ── ALPHA FILTER ── -->
+<div class="alpha-bar" id="alpha-bar">
+  <span class="alpha-label">Filter A–Z</span>
+  <button class="alpha-btn all-alpha active" data-letter="all">All</button>
+</div>
+
+<!-- ── FRUITS SECTION ── -->
+<section class="fruits-section">
+  <div class="results-bar">
+    <div class="results-count" id="results-count">Loading...</div>
+    <div class="view-toggle">
+      <button class="view-btn active" id="grid-btn" title="Grid view">⊞</button>
+      <button class="view-btn" id="list-btn" title="List view">☰</button>
+    </div>
+  </div>
+
+  <div class="empty-state" id="empty-state">
+    <div class="icon">🍃</div>
+    <h3>No fruits found</h3>
+    <p>Try a different search or change your filters.</p>
+  </div>
+
+  <div id="fruit-grid"></div>
+
+  <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
+    <button class="load-more-btn" id="load-more-btn">Load more fruits ↓</button>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-leaf">🌿</div>
+        Harvestpedia
+      </div>
+      <p>Your trusted plant-based knowledge platform. Explore, learn, and grow with nature's best.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <a href="fruits.html">Fruits</a>
+      <a href="#">Vegetables</a>
+      <a href="#">Plants &amp; Herbs</a>
+      <a href="#">Seasonal Guide</a>
+    </div>
+    <div class="footer-col">
+      <h5>Learn</h5>
+      <a href="#">Nutrition Facts</a>
+      <a href="#">Health Benefits</a>
+      <a href="#">Grow at Home</a>
+    </div>
+    <div class="footer-col">
+      <h5>About</h5>
+      <a href="#">Our Mission</a>
+      <a href="#">Contributors</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Harvestpedia. All rights reserved.</span>
+    <span>Made with 🌿 for nature lovers</span>
+  </div>
+</footer>
+
+<script>
+/* ──────────────────────────────────────────
+   FRUIT DATA — extend this array to add more
+   ────────────────────────────────────────── */
+const fruits = [
+  { name:'Apple',        family:'Rosaceae',      season:'autumn', cal:52,  emoji:'🍎', img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&q=80', nutrients:['Fiber','Quercetin','Vit C'] },
+  { name:'Apricot',      family:'Rosaceae',      season:'spring', cal:48,  emoji:'🍊', img:'https://images.unsplash.com/photo-1598110750624-9b5a69a37d58?w=500&q=80', nutrients:['Vit A','Beta-carotene','Potassium'] },
+  { name:'Avocado',      family:'Lauraceae',     season:'year',   cal:160, emoji:'🥑', img:'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=500&q=80', nutrients:['Healthy fats','Potassium','Vit K'] },
+  { name:'Banana',       family:'Musaceae',      season:'year',   cal:89,  emoji:'🍌', img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&q=80', nutrients:['Potassium','Vit B6','Magnesium'] },
+  { name:'Blueberry',    family:'Ericaceae',     season:'summer', cal:57,  emoji:'🫐', img:'https://images.unsplash.com/photo-1457296898342-cdd24585d095?w=500&q=80', nutrients:['Anthocyanins','Vit C','Fiber'] },
+  { name:'Cherry',       family:'Rosaceae',      season:'summer', cal:50,  emoji:'🍒', img:'https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=500&q=80', nutrients:['Melatonin','Antioxidants','Vit C'] },
+  { name:'Coconut',      family:'Arecaceae',     season:'year',   cal:354, emoji:'🥥', img:'https://images.unsplash.com/photo-1555181126-cf46a03827c0?w=500&q=80', nutrients:['MCTs','Electrolytes','Iron'] },
+  { name:'Dragon Fruit', family:'Cactaceae',     season:'summer', cal:60,  emoji:'🐉', img:'https://images.unsplash.com/photo-1527325678964-54921661f888?w=500&q=80', nutrients:['Vit C','Iron','Magnesium'] },
+  { name:'Durian',       family:'Malvaceae',     season:'summer', cal:147, emoji:'🌵', img:'https://images.unsplash.com/photo-1590593161967-67217d18c3f4?w=500&q=80', nutrients:['Vit C','Potassium','Iron'] },
+  { name:'Fig',          family:'Moraceae',      season:'autumn', cal:74,  emoji:'🍈', img:'https://images.unsplash.com/photo-1601379329542-31f75ef4ab73?w=500&q=80', nutrients:['Fiber','Calcium','Iron'] },
+  { name:'Grape',        family:'Vitaceae',      season:'autumn', cal:67,  emoji:'🍇', img:'https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=500&q=80', nutrients:['Resveratrol','Vit K','Antioxidants'] },
+  { name:'Grapefruit',   family:'Rutaceae',      season:'winter', cal:42,  emoji:'🍊', img:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&q=80', nutrients:['Vit C','Vit A','Lycopene'] },
+  { name:'Guava',        family:'Myrtaceae',     season:'year',   cal:68,  emoji:'🍈', img:'https://images.unsplash.com/photo-1536511132770-e5058c7e8c46?w=500&q=80', nutrients:['Vit C','Lycopene','Folate'] },
+  { name:'Jackfruit',    family:'Moraceae',      season:'summer', cal:95,  emoji:'🌿', img:'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=500&q=80', nutrients:['Vit B6','Fiber','Potassium'] },
+  { name:'Kiwi',         family:'Actinidiaceae', season:'winter', cal:61,  emoji:'🥝', img:'https://images.unsplash.com/photo-1585059895524-72359e06133a?w=500&q=80', nutrients:['Vit C','Vit K','Fiber'] },
+  { name:'Lemon',        family:'Rutaceae',      season:'year',   cal:29,  emoji:'🍋', img:'https://images.unsplash.com/photo-1504382262782-5b4ece78642b?w=500&q=80', nutrients:['Vit C','Citric acid','Hesperidin'] },
+  { name:'Lychee',       family:'Sapindaceae',   season:'spring', cal:66,  emoji:'🍈', img:'https://images.unsplash.com/photo-1563746924237-f81d8a3a784f?w=500&q=80', nutrients:['Vit C','Copper','Potassium'] },
+  { name:'Mango',        family:'Anacardiaceae', season:'summer', cal:60,  emoji:'🥭', img:'https://images.unsplash.com/photo-1553279768-865429fa0078?w=500&q=80', nutrients:['Vit A','Vit C','Folate'] },
+  { name:'Melon',        family:'Cucurbitaceae', season:'summer', cal:34,  emoji:'🍈', img:'https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=500&q=80', nutrients:['Vit A','Vit C','Hydration'] },
+  { name:'Orange',       family:'Rutaceae',      season:'winter', cal:47,  emoji:'🍊', img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=500&q=80', nutrients:['Vit C','Folate','Flavonoids'] },
+  { name:'Papaya',       family:'Caricaceae',    season:'year',   cal:43,  emoji:'🍈', img:'https://images.unsplash.com/photo-1526318472351-c75fcf070305?w=500&q=80', nutrients:['Vit C','Papain','Folate'] },
+  { name:'Peach',        family:'Rosaceae',      season:'summer', cal:39,  emoji:'🍑', img:'https://images.unsplash.com/photo-1595475884562-073c30d45670?w=500&q=80', nutrients:['Vit C','Potassium','Niacin'] },
+  { name:'Pear',         family:'Rosaceae',      season:'autumn', cal:57,  emoji:'🍐', img:'https://images.unsplash.com/photo-1596699046458-a1fc7e32040b?w=500&q=80', nutrients:['Fiber','Vit K','Copper'] },
+  { name:'Pineapple',    family:'Bromeliaceae',  season:'spring', cal:50,  emoji:'🍍', img:'https://images.unsplash.com/photo-1439882121527-a37a4d53edfe?w=500&q=80', nutrients:['Bromelain','Vit C','Manganese'] },
+  { name:'Plum',         family:'Rosaceae',      season:'summer', cal:46,  emoji:'🍑', img:'https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=80', nutrients:['Vit C','Vit K','Antioxidants'] },
+  { name:'Pomegranate',  family:'Lythraceae',    season:'autumn', cal:83,  emoji:'🍎', img:'https://images.unsplash.com/photo-1516741272665-74b6d0e55dac?w=500&q=80', nutrients:['Punicalagins','Vit C','Folate'] },
+  { name:'Raspberry',    family:'Rosaceae',      season:'summer', cal:52,  emoji:'🍓', img:'https://images.unsplash.com/photo-1495379572396-5f27a279ee91?w=500&q=80', nutrients:['Fiber','Vit C','Manganese'] },
+  { name:'Starfruit',    family:'Oxalidaceae',   season:'summer', cal:31,  emoji:'⭐', img:'https://images.unsplash.com/photo-1527325678964-54921661f888?w=500&q=80', nutrients:['Vit C','Fiber','Copper'] },
+  { name:'Strawberry',   family:'Rosaceae',      season:'spring', cal:32,  emoji:'🍓', img:'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=500&q=80', nutrients:['Vit C','Folate','Manganese'] },
+  { name:'Watermelon',   family:'Cucurbitaceae', season:'summer', cal:30,  emoji:'🍉', img:'https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=500&q=80', nutrients:['Lycopene','Vit A','Hydration'] },
+];
+
+/* ── STATE ── */
+let activeSeason = 'all';
+let activeLetter = 'all';
+let searchQuery  = '';
+let sortOrder    = 'az';
+let isGridView   = true;
+let favourites   = new Set(JSON.parse(localStorage.getItem('hp-favs') || '[]'));
+const PAGE_SIZE  = 18;
+let visibleCount = PAGE_SIZE;
+
+/* ── HELPERS ── */
+function getFiltered() {
+  let list = [...fruits];
+  if (activeSeason !== 'all') list = list.filter(f => f.season === activeSeason || f.season === 'year');
+  if (activeLetter !== 'all') list = list.filter(f => f.name[0].toLowerCase() === activeLetter);
+  if (searchQuery)            list = list.filter(f => f.name.toLowerCase().includes(searchQuery) || f.family.toLowerCase().includes(searchQuery));
+  if (sortOrder === 'za')        list.sort((a,b) => b.name.localeCompare(a.name));
+  else if (sortOrder === 'az')   list.sort((a,b) => a.name.localeCompare(b.name));
+  else if (sortOrder === 'cal-low')  list.sort((a,b) => a.cal - b.cal);
+  else if (sortOrder === 'cal-high') list.sort((a,b) => b.cal - a.cal);
+  return list;
+}
+
+function saveFavs() {
+  localStorage.setItem('hp-favs', JSON.stringify([...favourites]));
+}
+
+/* ── RENDER ── */
+function renderAlphaBar() {
+  const bar = document.getElementById('alpha-bar');
+  const allBtn = bar.querySelector('.all-alpha');
+
+  // Remove old letter btns
+  bar.querySelectorAll('.alpha-letter').forEach(el => el.remove());
+
+  const letters = [...new Set(fruits.map(f => f.name[0].toUpperCase()))].sort();
+  letters.forEach(l => {
+    const btn = document.createElement('button');
+    btn.className = 'alpha-btn alpha-letter';
+    btn.dataset.letter = l.toLowerCase();
+    btn.textContent = l;
+    if (l.toLowerCase() === activeLetter) btn.classList.add('active');
+    btn.addEventListener('click', () => setLetter(l.toLowerCase()));
+    bar.appendChild(btn);
+  });
+
+  allBtn.classList.toggle('active', activeLetter === 'all');
+}
+
+function renderGrid() {
+  const grid    = document.getElementById('fruit-grid');
+  const empty   = document.getElementById('empty-state');
+  const counter = document.getElementById('results-count');
+  const loadWrap = document.getElementById('load-more-wrap');
+
+  const filtered = getFiltered();
+  const slice    = filtered.slice(0, visibleCount);
+  const remaining = filtered.length - slice.length;
+
+  counter.innerHTML = `Showing <strong>${slice.length}</strong> of <strong>${filtered.length}</strong> fruits`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    loadWrap.style.display = 'none';
+    return;
+  }
+  empty.style.display = 'none';
+
+  // Group by first letter for alpha view
+  const groups = {};
+  slice.forEach(f => {
+    const l = f.name[0].toUpperCase();
+    if (!groups[l]) groups[l] = [];
+    groups[l].push(f);
+  });
+
+  let html = '';
+  Object.keys(groups).sort().forEach(letter => {
+    html += `<div class="letter-header"><h2>${letter}</h2><div class="line"></div></div>`;
+    groups[letter].forEach((f, i) => {
+      const isFav = favourites.has(f.name);
+      const delay = Math.min(i * 0.05, 0.4);
+      html += `
+        <div class="fruit-card" data-name="${f.name}" style="animation-delay:${delay}s">
+          <div class="fruit-card-img">
+            <img src="${f.img}" alt="${f.name}" loading="lazy" />
+            <span class="season-badge ${f.season}">${seasonLabel(f.season)}</span>
+            <button class="fav-btn ${isFav?'active':''}" data-fruit="${f.name}" title="Save to favourites">${isFav?'❤️':'🤍'}</button>
+            <div class="quick-info">
+              ${f.nutrients.map(n=>`<span class="quick-pill">${n}</span>`).join('')}
+            </div>
+          </div>
+          <div class="fruit-card-body">
+            <div class="fruit-name">${f.name}</div>
+            <div class="fruit-family">${f.family}</div>
+            <div class="fruit-meta">
+              <span class="cal-badge">~${f.cal} kcal/100g</span>
+              <a class="detail-link" href="fruit-detail.html?fruit=${encodeURIComponent(f.name)}">Details →</a>
+            </div>
+          </div>
+        </div>`;
+    });
+  });
+
+  grid.innerHTML = html;
+  grid.className = isGridView ? '' : 'list-view';
+
+  // Favourite buttons
+  grid.querySelectorAll('.fav-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const name = btn.dataset.fruit;
+      if (favourites.has(name)) { favourites.delete(name); btn.textContent = '🤍'; btn.classList.remove('active'); }
+      else { favourites.add(name); btn.textContent = '❤️'; btn.classList.add('active'); }
+      saveFavs();
+    });
+  });
+
+  // Load more
+  if (remaining > 0) {
+    loadWrap.style.display = 'block';
+    document.getElementById('load-more-btn').textContent = `Load ${Math.min(remaining, PAGE_SIZE)} more fruits ↓`;
+  } else {
+    loadWrap.style.display = 'none';
+  }
+}
+
+function seasonLabel(s) {
+  return { summer:'☀️ Summer', spring:'🌸 Spring', autumn:'🍂 Autumn', winter:'❄️ Winter', year:'🌍 Year-round' }[s] || s;
+}
+
+/* ── FILTER ACTIONS ── */
+function setSeason(season) {
+  activeSeason = season;
+  visibleCount = PAGE_SIZE;
+  document.querySelectorAll('#season-tabs .season-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.season === season);
+  });
+  renderGrid();
+}
+
+function setLetter(letter) {
+  activeLetter = letter;
+  visibleCount = PAGE_SIZE;
+  document.querySelectorAll('.alpha-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.letter === letter);
+  });
+  renderGrid();
+}
+
+/* ── INIT ── */
+// Season tabs
+document.getElementById('season-tabs').addEventListener('click', e => {
+  const tab = e.target.closest('.season-tab');
+  if (tab) setSeason(tab.dataset.season);
+});
+
+// Alpha bar
+renderAlphaBar();
+document.getElementById('alpha-bar').addEventListener('click', e => {
+  const btn = e.target.closest('.alpha-btn');
+  if (btn) setLetter(btn.dataset.letter);
+});
+
+// Search
+document.getElementById('search-input').addEventListener('input', e => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  visibleCount = PAGE_SIZE;
+  renderGrid();
+});
+
+// Sort
+document.getElementById('sort-select').addEventListener('change', e => {
+  sortOrder = e.target.value;
+  visibleCount = PAGE_SIZE;
+  renderGrid();
+});
+
+// View toggle
+document.getElementById('grid-btn').addEventListener('click', () => {
+  isGridView = true;
+  document.getElementById('grid-btn').classList.add('active');
+  document.getElementById('list-btn').classList.remove('active');
+  renderGrid();
+});
+document.getElementById('list-btn').addEventListener('click', () => {
+  isGridView = false;
+  document.getElementById('list-btn').classList.add('active');
+  document.getElementById('grid-btn').classList.remove('active');
+  renderGrid();
+});
+
+// Load more
+document.getElementById('load-more-btn').addEventListener('click', () => {
+  visibleCount += PAGE_SIZE;
+  renderGrid();
+});
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Initial render
+renderGrid();
+</script>
+</body>
+</html>
