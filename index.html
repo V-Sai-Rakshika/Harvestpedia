@@ -500,8 +500,8 @@
       .nav-links { display: none; }
     }
   </style>
-  <script src="/Harvestpedia/js/api.js"></script>
-  <script src="Harvestpedia/js/darkmode.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/darkmode.js"></script>
 </head>
 <body>
 
@@ -627,7 +627,7 @@
         <p>Explore the world of greens, roots, and cruciferous wonders. Find the perfect vegetable for your dietary needs.</p>
         <div class="cat-footer">
           <span class="cat-count">180 varieties</span>
-          <div class="cat-arrow">→</div>
+          <a class="cat-arrow" href="vegetables.html">→</a>
         </div>
       </div>
     </div>
@@ -642,7 +642,7 @@
         <p>Medicinal herbs, aromatic spices, and indoor plants — learn to grow your own green companions at home.</p>
         <div class="cat-footer">
           <span class="cat-count">120 species</span>
-          <div class="cat-arrow">→</div>
+          <a class="cat-arrow" href="plants.html">→</a>
         </div>
       </div>
     </div>
@@ -820,6 +820,17 @@
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
   });
+
+  grid.querySelectorAll('.fav-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const name = btn.dataset.fruit;
+      if (favourites.has(name)) { favourites.delete(name); btn.textContent = '🤍'; btn.classList.remove('active'); }
+      else { favourites.add(name); btn.textContent = '❤️'; btn.classList.add('active'); }
+      saveFavs();
+    });
+  });
+
 </script>
 </body>
 </html>

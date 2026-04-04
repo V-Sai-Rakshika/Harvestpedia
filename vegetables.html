@@ -125,7 +125,7 @@
     #veg-grid.list-view { grid-template-columns:1fr; }
 
     /* ── VEGETABLE CARD ── */
-    .veg-card { border-radius:var(--radius-md); background:white; border:1px solid rgba(109,191,62,.10); box-shadow:var(--shadow-sm); overflow:hidden; cursor:pointer; transition:all .32s cubic-bezier(.34,1.56,.64,1); position:relative; animation:cardIn .5s ease both; }
+    .veg-card { text-decoration: none; color: inherit; display: block; border-radius:var(--radius-md); background:white; border:1px solid rgba(109,191,62,.10); box-shadow:var(--shadow-sm); overflow:hidden; cursor:pointer; transition:all .32s cubic-bezier(.34,1.56,.64,1); position:relative; animation:cardIn .5s ease both; }
     @keyframes cardIn { from{opacity:0;transform:translateY(20px) scale(.96);}to{opacity:1;transform:translateY(0) scale(1);} }
     .veg-card:hover { transform:translateY(-8px) scale(1.02); box-shadow:var(--shadow-lg); border-color:transparent; }
 
@@ -496,7 +496,7 @@ function renderGrid(){
       const delay = Math.min(i * 0.05, 0.4);
       const famSlug = slugFamily(v.family);
       html += `
-        <div class="veg-card" data-name="${v.name}" style="animation-delay:${delay}s">
+        <a class="veg-card" data-name="${v.name}" style="animation-delay:${delay}s" href="vegetable_detail.html?veg=${encodeURIComponent(v.name)}">
           <div class="veg-card-img">
             <img src="${v.img}" alt="${v.name}" loading="lazy" />
             <span class="family-badge ${famSlug}">${v.family}</span>
@@ -511,10 +511,10 @@ function renderGrid(){
             <div class="veg-family-label">${v.family} · ${(seasonMap[v.season]||v.season).split(' ')[1]||'Year-round'}</div>
             <div class="veg-meta">
               <span class="cal-badge">~${v.cal} kcal/100g</span>
-              <a class="detail-link" href="vegetable-detail.html?veg=${encodeURIComponent(v.name)}">Details →</a>
+              <span class="detail-link">Details →</span>
             </div>
           </div>
-        </div>`;
+        </a>`;
     });
   });
 

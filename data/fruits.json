@@ -1,0 +1,2186 @@
+{
+  "Apple": {
+    "about": "Apple is a sweet, crunchy fruit with firm flesh and a mild, refreshing flavor. It is one of the most widely grown fruits in temperate regions and is eaten fresh, cooked, or juiced. Apples are also rich in fiber and antioxidants.",
+    "nutrition": {
+      "cal": "52 kcal",
+      "carbs": "13.8g",
+      "fiber": "2.4g",
+      "sugar": "10.4g",
+      "protein": "0.3g",
+      "fat": "0.2g"
+    },
+    "benefits": [
+      "Supports heart health by helping reduce LDL cholesterol",
+      "Improves digestion due to its fiber content"
+    ],
+    "seasons": {
+      "peak": ["September"],
+      "good": ["October"],
+      "low": ["March"]
+    },
+    "tips": [
+      "Pick firm apples with smooth, unblemished skin and no bruises.",
+      "Store in a cool, dry place or in the fridge to extend freshness."
+    ],
+    "varieties": [
+      {
+        "name": "Fuji",
+        "taste": "Sweet, mild, slightly crisp",
+        "use": "Eating fresh, salads, snacking",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Antioxidant‑rich",
+      "High‑fiber",
+      "Sweet",
+      "Crunchy"
+    ],
+    "origin": "Central Asia"
+  },
+  "Apricot": {
+    "about": "Apricot is a small, soft stone fruit with orange flesh and a sweet‑tart flavor. It has a velvety skin and a firm texture when slightly under‑ripe. Apricots are often eaten fresh, dried, or used in jams and desserts.",
+    "nutrition": {
+      "cal": "48 kcal",
+      "carbs": "11g",
+      "fiber": "2g",
+      "sugar": "9g",
+      "protein": "1.4g",
+      "fat": "0.4g"
+    },
+    "benefits": [
+      "Supports eye health thanks to high beta‑carotene (vitamin A)",
+      "Helps digestion due to moderate fiber content"
+    ],
+    "seasons": {
+      "peak": ["May"],
+      "good": ["June"],
+      "low": ["November"]
+    },
+    "tips": [
+      "Choose fragrant, slightly soft apricots with no wrinkles.",
+      "Ripe apricots bruise easily, so handle them gently."
+    ],
+    "varieties": [
+      {
+        "name": "Harcot",
+        "taste": "Sweet, aromatic, slightly tangy",
+        "use": "Eating fresh, drying, baking",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Vitamin A‑rich",
+      "Fiber‑rich",
+      "Sweet‑tart",
+      "Stone fruit"
+    ],
+    "origin": "China / Central Asia"
+  },
+  "Avocado": {
+    "about": "Avocado is a creamy, buttery fruit with a rich green flesh and a mild, nutty flavor. It is low in sugar but high in healthy fats, making it popular in salads, toast, and smoothies. The skin is dark and bumpy, and the pit is large.",
+    "nutrition": {
+      "cal": "160 kcal",
+      "carbs": "9g",
+      "fiber": "7g",
+      "sugar": "0.7g",
+      "protein": "2g",
+      "fat": "15g"
+    },
+    "benefits": [
+      "Supports heart health with monounsaturated fats",
+      "Provides potassium and fiber for blood pressure and digestion support"
+    ],
+    "seasons": {
+      "peak": ["July"],
+      "good": ["September"],
+      "low": ["February"]
+    },
+    "tips": [
+      "Gently press the stem area; it should yield slightly when ripe.",
+      "To slow ripening, store unripe avocados at room temperature."
+    ],
+    "varieties": [
+      {
+        "name": "Hass",
+        "taste": "Creamy, rich, slightly nutty",
+        "use": "Guacamole, salads, toast, smoothies",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Healthy‑fat‑rich",
+      "Creamy",
+      "Low‑sugar",
+      "Heart‑healthy"
+    ],
+    "origin": "Central/South America"
+  },
+  "Banana": {
+    "about": "Banana is a soft, sweet fruit with a creamy yellow pulp and a thin peel. It is a major source of quick energy due to natural sugars and potassium. Bananas are commonly eaten fresh, added to smoothies, or used in baking.",
+    "nutrition": {
+      "cal": "89 kcal",
+      "carbs": "23g",
+      "fiber": "2.6g",
+      "sugar": "12g",
+      "protein": "1.1g",
+      "fat": "0.3g"
+    },
+    "benefits": [
+      "Boosts energy and stamina with fast‑release carbohydrates",
+      "Supports nerve and muscle function with high potassium content"
+    ],
+    "seasons": {
+      "peak": ["April"],
+      "good": ["June"],
+      "low": ["November"]
+    },
+    "tips": [
+      "Pick bananas with bright yellow skin and no major brown patches.",
+      "To slow ripening, separate bananas from the bunch and store at room temperature."
+    ],
+    "varieties": [
+      {
+        "name": "Cavendish",
+        "taste": "Sweet, creamy, mild",
+        "use": "Eating fresh, smoothies, baking",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Potassium‑rich",
+      "High‑energy",
+      "Soft",
+      "Sweet"
+    ],
+    "origin": "Southeast Asia"
+  },
+  "Blueberry": {
+    "about": "Blueberry is a small, juicy berry with deep blue skin and soft, seedy flesh. It has a sweet‑tart flavor and is often eaten raw, in smoothies, or baked into desserts. Blueberries are also one of the most antioxidant‑dense fruits.",
+    "nutrition": {
+      "cal": "57 kcal",
+      "carbs": "14g",
+      "fiber": "2.4g",
+      "sugar": "10g",
+      "protein": "0.7g",
+      "fat": "0.3g"
+    },
+    "benefits": [
+      "Supports brain health and memory due to flavonoids",
+      "Improves heart health and reduces oxidative stress"
+    ],
+    "seasons": {
+      "peak": ["July"],
+      "good": ["August"],
+      "low": ["March"]
+    },
+    "tips": [
+      "Look for plump, deep‑blue berries with a silvery bloom on the skin.",
+      "Store in the fridge and rinse just before eating to avoid moisture loss."
+    ],
+    "varieties": [
+      {
+        "name": "Bluecrop",
+        "taste": "Balanced sweet‑tart",
+        "use": "Fresh, baking, jams",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Antioxidant‑rich",
+      "High‑fiber",
+      "Tiny",
+      "Juicy"
+    ],
+    "origin": "North America"
+  },
+  "Cherry": {
+    "about": "Cherry is a small stone fruit with juicy flesh and a sweet or tart flavor depending on variety. It often has a bright red or dark purple skin and is commonly eaten fresh, in desserts, or as dried cherries. Some varieties are also used in jams and alcoholic drinks.",
+    "nutrition": {
+      "cal": "63 kcal",
+      "carbs": "16g",
+      "fiber": "2.1g",
+      "sugar": "12g",
+      "protein": "1g",
+      "fat": "0.3g"
+    },
+    "benefits": [
+      "May support sleep and recovery due to natural melatonin",
+      "Rich in antioxidants that protect cells from damage"
+    ],
+    "seasons": {
+      "peak": ["May"],
+      "good": ["June"],
+      "low": ["December"]
+    },
+    "tips": [
+      "Choose firm, glossy cherries with attached stems and no soft spots.",
+      "Refrigerate cherries in a ventilated container to keep them fresh longer."
+    ],
+    "varieties": [
+      {
+        "name": "Bing",
+        "taste": "Sweet, dark, juicy",
+        "use": "Eating fresh, desserts, baking",
+        "india": "No"
+      }
+    ],
+    "tags": [
+      "Antioxidant‑rich",
+      "Sweet‑juicy",
+      "Stone fruit",
+      "Sleep‑supporting"
+    ],
+    "origin": "Asia Minor / Europe"
+  },
+  "Coconut": {
+    "about": "Coconut is a large, fibrous fruit with a tough brown shell, white flesh, and clear, hydrating water inside. It is used for drinking water, grating meat, extracting oil, and making coconut milk. The flavor is mild with a rich, nutty undertone.",
+    "nutrition": {
+      "cal": "354 kcal",
+      "carbs": "15g",
+      "fiber": "9g",
+      "sugar": "6g",
+      "protein": "3.3g",
+      "fat": "33g"
+    },
+    "benefits": [
+      "Provides hydration and electrolytes from coconut water",
+      "Supplies healthy fats that support energy and metabolism"
+    ],
+    "seasons": {
+      "peak": ["March"],
+      "good": ["April"],
+      "low": ["November"]
+    },
+    "tips": [
+      "Shake the coconut; it should sound full of water and feel heavy.",
+      "Store whole coconuts in a cool, dry place; break only when needed."
+    ],
+    "varieties": [
+      {
+        "name": "West Coast Tall",
+        "taste": "Mild, sweet, slightly nutty",
+        "use": "Water, kernel, cooking, oil extraction",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Hydrating",
+      "Healthy‑fat‑rich",
+      "Nutty",
+      "Tropical"
+    ],
+    "origin": "Tropical regions (likely Southeast Asia)"
+  },
+  "Dragon Fruit": {
+    "about": "Dragon fruit is a tropical cactus fruit with a bright pink or yellow skin and white or magenta flesh speckled with tiny black seeds. It has a mild, slightly sweet, watermelon‑like flavor and a refreshing texture. It is often eaten fresh or in smoothies.",
+    "nutrition": {
+      "cal": "60 kcal",
+      "carbs": "13g",
+      "fiber": "3g",
+      "sugar": "8g",
+      "protein": "1.2g",
+      "fat": "0.4g"
+    },
+    "benefits": [
+      "Supports digestion with prebiotic fiber",
+      "Adds antioxidants and hydration to the diet"
+    ],
+    "seasons": {
+      "peak": ["July"],
+      "good": ["August"],
+      "low": ["January"]
+    },
+    "tips": [
+      "Look for bright‑colored skin with no brown spots or splits.",
+      "Eat immediately or refrigerate in a sealed container to retain freshness."
+    ],
+    "varieties": [
+      {
+        "name": "Red Dragon",
+        "taste": "Mildly sweet, slightly tart",
+        "use": "Fresh, smoothies, salads",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Fiber‑rich",
+      "Hydrating",
+      "Mild",
+      "Exotic"
+    ],
+    "origin": "Central America"
+  },
+  "Durian": {
+    "about": "Durian is a large, spiky tropical fruit with creamy, pungent flesh and a strong aroma often described as smelling like onions or garlic. When ripe, the flesh is rich, sweet‑savory, and custard‑like. It is popular in Southeast Asia as a fresh fruit and in desserts.",
+    "nutrition": {
+      "cal": "147 kcal",
+      "carbs": "27g",
+      "fiber": "3.8g",
+      "sugar": "6.7g",
+      "protein": "1.5g",
+      "fat": "5g"
+    },
+    "benefits": [
+      "Provides quick energy from complex carbohydrates and healthy fats",
+      "Supports heart health with potassium and monounsaturated fats"
+    ],
+    "seasons": {
+      "peak": ["June"],
+      "good": ["July"],
+      "low": ["December"]
+    },
+    "tips": [
+      "Smell carefully; avoid fruits with a fermented or overly sour odor.",
+      "Choose cracked fruits with a clear opening; avoid leaking or mushy portions."
+    ],
+    "varieties": [
+      {
+        "name": "Musang King",
+        "taste": "Creamy, rich, sweet with a hint of bitterness",
+        "use": "Fresh, desserts, ice cream",
+        "india": "Yes (imported)"
+      }
+    ],
+    "tags": [
+      "High‑energy",
+      "Pungent",
+      "Creamy",
+      "Tropical"
+    ],
+    "origin": "Southeast Asia"
+  },
+  "Fig": {
+    "about": "Fig is a soft, seedy fruit with a pear‑like shape and a sweet, honey‑like flavor. The skin is thin, and the flesh is filled with tiny edible seeds. Figs are enjoyed fresh, dried, or in jams, and are historically one of the oldest cultivated fruits.",
+    "nutrition": {
+      "cal": "74 kcal",
+      "carbs": "19g",
+      "fiber": "2.9g",
+      "sugar": "16g",
+      "protein": "0.8g",
+      "fat": "0.3g"
+    },
+    "benefits": [
+      "Supports digestion with soluble fiber",
+      "Contributes to mineral‑rich snacks like dried figs"
+    ],
+    "seasons": {
+      "peak": ["August"],
+      "good": ["September"],
+      "low": ["March"]
+    },
+    "tips": [
+      "Choose soft, plump figs with no dents or mold on the skin.",
+      "Refrigerate figs and consume within a day or two for best flavor."
+    ],
+    "varieties": [
+      {
+        "name": "Calimyrna",
+        "taste": "Sweet, nutty, mildly floral",
+        "use": "Fresh, dried, compotes",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Fiber‑rich",
+      "Sweet",
+      "Soft",
+      "Seedy"
+    ],
+    "origin": "Western Asia"
+  },
+  "Grape": {
+    "about": "Grape is a small berry that grows in clusters, with a juicy, sweet or tart pulp and edible skin. Grapes can be green, red, or purple and are eaten fresh, dried into raisins, or pressed into juice and wine. The flavor is mild and refreshing.",
+    "nutrition": {
+      "cal": "69 kcal",
+      "carbs": "18g",
+      "fiber": "0.9g",
+      "sugar": "15g",
+      "protein": "0.7g",
+      "fat": "0.2g"
+    },
+    "benefits": [
+      "Supports heart health with resveratrol and other antioxidants",
+      "Contains natural sugars that provide quick energy"
+    ],
+    "seasons": {
+      "peak": ["August"],
+      "good": ["September"],
+      "low": ["February"]
+    },
+    "tips": [
+      "Choose firm, plump grapes with no wrinkles or brown spots.",
+      "Rinse grapes just before eating to avoid moisture loss."
+    ],
+    "varieties": [
+      {
+        "name": "Thompson Seedless",
+        "taste": "Sweet, mild, slightly crisp",
+        "use": "Eating fresh, raisins, juice",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Antioxidant‑rich",
+      "Juicy",
+      "Sweet",
+      "In clusters"
+    ],
+    "origin": "Western Asia / Mediterranean"
+  },
+  "Grapefruit": {
+    "about": "Grapefruit is a large citrus fruit with a thick rind, segmented flesh, and a sweet‑tart, slightly bitter taste. It is commonly eaten fresh, juiced, or used in salads and dressings. The flesh can be pink, red, or pale yellow.",
+    "nutrition": {
+      "cal": "32 kcal",
+      "carbs": "8g",
+      "fiber": "1.4g",
+      "sugar": "6g",
+      "protein": "0.8g",
+      "fat": "0.1g"
+    },
+    "benefits": [
+      "Boosts immune support with high vitamin C content",
+      "Supports heart health with antioxidants and flavonoids"
+    ],
+    "seasons": {
+      "peak": ["January"],
+      "good": ["February"],
+      "low": ["July"]
+    },
+    "tips": [
+      "Remove the white pith if it is too bitter.",
+      "Select firm, heavy grapefruits with smooth skin for juiciness."
+    ],
+    "varieties": [
+      {
+        "name": "Ruby Red",
+        "taste": "Sweet, juicy, slightly tart",
+        "use": "Fresh, juice, salads, desserts",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Vitamin C‑rich",
+      "Tart‑sweet",
+      "Citrus",
+      "Bitter‑pithy"
+    ],
+    "origin": "Southeast Asia"
+  },
+  "Guava": {
+    "about": "Guava is a fragrant tropical fruit with soft, juicy flesh that can be white or pink and is filled with small, hard seeds. It has a sweet, floral flavor with a hint of acidity. Guavas are eaten fresh, juiced, or used in jams and chutneys.",
+    "nutrition": {
+      "cal": "68 kcal",
+      "carbs": "14g",
+      "fiber": "5.4g",
+      "sugar": "8.9g",
+      "protein": "2.6g",
+      "fat": "0.9g"
+    },
+    "benefits": [
+      "Strengthens the immune system with very high vitamin C",
+      "Supports digestion due to high fiber content"
+    ],
+    "seasons": {
+      "peak": ["June"],
+      "good": ["July"],
+      "low": ["December"]
+    },
+    "tips": [
+      "Pick firm, fragrant guavas with a pleasant aroma.",
+      "Rinse well before eating to remove surface dust and pesticide residues."
+    ],
+    "varieties": [
+      {
+        "name": "White‑flesh",
+        "taste": "Sweet, mild, floral",
+        "use": "Fresh, juices, jellies",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Vitamin C‑rich",
+      "High‑fiber",
+      "Fragrant",
+      "Tropical"
+    ],
+    "origin": "Central America"
+  },
+  "Jackfruit": {
+    "about": "Jackfruit is a large, spiky tropical fruit with dense, fibrous pods of sweet flesh surrounding a big central core. The ripe flesh is sweet and tropical, while unripe fruit is used as a meaty vegetable in savory dishes. Jackfruit is popular in South and Southeast Asian cuisines.",
+    "nutrition": {
+      "cal": "95 kcal",
+      "carbs": "23g",
+      "fiber": "1.8g",
+      "sugar": "19g",
+      "protein": "1.7g",
+      "fat": "0.6g"
+    },
+    "benefits": [
+      "Provides energy and potassium from natural carbohydrates",
+      "Unripe jackfruit is a plant‑based meat alternative with fiber and B vitamins"
+    ],
+    "seasons": {
+      "peak": ["June"],
+      "good": ["July"],
+      "low": ["October"]
+    },
+    "tips": [
+      "Check for firm, intact pods; avoid fruits with soft, leaking areas.",
+      "Use gloves when handling raw jackfruit because it releases sticky latex."
+    ],
+    "varieties": [
+      {
+        "name": "Varika",
+        "taste": "Sweet, mildly floral",
+        "use": "Fresh, curries, 'pulled meat' dishes",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "High‑energy",
+      "Fiber‑rich",
+      "Tropical",
+      "Meat‑like"
+    ],
+    "origin": "South Asia"
+  },
+  "Kiwi": {
+    "about": "Kiwi is a small, oval fruit covered in fuzzy brown skin with bright green or golden flesh and tiny black seeds. The flesh is sweet‑tart and juicy, with a refreshing, tropical flavor. Kiwis are usually eaten fresh or sliced into salads and desserts.",
+    "nutrition": {
+      "cal": "61 kcal",
+      "carbs": "15g",
+      "fiber": "3g",
+      "sugar": "9g",
+      "protein": "1.1g",
+      "fat": "0.5g"
+    },
+    "benefits": [
+      "Supports immune health with very high vitamin C",
+      "Aids digestion with fiber and enzymes"
+    ],
+    "seasons": {
+      "peak": ["November"],
+      "good": ["December"],
+      "low": ["May"]
+    },
+    "tips": [
+      "Gently press the fruit; it should yield slightly when ripe.",
+      "Store at room temperature until ripe, then refrigerate to extend shelf life."
+    ],
+    "varieties": [
+      {
+        "name": "Hayward",
+        "taste": "Sweet, tangy, tropical",
+        "use": "Eating fresh, smoothies, fruit salads",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Vitamin C‑rich",
+      "Soft‑sweet",
+      "Seedy",
+      "Tropical"
+    ],
+    "origin": "China"
+  },
+  "Lemon": {
+    "about": "Lemon is a small, oval citrus fruit with a bright yellow peel and sour, juicy flesh divided into segments. It is rarely eaten alone but is widely used for its juice, zest, and aroma in drinks, dressings, marinades, and cooking.",
+    "nutrition": {
+      "cal": "29 kcal",
+      "carbs": "9g",
+      "fiber": "2.8g",
+      "sugar": "2.5g",
+      "protein": "1.1g",
+      "fat": "0.3g"
+    },
+    "benefits": [
+      "Strengthens immune function with vitamin C and citric acid",
+      "May support digestion and detoxification processes"
+    ],
+    "seasons": {
+      "peak": ["January"],
+      "good": ["February"],
+      "low": ["August"]
+    },
+    "tips": [
+      "Select heavy, firm lemons with smooth, bright yellow skin for maximum juice.",
+      "Roll the lemon on the counter before cutting to extract more juice."
+    ],
+    "varieties": [
+      {
+        "name": "Eureka",
+        "taste": "Tart, sharp, acidic",
+        "use": "Juice, dressings, marinades, cooking",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Vitamin C‑rich",
+      "Tart",
+      "Citrus",
+      "Versatile"
+    ],
+    "origin": "South Asia"
+  },
+  "Lychee": {
+    "about": "Lychee is a small, round tropical fruit with a rough, red or pink shell and juicy, translucent white flesh surrounding a large brown seed. It has a sweet, floral, and slightly musky flavor. Lychees are often eaten fresh, canned, or in desserts.",
+    "nutrition": {
+      "cal": "66 kcal",
+      "carbs": "17g",
+      "fiber": "1.3g",
+      "sugar": "15g",
+      "protein": "0.8g",
+      "fat": "0.4g"
+    },
+    "benefits": [
+      "Provides hydration and vitamin C for immune support",
+      "Supplies quick energy due to natural sugars"
+    ],
+    "seasons": {
+      "peak": ["May"],
+      "good": ["June"],
+      "low": ["November"]
+    },
+    "tips": [
+      "Avoid cracked or brown‑spotted shells.",
+      "Eat lychees soon after peeling to enjoy their delicate flavor."
+    ],
+    "varieties": [
+      {
+        "name": "Bengal",
+        "taste": "Sweet, floral, juicy",
+        "use": "Fresh, desserts, smoothies",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Vitamin C‑rich",
+      "Juicy",
+      "Sweet",
+      "Tropical"
+    ],
+    "origin": "Southern China"
+  },
+  "Mango": {
+    "about": "Mango is a large, oval tropical stone fruit with soft, juicy flesh that can be yellow, orange, or red, and a flat, central seed. It has a sweet, aromatic flavor and a creamy texture, often described as the 'king of fruits' in South Asia.",
+    "nutrition": {
+      "cal": "60 kcal",
+      "carbs": "15g",
+      "fiber": "1.6g",
+      "sugar": "14g",
+      "protein": "0.8g",
+      "fat": "0.4g"
+    },
+    "benefits": [
+      "Strengthens the immune system with high vitamin C and beta‑carotene",
+      "Supports skin and eye health due to vitamin A"
+    ],
+    "seasons": {
+      "peak": ["May"],
+      "good": ["June"],
+      "low": ["December"]
+    },
+    "tips": [
+      "Choose fragrant, slightly soft mangos with no black spots.",
+      "Ripen at room temperature and refrigerate once ripe to slow over‑ripening."
+    ],
+    "varieties": [
+      {
+        "name": "Alphonso",
+        "taste": "Sweet, creamy, rich",
+        "use": "Eating fresh, desserts, smoothies",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Vitamin A‑rich",
+      "Sweet‑creamy",
+      "Tropical",
+      "Aromatic"
+    ],
+    "origin": "South Asia"
+  },
+  "Melon": {
+    "about": "Melon refers to large, juicy fruits such as cantaloupe and muskmelon, with a netted rind and sweet, pale or orange flesh. The flesh is very watery and refreshing, making melons popular in hot weather. They are eaten fresh or in fruit salads.",
+    "nutrition": {
+      "cal": "36 kcal",
+      "carbs": "8g",
+      "fiber": "0.9g",
+      "sugar": "7.9g",
+      "protein": "0.8g",
+      "fat": "0.2g"
+    },
+    "benefits": [
+      "Promotes hydration due to very high water content",
+      "Adds vitamin A and some vitamin C from the orange‑flesh varieties"
+    ],
+    "seasons": {
+      "peak": ["July"],
+      "good": ["August"],
+      "low": ["February"]
+    },
+    "tips": [
+      "Smell the blossom end; it should smell sweet and ripe.",
+      "Cut and store in the fridge to keep it crisp and cool."
+    ],
+    "varieties": [
+      {
+        "name": "Cantaloupe",
+        "taste": "Sweet, mild, watery",
+        "use": "Fresh, salads, smoothies",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Hydrating",
+      "Juicy",
+      "Sweet",
+      "Refreshing"
+    ],
+    "origin": "Africa / Middle East"
+  },
+  "Orange": {
+    "about": "Orange is a round citrus fruit with a bright orange peel and juicy, sweet‑tart segments inside. It is one of the most widely consumed fruits in the world, eaten fresh, squeezed for juice, or used in salads and desserts.",
+    "nutrition": {
+      "cal": "47 kcal",
+      "carbs": "12g",
+      "fiber": "2.4g",
+      "sugar": "9g",
+      "protein": "0.9g",
+      "fat": "0.1g"
+    },
+    "benefits": [
+      "Strengthens the immune system with high vitamin C",
+      "Supports heart health and collagen formation with antioxidants"
+    ],
+    "seasons": {
+      "peak": ["December"],
+      "good": ["January"],
+      "low": ["June"]
+    },
+    "tips": [
+      "Choose firm, heavy oranges with smooth skin.",
+      "Roll on the counter before juicing to extract more juice."
+    ],
+    "varieties": [
+      {
+        "name": "Valencia",
+        "taste": "Sweet‑tart, juicy",
+        "use": "Fresh, juice, salads",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Vitamin C‑rich",
+      "Citrus",
+      "Juicy",
+      "Sweet‑tart"
+    ],
+    "origin": "Southeast Asia"
+  },
+  "Papaya": {
+    "about": "Papaya is a large, oblong tropical fruit with soft orange flesh and black seeds clustered around a central cavity. It has a sweet, musky flavor and is often eaten fresh or blended into smoothies. Unripe papaya is used in curries and digestive preparations.",
+    "nutrition": {
+      "cal": "43 kcal",
+      "carbs": "11g",
+      "fiber": "1.7g",
+      "sugar": "8g",
+      "protein": "0.5g",
+      "fat": "0.3g"
+    },
+    "benefits": [
+      "Aids digestion with the enzyme papain",
+      "Supports skin health with vitamin C and carotenoids"
+    ],
+    "seasons": {
+      "peak": ["June"],
+      "good": ["July"],
+      "low": ["January"]
+    },
+    "tips": [
+      "Gently press the skin; it should yield slightly when ripe.",
+      "Discard the seeds or use them as a spice in small amounts."
+    ],
+    "varieties": [
+      {
+        "name": "Red Lady",
+        "taste": "Sweet, musky, creamy",
+        "use": "Fresh, smoothies, salads",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Digestive‑enzyme‑rich",
+      "Hydrating",
+      "Sweet‑creamy",
+      "Tropical"
+    ],
+    "origin": "Central America"
+  },
+  "Peach": {
+    "about": "Peach is a soft, fuzzy stone fruit with sweet, juicy flesh and a central stone. The skin can be yellow or white, and the flesh is delicately fragrant. Peaches are eaten fresh, canned, or baked into desserts.",
+    "nutrition": {
+      "cal": "39 kcal",
+      "carbs": "10g",
+      "fiber": "1.5g",
+      "sugar": "8.4g",
+      "protein": "0.9g",
+      "fat": "0.3g"
+    },
+    "benefits": [
+      "Supports skin health with vitamin C and antioxidants",
+      "Adds gentle fiber without heavy calories"
+    ],
+    "seasons": {
+      "peak": ["June"],
+      "good": ["July"],
+      "low": ["December"]
+    },
+    "tips": [
+      "Choose fragrant, slightly soft peaches with no wrinkles.",
+      "Refrigerate ripe peaches to slow ripening."
+    ],
+    "varieties": [
+      {
+        "name": "Elberta",
+        "taste": "Sweet, juicy, slightly tart",
+        "use": "Fresh, desserts, jams",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Antioxidant‑rich",
+      "Soft‑sweet",
+      "Stone fruit",
+      "Fragrant"
+    ],
+    "origin": "China"
+  },
+  "Pear": {
+    "about": "Pear is a bell‑shaped fruit with soft, juicy flesh and a thin, edible skin. It has a mild, sweet flavor and is often used in salads, desserts, and preserves. The flesh can be firm or buttery depending on ripeness.",
+    "nutrition": {
+      "cal": "57 kcal",
+      "carbs": "15g",
+      "fiber": "3.1g",
+      "sugar": "9.8g",
+      "protein": "0.4g",
+      "fat": "0.1g"
+    },
+    "benefits": [
+      "Supports digestion with soluble fiber and sorbitol",
+      "Gentle on the digestive system, suitable for many diets"
+    ],
+    "seasons": {
+      "peak": ["September"],
+      "good": ["October"],
+      "low": ["March"]
+    },
+    "tips": [
+      "Gently press the stem; it should soften when ripe.",
+      "Store pears at room temperature until ripe, then refrigerate."
+    ],
+    "varieties": [
+      {
+        "name": "Bartlett",
+        "taste": "Sweet, juicy, mild",
+        "use": "Fresh, salads, baking",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Fiber‑rich",
+      "Sweet‑soft",
+      "Hat‑shaped",
+      "Gentle"
+    ],
+    "origin": "Western Asia"
+  },
+  "Pineapple": {
+    "about": "Pineapple is a tropical fruit with juicy, tangy flesh arranged around a tough central core. The flesh is yellow or pale orange, with a sweet‑tart, tropical flavor. Pineapple is eaten fresh, grilled, or blended into juices and smoothies.",
+    "nutrition": {
+      "cal": "50 kcal",
+      "carbs": "13g",
+      "fiber": "1.4g",
+      "sugar": "10g",
+      "protein": "0.5g",
+      "fat": "0.1g"
+    },
+    "benefits": [
+      "Aids digestion with the enzyme bromelain",
+      "Provides hydration and vitamin C for immune support"
+    ],
+    "seasons": {
+      "peak": ["June"],
+      "good": ["July"],
+      "low": ["November"]
+    },
+    "tips": [
+      "Look for a fragrant, firm pineapple with green leaves.",
+      "Cut off the tough core before eating or juicing."
+    ],
+    "varieties": [
+      {
+        "name": "Smooth Cayenne",
+        "taste": "Sweet‑tart, juicy",
+        "use": "Fresh, juices, toppings, grilled",
+        "india": "Yes"
+      }
+    ],
+    "tags": [
+      "Digestive‑enzyme‑rich",
+      "Tangy‑sweet",
+      "Tropical",
+      "Juicy"
+    ],
+    "origin": "South America"
+  },
+  "Plum": {
+    "about": "Plum is a small stone fruit with smooth, juicy flesh and a central stone. The skin and flesh can be red, purple, yellow, or green, and the flavor ranges from sweet to tart. Plums are eaten fresh, dried, or used in jams and desserts.",
+    "nutrition": {
+      "cal": "46 kcal",
+      "carbs": "11g",
+      "fiber": "1.4g",
+      "sugar": "10g",
+      "protein": "0.7g",
+      "fat": "0.3g"
+    },
+    "benefits": [
+      "Supports bone health with vitamin K and minerals",
+      "Adds fiber for gentle digestive support"
+    ],
+    "seasons": {
+    "peak": ["August"],
+    "good": ["September"],
+    "low": ["February"]
+  },
+  "tips": [
+    "Choose plums with firm, smooth skin and a slight give when pressed.",
+    "Refrigerate ripe plums to keep them fresh longer."
+  ],
+  "varieties": [
+    {
+      "name": "Santa Rosa",
+      "taste": "Sweet or tart, juicy",
+      "use": "Fresh, jams, baking",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Vitamin K‑rich",
+    "Sweet‑tart",
+    "Stone fruit",
+    "Juicy"
+  ],
+  "origin": "Western Asia"
+},
+"Pomegranate": {
+  "about": "Pomegranate is a leathery fruit with a thick outer skin and hundreds of juicy red arils inside. The arils are sweet‑tart and refreshing, packed with seeds and antioxidants. Pomegranate is eaten fresh, juiced, or used as a garnish.",
+  "nutrition": {
+    "cal": "83 kcal",
+    "carbs": "19g",
+    "fiber": "4g",
+    "sugar": "14g",
+    "protein": "1.7g",
+    "fat": "1.2g"
+  },
+  "benefits": [
+    "Supports heart health with powerful polyphenols",
+    "Provides antioxidants that reduce oxidative stress"
+  ],
+  "seasons": {
+    "peak": ["October"],
+    "good": ["November"],
+    "low": ["April"]
+  },
+  "tips": [
+    "Tap the fruit; it should feel firm and sound slightly hollow.",
+    "Roll the pomegranate on the counter before cutting to loosen the arils."
+  ],
+  "varieties": [
+    {
+      "name": "Wonderful",
+      "taste": "Sweet‑tart, intense",
+      "use": "Fresh, juice, salads",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Antioxidant‑rich",
+    "Seedy",
+    "Jeweled",
+    "Heart‑healthy"
+  ],
+  "origin": "Iran / Middle East"
+},
+"Raspberry": {
+  "about": "Raspberry is a small, red, hollow berry with tiny edible seeds and a sweet‑tart flavor. It is delicate and juicy, often used in desserts, jams, and smoothies. Raspberries are botanically aggregate fruits made of many tiny drupelets.",
+  "nutrition": {
+    "cal": "52 kcal",
+    "carbs": "12g",
+    "fiber": "6.5g",
+    "sugar": "4.4g",
+    "protein": "1.2g",
+    "fat": "0.7g"
+  },
+  "benefits": [
+    "Supports digestion with very high fiber",
+    "Provides antioxidants that protect cells"
+  ],
+  "seasons": {
+    "peak": ["July"],
+    "good": ["August"],
+    "low": ["February"]
+  },
+  "tips": [
+    "Handle gently; avoid crushed or moldy berries.",
+    "Refrigerate in a single layer and wash only before eating."
+  ],
+  "varieties": [
+    {
+      "name": "Heritage",
+      "taste": "Sweet‑tart, fruity",
+      "use": "Fresh, desserts, jams",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Fiber‑rich",
+    "Antioxidant‑rich",
+    "Delicate",
+    "Sweet‑tart"
+  ],
+  "origin": "Europe"
+},
+"Starfruit": {
+  "about": "Starfruit (carambola) is a waxy, star‑shaped tropical fruit with juicy, translucent flesh. The flavor is sweet‑tart and slightly tangy, similar to a mix of apple, grape, and citrus. It is often eaten fresh or used as a decorative garnish.",
+  "nutrition": {
+    "cal": "31 kcal",
+    "carbs": "7g",
+    "fiber": "2.8g",
+    "sugar": "4g",
+    "protein": "1g",
+    "fat": "0.3g"
+  },
+  "benefits": [
+    "Promotes hydration due to high water content",
+    "Adds fiber and antioxidants with low calories"
+  ],
+  "seasons": {
+    "peak": ["June"],
+    "good": ["July"],
+    "low": ["November"]
+  },
+  "tips": [
+    "Look for firm, bright yellow fruits with no brown spots.",
+    "Slice crosswise to reveal the star shape and remove any dark edges."
+  ],
+  "varieties": [
+    {
+      "name": "Arkin",
+      "taste": "Sweet‑tart, crisp",
+      "use": "Fresh, salads, garnish",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Hydrating",
+    "Low‑calorie",
+    "Star‑shaped",
+    "Sweet‑tart"
+  ],
+  "origin": "Southeast Asia"
+},
+"Strawberry": {
+  "about": "Strawberry is a small, conical red berry with a sweet, slightly tart flavor and tiny seeds on the surface. It is juicy and fragrant, commonly eaten fresh, in desserts, or blended into smoothies. Strawberries grow horizontally on plants with white flowers.",
+  "nutrition": {
+    "cal": "32 kcal",
+    "carbs": "7.7g",
+    "fiber": "2g",
+    "sugar": "4.9g",
+    "protein": "0.7g",
+    "fat": "0.3g"
+  },
+  "benefits": [
+    "Supports heart health with antioxidants and polyphenols",
+    "Enhances skin health with vitamin C and ellagic acid"
+  ],
+  "seasons": {
+    "peak": ["April"],
+    "good": ["May"],
+    "low": ["September"]
+  },
+  "tips": [
+    "Choose bright red, firm berries with green caps still attached.",
+    "Store in the fridge in a single layer and avoid washing until just before use."
+  ],
+  "varieties": [
+    {
+      "name": "Chandler",
+      "taste": "Sweet‑tart, juicy",
+      "use": "Fresh, desserts, smoothies",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Antioxidant‑rich",
+    "Sweet‑tart",
+    "Juicy",
+    "Red berry"
+  ],
+  "origin": "Americas"
+},
+"Watermelon": {
+  "about": "Watermelon is a large, round or oblong fruit with green rind and sweet red or pink flesh. It is extremely juicy with very high water content, making it a popular cooling fruit in hot weather. Seeds may be present or bred out in seedless varieties.",
+  "nutrition": {
+    "cal": "30 kcal",
+    "carbs": "7.6g",
+    "fiber": "0.4g",
+    "sugar": "6.2g",
+    "protein": "0.6g",
+    "fat": "0.2g"
+  },
+  "benefits": [
+    "Provides strong hydration and electrolyte support",
+    "Contains lycopene that supports heart and prostate health"
+  ],
+  "seasons": {
+    "peak": ["June"],
+    "good": ["July"],
+    "low": ["January"]
+  },
+  "tips": [
+    "Look for a firm, heavy melon with a creamy yellow spot on the bottom.",
+    "Store whole watermelons at room temperature until cut, then refrigerate."
+  ],
+  "varieties": [
+    {
+      "name": "Crimson Sweet",
+      "taste": "Sweet, refreshing, juicy",
+      "use": "Fresh, juice, desserts",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Hydrating",
+    "Juicy",
+    "Low‑calorie",
+    "Refreshing"
+  ],
+  "origin": "Africa"
+},
+"Passion Fruit": {
+  "about": "Passion fruit is a wrinkled, oval fruit with a purple or yellow rind enclosing aromatic, seedy pulp. The pulp is sweet‑tart and strongly fragrant, often scooped out and eaten raw or used in juices, desserts, and cocktails.",
+  "nutrition": {
+    "cal": "97 kcal",
+    "carbs": "23g",
+    "fiber": "10.4g",
+    "sugar": "11.2g",
+    "protein": "2.2g",
+    "fat": "0.4g"
+  },
+  "benefits": [
+    "Supports digestion with high fiber and prebiotic compounds",
+    "Provides antioxidants that protect cells and organs"
+  ],
+  "seasons": {
+    "peak": ["March"],
+    "good": ["April"],
+    "low": ["September"]
+  },
+  "tips": [
+    "Pick slightly wrinkled fruits; they are often sweeter when wrinkled.",
+    "Empty the pulp into a sieve to remove seeds if desired."
+  ],
+  "varieties": [
+    {
+      "name": "Purple Passion",
+      "taste": "Sweet‑tart, aromatic, intense",
+      "use": "Fresh, juice, desserts, beverages",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Fiber‑rich",
+    "Aromatic",
+    "Sweet‑tart",
+    "Seedy"
+  ],
+  "origin": "South America"
+},
+"Mulberry": {
+  "about": "Mulberry is a small, elongated berry‑like fruit with a sweet, mildly tart flavor and a soft texture. The berries grow in clusters on trees and are eaten fresh, dried, or used in jams and wines. Colors range from white to dark purple.",
+  "nutrition": {
+    "cal": "43 kcal",
+    "carbs": "9.8g",
+    "fiber": "1.7g",
+    "sugar": "8.1g",
+    "protein": "1.4g",
+    "fat": "0.4g"
+  },
+  "benefits": [
+    "Supports eye health with vitamin A and antioxidants",
+    "Adds gentle fiber and natural sweetness"
+  ],
+  "seasons": {
+    "peak": ["June"],
+    "good": ["July"],
+    "low": ["November"]
+  },
+  "tips": [
+    "Choose dark, firm berries with no mold.",
+    "Refrigerate and consume quickly due to softness."
+  ],
+  "varieties": [
+    {
+      "name": "White Icicle",
+      "taste": "Mildly sweet",
+      "use": "Fresh, jams, desserts",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Vitamin A‑rich",
+    "Sweet",
+    "Soft‑berry",
+    "Clustered"
+  ],
+  "origin": "Asia"
+},
+"Mandarin": {
+  "about": "Mandarin is a small, easy‑peel citrus fruit with segments that separate easily. The flesh is sweet, juicy, and less acidic than oranges. Mandarins are commonly eaten as a snack, in salads, or for juicing.",
+  "nutrition": {
+    "cal": "47 kcal",
+    "carbs": "12g",
+    "fiber": "1.8g",
+    "sugar": "9g",
+    "protein": "0.8g",
+    "fat": "0.2g"
+  },
+  "benefits": [
+    "Supports immune function with vitamin C and flavonoids",
+    "Convenient, low‑effort fruit for quick snacks"
+  ],
+  "seasons": {
+    "peak": ["December"],
+    "good": ["January"],
+    "low": ["June"]
+  },
+  "tips": [
+    "Choose firm, heavy mandarins with smooth skin.",
+    "Avoid fruits with soft spots or wrinkled peels."
+  ],
+  "varieties": [
+    {
+      "name": "Clementine",
+      "taste": "Sweet, juicy, mild",
+      "use": "Fresh, snacks, desserts",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Vitamin C‑rich",
+    "Easy‑peel",
+    "Sweet‑juicy",
+    "Citrus"
+  ],
+  "origin": "Southeast Asia"
+},
+"Cranberry": {
+  "about": "Cranberry is a small, round, tart berry with a deep red color. It is rarely eaten raw due to its sourness and is often sweetened, dried, juiced, or used in sauces and relishes. Fresh cranberries are very firm and can bounce when dropped.",
+  "nutrition": {
+    "cal": "46 kcal",
+    "carbs": "12g",
+    "fiber": "3.6g",
+    "sugar": "4.3g",
+    "protein": "0.4g",
+    "fat": "0.1g"
+  },
+  "benefits": [
+    "Supports urinary tract health with proanthocyanidins",
+    "Provides antioxidants without high sugar in unsweetened forms"
+  ],
+  "seasons": {
+    "peak": ["November"],
+    "good": ["December"],
+    "low": ["May"]
+  },
+  "tips": [
+    "Fresh cranberries should be firm and bounce when dropped.",
+    "Buy frozen or dried cranberries if fresh season is over."
+  ],
+  "varieties": [
+    {
+      "name": "Early Black",
+      "taste": "Very tart, tangy",
+      "use": "Juice, sauces, dried snacks",
+      "india": "Imported"
+    }
+  ],
+  "tags": [
+    "Urinary‑health‑supporting",
+    "Tart",
+    "Red‑berry",
+    "Antioxidant‑rich"
+  ],
+  "origin": "North America"
+},
+"Blackberry": {
+  "about": "Blackberry is a dense, juicy berry composed of many small drupelets with a sweet‑tart flavor and a slightly seedy texture. The berries are dark purple‑black when ripe and are used fresh, in desserts, or as jams.",
+  "nutrition": {
+    "cal": "43 kcal",
+    "carbs": "10g",
+    "fiber": "5.3g",
+    "sugar": "4.9g",
+    "protein": "1.4g",
+    "fat": "0.5g"
+  },
+  "benefits": [
+    "Supports digestive health with high fiber content",
+    "Provides antioxidants that protect DNA and cells"
+  ],
+  "seasons": {
+    "peak": ["June"],
+    "good": ["July"],
+    "low": ["November"]
+  },
+  "tips": [
+    "Choose uniform dark berries with no crushed or moldy ones.",
+    "Wash gently and refrigerate in a single layer."
+  ],
+  "varieties": [
+    {
+      "name": "Triple Crown",
+      "taste": "Sweet‑tart, juicy",
+      "use": "Fresh, desserts, jams",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Fiber‑rich",
+    "Antioxidant‑rich",
+    "Sweet‑tart",
+    "Seedy"
+  ],
+  "origin": "Europe"
+},
+"Custard Apple": {
+  "about": "Custard apple (bullock’s heart, sugar apple) is a soft, heart‑shaped fruit with creamy white flesh and large black seeds. The flesh is sweet, custard‑like, and mildly aromatic. It is eaten fresh and sometimes in desserts or milkshakes.",
+  "nutrition": {
+    "cal": "95 kcal",
+    "carbs": "24g",
+    "fiber": "3.2g",
+    "sugar": "19g",
+    "protein": "1.7g",
+    "fat": "0.6g"
+  },
+  "benefits": [
+    "Provides quick energy from natural sugars and carbs",
+    "Adds moderate fiber for digestion"
+  ],
+  "seasons": {
+    "peak": ["September"],
+    "good": ["October"],
+    "low": ["March"]
+  },
+  "tips": [
+    "Choose slightly soft fruits with no cracks.",
+    "Avoid bruised areas and separate the black seeds before eating."
+  ],
+  "varieties": [
+    {
+      "name": "Sugar Apple",
+      "taste": "Sweet, creamy, milky",
+      "use": "Fresh, desserts, milkshakes",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "High‑energy",
+    "Creamy",
+    "Sweet",
+    "Tropical"
+  ],
+  "origin": "South America"
+},
+"Sapota": {
+  "about": "Sapota (chikoo) is a brown, round fruit with a rough, dull skin and soft, sweet, milky flesh. It contains a few hard black seeds and a mild, sugary flavor. Sapotas are eaten fresh or blended into milkshakes and desserts.",
+  "nutrition": {
+    "cal": "83 kcal",
+    "carbs": "20g",
+    "fiber": "5.3g",
+    "sugar": "13g",
+    "protein": "0.4g",
+    "fat": "0.4g"
+  },
+  "benefits": [
+    "Provides quick energy from natural sugars and simple carbs",
+    "Supports digestion with soluble fiber"
+  ],
+  "seasons": {
+    "peak": ["November"],
+    "good": ["December"],
+    "low": ["May"]
+  },
+  "tips": [
+    "Pick firm, fragrant fruits; avoid over‑soft ones.",
+    "Refrigerate once ripe to slow ripening and soften texture."
+  ],
+  "varieties": [
+    {
+      "name": "Cricket Ball",
+      "taste": "Sweet, creamy, milky",
+      "use": "Fresh, milkshakes, desserts",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "High‑energy",
+    "Sweet‑creamy",
+    "Fiber‑rich",
+    "Brown‑skinned"
+  ],
+  "origin": "Central America"
+},
+"Tamarind": {
+  "about": "Tamarind is a pod‑like fruit with a brown, brittle shell and sticky, sour‑sweet pulp. It is used in savory dishes, chutneys, and beverages for its tangy flavor. The pulp is rich in acids and fibers.",
+  "nutrition": {
+    "cal": "239 kcal",
+    "carbs": "60g",
+    "fiber": "5.1g",
+    "sugar": "38g",
+    "protein": "2.8g",
+    "fat": "0.6g"
+  },
+  "benefits": [
+    "Supports digestion with natural acids and fiber",
+    "Adds electrolytes and energy when used in diluted drinks"
+  ],
+  "seasons": {
+    "peak": ["May"],
+    "good": ["June"],
+    "low": ["November"]
+  },
+  "tips": [
+    "For direct eating, choose firm, dark‑brown pods with a pleasant sour aroma.",
+    "For cooking, remove seeds and soak the pulp in warm water to soften."
+  ],
+  "varieties": [
+    {
+      "name": "Indian Tamarind",
+      "taste": "Sour‑sweet, tangy",
+      "use": "Chutneys, sauces, drinks, curries",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Digestive‑aiding",
+    "Tangy",
+    "Sour‑sweet",
+    "Podded"
+  ],
+  "origin": "Africa"
+},
+"Physalis": {
+  "about": "Physalis (cape gooseberry, ground cherry) is a small, golden fruit enclosed in a papery husk that looks like a Chinese lantern. The flesh is sweet‑tart, juicy, and mildly tropical. It is eaten fresh, in salads, or as a garnish.",
+  "nutrition": {
+    "cal": "53 kcal",
+    "carbs": "11g",
+    "fiber": "2g",
+    "sugar": "7g",
+    "protein": "1.9g",
+    "fat": "0.7g"
+  },
+  "benefits": [
+    "Supports eye health with vitamin A and antioxidants",
+    "Adds mild fiber and vitamins to snacks"
+  ],
+  "seasons": {
+    "peak": ["November"],
+    "good": ["December"],
+    "low": ["May"]
+  },
+  "tips": [
+    "Peel the husk; the fruit should be firm and shiny.",
+    "Store in a cool, dry place away from sunlight."
+  ],
+  "varieties": [
+    {
+      "name": "Cape Gooseberry",
+      "taste": "Sweet‑tart, fruity",
+      "use": "Fresh, salads, garnishes",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Vitamin A‑rich",
+    "Golden",
+    "Lantern‑husk",
+    "Sweet‑tart"
+  ],
+  "origin": "South America"
+},
+"Rambutan": {
+  "about": "Rambutan is a hairy‑skinned tropical fruit with a thick, red skin covered in soft spines and translucent, juicy flesh around a large seed. The flesh is sweet, mildly floral, and refreshing. It is commonly eaten fresh or canned.",
+  "nutrition": {
+    "cal": "68 kcal",
+    "carbs": "16g",
+    "fiber": "0.7g",
+    "sugar": "14g",
+    "protein": "0.8g",
+    "fat": "0.3g"
+  },
+  "benefits": [
+    "Provides hydration and quick energy from natural sugars",
+    "Supplies vitamin C and antioxidants"
+  ],
+  "seasons": {
+    "peak": ["June"],
+    "good": ["July"],
+    "low": ["December"]
+  },
+  "tips": [
+    "Choose bright red fruits with no dark spots or splits.",
+    "Peel the skin and avoid the seed when eating."
+  ],
+  "varieties": [
+    {
+      "name": "Hong Kong Rambutan",
+      "taste": "Sweet, juicy, mild",
+      "use": "Fresh, canned desserts",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Hydrating",
+    "Sweet‑juicy",
+    "Hairy‑skinned",
+    "Tropical"
+  ],
+  "origin": "Southeast Asia"
+},
+"Persimmon": {
+  "about": "Persimmon is an orange fruit with a smooth skin and jelly‑like flesh when ripe. There are astringent and non‑astringent varieties; ripe astringent types become soft and sweet, while non‑astringent types can be eaten crisp. The flavor is sweet, honey‑like, and mild.",
+  "nutrition": {
+    "cal": "70 kcal",
+    "carbs": "18g",
+    "fiber": "3.6g",
+    "sugar": "12g",
+    "protein": "0.6g",
+    "fat": "0.3g"
+  },
+  "benefits": [
+    "Supports digestive health with fiber and tannins",
+    "Provides antioxidants and vitamin A for skin and eyes"
+  ],
+  "seasons": {
+    "peak": ["October"],
+    "good": ["November"],
+    "low": ["April"]
+  },
+  "tips": [
+    "For non‑astringent types, eat when firm or slightly soft.",
+    "For astringent types, wait until completely soft and jelly‑like."
+  ],
+  "varieties": [
+    {
+      "name": "Fuyu",
+      "taste": "Sweet, mild, crisp when unripe, jelly‑like when ripe",
+      "use": "Fresh, salads, desserts",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Fiber‑rich",
+    "Sweet",
+    "Jelly‑like",
+    "Orange"
+  ],
+  "origin": "China"
+},
+"Pomelo": {
+  "about": "Pomelo is a large citrus fruit with a thick, pale rind and juicy segments inside. The flesh can be pale yellow, pink, or red and has a mild, sweet‑tart flavor. It is similar to grapefruit but usually less bitter and more refreshing.",
+  "nutrition": {
+    "cal": "38 kcal",
+    "carbs": "9g",
+    "fiber": "1g",
+    "sugar": "6g",
+    "protein": "0.8g",
+    "fat": "0.1g"
+  },
+  "benefits": [
+    "Strengthens immunity with vitamin C and antioxidants",
+    "Supports heart health with potassium and low calories"
+  ],
+  "seasons": {
+    "peak": ["November"],
+    "good": ["December"],
+    "low": ["May"]
+  },
+  "tips": [
+    "Peel the thick rind and remove the white pith carefully.",
+    "Eat segments or juice; avoid overripe, mushy flesh."
+  ],
+  "varieties": [
+    {
+      "name": "Shaddocks",
+      "taste": "Mildly sweet‑tart, juicy",
+      "use": "Fresh, salads, juice",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Vitamin C‑rich",
+    "Citrus",
+    "Juicy",
+    "Low‑calorie"
+  ],
+  "origin": "Southeast Asia"
+},
+"Jujube": {
+  "about": "Jujube (Chinese date) is a small, oval fruit with a smooth, glossy skin and crisp or chewy flesh depending on ripeness. The flavor is sweet, mild, and slightly apple‑like. It is eaten fresh, dried, or used in teas and traditional formulas.",
+  "nutrition": {
+    "cal": "79 kcal",
+    "carbs": "20g",
+    "fiber": "1.9g",
+    "sugar": "14g",
+    "protein": "1.2g",
+    "fat": "0.2g"
+  },
+  "benefits": [
+    "May support sleep and relaxation with mild calming compounds",
+    "Adds natural sweetness with some fiber"
+  ],
+  "seasons": {
+    "peak": ["September"],
+    "good": ["October"],
+    "low": ["March"]
+  },
+  "tips": [
+    "Choose firm, shiny fruits with no wrinkles.",
+    "Dried jujubes last longer and are often used in snacks."
+  ],
+  "varieties": [
+    {
+      "name": "Li (Chinese Date)",
+      "taste": "Sweet, mild, slightly nutty",
+      "use": "Fresh, dried, teas, snacks",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Sleep‑supporting",
+    "Sweet",
+    "Mild",
+    "Date‑like"
+  ],
+  "origin": "China"
+},
+"Star Gooseberry": {
+  "about": "Star gooseberry (Amla, Phyllanthus emblica) is a small, round, green‑yellow fruit with a sour, tangy, and astringent taste. It is commonly dried, pickled, or used in Indian chutneys and supplements. The fruit is prized in Ayurveda for its high vitamin C content.",
+  "nutrition": {
+    "cal": "44 kcal",
+    "carbs": "10g",
+    "fiber": "4.3g",
+    "sugar": "2.5g",
+    "protein": "1.4g",
+    "fat": "0.6g"
+  },
+  "benefits": [
+    "Strongly boosts immune function with very high vitamin C",
+    "Provides antioxidants that support liver and metabolic health"
+  ],
+  "seasons": {
+    "peak": ["July"],
+    "good": ["August"],
+    "low": ["January"]
+  },
+  "tips": [
+    "Often used dried or pickled; fresh fruit is very sour.",
+    "Rinse well before use and remove seeds if needed."
+  ],
+  "varieties": [
+    {
+      "name": "Amla variety",
+      "taste": "Sour, tangy, astringent",
+      "use": "Dried, pickles, juices, supplements",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Vitamin C‑rich",
+    "Sour‑tangy",
+    "Ayurvedic",
+    "Antioxidant‑rich"
+  ],
+  "origin": "India"
+},
+"Longan": {
+  "about": "Longan is a small, round, translucent fruit with a thin brown skin and soft, juicy flesh surrounding a glossy black seed. The flesh is sweet, musky, and slightly floral. Longan is often eaten fresh, canned, or in desserts.",
+  "nutrition": {
+    "cal": "60 kcal",
+    "carbs": "15g",
+    "fiber": "1.1g",
+    "sugar": "13g",
+    "protein": "1.3g",
+    "fat": "0.1g"
+  },
+  "benefits": [
+    "Provides hydration and quick energy from natural sugars",
+    "Contains vitamin C and antioxidants"
+  ],
+  "seasons": {
+    "peak": ["June"],
+    "good": ["July"],
+    "low": ["November"]
+  },
+  "tips": [
+    "Choose firm, glossy fruits with no dark spots.",
+    "Peel and remove the seed before eating."
+  ],
+  "varieties": [
+    {
+      "name": "Hong Kong Longan",
+      "taste": "Sweet, light, musky",
+      "use": "Fresh, desserts, canned",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Hydrating",
+    "Sweet‑juicy",
+    "Refrigerate",
+    "Tropical"
+  ],
+  "origin": "Southern China"
+},
+"Loquat": {
+  "about": "Loquat is a small, pear‑shaped fruit with smooth, yellow‑orange skin and juicy flesh around a few brown seeds. The flavor is sweet‑tart, with a mild floral note. Loquats are eaten fresh, used in jams, or in teas and syrups.",
+  "nutrition": {
+    "cal": "47 kcal",
+    "carbs": "12g",
+    "fiber": "1.7g",
+    "sugar": "10g",
+    "protein": "0.4g",
+    "fat": "0.2g"
+  },
+  "benefits": [
+    "May soothe throat and respiratory irritation due to mild expectorant properties",
+    "Adds fiber and vitamin A to the diet"
+  ],
+  "seasons": {
+    "peak": ["March"],
+    "good": ["April"],
+    "low": ["September"]
+  },
+  "tips": [
+    "Choose fruits with a golden color and no brown spots.",
+    "Remove seeds and use flesh only."
+  ],
+  "varieties": [
+    {
+      "name": "Mogi",
+      "taste": "Sweet‑tart, mild",
+      "use": "Fresh, jams, teas",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Throat‑soothing",
+    "Sweet‑tart",
+    "Pear‑shaped",
+    "Mild"
+  ],
+  "origin": "China"
+},
+"Kumquat": {
+  "about": "Kumquat is a tiny, oval citrus fruit about the size of an olive. It is eaten whole, peel and all, with a sweet rind and tart flesh. The flavor is bright, tangy, and aromatic. Kumquats are used fresh, in marmalades, or as garnishes.",
+  "nutrition": {
+    "cal": "71 kcal",
+    "carbs": "16g",
+    "fiber": "6.5g",
+    "sugar": "9g",
+    "protein": "1.9g",
+    "fat": "0.9g"
+  },
+  "benefits": [
+    "Supports digestive health with high fiber in the peel",
+    "Provides vitamin C and bioflavonoids for immunity"
+  ],
+  "seasons": {
+    "peak": ["November"],
+    "good": ["December"],
+    "low": ["May"]
+  },
+  "tips": [
+    "Choose firm, bright orange fruits with no soft spots.",
+    "Remove seeds if using in cooking or jams."
+  ],
+  "varieties": [
+    {
+      "name": "Nagami",
+      "taste": "Sweet peel, tart flesh",
+      "use": "Fresh, marmalades, garnishes",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Fiber‑rich",
+    "Citrus",
+    "Tiny",
+    "Sweet‑tart"
+  ],
+  "origin": "China"
+},
+"Salak": {
+  "about": "Salak (snake fruit) is a small, scaly, brown fruit with crisp, sweet‑tart flesh inside. The skin looks like snake scales, but the flesh is juicy and refreshing. It is eaten fresh or in fruit salads.",
+  "nutrition": {
+    "cal": "82 kcal",
+    "carbs": "20g",
+    "fiber": "3g",
+    "sugar": "15g",
+    "protein": "1.2g",
+    "fat": "0.6g"
+  },
+  "benefits": [
+    "Supports digestion with fiber and natural sugars",
+    "Provides antioxidants and hydration"
+  ],
+  "seasons": {
+    "peak": ["July"],
+    "good": ["August"],
+    "low": ["January"]
+  },
+  "tips": [
+    "Peel carefully; the skin is scaly and sharp.",
+    "Consume soon after peeling to enjoy crisp texture."
+  ],
+  "varieties": [
+    {
+      "name": "Salak Bali",
+      "taste": "Sweet‑tart, crisp",
+      "use": "Fresh, salads",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Fiber‑rich",
+    "Crisp",
+    "Snake‑skinned",
+    "Sweet‑tart"
+  ],
+  "origin": "Indonesia"
+},
+"Ackee": {
+  "about": "Ackee is a tropical fruit with a bright red outer pod that splits open when ripe, revealing creamy yellow flesh. The flesh is eaten cooked and has a mild, nutty flavor. It is famous in Caribbean cuisine, often paired with saltfish.",
+  "nutrition": {
+    "cal": "151 kcal",
+    "carbs": "18g",
+    "fiber": "3.3g",
+    "sugar": "10g",
+    "protein": "2.6g",
+    "fat": "10g"
+  },
+  "benefits": [
+    "Provides energy and healthy fats when eaten ripe and cooked",
+    "Adds protein and fiber compared with many fruits"
+  ],
+  "seasons": {
+    "peak": ["June"],
+    "good": ["July"],
+    "low": ["November"]
+  },
+  "tips": [
+    "Consume only fully ripe, open pods; unripe ackee is toxic.",
+    "Always cook thoroughly before eating."
+  ],
+  "varieties": [
+    {
+      "name": "Genuine Jamaican",
+      "taste": "Mild, nutty, creamy",
+      "use": "Cooked dishes, e.g., ackee and saltfish",
+      "india": "Imported"
+    }
+  ],
+  "tags": [
+    "High‑energy",
+    "Tropical",
+    "Nutty",
+    "Cooked‑only"
+  ],
+  "origin": "West Africa"
+},
+"Breadfruit": {
+  "about": "Breadfruit is a large, starchy, green‑skinned fruit that is cooked like a vegetable. The flesh is dense, mildly sweet, and potato‑like. It is boiled, roasted, or fried and is a staple in many Pacific and Caribbean cuisines.",
+  "nutrition": {
+    "cal": "103 kcal",
+    "carbs": "27g",
+    "fiber": "4.9g",
+    "sugar": "11g",
+    "protein": "1.1g",
+    "fat": "0.2g"
+  },
+  "benefits": [
+    "Supplies long‑lasting energy with complex carbohydrates",
+    "Supports digestive health with fiber"
+  ],
+  "seasons": {
+    "peak": ["July"],
+    "good": ["August"],
+    "low": ["January"]
+  },
+  "tips": [
+    "Choose firm, green fruits for cooking; avoid soft, over‑ripe ones.",
+    "Cook thoroughly before eating; raw breadfruit is hard and astringent."
+  ],
+  "varieties": [
+    {
+      "name": "Ma’afala",
+      "taste": "Mild, starchy, potato‑like",
+      "use": "Boiled, roasted, fried as a vegetable",
+      "india": "Yes"
+   }
+],
+"tags": [
+  "High‑carb",
+  "Starchy",
+  "Energy‑rich",
+  "Tropical"
+],
+"origin": "Pacific Islands"
+},
+"Carambola": {
+  "about": "Carambola (star fruit) is a waxy, star‑shaped tropical fruit with juicy, translucent flesh. The flavor is sweet‑tart with a slight citrusy note, making it popular as a garnish, in salads, or for juicing. Slices are recognizably star‑shaped.",
+  "nutrition": {
+    "cal": "31 kcal",
+    "carbs": "7g",
+    "fiber": "2.8g",
+    "sugar": "4g",
+    "protein": "1g",
+    "fat": "0.3g"
+  },
+  "benefits": [
+    "Promotes hydration with high water content and low calories",
+    "Adds fiber and antioxidants without heavy sugar load"
+  ],
+  "seasons": {
+    "peak": ["June"],
+    "good": ["July"],
+    "low": ["November"]
+  },
+  "tips": [
+    "Look for firm, bright yellow fruits with no brown spots.",
+    "Wash thoroughly and slice crosswise to show the star shape."
+  ],
+  "varieties": [
+    {
+      "name": "Arkin",
+      "taste": "Sweet‑tart, crisp",
+      "use": "Fresh, salads, garnish, juices",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Hydrating",
+    "Low‑calorie",
+    "Star‑shaped",
+    "Sweet‑tart"
+  ],
+  "origin": "Southeast Asia"
+},
+"Cherimoya": {
+  "about": "Cherimoya is a tropical fruit with a green, scaly outer skin and creamy, custard‑like white flesh surrounding large black seeds. The flavor is sweet, floral, and mildly banana‑like. It is eaten fresh or used in desserts and smoothies.",
+  "nutrition": {
+    "cal": "75 kcal",
+    "carbs": "17g",
+    "fiber": "2.4g",
+    "sugar": "14g",
+    "protein": "1.6g",
+    "fat": "0.6g"
+  },
+  "benefits": [
+    "Provides energy and B vitamins for metabolism",
+    "Supports digestion with moderate fiber"
+  ],
+  "seasons": {
+    "peak": ["May"],
+    "good": ["June"],
+    "low": ["November"]
+  },
+  "tips": [
+    "Choose slightly soft fruits with no dark spots.",
+    "Scoop out the flesh and avoid the seeds when eating."
+  ],
+  "varieties": [
+    {
+      "name": "Fino de Jete",
+      "taste": "Sweet, creamy, custard‑like",
+      "use": "Fresh, desserts, smoothies",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Creamy",
+    "Custard‑like",
+    "High‑energy",
+    "Tropical"
+  ],
+  "origin": "South America"
+},
+"Sapodilla": {
+  "about": "Sapodilla (chikoo, sapota) is a brown, rough‑skinned fruit with soft, sweet, milky flesh and a few hard black seeds. The flavor is sugary, caramel‑like, and mild. It is commonly eaten fresh or blended into milkshakes and desserts.",
+  "nutrition": {
+    "cal": "83 kcal",
+    "carbs": "20g",
+    "fiber": "5.3g",
+    "sugar": "13g",
+    "protein": "0.4g",
+    "fat": "0.4g"
+  },
+  "benefits": [
+    "Provides quick energy from natural sugars and simple carbs",
+    "Supports digestive health with soluble fiber"
+  ],
+  "seasons": {
+    "peak": ["November"],
+    "good": ["December"],
+    "low": ["May"]
+  },
+  "tips": [
+    "Pick firm, fragrant fruits; avoid over‑soft ones.",
+    "Let them ripen slightly at room temperature for smoother texture."
+  ],
+  "varieties": [
+    {
+      "name": "Cricket Ball",
+      "taste": "Sweet, creamy, milky",
+      "use": "Fresh, milkshakes, desserts",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "High‑energy",
+    "Sweet‑creamy",
+    "Fiber‑rich",
+    "Brown‑skinned"
+  ],
+  "origin": "Central America"
+},
+"Santol": {
+  "about": "Santol is a round, green or yellow fruit with a thick skin and juicy, sweet‑tart flesh surrounding a large seed. The flesh has a mild, tangy, slightly acidic flavor similar to citrus and is often eaten fresh or in salads. It is common in Southeast Asia.",
+  "nutrition": {
+    "cal": "64 kcal",
+    "carbs": "15g",
+    "fiber": "1.3g",
+    "sugar": "11g",
+    "protein": "0.8g",
+    "fat": "0.2g"
+  },
+  "benefits": [
+    "Supports hydration with high water content and natural sugars",
+    "Adds mild fiber and vitamin C"
+  ],
+  "seasons": {
+    "peak": ["May"],
+    "good": ["June"],
+    "low": ["November"]
+  },
+  "tips": [
+    "Choose firm, unblemished fruits with no cracks.",
+    "Consume soon after peeling to enjoy its crisp‑juicy texture."
+  ],
+  "varieties": [
+    {
+      "name": "Yellow Santol",
+      "taste": "Sweet‑tart, juicy, slightly citrusy",
+      "use": "Fresh, salads, snacks",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "Juicy",
+    "Sweet‑tart",
+    "Tropical",
+    "Hydrating"
+  ],
+  "origin": "Southeast Asia"
+},
+"Mangaba": {
+  "about": "Mangaba is a Brazilian tropical fruit with a yellow‑green skin and soft, peach‑like orange flesh. The flavor is sweet, slightly resinous, and mildly aromatic. It is eaten fresh or used in juices and desserts.",
+  "nutrition": {
+    "cal": "75 kcal",
+    "carbs": "17g",
+    "fiber": "2.1g",
+    "sugar": "12g",
+    "protein": "1.2g",
+    "fat": "0.5g"
+  },
+  "benefits": [
+    "Provides energy and some vitamins from tropical fruit sugars",
+    "Adds moderate fiber and water for hydration"
+  ],
+  "seasons": {
+    "peak": ["January"],
+    "good": ["February"],
+    "low": ["July"]
+  },
+  "tips": [
+    "Pick slightly soft fruits with a pleasant aroma.",
+    "Eat fresh soon after ripening for best flavor."
+  ],
+  "varieties": [
+    {
+      "name": "Coastal Mangaba",
+      "taste": "Sweet, mild, slightly resinous",
+      "use": "Fresh, juices, desserts",
+      "india": "Imported"
+    }
+  ],
+  "tags": [
+    "High‑energy",
+    "Sweet",
+    "Tropical",
+    "Aromatic"
+  ],
+  "origin": "Brazil"
+},
+"Canistel": {
+  "about": "Canistel (egg fruit) is a sweet, orange fruit with a dry, custard‑like flesh that resembles egg yolk in texture. The flavor is sweet, mild, and slightly nutty. It is eaten fresh, in desserts, or blended into smoothies.",
+  "nutrition": {
+    "cal": "120 kcal",
+    "carbs": "29g",
+    "fiber": "5.6g",
+    "sugar": "18g",
+    "protein": "1.8g",
+    "fat": "1.1g"
+  },
+  "benefits": [
+    "Provides sustained energy with high carbs and fiber",
+    "Supports digestion and satiety"
+  ],
+  "seasons": {
+    "peak": ["August"],
+    "good": ["September"],
+    "low": ["February"]
+  },
+  "tips": [
+    "Choose firm, orange fruits with no soft spots.",
+    "Flesh is ideal when bright orange and slightly soft."
+  ],
+  "varieties": [
+    {
+      "name": "Tiesa",
+      "taste": "Sweet, egg‑yolk‑like",
+      "use": "Fresh, desserts, smoothies",
+      "india": "Yes"
+    }
+  ],
+  "tags": [
+    "High‑energy",
+    "Creamy‑dry",
+    "Fiber‑rich",
+    "Tropical"
+  ],
+  "origin": "Mexico / Central America"
+}
+}

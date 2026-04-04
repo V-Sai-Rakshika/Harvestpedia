@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plant – Harvestpedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script src="js/darkmode.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --plant-50:#f0fdf4;--plant-100:#dcfce7;--plant-200:#bbf7d0;
+      --plant-400:#4ade80;--plant-600:#16a34a;--plant-700:#15803d;--plant-800:#166534;
+      --cream:#fdfaf5; --warm-white:#fffef9;
+      --text-dark:#1c2b1e; --text-mid:#3d5440; --text-muted:#6b8070;
+      --shadow-sm:0 2px 12px rgba(30,60,35,0.07);
+      --shadow-md:0 8px 32px rgba(30,60,35,0.11);
+      --radius-sm:12px; --radius-md:20px;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(253,250,245,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(22,163,74,0.12);}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--plant-800);text-decoration:none;}
+    .nav-logo-leaf{width:34px;height:34px;background:linear-gradient(135deg,var(--plant-400),var(--plant-600));border-radius:50% 12px 50% 12px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 4px 14px rgba(22,163,74,0.3);}
+    .nav-links{display:flex;align-items:center;gap:6px;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--text-mid);font-size:14px;font-weight:500;padding:8px 18px;border-radius:50px;transition:all .2s;}
+    .nav-links a:hover,.nav-links a.active{background:var(--plant-50);color:var(--plant-600);}
+    .nav-cta{background:var(--plant-600)!important;color:white!important;box-shadow:0 4px 14px rgba(22,163,74,0.3);}
+    .nav-cta:hover{background:var(--plant-800)!important;}
+    .dm-toggle{background:none;border:1.5px solid var(--plant-200);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:1rem;color:var(--text-mid);}
+    .breadcrumb{padding:100px 48px 0;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);}
+    .breadcrumb a{color:var(--plant-600);text-decoration:none;}
+    .breadcrumb span{opacity:.5;}
+    .hero{display:grid;grid-template-columns:420px 1fr;gap:56px;padding:40px 48px 60px;align-items:start;max-width:1200px;margin:0 auto;}
+    @media(max-width:820px){.hero{grid-template-columns:1fr;padding:24px 24px 40px;}}
+    .hero-img-wrap{position:relative;border-radius:var(--radius-md);overflow:hidden;aspect-ratio:4/3;box-shadow:var(--shadow-md);background:var(--plant-50);}
+    .hero-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+    .type-badge{position:absolute;top:16px;left:16px;padding:6px 14px;border-radius:99px;font-size:12px;font-weight:600;}
+    .badge-indoor{background:rgba(22,163,74,0.88);color:white;}
+    .badge-outdoor{background:rgba(21,128,61,0.88);color:white;}
+    .badge-both{background:rgba(74,222,128,0.9);color:#166534;}
+    .hero-info{padding-top:8px;}
+    .hero-latin{font-size:13px;font-style:italic;color:var(--text-muted);margin-bottom:6px;}
+    .hero-name{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:var(--text-dark);line-height:1.1;margin-bottom:12px;}
+    .hero-tagline{font-size:16px;color:var(--text-muted);line-height:1.6;margin-bottom:24px;min-height:28px;}
+    .hero-meta{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+    .meta-chip{display:flex;flex-direction:column;align-items:center;padding:12px 16px;background:white;border:1px solid var(--plant-100);border-radius:var(--radius-sm);min-width:80px;box-shadow:var(--shadow-sm);}
+    .meta-val{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--plant-700);}
+    .meta-lbl{font-size:11px;color:var(--text-muted);margin-top:2px;text-align:center;}
+    .tags-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+    .plant-tag{padding:5px 12px;background:var(--plant-50);border:1px solid var(--plant-100);border-radius:99px;font-size:12px;font-weight:500;color:var(--plant-700);}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all .2s;}
+    .btn-primary{background:var(--plant-600);color:white;box-shadow:0 4px 14px rgba(22,163,74,0.3);}
+    .btn-primary:hover{background:var(--plant-800);}
+    .btn-outline{background:transparent;border:2px solid var(--plant-200);color:var(--plant-700);}
+    .btn-outline:hover{border-color:var(--plant-400);background:var(--plant-50);}
+    .sections{max-width:1200px;margin:0 auto;padding:0 48px 80px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    @media(max-width:820px){.sections{grid-template-columns:1fr;padding:0 24px 60px;}}
+    .card{background:white;border:1px solid var(--plant-100);border-radius:var(--radius-md);padding:28px 32px;box-shadow:var(--shadow-sm);}
+    .card.full{grid-column:1/-1;}
+    .card-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:18px;}
+    /* Care meters */
+    .care-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+    .care-label{width:100px;font-size:13px;color:var(--text-mid);flex-shrink:0;}
+    .care-bar{flex:1;height:8px;background:var(--plant-100);border-radius:99px;overflow:hidden;}
+    .care-fill{height:100%;border-radius:99px;transition:width .7s ease;}
+    .fill-low{background:#4ade80;} .fill-mid{background:#facc15;} .fill-high{background:#f87171;}
+    .care-val{font-size:11px;font-weight:600;color:var(--text-muted);min-width:30px;text-align:right;}
+    /* Facts */
+    .facts-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .fact-item{padding:10px 14px;background:var(--plant-50);border-radius:10px;}
+    .fact-label{font-size:11px;color:var(--text-muted);display:block;margin-bottom:3px;}
+    .fact-val{font-size:14px;font-weight:600;color:var(--plant-700);}
+    .benefits-list{display:flex;flex-direction:column;gap:12px;}
+    .benefit-item{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.55;color:var(--text-mid);}
+    .benefit-dot{width:8px;height:8px;min-width:8px;background:var(--plant-400);border-radius:50%;margin-top:5px;}
+    .season-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+    .s-pill{padding:6px 14px;border-radius:99px;font-size:12px;font-weight:600;}
+    .s-peak{background:#d1fae5;color:#065f46;} .s-good{background:#fef3c7;color:#92400e;} .s-low{background:#f3f4f6;color:#6b7280;}
+    .season-note{font-size:13px;color:var(--text-muted);line-height:1.5;}
+    .tips-list{display:flex;flex-direction:column;gap:12px;}
+    .tip-item{padding:14px 18px;background:var(--plant-50);border-radius:12px;border-left:3px solid var(--plant-400);font-size:14px;line-height:1.55;color:var(--text-mid);}
+    .about-prose{font-size:15px;line-height:1.75;color:var(--text-mid);}
+    .skeleton{background:linear-gradient(90deg,var(--plant-50) 25%,var(--plant-100) 50%,var(--plant-50) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:8px;}
+    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .skel-line{height:16px;margin-bottom:10px;display:block;}
+    .skel-line.wide{width:90%;} .skel-line.mid{width:65%;} .skel-line.short{width:40%;}
+    [data-theme="dark"] body{background:#111a11;color:#e8f4e8;}
+    [data-theme="dark"] nav{background:rgba(17,26,17,0.92);}
+    [data-theme="dark"] .card{background:#1e2d1e;border-color:#2d4a2d;}
+    [data-theme="dark"] .nut-item,[data-theme="dark"] .tip-item,[data-theme="dark"] .fact-item{background:#1a2a1a;}
+    [data-theme="dark"] .meta-chip{background:#1a2a1a;border-color:#2d4a2d;}
+    [data-theme="dark"] .plant-tag{background:#1a2a1a;border-color:#2d4a2d;color:#4ade80;}
+    [data-theme="dark"] .care-bar{background:#2d4a2d;}
+    @media(max-width:600px){nav{padding:14px 20px;}.breadcrumb{padding:80px 20px 0;}.hero{padding:20px;}.hero-name{font-size:2rem;}.sections{padding:0 20px 48px;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html"><div class="nav-logo-leaf">🌿</div>Harvestpedia</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fruits.html">Fruits</a></li>
+    <li><a href="vegetables.html">Vegetables</a></li>
+    <li><a href="plants.html" class="active">Plants</a></li>
+    <button class="dm-toggle" id="dm-toggle"></button>
+    <li><a href="recipes.html" class="nav-cta">🍳 Recipes</a></li>
+  </ul>
+</nav>
+<div class="breadcrumb"><a href="index.html">🏠 Home</a><span>›</span><a href="plants.html">Plants</a><span>›</span><span id="bc-name">—</span></div>
+<div class="hero">
+  <div class="hero-img-wrap">
+    <img id="hero-img" src="" alt=""/>
+    <span class="type-badge" id="type-badge"></span>
+  </div>
+  <div class="hero-info">
+    <div class="hero-latin" id="hero-latin"></div>
+    <h1 class="hero-name" id="hero-name">—</h1>
+    <p class="hero-tagline" id="hero-tagline"><span class="skeleton skel-line wide"></span><span class="skeleton skel-line mid"></span></p>
+    <div class="hero-meta" id="hero-meta"></div>
+    <div class="tags-row" id="tags-row"></div>
+    <div class="hero-actions">
+      <a id="btn-recipe" href="recipes.html" class="btn btn-primary">🍳 Find Recipes</a>
+      <a id="btn-compare" href="compare.html" class="btn btn-outline">📊 Compare</a>
+    </div>
+  </div>
+</div>
+<div class="sections">
+  <div class="card"><div class="card-title">🌱 Care Requirements</div><div id="care-meters"><span class="skeleton skel-line wide"></span><span class="skeleton skel-line wide"></span><span class="skeleton skel-line wide"></span></div></div>
+  <div class="card"><div class="card-title">📋 Quick Facts</div><div class="facts-grid" id="facts-grid"><span class="skeleton skel-line" style="grid-column:1/-1"></span><span class="skeleton skel-line"></span><span class="skeleton skel-line"></span></div></div>
+  <div class="card"><div class="card-title">💚 Benefits &amp; Uses</div><div class="benefits-list" id="benefits-list"><span class="skeleton skel-line wide"></span><span class="skeleton skel-line mid"></span><span class="skeleton skel-line wide"></span></div></div>
+  <div class="card"><div class="card-title">📅 Best Growing Season (India)</div><div class="season-pills" id="season-pills"><span class="skeleton skel-line short"></span><span class="skeleton skel-line short"></span></div><p class="season-note" id="season-note"></p></div>
+  <div class="card full"><div class="card-title">💡 Growing Tips</div><div class="tips-list" id="tips-list"><span class="skeleton skel-line wide"></span><span class="skeleton skel-line mid"></span><span class="skeleton skel-line wide"></span></div></div>
+  <div class="card full"><div class="card-title">📖 About</div><p class="about-prose" id="about-prose"><span class="skeleton skel-line wide" style="display:block;margin-bottom:8px"></span><span class="skeleton skel-line mid" style="display:block"></span></p></div>
+</div>
+<script src="js/api.js"></script>
+<script>
+const plants = [
+  {name:'Aloe Vera',latin:'Aloe barbadensis miller',type:'indoor',difficulty:'easy',water:'Low',light:'Bright indirect',temp:'15–30°C',tags:['Medicinal','Succulent','Air purifier'],img:'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=600&q=80',desc:'A resilient succulent prized for its soothing gel. Near-zero maintenance and thrives in dry indoor conditions.'},
+  {name:'Snake Plant',latin:'Sansevieria trifasciata',type:'indoor',difficulty:'easy',water:'Low',light:'Low to bright',temp:'15–35°C',tags:['Air purifier','Low light','Beginner'],img:'https://images.unsplash.com/photo-1687552212914-03a30c82053c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c25ha2UlMjBwbGFudHxlbnwwfHwwfHx8MA%3D%3D',desc:'One of the most forgiving houseplants. Filters formaldehyde and is almost impossible to kill.'},
+  {name:'Spider Plant',latin:'Chlorophytum comosum',type:'indoor',difficulty:'easy',water:'Moderate',light:'Indirect',temp:'13–27°C',tags:['Air purifier','Pet-safe','Beginner'],img:'https://media.istockphoto.com/id/2170806366/photo/variegated-chlorophytum-comosum-plant-in-a-red-clay-pot-on-marble-surface.webp?a=1&b=1&s=612x612&w=0&k=20&c=Jpfs0YKpiClT_MJUAlwIc4kKhhb-Ogm7eeBOANEx_gc=',desc:'Fast-growing and safe for pets. Produces charming baby plantlets you can propagate and share.'},
+  {name:'Peace Lily',latin:'Spathiphyllum wallisii',type:'indoor',difficulty:'easy',water:'Moderate',light:'Low to indirect',temp:'18–30°C',tags:['Flowering','Air purifier','Low light'],img:'https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?w=600&q=80',desc:'Elegant white blooms and powerful air-cleaning properties. Droops dramatically when thirsty — an easy watering cue.'},
+  {name:'Pothos',latin:'Epipremnum aureum',type:'indoor',difficulty:'easy',water:'Low',light:'Low to bright',temp:'15–30°C',tags:['Trailing','Air purifier','Beginner'],img:'https://m.media-amazon.com/images/I/61c0ixmI5NL._AC_UF1000,1000_QL80_.jpg',desc:'Virtually indestructible trailing vine perfect for shelves and hanging baskets. Adapts to almost any light.'},
+  {name:'Monstera',latin:'Monstera deliciosa',type:'indoor',difficulty:'moderate',water:'Moderate',light:'Bright indirect',temp:'18–30°C',tags:['Tropical','Statement plant','Instagram-famous'],img:'https://plus.unsplash.com/premium_photo-1663962158789-0ab624c4f17d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bW9uc3RlcmF8ZW58MHx8MHx8fDA%3D',desc:'The iconic split-leaf tropical creates stunning visual drama in any room and grows surprisingly fast.'},
+  {name:'ZZ Plant',latin:'Zamioculcas zamiifolia',type:'indoor',difficulty:'easy',water:'Very low',light:'Low to bright',temp:'15–35°C',tags:['Drought tolerant','Air purifier','Low light'],img:'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=600&q=80',desc:'Glossy dark-green leaves on sculptural stems. Thrives on neglect and stores water in its rhizomes.'},
+  {name:'Fiddle Leaf Fig',latin:'Ficus lyrata',type:'indoor',difficulty:'hard',water:'Moderate',light:'Bright direct',temp:'16–24°C',tags:['Statement plant','Tropical','Finicky'],img:'https://images.unsplash.com/photo-1545239705-1564e58b9e4a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlkZGxlJTIwbGVhZiUyMGZpZ3xlbnwwfHwwfHx8MA%3D%3D',desc:'Bold, violin-shaped leaves make a stunning focal point. Sensitive to drafts and overwatering — rewarding for patient growers.'},
+  {name:'Rubber Plant',latin:'Ficus elastica',type:'indoor',difficulty:'moderate',water:'Low',light:'Bright indirect',temp:'15–30°C',tags:['Statement plant','Tropical','Air purifier'],img:'https://images.unsplash.com/photo-1669392597221-bbfd4b6e13ff?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',desc:'Deep burgundy or green glossy leaves that command attention. Relatively forgiving once established.'},
+  {name:'Basil',latin:'Ocimum basilicum',type:'both',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'18–30°C',tags:['Herb','Edible','Kitchen garden'],img:'https://plus.unsplash.com/premium_photo-1725899523683-838307ab1552?w=600&q=80',desc:'Fragrant kitchen essential. Pinch flowers to extend harvest and keep it on a sunny windowsill.'},
+  {name:'Mint',latin:'Mentha spicata',type:'both',difficulty:'easy',water:'High',light:'Partial sun',temp:'15–25°C',tags:['Herb','Edible','Spreader'],img:'https://theaffordableorganicstore.com/cdn/shop/files/1713181721.jpg?v=1744630667',desc:'Incredibly vigorous herb best grown in containers to prevent it spreading everywhere. Loves moisture.'},
+  {name:'Rosemary',latin:'Salvia rosmarinus',type:'both',difficulty:'moderate',water:'Low',light:'Full sun',temp:'10–30°C',tags:['Herb','Edible','Drought tolerant'],img:'https://images.unsplash.com/photo-1726994803809-0e065bd4b25b?w=600&q=80',desc:'Aromatic Mediterranean herb that loves heat and well-drained soil. Evergreen and highly ornamental.'},
+  {name:'Lavender',latin:'Lavandula angustifolia',type:'outdoor',difficulty:'moderate',water:'Low',light:'Full sun',temp:'5–30°C',tags:['Flowering','Aromatic','Pollinator-friendly'],img:'https://images.unsplash.com/photo-1528756514091-dee5ecaa3278?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGF2ZW5kZXJ8ZW58MHx8MHx8fDA%3D',desc:'Purple spikes of intensely fragrant flowers attract bees and butterflies. Excellent for borders and pots.'},
+  {name:'Tomato',latin:'Solanum lycopersicum',type:'outdoor',difficulty:'moderate',water:'High',light:'Full sun',temp:'18–30°C',tags:['Edible','Fruiting','Summer'],img:'https://plus.unsplash.com/premium_photo-1661811820259-2575b82101bf?w=600&q=80',desc:'Nothing beats a home-grown tomato. Requires consistent watering, staking, and plenty of sunshine.'},
+  {name:'Chili Pepper',latin:'Capsicum annuum',type:'both',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'18–35°C',tags:['Edible','Spicy','Fruiting'],img:'https://media.istockphoto.com/id/1417664216/photo/ripe-red-and-green-chilli-on-a-tree.webp?a=1&b=1&s=612x612&w=0&k=20&c=e0LLu892HbP0Gxxoyl9EhU02KBjkjw9EA5qfAymGWjM=',desc:'Compact plants that produce fiery fruits. Adapts well to pots and produces abundantly in warm weather.'},
+  {name:'Coriander',latin:'Coriandrum sativum',type:'both',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'17–27°C',tags:['Herb','Edible','Fast growing'],img:'https://images.unsplash.com/photo-1535189487909-a262ad10c165?w=600&q=80',desc:'Fast-growing herb used in cuisines worldwide. Best in cooler weather — bolts quickly in heat.'},
+  {name:'Sunflower',latin:'Helianthus annuus',type:'outdoor',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'18–35°C',tags:['Flowering','Edible seeds','Giant'],img:'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=600&q=80',desc:'Cheerful giants that track the sun. Seeds are edible and attract birds. Perfect for children to grow.'},
+  {name:'Marigold',latin:'Tagetes spp.',type:'outdoor',difficulty:'easy',water:'Low',light:'Full sun',temp:'15–35°C',tags:['Flowering','Pest repellent','Companion plant'],img:'https://images.unsplash.com/photo-1620005807545-2e08850d6591?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFyaWdvbGR8ZW58MHx8MHx8fDA%3D',desc:'Vibrant orange and yellow blooms that naturally repel pests. Ideal companion for tomatoes and peppers.'},
+  {name:'Fern',latin:'Nephrolepis exaltata',type:'indoor',difficulty:'moderate',water:'High',light:'Indirect',temp:'16–24°C',tags:['Lush','Air purifier','Humidity lover'],img:'https://www.nativewildflowers.net/product_images/uploaded_images/christma-90821.jpg',desc:'Lush cascading fronds bring a rainforest feel indoors. Needs high humidity and consistent moisture.'},
+  {name:'Cactus',latin:'Cactaceae family',type:'indoor',difficulty:'easy',water:'Very low',light:'Full sun',temp:'10–40°C',tags:['Succulent','Drought tolerant','Beginner'],img:'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&q=80',desc:'The ultimate low-maintenance plant. Thrives on neglect, stores its own water, and comes in fascinating shapes.'},
+  {name:'Orchid',latin:'Phalaenopsis spp.',type:'indoor',difficulty:'hard',water:'Low',light:'Bright indirect',temp:'18–28°C',tags:['Flowering','Elegant','Exotic'],img:'https://media.istockphoto.com/id/1369976302/photo/beautiful-purple-orchid-phalaenopsis-flower-background.jpg?s=612x612&w=0&k=20&c=ikZ9PfJ8ObS-adfhuQ9yJNOIWHwlJlAh7LYvfKnlIbI=',desc:'Breathtaking blooms that last months. Requires good drainage and indirect light — not as difficult as its reputation suggests.'},
+  {name:'Curry Leaf',latin:'Murraya koenigii',type:'both',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'18–35°C',tags:['Herb','Edible','Aromatic'],img:'https://media.istockphoto.com/id/1087510858/photo/curry-leaves.jpg?s=612x612&w=0&k=20&c=ix42iQk5-_Ia4O1BHVWYiCGBEHKQ5jTdmMGBDNB3YyI=',desc:'Fragrant leaves essential in South Indian cooking. Grows beautifully in containers in warm climates.'},
+  {name:'Jade Plant',latin:'Crassula ovata',type:'indoor',difficulty:'easy',water:'Low',light:'Bright indirect',temp:'13–23°C',tags:['Succulent','Lucky plant','Long-lived'],img:'https://hips.hearstapps.com/hmg-prod/images/jade-plant-1-645157c445e14.jpg?crop=1xw:0.4651442307692308xh;0,0.0810xh',desc:'A traditional symbol of good luck. Grows slowly into a handsome tree-like succulent lasting decades.'},
+  {name:'Money Plant',latin:'Epipremnum aureum',type:'indoor',difficulty:'easy',water:'Low',light:'Low to bright',temp:'15–30°C',tags:['Lucky','Air purifier','Trailing'],img:'https://media.istockphoto.com/id/2170686151/photo/pothos-houseplant-in-a-flower-pot-epipremnum-aureum.webp?a=1&b=1&s=612x612&w=0&k=20&c=ikXRDt_3YsoIDTF9c32tO6ElF3asPzNMA9cyd_gxC-g=',desc:'Believed to bring prosperity in many cultures. Adapts to almost any indoor condition with minimal care.'},
+  {name:'Tulsi',latin:'Ocimum tenuiflorum',type:'both',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Sacred','Medicinal','Aromatic'],img:'https://images.unsplash.com/photo-1665479754958-1a8bdc47cc0d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVsc2l8ZW58MHx8MHx8fDA%3D',desc:'Holy basil revered in Indian tradition for spiritual and medicinal properties. Thrives in warm sunny spots.'},
+  {name:'Lemon Tree',latin:'Citrus limon',type:'both',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Fruiting','Aromatic','Container-friendly'],img:'https://plus.unsplash.com/premium_photo-1675011575199-816513af8373?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGxlbW9uJTIwdHJlZXxlbnwwfHwwfHx8MA%3D%3D',desc:'Dwarf lemon varieties produce fragrant flowers and real fruit in large containers on sunny patios.'},
+  {name:'Bird of Paradise',latin:'Strelitzia reginae',type:'indoor',difficulty:'moderate',water:'Moderate',light:'Bright direct',temp:'18–30°C',tags:['Tropical','Statement plant','Flowering'],img:'https://images.unsplash.com/photo-1652712088453-970e2604c80e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmlyZCUyMG9mJTIwcGFyYWRpc2UlMjBwbGFudHxlbnwwfHwwfHx8MA%3D%3D',desc:'Dramatic paddle-shaped leaves and exotic orange flowers. Loves as much sun as it can get indoors.'},
+  {name:'Bamboo',latin:'Bambusoideae family',type:'outdoor',difficulty:'easy',water:'Moderate',light:'Full sun to partial',temp:'10–35°C',tags:['Fast growing','Privacy screen','Tropical'],img:'https://media.istockphoto.com/id/135634971/photo/bunch-of-lucky-bamboos.jpg?s=612x612&w=0&k=20&c=zHdPZFtCUYUZ9rcm5xhztXJjP9Hvq2WdMhnMHcq___k=',desc:'Incredibly fast-growing grass that creates beautiful screens and windbreaks. Use barriers to control spread.'},
+  {name:'Thyme',latin:'Thymus vulgaris',type:'both',difficulty:'easy',water:'Low',light:'Full sun',temp:'10–30°C',tags:['Herb','Edible','Ground cover'],img:'https://plus.unsplash.com/premium_photo-1726138617688-e6bfd9f0de5c?w=600&q=80',desc:'Hardy aromatic herb that creeps beautifully over edges and rocks. Drought-tolerant once established.'},
+  {name:'Hibiscus',latin:'Hibiscus rosa-sinensis',type:'both',difficulty:'moderate',water:'High',light:'Full sun',temp:'20–35°C',tags:['Flowering','Tropical','Edible'],img:'https://images.unsplash.com/photo-1622397178204-cd98013590a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGhpYmlzY3VzfGVufDB8fDB8fHww',desc:'Stunning large trumpet flowers in vivid colours. Blooms prolifically with regular feeding and sun.'},
+  {name:'Jasmine',latin:'Jasminum sambac',type:'both',difficulty:'moderate',water:'Moderate',light:'Full sun to partial',temp:'15–30°C',tags:['Fragrant','Flowering','Climber'],img:'https://m.media-amazon.com/images/I/61xreWtQL6L._AC_UF1000,1000_QL80_.jpg',desc:'Intoxicatingly fragrant white blossoms. Train up a trellis and enjoy the evening fragrance from June to August.'},
+];
+
+
+const DIFF_CARE={easy:{watering:30,sunlight:50,difficulty:20},moderate:{watering:55,sunlight:65,difficulty:50},hard:{watering:80,sunlight:85,difficulty:85}};
+const WATER_CARE={'Very low':15,Low:30,Moderate:55,High:80};
+
+function fillPct(v){return v<=33?'fill-low':v<=66?'fill-mid':'fill-high';}
+
+async function loadDetail(){
+  const name=new URLSearchParams(window.location.search).get('plant')||'Basil';
+  const p=PLANTS.find(x=>x.name.toLowerCase()===name.toLowerCase())||{name,latin:'',type:'indoor',difficulty:'moderate',water:'Moderate',light:'Indirect',temp:'',tags:[],img:'',desc:''};
+  document.title=p.name+' – Harvestpedia';
+  document.getElementById('bc-name').textContent=p.name;
+  document.getElementById('hero-name').textContent=p.name;
+  document.getElementById('hero-latin').textContent=p.latin||'';
+  if(p.img){document.getElementById('hero-img').src=p.img;document.getElementById('hero-img').alt=p.name;}
+  const tb=document.getElementById('type-badge');
+  tb.textContent=p.type==='indoor'?'🏠 Indoor':p.type==='outdoor'?'🌳 Outdoor':'🌿 Indoor & Outdoor';
+  tb.className='type-badge badge-'+(p.type||'indoor');
+  document.getElementById('hero-meta').innerHTML=`
+    <div class="meta-chip"><span class="meta-val">${p.water||'—'}</span><span class="meta-lbl">Watering</span></div>
+    <div class="meta-chip"><span class="meta-val">${p.light||'—'}</span><span class="meta-lbl">Light</span></div>
+    <div class="meta-chip"><span class="meta-val">${p.temp||'—'}</span><span class="meta-lbl">Temp</span></div>
+    <div class="meta-chip"><span class="meta-val">${p.difficulty||'—'}</span><span class="meta-lbl">Difficulty</span></div>`;
+  document.getElementById('tags-row').innerHTML=(p.tags||[]).map(t=>`<span class="plant-tag">${t}</span>`).join('');
+  localStorage.setItem('hp-recipe-prefill',p.name);
+  document.getElementById('btn-compare').href='compare.html?item='+encodeURIComponent(p.name);
+
+  // Show care meters immediately from local data
+  const cd=DIFF_CARE[p.difficulty]||DIFF_CARE.moderate;
+  const wv=WATER_CARE[p.water]||50;
+  const sv=Math.min(100,wv+20);
+  document.getElementById('care-meters').innerHTML=`
+    <div class="care-row"><span class="care-label">💧 Watering</span><div class="care-bar"><div class="care-fill ${fillPct(wv)}" style="width:${wv}%"></div></div><span class="care-val">${p.water||'—'}</span></div>
+    <div class="care-row"><span class="care-label">☀️ Sunlight</span><div class="care-bar"><div class="care-fill ${fillPct(sv)}" style="width:${sv}%"></div></div><span class="care-val">${p.light||'—'}</span></div>
+    <div class="care-row"><span class="care-label">🧑‍🌾 Difficulty</span><div class="care-bar"><div class="care-fill ${fillPct(cd.difficulty)}" style="width:${cd.difficulty}%"></div></div><span class="care-val">${p.difficulty||'—'}</span></div>`;
+
+  // Quick facts immediately
+  document.getElementById('facts-grid').innerHTML=`
+    <div class="fact-item"><span class="fact-label">Type</span><span class="fact-val">${p.type==='both'?'Indoor & Outdoor':p.type||'—'}</span></div>
+    <div class="fact-item"><span class="fact-label">Temp range</span><span class="fact-val">${p.temp||'—'}</span></div>
+    <div class="fact-item"><span class="fact-label">Water needs</span><span class="fact-val">${p.water||'—'}</span></div>
+    <div class="fact-item"><span class="fact-label">Light</span><span class="fact-val">${p.light||'—'}</span></div>`;
+
+  // About from local data immediately
+  document.getElementById('about-prose').textContent=p.desc||'';
+
+  try{
+    const raw=await HP.claude(
+      `Give detailed growing info about the plant: ${p.name} (${p.latin||''}). Respond ONLY with JSON (no markdown):\n{"tagline":"...","about":"2-3 sentences...","benefits":["...","...","...","..."],"seasons":{"peak":["Month"],"good":["Month"],"low":["Month"]},"season_note":"one sentence about growing in India","tips":["...","...","..."]}`,
+      'You are a horticultural expert. Return valid JSON only, no markdown.'
+    );
+    const d=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    document.getElementById('hero-tagline').innerHTML=d.tagline||'';
+    document.getElementById('about-prose').textContent=d.about||p.desc||'';
+    document.getElementById('benefits-list').innerHTML=(d.benefits||[]).map(b=>`<div class="benefit-item"><div class="benefit-dot"></div><span>${b}</span></div>`).join('');
+    const sp=document.getElementById('season-pills');sp.innerHTML='';
+    (d.seasons?.peak||[]).forEach(m=>sp.innerHTML+=`<span class="s-pill s-peak">🌟 ${m}</span>`);
+    (d.seasons?.good||[]).forEach(m=>sp.innerHTML+=`<span class="s-pill s-good">✅ ${m}</span>`);
+    (d.seasons?.low||[]).forEach(m=>sp.innerHTML+=`<span class="s-pill s-low">〰️ ${m}</span>`);
+    document.getElementById('season-note').textContent=d.season_note||'';
+    document.getElementById('tips-list').innerHTML=(d.tips||[]).map(t=>`<div class="tip-item">${t}</div>`).join('');
+  }catch(err){
+    console.error(err);
+    document.getElementById('hero-tagline').innerHTML='';
+    ['benefits-list','tips-list'].forEach(id=>document.getElementById(id).innerHTML='<p style="color:var(--text-muted);font-size:13px">Start the proxy to see AI details: <code>node server/proxy.js</code></p>');
+    const sp=document.getElementById('season-pills');sp.innerHTML='<p style="color:var(--text-muted);font-size:13px">Proxy not running</p>';
+  }
+}
+loadDetail();
+</script>
+</body>
+</html>

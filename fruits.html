@@ -267,6 +267,7 @@
 
     /* ── FRUIT CARD ── */
     .fruit-card {
+      text-decoration: none; color: inherit; display: block;
       border-radius: var(--radius-md);
       background: white;
       border: 1px solid rgba(90,171,111,0.10);
@@ -442,8 +443,8 @@
       #fruit-grid { grid-template-columns: 1fr; }
     }
   </style>
-  <script src="/Harvestpedia/js/api.js"></script>
-  <script src="Harvestpedia/js/darkmode.js"></script>
+  <script src="js/darkmode.js"></script>
+  <script src="js/api.js"></script>
 </head>
 <body>
 
@@ -730,7 +731,7 @@ function renderGrid() {
       const isFav = favourites.has(f.name);
       const delay = Math.min(i * 0.05, 0.4);
       html += `
-        <div class="fruit-card" data-name="${f.name}" style="animation-delay:${delay}s">
+        <a class="fruit-card" data-name="${f.name}" style="animation-delay:${delay}s" href="fruit_detail.html?fruit=${encodeURIComponent(f.name)}">
           <div class="fruit-card-img">
             <img src="${f.img}" alt="${f.name}" loading="lazy" />
             <span class="season-badge ${f.season}">${seasonLabel(f.season)}</span>
@@ -744,10 +745,10 @@ function renderGrid() {
             <div class="fruit-family">${f.family}</div>
             <div class="fruit-meta">
               <span class="cal-badge">~${f.cal} kcal/100g</span>
-              <a class="detail-link" href="fruit-detail.html?fruit=${encodeURIComponent(f.name)}">Details →</a>
+              <span class="detail-link">Details →</span>
             </div>
           </div>
-        </div>`;
+        </a>`;
     });
   });
 

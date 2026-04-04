@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fruit Details – Harvestpedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script src="js/darkmode.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ═══════════════════════════════════════════
+       SAME CSS VARIABLES AS fruits.html
+    ═══════════════════════════════════════════ */
+    :root {
+      --green-50:  #f0f9f0;
+      --green-100: #d4edda;
+      --green-200: #a8d5b5;
+      --green-300: #72bb88;
+      --green-400: #5aab6f;
+      --green-600: #2d7a45;
+      --green-700: #236037;
+      --green-800: #1a4f2b;
+      --earth-50:  #fdf6ee;
+      --earth-100: #f5e6d0;
+      --earth-300: #d4a96a;
+      --earth-500: #a0703a;
+      --cream:      #fdfaf5;
+      --warm-white: #fffef9;
+      --text-dark:  #1c2b1e;
+      --text-mid:   #3d5440;
+      --text-muted: #6b8070;
+      --shadow-sm:  0 2px 12px rgba(30,60,35,0.07);
+      --shadow-md:  0 8px 32px rgba(30,60,35,0.11);
+      --shadow-lg:  0 18px 60px rgba(30,60,35,0.14);
+      --radius-sm:  12px;
+      --radius-md:  20px;
+      --radius-lg:  32px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+    /* ── NAV (identical to fruits.html) ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(253,250,245,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(90,171,111,0.12);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--green-800); text-decoration: none; }
+    .nav-logo-leaf { width: 34px; height: 34px; background: linear-gradient(135deg, var(--green-400), var(--green-600)); border-radius: 50% 12px 50% 12px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 14px; font-weight: 500; padding: 8px 18px; border-radius: 50px; transition: all 0.2s; }
+    .nav-links a:hover, .nav-links a.active { background: var(--green-50); color: var(--green-600); }
+    .nav-cta { background: var(--green-600) !important; color: white !important; }
+    .nav-cta:hover { background: var(--green-800) !important; }
+    .dm-toggle { background: none; border: 1.5px solid var(--green-200); border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 1rem; color: var(--text-mid); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { padding: 96px 48px 0; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+    .breadcrumb a { color: var(--green-600); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .sep { opacity: 0.4; }
+
+    /* ── PAGE WRAPPER ── */
+    .page { max-width: 1100px; margin: 0 auto; padding: 32px 48px 80px; }
+    @media (max-width: 768px) { .page { padding: 24px 20px 60px; } nav { padding: 14px 20px; } .breadcrumb { padding: 84px 20px 0; } }
+
+    /* ── HERO STRIP ── */
+    .hero {
+      display: grid; grid-template-columns: 400px 1fr; gap: 48px;
+      align-items: start; margin-bottom: 40px;
+    }
+    @media (max-width: 800px) { .hero { grid-template-columns: 1fr; gap: 24px; } }
+
+    .hero-img-wrap {
+      border-radius: var(--radius-md); overflow: hidden;
+      aspect-ratio: 4/3; box-shadow: var(--shadow-md);
+      position: relative; background: var(--green-50);
+    }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .season-badge {
+      position: absolute; top: 14px; left: 14px;
+      padding: 5px 13px; border-radius: 99px; font-size: 12px; font-weight: 600;
+    }
+    .season-badge.summer { background: rgba(255,200,50,0.92); color: #7a4f00; }
+    .season-badge.spring { background: rgba(255,160,180,0.92); color: #7a1f3a; }
+    .season-badge.autumn { background: rgba(220,120,50,0.92); color: #6b2800; }
+    .season-badge.winter { background: rgba(130,200,255,0.92); color: #003a6b; }
+    .season-badge.year   { background: rgba(90,171,111,0.92); color: #0f3d1e; }
+
+    .hero-info { padding-top: 4px; }
+    .hero-family { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--green-600); margin-bottom: 8px; }
+    .hero-name { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: var(--text-dark); line-height: 1.1; margin-bottom: 10px; }
+    .hero-latin { font-style: italic; font-size: 15px; color: var(--text-muted); margin-bottom: 16px; }
+    .hero-tagline { font-size: 16px; color: var(--text-mid); line-height: 1.65; margin-bottom: 24px; }
+
+    .stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .stat-chip {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 12px 18px; background: white; border: 1px solid var(--green-100);
+      border-radius: var(--radius-sm); min-width: 80px; box-shadow: var(--shadow-sm);
+    }
+    .stat-chip .val { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--green-700); }
+    .stat-chip .lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    .nutrient-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .nutrient-pill { padding: 5px 12px; background: var(--green-50); border: 1px solid var(--green-100); border-radius: 99px; font-size: 12px; font-weight: 500; color: var(--green-700); }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all .2s; }
+    .btn-green { background: var(--green-600); color: white; }
+    .btn-green:hover { background: var(--green-800); }
+    .btn-earth { background: var(--earth-500); color: white; }
+    .btn-earth:hover { background: #7a5022; }
+    .btn-outline { background: transparent; border: 2px solid var(--green-200); color: var(--green-700); }
+    .btn-outline:hover { border-color: var(--green-400); background: var(--green-50); }
+
+    /* ── SECTION CARDS ── */
+    .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 700px) { .section-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: white; border: 1px solid var(--green-100);
+      border-radius: var(--radius-md); padding: 26px 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .card.full { grid-column: 1 / -1; }
+    .card.earth { border-left: 4px solid var(--earth-300); }
+    .card.accent { border-left: 4px solid var(--green-400); }
+
+    .card-title {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--text-muted); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ── NUTRITION TABLE ── */
+    .nut-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .nut-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 12px; background: var(--green-50); border-radius: 9px;
+    }
+    .nut-label { font-size: 13px; color: var(--text-muted); }
+    .nut-val { font-size: 14px; font-weight: 600; color: var(--green-700); }
+    .nut-note { grid-column: 1/-1; font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ── BENEFITS ── */
+    .benefit-list { display: flex; flex-direction: column; gap: 10px; }
+    .benefit-row { display: flex; gap: 10px; align-items: flex-start; }
+    .benefit-dot { width: 8px; height: 8px; min-width: 8px; background: var(--green-400); border-radius: 50%; margin-top: 5px; }
+    .benefit-row p { font-size: 14px; line-height: 1.55; color: var(--text-mid); }
+
+    /* ── SEASON BAR ── */
+    .season-grid { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .s-pill { padding: 5px 13px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+    .s-peak { background: #d1fae5; color: #065f46; }
+    .s-good { background: #fef3c7; color: #92400e; }
+    .s-low  { background: #f3f4f6; color: #6b7280; }
+    .season-note { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin-top: 8px; }
+
+    /* ── TIPS / STEPS ── */
+    .tips-list { display: flex; flex-direction: column; gap: 10px; }
+    .tip-item {
+      padding: 12px 16px; background: var(--green-50);
+      border-radius: 10px; border-left: 3px solid var(--green-400);
+      font-size: 14px; line-height: 1.55; color: var(--text-mid);
+    }
+
+    /* ── VARIETIES TABLE ── */
+    .variety-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .variety-table th {
+      text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--text-muted); background: var(--green-50);
+      border-bottom: 1px solid var(--green-100);
+    }
+    .variety-table td { padding: 10px 12px; border-bottom: 1px solid var(--green-50); color: var(--text-mid); vertical-align: top; }
+    .variety-table tr:last-child td { border-bottom: none; }
+    .variety-name { font-weight: 600; color: var(--text-dark); }
+
+    /* ── FACT PILLS ── */
+    .fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .fact-item { padding: 12px 14px; background: var(--earth-50); border: 1px solid var(--earth-100); border-radius: 10px; }
+    .fact-label { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 3px; }
+    .fact-val { font-size: 14px; font-weight: 600; color: var(--earth-500); }
+
+    /* ── TAGS ── */
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { padding: 5px 14px; background: var(--earth-50); border: 1px solid var(--earth-100); border-radius: 99px; font-size: 12px; font-weight: 500; color: var(--earth-500); }
+
+    /* ── ABOUT PROSE ── */
+    .prose { font-size: 15px; line-height: 1.8; color: var(--text-mid); }
+    .prose p { margin-bottom: 14px; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* ── SECTION DIVIDER ── */
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--text-dark); margin: 40px 0 20px;
+      padding-bottom: 10px; border-bottom: 2px solid var(--green-100);
+      display: flex; align-items: center; gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAV  — same as fruits.html
+══════════════════════════════════ -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-leaf">🌿</div>Harvestpedia
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fruits.html" class="active">Fruits</a></li>
+    <li><a href="vegetables.html">Vegetables</a></li>
+    <li><a href="plants.html">Plants</a></li>
+    <button class="dm-toggle" id="dm-toggle"></button>
+    <li><a href="recipes.html" class="nav-cta">🍳 Recipes</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">🏠 Home</a>
+  <span class="sep">›</span>
+  <a href="fruits.html">Fruits</a>
+  <span class="sep">›</span>
+  <span id="bc-name">—</span>
+</div>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════
+       HERO  — image + name + quick stats
+  ══════════════════════════════════ -->
+  <div class="hero">
+    <div class="hero-img-wrap">
+      <img id="hero-img" src="" alt=""/>
+      <span class="season-badge" id="season-badge"></span>
+    </div>
+    <div class="hero-info">
+      <div class="hero-family"   id="hero-family"></div>
+      <h1 class="hero-name"     id="hero-name">—</h1>
+      <div class="hero-latin"   id="hero-latin"></div>
+      <p class="hero-tagline"   id="hero-tagline"></p>
+
+      <div class="stat-row" id="stat-row">
+        <!-- filled by JS from FRUITS data -->
+      </div>
+
+      <div class="nutrient-pills" id="nutrient-pills">
+        <!-- filled by JS from FRUITS data -->
+      </div>
+
+      <div class="hero-actions">
+        <a id="btn-recipe"  href="recipes.html" class="btn btn-green">🍳 Recipes</a>
+        <a id="btn-compare" href="compare.html"  class="btn btn-outline">📊 Compare</a>
+        <a id="btn-season"  href="seasonal.html" class="btn btn-earth">🗓️ Season Guide</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 1 — OVERVIEW & QUICK FACTS
+       PASTE DATA: Change the text inside each <p> or <span>
+  ══════════════════════════════════════════════════════ -->
+  <div class="section-label">📖 Overview</div>
+  <div class="section-grid">
+
+    <div class="card full accent">
+      <div class="card-title">🌍 About this fruit</div>
+      <div class="prose">
+        <!--
+        ┌─────────────────────────────────────────────┐
+        │  PASTE: 2–3 sentences from Perplexity here  │
+        │  about the fruit's origin, history, taste   │
+        └─────────────────────────────────────────────┘
+        -->
+        <p id="about-text">Loading…</p>
+      </div>
+    </div>
+
+    <div class="card earth">
+      <div class="card-title">📋 Quick Facts</div>
+      <div class="fact-grid" id="fact-grid">
+        <!--
+        ┌──────────────────────────────────────────────────────────────────┐
+        │  HOW TO ADD FACTS:                                               │
+        │  Copy one <div class="fact-item"> block per fact you want to add │
+        │                                                                  │
+        │  Example:                                                        │
+        │  <div class="fact-item">                                         │
+        │    <span class="fact-label">Origin</span>                        │
+        │    <span class="fact-val">Central Asia</span>                    │
+        │  </div>                                                          │
+        └──────────────────────────────────────────────────────────────────┘
+        -->
+        <div class="fact-item">
+          <span class="fact-label">Botanical name</span>
+          <span class="fact-val" id="fact-botanical">—</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-label">Family</span>
+          <span class="fact-val" id="fact-family">—</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-label">Origin</span>
+          <span class="fact-val" id="fact-origin">—</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-label">Best season</span>
+          <span class="fact-val" id="fact-season">—</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-label">Calories</span>
+          <span class="fact-val" id="fact-cal">—</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-label">Taste</span>
+          <span class="fact-val" id="fact-taste">—</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏷️ Tags</div>
+      <div class="tag-row" id="tag-row">
+        <!--
+        ┌──────────────────────────────────────────────┐
+        │  HOW TO ADD TAGS:                            │
+        │  <span class="tag">Your tag here</span>      │
+        └──────────────────────────────────────────────┘
+        -->
+      </div>
+    </div>
+
+  </div><!-- /section-grid -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 2 — NUTRITION
+       PASTE DATA: Replace each nut-val with real numbers
+  ══════════════════════════════════════════════════════ -->
+  <div class="section-label">🧪 Nutrition</div>
+  <div class="section-grid">
+
+    <div class="card">
+      <div class="card-title">📊 Per 100g (raw)</div>
+      <div class="nut-grid">
+        <!--
+        ┌────────────────────────────────────────────────────────────┐
+        │  HOW TO ADD / EDIT NUTRITION ROWS:                         │
+        │  Copy one <div class="nut-row"> block per nutrient         │
+        │                                                            │
+        │  <div class="nut-row">                                     │
+        │    <span class="nut-label">Your nutrient</span>            │
+        │    <span class="nut-val">Your value</span>                 │
+        │  </div>                                                    │
+        └────────────────────────────────────────────────────────────┘
+        -->
+        <div class="nut-row"><span class="nut-label">Calories</span>     <span class="nut-val" id="n-cal">—</span></div>
+        <div class="nut-row"><span class="nut-label">Carbs</span>        <span class="nut-val" id="n-carbs">—</span></div>
+        <div class="nut-row"><span class="nut-label">Fiber</span>        <span class="nut-val" id="n-fiber">—</span></div>
+        <div class="nut-row"><span class="nut-label">Sugar</span>        <span class="nut-val" id="n-sugar">—</span></div>
+        <div class="nut-row"><span class="nut-label">Protein</span>      <span class="nut-val" id="n-protein">—</span></div>
+        <div class="nut-row"><span class="nut-label">Fat</span>          <span class="nut-val" id="n-fat">—</span></div>
+        <div class="nut-row"><span class="nut-label">Vitamin C</span>    <span class="nut-val" id="n-vitc">—</span></div>
+        <div class="nut-row"><span class="nut-label">Potassium</span>    <span class="nut-val" id="n-potassium">—</span></div>
+        <div class="nut-row"><span class="nut-label">Vitamin A</span>    <span class="nut-val" id="n-vita">—</span></div>
+        <div class="nut-row"><span class="nut-label">Calcium</span>      <span class="nut-val" id="n-calcium">—</span></div>
+        <div class="nut-row"><span class="nut-label">Iron</span>         <span class="nut-val" id="n-iron">—</span></div>
+        <div class="nut-row"><span class="nut-label">Magnesium</span>    <span class="nut-val" id="n-magnesium">—</span></div>
+        <p class="nut-note">Source: USDA FoodData Central</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">💊 Key Micronutrients</div>
+      <div class="benefit-list" id="micronutrient-list">
+        <!--
+        ┌───────────────────────────────────────────────────────────────────┐
+        │  HOW TO ADD MICRONUTRIENT INFO:                                   │
+        │                                                                   │
+        │  <div class="benefit-row">                                        │
+        │    <div class="benefit-dot"></div>                                │
+        │    <p><strong>Vitamin C</strong> — 8.4mg (14% DV).               │
+        │    Supports immune function and iron absorption.</p>              │
+        │  </div>                                                           │
+        └───────────────────────────────────────────────────────────────────┘
+        -->
+      </div>
+    </div>
+
+  </div><!-- /section-grid -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 3 — HEALTH BENEFITS
+       PASTE DATA: Add benefit rows
+  ══════════════════════════════════════════════════════ -->
+  <div class="section-label">💚 Health Benefits</div>
+  <div class="section-grid">
+
+    <div class="card">
+      <div class="card-title">🩺 Proven Benefits</div>
+      <div class="benefit-list" id="benefits-list">
+        <!--
+        ┌───────────────────────────────────────────────────────────────────┐
+        │  HOW TO ADD BENEFITS:                                             │
+        │                                                                   │
+        │  <div class="benefit-row">                                        │
+        │    <div class="benefit-dot"></div>                                │
+        │    <p><strong>Heart health</strong> — Flavonoids reduce LDL       │
+        │    cholesterol and blood pressure.</p>                            │
+        │  </div>                                                           │
+        └───────────────────────────────────────────────────────────────────┘
+        -->
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⚠️ Who should be careful</div>
+      <div class="benefit-list" id="caution-list">
+        <!--
+        ┌────────────────────────────────────────────────────────────────┐
+        │  HOW TO ADD CAUTIONS:                                          │
+        │                                                                │
+        │  <div class="benefit-row">                                     │
+        │    <div class="benefit-dot" style="background:#f59e0b"></div>  │
+        │    <p>People with diabetes should limit intake due to high     │
+        │    natural sugar content.</p>                                  │
+        │  </div>                                                        │
+        └────────────────────────────────────────────────────────────────┘
+        -->
+      </div>
+    </div>
+
+  </div><!-- /section-grid -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 4 — SEASON & AVAILABILITY
+       PASTE DATA: Add month pills and notes
+  ══════════════════════════════════════════════════════ -->
+  <div class="section-label">🗓️ Season & Availability</div>
+  <div class="section-grid">
+
+    <div class="card">
+      <div class="card-title">📅 In India</div>
+      <div class="season-grid" id="india-seasons">
+        <!--
+        ┌──────────────────────────────────────────────────────────────┐
+        │  HOW TO ADD SEASON PILLS:                                    │
+        │                                                              │
+        │  Peak months:  <span class="s-pill s-peak">🌟 June</span>   │
+        │  Good months:  <span class="s-pill s-good">✅ May</span>    │
+        │  Low months:   <span class="s-pill s-low">〰️ Jan</span>    │
+        └──────────────────────────────────────────────────────────────┘
+        -->
+      </div>
+      <p class="season-note" id="india-season-note"></p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🌍 Global Availability</div>
+      <div class="season-grid" id="global-seasons">
+        <!-- Same pill syntax as above -->
+      </div>
+      <p class="season-note" id="global-season-note"></p>
+    </div>
+
+    <div class="card full">
+      <div class="card-title">🏪 How to pick a ripe one & store it</div>
+      <div class="tips-list" id="buying-tips">
+        <!--
+        ┌─────────────────────────────────────────────────────────────┐
+        │  HOW TO ADD TIPS:                                           │
+        │  <div class="tip-item">Your tip text here.</div>            │
+        └─────────────────────────────────────────────────────────────┘
+        -->
+      </div>
+    </div>
+
+  </div><!-- /section-grid -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 5 — VARIETIES
+       PASTE DATA: Add variety rows to the table
+  ══════════════════════════════════════════════════════ -->
+  <div class="section-label">🌿 Popular Varieties</div>
+  <div class="card full">
+    <table class="variety-table" id="variety-table">
+      <thead>
+        <tr>
+          <th>Variety</th>
+          <th>Taste</th>
+          <th>Best for</th>
+          <th>Available in India</th>
+        </tr>
+      </thead>
+      <tbody id="variety-tbody">
+        <!--
+        ┌───────────────────────────────────────────────────────────────┐
+        │  HOW TO ADD VARIETIES:                                        │
+        │  Copy one <tr> block per variety                              │
+        │                                                               │
+        │  <tr>                                                         │
+        │    <td><span class="variety-name">Fuji</span></td>            │
+        │    <td>Sweet, mild</td>                                       │
+        │    <td>Eating fresh</td>                                      │
+        │    <td>Yes</td>                                               │
+        │  </tr>                                                        │
+        └───────────────────────────────────────────────────────────────┘
+        -->
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 6 — CULINARY USES
+       PASTE DATA: Add tips and pairings
+  ══════════════════════════════════════════════════════ -->
+  <div class="section-label">🍽️ Culinary Uses</div>
+  <div class="section-grid">
+
+    <div class="card">
+      <div class="card-title">👨‍🍳 How to use in cooking</div>
+      <div class="tips-list" id="culinary-tips">
+        <!--
+        Tip syntax: <div class="tip-item">Your tip here.</div>
+        -->
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🤝 Pairs well with</div>
+      <div class="tag-row" id="pairing-tags" style="margin-bottom:16px">
+        <!--
+        Pairing tag syntax: <span class="tag">Cinnamon</span>
+        -->
+      </div>
+      <div class="card-title" style="margin-top:8px">🚫 Avoid pairing with</div>
+      <div class="tag-row" id="avoid-tags">
+        <!--
+        <span class="tag" style="background:#fef2f2;border-color:#fecaca;color:#991b1b">Milk</span>
+        -->
+      </div>
+    </div>
+
+  </div><!-- /section-grid -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 7 — GROWING AT HOME  (optional)
+       PASTE DATA: Add growing tips
+  ══════════════════════════════════════════════════════ -->
+  <div class="section-label">🌱 Growing at Home</div>
+  <div class="section-grid">
+
+    <div class="card">
+      <div class="card-title">🪴 Can you grow it at home?</div>
+      <div class="tips-list" id="growing-tips">
+        <!--
+        Tip syntax: <div class="tip-item">Your tip here.</div>
+        -->
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Growing Requirements</div>
+      <div class="fact-grid" id="growing-facts">
+        <!--
+        ┌──────────────────────────────────────────────────────┐
+        │  Fact syntax:                                        │
+        │  <div class="fact-item">                             │
+        │    <span class="fact-label">Soil type</span>         │
+        │    <span class="fact-val">Well-drained loam</span>   │
+        │  </div>                                              │
+        └──────────────────────────────────────────────────────┘
+        -->
+      </div>
+    </div>
+
+  </div><!-- /section-grid -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 8 — FUN FACTS  (optional)
+       PASTE DATA: Add fun facts as benefit-rows
+  ══════════════════════════════════════════════════════ -->
+  <div class="section-label">✨ Fun Facts</div>
+  <div class="card full">
+    <div class="benefit-list" id="fun-facts">
+      <!--
+      ┌───────────────────────────────────────────────────────────────────┐
+      │  Fun fact syntax:                                                 │
+      │                                                                   │
+      │  <div class="benefit-row">                                        │
+      │    <div class="benefit-dot" style="background:#8b5cf6"></div>     │
+      │    <p>Apples are 25% air, which is why they float in water.</p>   │
+      │  </div>                                                           │
+      └───────────────────────────────────────────────────────────────────┘
+      -->
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT
+     Reads the ?fruit= URL param, matches it to the FRUITS array,
+     and fills the hero section automatically.
+     You do NOT need to touch this.
+══════════════════════════════════════════════════════════════════════ -->
+<script src="js/api.js"></script>
+<script>
+
+/* ─── SAME FRUITS DATA AS fruits.html ─────────────────────────────────── */
+const fruits = [
+  { name:'Apple', family:'Rosaceae', season:'autumn', cal:52, img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&q=80', nutrients:['Fiber','Quercetin','Vit C'] },
+  { name:'Apricot', family:'Rosaceae', season:'spring', cal:48, img:'https://media.istockphoto.com/id/165089494/photo/apricots-with-leaves.jpg?s=612x612&w=0&k=20&c=Hma--a5rdJ_4TAHVaeY-YjURQhiXr1J8cNP3fEpMiq8=', nutrients:['Vit A','Beta-carotene','Potassium'] },
+  { name:'Avocado', family:'Lauraceae', season:'year', cal:160, img:'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=500&q=80', nutrients:['Healthy fats','Potassium','Vit K'] },
+  { name:'Banana', family:'Musaceae', season:'year', cal:89, img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&q=80', nutrients:['Potassium','Vit B6','Magnesium'] },
+  { name:'Blueberry', family:'Ericaceae', season:'summer', cal:57, img:'https://images.unsplash.com/photo-1457296898342-cdd24585d095?w=500&q=80', nutrients:['Anthocyanins','Vit C','Fiber'] },
+  { name:'Cherry', family:'Rosaceae', season:'summer', cal:50, img:'https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=500&q=80', nutrients:['Melatonin','Antioxidants','Vit C'] },
+  { name:'Coconut', family:'Arecaceae', season:'year', cal:354, img:'https://plus.unsplash.com/premium_photo-1680497044033-5dc96f699b81?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y29jb251dHxlbnwwfHwwfHx8MA%3D%3D', nutrients:['MCTs','Electrolytes','Iron'] },
+  { name:'Dragon Fruit', family:'Cactaceae', season:'summer', cal:60, img:'https://images.unsplash.com/photo-1527325678964-54921661f888?w=500&q=80', nutrients:['Vit C','Iron','Magnesium'] },
+  { name:'Durian', family:'Malvaceae', season:'summer', cal:147, img:'https://images.unsplash.com/photo-1588482415422-a061902e00a4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZHVyaWFufGVufDB8fDB8fHww', nutrients:['Vit C','Potassium','Iron'] },
+  { name:'Fig', family:'Moraceae', season:'autumn', cal:74, img:'https://images.unsplash.com/photo-1601379760591-1d89ae6ee1b7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlnfGVufDB8fDB8fHww', nutrients:['Fiber','Calcium','Iron'] },
+  { name:'Grape', family:'Vitaceae', season:'autumn', cal:67, img:'https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=500&q=80', nutrients:['Resveratrol','Vit K','Antioxidants'] },
+  { name:'Grapefruit', family:'Rutaceae', season:'winter', cal:42, img:'https://images.unsplash.com/photo-1671624759854-ced22d6a6d28?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3JhcGVmcnVpdHxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Vit A','Lycopene'] },
+  { name:'Guava', family:'Myrtaceae', season:'year', cal:68, img:'https://images.unsplash.com/photo-1536511132770-e5058c7e8c46?w=500&q=80', nutrients:['Vit C','Lycopene','Folate'] },
+  { name:'Jackfruit', family:'Moraceae', season:'summer', cal:95, img:'https://media.istockphoto.com/id/1172008120/photo/ripe-jackfruit.jpg?s=612x612&w=0&k=20&c=NEA7tNPbN45d165iLQBFQ7XmeyC8_6rQSSq4NuNJYIY=', nutrients:['Vit B6','Fiber','Potassium'] },
+  { name:'Kiwi', family:'Actinidiaceae', season:'winter', cal:61, img:'https://images.unsplash.com/photo-1585059895524-72359e06133a?w=500&q=80', nutrients:['Vit C','Vit K','Fiber'] },
+  { name:'Lemon', family:'Rutaceae', season:'year', cal:29, img:'https://images.unsplash.com/photo-1568569350062-ebfa3cb195df?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGxlbW9ufGVufDB8fDB8fHww', nutrients:['Vit C','Citric acid','Hesperidin'] },
+  { name:'Lychee', family:'Sapindaceae', season:'spring', cal:66, img:'https://plus.unsplash.com/premium_photo-1722961407854-fcc0004b4929?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bHljaGVlfGVufDB8fDB8fHww', nutrients:['Vit C','Copper','Potassium'] },
+  { name:'Mango', family:'Anacardiaceae', season:'summer', cal:60, img:'https://media.istockphoto.com/id/168370138/photo/mango.jpg?s=612x612&w=0&k=20&c=ENq2BrUV8dNH2rth_ZYBBtS9RWDwCbI25SfulxirmnQ=', nutrients:['Vit A','Vit C','Folate'] },
+  { name:'Melon', family:'Cucurbitaceae', season:'summer', cal:34, img:'https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=500&q=80', nutrients:['Vit A','Vit C','Hydration'] },
+  { name:'Orange', family:'Rutaceae', season:'winter', cal:47, img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=500&q=80', nutrients:['Vit C','Folate','Flavonoids'] },
+  { name:'Papaya', family:'Caricaceae', season:'year', cal:43, img:'https://images.unsplash.com/photo-1526318472351-c75fcf070305?w=500&q=80', nutrients:['Vit C','Papain','Folate'] },
+  { name:'Peach', family:'Rosaceae', season:'summer', cal:39, img:'https://media.istockphoto.com/id/1369429481/photo/ripe-peaches-with-thyme-leaves-in-a-plate-on-a-wooden-board-on-a-background.jpg?s=612x612&w=0&k=20&c=tEQJ-8dQ0B4PU8CmPSKJUSGJykcysIkeZ0RGBEbK97Y=', nutrients:['Vit C','Potassium','Niacin'] },
+  { name:'Pear', family:'Rosaceae', season:'autumn', cal:57, img:'https://media.istockphoto.com/id/1766780576/photo/podium-for-exhibitions-and-product-presentations-material-stone-fruit-beautiful-green.jpg?s=612x612&w=0&k=20&c=lhvwq5VkrmNPj-wPhOBfVRgARiAiW_M-2qI1APxlNB4=', nutrients:['Fiber','Vit K','Copper'] },
+  { name:'Pineapple', family:'Bromeliaceae', season:'spring', cal:50, img:'https://images.unsplash.com/photo-1621409443141-46c42dc0afb5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGluZWFwcGxlfGVufDB8fDB8fHww', nutrients:['Bromelain','Vit C','Manganese'] },
+  { name:'Plum', family:'Rosaceae', season:'summer', cal:46, img:'https://plus.unsplash.com/premium_photo-1690272333523-5cfd5405015d?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGx1bXxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Vit K','Antioxidants'] },
+  { name:'Pomegranate', family:'Lythraceae', season:'autumn', cal:83, img:'https://media.istockphoto.com/id/877321098/photo/ripe-pomegranate-fruits.jpg?s=612x612&w=0&k=20&c=btD4lMY0XPDNC7YuP5dxsgWJl90seFS01d51CuNj0-Q=', nutrients:['Punicalagins','Vit C','Folate'] },
+  { name:'Raspberry', family:'Rosaceae', season:'summer', cal:52, img:'https://plus.unsplash.com/premium_photo-1675731118517-c85b8cd0904c?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmFzYmVycnl8ZW58MHx8MHx8fDA%3D', nutrients:['Fiber','Vit C','Manganese'] },
+  { name:'Starfruit', family:'Oxalidaceae', season:'summer', cal:31, img:'https://media.istockphoto.com/id/1288568529/photo/fresh-starfruit-on-a-wooden-background.jpg?s=612x612&w=0&k=20&c=lUvi2sbVo8Fy8mkWdVDijl3d_QhUEanizJG1ISZtCQA=', nutrients:['Vit C','Fiber','Copper'] },
+  { name:'Strawberry', family:'Rosaceae', season:'spring', cal:32, img:'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=500&q=80', nutrients:['Vit C','Folate','Manganese'] },
+  { name:'Watermelon', family:'Cucurbitaceae', season:'summer', cal:30, img:'https://images.unsplash.com/photo-1652031552021-50bcc01121a7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdhdGVybWVsb258ZW58MHx8MHx8fDA%3D', nutrients:['Lycopene','Vit A','Hydration'] },
+  { name:'Passion Fruit', family:'Passifloraceae', season:'summer', cal:97, img:'https://media.istockphoto.com/id/1443741202/photo/sliced-passion-fruit-fresh-passion-fruit-on-a-yellow-background.jpg?s=612x612&w=0&k=20&c=pcjq-GsjKLm3is88j6tNUN2Bj6bjPmaJ1qsnKx-3iyA=', nutrients:['Vit C','Vit A','Fiber','Antioxidants'] },
+  { name:'Mulberry', family:'Moraceae', season:'summer', cal:43, img:'https://images.unsplash.com/photo-1660418056478-66fa71ceb526?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVsYmVycnl8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Iron','Fiber','Antioxidants'] },
+  { name:'Mandarin', family:'Rutaceae', season:'winter', cal:53, img:'https://images.unsplash.com/photo-1603638925702-37e1936b6d19?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbmRhcmlufGVufDB8fDB8fHww', nutrients:['Vit C','Vit A','Folate','Beta-carotene'] },
+  { name:'Cranberry', family:'Ericaceae', season:'autumn', cal:46, img:'https://images.unsplash.com/photo-1586811124870-46ade1cd8651?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JhbmJlcnJ5fGVufDB8fDB8fHww', nutrients:['Vit C','Fiber','Proanthocyanidins','Antioxidants'] },
+  { name:'Blackberry', family:'Rosaceae', season:'summer', cal:43, img:'https://images.unsplash.com/photo-1669562064740-e7d35af4cdb3?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2tiZXJyeXxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Custard Apple', family:'Annonaceae', season:'winter', cal:94, img:'https://media.istockphoto.com/id/172865600/photo/custard-apple.webp?a=1&b=1&s=612x612&w=0&k=20&c=lDAX5DZ9Hge-7hMVAdJZguphmpuOG0m9ka_W7LK5MP0=', nutrients:['Vit C','Fiber','Calcium','Magnesium'] },
+  { name:'Sapota', family:'Sapotaceae', season:'winter', cal:83, img:'https://media.istockphoto.com/id/2246831827/photo/fresh-organic-chemical-free-sapodilla-sweet-and-taste-fruit-with-green-leaf-on-wooden.webp?a=1&b=1&s=612x612&w=0&k=20&c=0Gjdm52PUY418F-82XTmOZpgv9Q5BhWco3DNmfbSyqI=', nutrients:['Fiber','Vit C','Complex carbs'] },
+  { name:'Tamarind', family:'Fabaceae', season:'summer', cal:239, img:'https://media.istockphoto.com/id/465156986/photo/freshly-picked-ripe-thai-tamarinds.jpg?s=612x612&w=0&k=20&c=JRXcRa2pn0P9nN27EJRziyp2a5vTVo7ktJVGUqwg7uw=', nutrients:['Vit C','Iron','Potassium','Tartaric acid'] },
+  { name:'Physalis', family:'Solanaceae', season:'summer', cal:53, img:'https://images.unsplash.com/photo-1506176874237-f0abdd2041a0?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UGh5c2FsaXN8ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Vit A','Fiber'] },
+  { name:'Rambutan', family:'Sapindaceae', season:'summer', cal:68, img:'https://plus.unsplash.com/premium_photo-1725623971827-5cd7b970fb09?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8UmFtYnV0YW58ZW58MHx8MHx8fDA%3D', nutrients:['Vit C','Fiber','Iron'] },
+  { name:'Persimmon', family:'Ebenaceae', season:'autumn', cal:70, img:'https://media.istockphoto.com/id/627156576/photo/persimmon-fruit.jpg?s=612x612&w=0&k=20&c=IdhHm4Em6zThAqCOGaDpks6RHjwuCi2q31ZTvRflxUg=', nutrients:['Vit A','Vit C','Fiber'] },
+  { name:'Pomelo', family:'Rutaceae', season:'winter', cal:38, img:'https://media.istockphoto.com/id/97170294/photo/pummelo.jpg?s=612x612&w=0&k=20&c=EVTE1bL2upyTT_YHKM12dlwUH-wWxmZ2nD77sxPpqd0=', nutrients:['Vit C','Vit A','Folate'] },
+  { name:'Jujube', family:'Rhamnaceae', season:'autumn', cal:79, img:'https://images.unsplash.com/photo-1537203374277-c6cf7cebea4a?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SnVqdWJlfGVufDB8fDB8fHww', nutrients:['Vit C','Antioxidants','Fiber'] },
+  { name:'Star Gooseberry',family:'Grossulariaceae',season:'summer', cal:44, img:'https://m.media-amazon.com/images/I/71OTbc2WAWL._AC_UF1000,1000_QL80_.jpg', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Longan', family:'Sapindaceae', season:'summer', cal:60, img:'https://media.istockphoto.com/id/2167567881/photo/longan-is-a-sweet-fruit-so-it-is-high-in-carbohydrates-and-sucrose-glucose-which-helps-to.jpg?s=612x612&w=0&k=20&c=ercjxmTY6Otl0Y52t59WoJtZGPu2ftrT6YH3w5Fyyyg=', nutrients:['Vit C','Iron','Fiber'] },
+  { name:'Loquat', family:'Rosaceae', season:'spring', cal:47, img:'https://media.istockphoto.com/id/526145786/photo/close-up-view-of-some-loquat-fruit.jpg?s=612x612&w=0&k=20&c=IosCpl-gb_PdxRmWbm7cvONUUfWXW47tcnci-Bndfkg=', nutrients:['Vit A','Vit C','Fiber'] },
+  { name:'Kumquat', family:'Rutaceae', season:'winter', cal:71, img:'https://images.unsplash.com/photo-1670843837142-8c4452916f8e?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8S3VtcXVhdHxlbnwwfHwwfHx8MA%3D%3D', nutrients:['Vit C','Fiber','Flavonoids'] },
+  { name:'Salak', family:'Arecaceae', season:'year', cal:82, img:'https://m.media-amazon.com/images/I/41VjwksZciL._AC_UF1000,1000_QL80_.jpg', nutrients:['Starch','Fiber','Vit C'] },
+  { name:'Ackee', family:'Sapindaceae', season:'summer', cal:156, img:'https://media.istockphoto.com/id/1209977865/photo/ripe-ackee-on-tree.jpg?s=612x612&w=0&k=20&c=mOdfEZH1eVFOjaaTjkte3_TkgHHOGzhoXNmiDnjKuJU=', nutrients:['Healthy fats','Vit C','Protein'] },
+  { name:'Breadfruit', family:'Moraceae', season:'summer', cal:103, img:'https://www.foodandwine.com/thmb/2Q0QoLrhj9RWQSlReV5QUeDnvXk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Why-Breadfruit-Is-the-Superfood-Youre-Missing-Out-On-FT-BLOG0525-01-f09de5083fe544c3ae684e56953da2ae.jpg', nutrients:['Complex carbs','Fiber','Vit C'] },
+  { name:'Carambola', family:'Oxalidaceae', season:'summer', cal:31, img:'https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2025/01/befunky-collage-2025-01-04t181143-1735994469.webp', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Cherimoya', family:'Annonaceae', season:'winter', cal:74, img:'https://www.marthastewart.com/thmb/xHEY0vtNE2yh9VGu1W07fRe8--I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1194272165-51e7420e52c946adaf076c720650345f.jpg', nutrients:['Vit C','Fiber','Potassium'] },
+  { name:'Sapodilla', family:'Sapotaceae', season:'winter', cal:83, img:'https://specialtyproduce.com/sppics/8433.png', nutrients:['Fiber','Vit C','Complex carbs'] },
+  { name:'Santol', family:'Meliaceae', season:'summer', cal:61, img:'https://media.philstar.com/photos/2025/07/09/6_2025-07-09_16-55-51.jpg', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Mangaba', family:'Anacardiaceae', season:'summer', cal:61, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRch0E1_9J2KK6d5UxhaGHgF1zagFTChtl2nA&s', nutrients:['Vit C','Fiber','Antioxidants'] },
+  { name:'Canistel', family:'Sapotaceae', season:'autumn', cal:155, img:'https://m.media-amazon.com/images/I/4125ihCkbtL._AC_UF1000,1000_QL80_.jpg', nutrients:['Complex carbs','Vit A','Fiber'] }
+];
+
+const SEASON_LABELS = {
+  summer:'☀️ Summer', spring:'🌸 Spring',
+  autumn:'🍂 Autumn', winter:'❄️ Winter', year:'🌍 Year-round'
+};
+
+/* ─── AUTO-FILL HERO FROM URL PARAM ───────────────────────────────────── */
+function fillHero() {
+  const name = new URLSearchParams(window.location.search).get('fruit') || 'Apple';
+  const f = FRUITS.find(x => x.name.toLowerCase() === name.toLowerCase())
+            || { name, family: '', season: 'year', cal: '—', img: '', nutrients: [] };
+
+  document.title = f.name + ' – Harvestpedia';
+  document.getElementById('bc-name').textContent        = f.name;
+  document.getElementById('hero-name').textContent      = f.name;
+  document.getElementById('hero-family').textContent    = f.family;
+  document.getElementById('fact-family').textContent    = f.family || '—';
+  document.getElementById('fact-season').textContent    = SEASON_LABELS[f.season] || f.season;
+  document.getElementById('fact-cal').textContent       = f.cal ? f.cal + ' kcal/100g' : '—';
+  document.getElementById('n-cal').textContent          = f.cal ? f.cal + ' kcal' : '—';
+
+  if (f.img) {
+    document.getElementById('hero-img').src = f.img;
+    document.getElementById('hero-img').alt = f.name;
+  }
+
+  const sb = document.getElementById('season-badge');
+  sb.textContent = SEASON_LABELS[f.season] || f.season;
+  sb.className   = 'season-badge ' + (f.season || 'year');
+
+  document.getElementById('nutrient-pills').innerHTML =
+    (f.nutrients || []).map(n => `<span class="nutrient-pill">${n}</span>`).join('');
+
+  document.getElementById('stat-row').innerHTML = `
+    <div class="stat-chip"><span class="val">${f.cal}</span><span class="lbl">kcal/100g</span></div>
+    <div class="stat-chip"><span class="val">${SEASON_LABELS[f.season]||f.season}</span><span class="lbl">Season</span></div>
+    <div class="stat-chip"><span class="val">${f.family||'—'}</span><span class="lbl">Plant family</span></div>
+  `;
+
+  localStorage.setItem('hp-recipe-prefill', f.name);
+  document.getElementById('btn-compare').href = 'compare.html?item=' + encodeURIComponent(f.name);
+}
+
+fillHero();
+
+</script>
+
+<!--
+═══════════════════════════════════════════════════════════════════════════
+  HOW TO ADD CUSTOM DATA FOR EACH FRUIT
+  ───────────────────────────────────────────────────────────────────────
+  The page auto-fills the hero (image, name, season, nutrients) from the
+  FRUITS array above — you don't touch that.
+
+  For the rich detail sections, paste your Perplexity data like this:
+
+  1. ABOUT TEXT
+     Find:  <p id="about-text">Loading…</p>
+     Change: <p id="about-text">Your 2–3 sentence description here.</p>
+
+  2. QUICK FACTS
+     Find the <div class="fact-grid" id="fact-grid"> block.
+     Edit the <span class="fact-val" id="fact-botanical"> etc. spans,
+     OR add new fact-item divs using the copy-paste syntax in the comments.
+
+  3. TAGS
+     Find: <div class="tag-row" id="tag-row">
+     Add:  <span class="tag">Sweet</span>
+           <span class="tag">Antioxidant-rich</span>
+
+  4. NUTRITION NUMBERS
+     Find each <span class="nut-val" id="n-cal"> etc.
+     Replace the — with the real value e.g. "52 kcal"
+
+  5. BENEFITS
+     Find: <div class="benefit-list" id="benefits-list">
+     Add each benefit using the syntax in the comment above that section.
+
+  6. SEASON PILLS
+     Find: <div class="season-grid" id="india-seasons">
+     Add:  <span class="s-pill s-peak">🌟 June</span>
+           <span class="s-pill s-good">✅ May</span>
+           <span class="s-pill s-low">〰️ January</span>
+
+  7. BUYING TIPS
+     Find: <div class="tips-list" id="buying-tips">
+     Add:  <div class="tip-item">Look for firm skin with no bruises.</div>
+
+  8. VARIETIES
+     Find: <tbody id="variety-tbody">
+     Add table rows using the <tr> syntax in the comment above.
+
+  9. CULINARY TIPS & PAIRINGS
+     Find: <div class="tips-list" id="culinary-tips">
+     Find: <div class="tag-row" id="pairing-tags">
+     Add tips and tags using the syntax in comments.
+
+  10. GROWING TIPS
+      Find: <div class="tips-list" id="growing-tips">
+      Add:  <div class="tip-item">Needs full sun and well-drained soil.</div>
+
+  11. FUN FACTS
+      Find: <div class="benefit-list" id="fun-facts">
+      Add fun facts using the benefit-row syntax.
+
+  HERO LATIN NAME & TAGLINE:
+      Find: <div class="hero-latin" id="hero-latin"></div>
+      Change to: <div class="hero-latin" id="hero-latin">Malus domestica</div>
+
+      Find: <p class="hero-tagline" id="hero-tagline"></p>
+      Change to: <p class="hero-tagline" id="hero-tagline">
+                   The world's most beloved temperate fruit.
+                 </p>
+═══════════════════════════════════════════════════════════════════════════
+-->
+<script>
+/* ─────────────────────────────────────────────
+   FETCH EXTRA DATA FROM fruits.json
+   (DOES NOT TOUCH EXISTING UI / HERO)
+───────────────────────────────────────────── */
+
+async function loadFruitDetails(name) {
+  try {
+    const res = await fetch("data/fruits.json");
+    const data = await res.json();
+    return data[name];
+  } catch (err) {
+    console.error("JSON load error:", err);
+    return null;
+  }
+}
+
+async function fillExtraDetails() {
+  const name = new URLSearchParams(window.location.search).get('fruit') || 'Apple';
+  const data = await loadFruitDetails(name);
+
+  if (!data) return;
+
+  /* ─── ABOUT ─── */
+  if (data.about) {
+    document.getElementById("about-text").textContent = data.about;
+  }
+
+  /* ─── NUTRITION ─── */
+  if (data.nutrition) {
+    if (data.nutrition.cal) document.getElementById("n-cal").textContent = data.nutrition.cal;
+    if (data.nutrition.carbs) document.getElementById("n-carbs").textContent = data.nutrition.carbs;
+    if (data.nutrition.fiber) document.getElementById("n-fiber").textContent = data.nutrition.fiber;
+    if (data.nutrition.sugar) document.getElementById("n-sugar").textContent = data.nutrition.sugar;
+    if (data.nutrition.protein) document.getElementById("n-protein").textContent = data.nutrition.protein;
+    if (data.nutrition.fat) document.getElementById("n-fat").textContent = data.nutrition.fat;
+  }
+
+  /* ─── BENEFITS ─── */
+  if (data.benefits) {
+    document.getElementById("benefits-list").innerHTML =
+      data.benefits.map(b => `
+        <div class="benefit-row">
+          <div class="benefit-dot"></div>
+          <p>${b}</p>
+        </div>
+      `).join("");
+  }
+
+  /* ─── SEASONS ─── */
+  if (data.seasons) {
+    document.getElementById("india-seasons").innerHTML = `
+      ${(data.seasons.peak || []).map(m => `<span class="s-pill s-peak">🌟 ${m}</span>`).join("")}
+      ${(data.seasons.good || []).map(m => `<span class="s-pill s-good">✅ ${m}</span>`).join("")}
+      ${(data.seasons.low || []).map(m => `<span class="s-pill s-low">〰️ ${m}</span>`).join("")}
+    `;
+  }
+
+  /* ─── TIPS ─── */
+  if (data.tips) {
+    document.getElementById("buying-tips").innerHTML =
+      data.tips.map(t => `<div class="tip-item">${t}</div>`).join("");
+  }
+
+  /* ─── VARIETIES ─── */
+  if (data.varieties) {
+    document.getElementById("variety-tbody").innerHTML =
+      data.varieties.map(v => `
+        <tr>
+          <td><span class="variety-name">${v.name}</span></td>
+          <td>${v.taste}</td>
+          <td>${v.use}</td>
+          <td>${v.india}</td>
+        </tr>
+      `).join("");
+  }
+
+  /* ─── TAGS ─── */
+  if (data.tags) {
+    document.getElementById("tag-row").innerHTML =
+      data.tags.map(t => `<span class="tag">${t}</span>`).join("");
+  }
+
+  /* ─── FACT (ORIGIN) ─── */
+  if (data.origin) {
+    document.getElementById("fact-origin").textContent = data.origin;
+  }
+}
+
+/* ─── INIT (RUN EVERYTHING PROPERLY) ─── */
+async function initPage() {
+  fillHero();              // existing function (DO NOT REMOVE)
+  await fillExtraDetails(); // load JSON data
+}
+
+initPage();
+</script>
+
+</body>
+</html>
