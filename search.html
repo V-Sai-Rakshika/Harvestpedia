@@ -8,18 +8,58 @@
 <style>
   /* ── Search page styles ── */
   .search-hero {
-    padding: 3rem 1.5rem 2rem;
-    text-align: center;
-    background: var(--bg-secondary, #f5f9f0);
-  }
-  .search-hero h1 { font-size: 2rem; font-weight: 700; color: var(--text-primary, #1a3a1a); margin-bottom: 0.5rem; }
-  .search-hero p  { color: var(--text-muted, #6b7280); margin-bottom: 1.5rem; }
+  padding: 100px 24px 50px;
+  text-align: center;
+  background: var(--warm-white);
+}
 
+.search-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.search-hero p {
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-size: 15px;
+}
   .search-bar-wrap {
-    max-width: 600px; margin: 0 auto;
-    display: flex; gap: 0; border-radius: 12px;
-    overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.1);
-  }
+  max-width: 600px;
+  margin: 0 auto;
+
+  display: flex;
+  border-radius: 50px;
+  overflow: hidden;
+
+  background: white;
+  border: 1px solid var(--green-100);
+  box-shadow: var(--shadow-md);
+}
+
+#global-input {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  outline: none;
+
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+#search-btn {
+  padding: 14px 24px;
+  background: var(--green-600);
+  color: white;
+
+  border: none;
+  font-weight: 600;
+}
+
+#search-btn:hover {
+  background: var(--green-800);
+}
   #global-input {
     flex: 1; padding: 14px 20px; font-size: 1rem;
     border: none; outline: none;
@@ -33,14 +73,31 @@
   #search-btn:hover { background: #2d5209; }
 
   /* Filter pills */
-  .filter-pills {
-    display: flex; gap: 8px; justify-content: center;
-    flex-wrap: wrap; margin-top: 1rem;
-  }
   .pill {
-    padding: 5px 14px; border-radius: 99px; font-size: 13px; cursor: pointer;
-    border: 1.5px solid transparent; transition: all .15s; font-weight: 500;
-  }
+  padding: 6px 16px;
+  border-radius: 50px;
+
+  border: 1px solid var(--green-100);
+  background: var(--green-50);
+
+  font-size: 12px;
+  color: var(--text-mid);
+  font-weight: 500;
+
+  transition: all 0.2s ease;
+}
+
+.pill.all {
+  background: var(--green-600);
+  color: white;
+  border-color: var(--green-600);
+}
+
+.pill:not(.inactive):not(.all) {
+  background: var(--green-100);
+  color: var(--green-800);
+}
+
   .pill.all    { background:#3B6D11; color:#fff; border-color:#3B6D11; }
   .pill.fruits { background:#fff3e0; color:#854F0B; border-color:#FAC775; }
   .pill.vegs   { background:#e1f5ee; color:#0F6E56; border-color:#9FE1CB; }
@@ -67,13 +124,34 @@
     gap: 12px;
   }
   .result-card {
-    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
-    padding: 14px 16px; cursor: pointer; transition: all .18s;
-    display: flex; align-items: center; gap: 12px;
-    text-decoration: none; color: inherit;
-  }
-  .result-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); transform: translateY(-2px); border-color: #c3e6cb; }
-  .result-emoji { font-size: 2rem; line-height: 1; }
+  background: white;
+  border-radius: var(--radius-lg);
+
+  padding: 16px;
+
+  border: 1px solid var(--green-100);
+  box-shadow: var(--shadow-md);
+
+  text-decoration: none;
+  color: var(--text-dark);
+
+  transition: all 0.25s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(30,60,35,0.15);
+}
+.result-group-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+
+  color: var(--text-muted);
+
+  border-bottom: 1px solid var(--green-100);
+  padding-bottom: 6px;
+}
   .result-info strong { display: block; font-weight: 600; font-size: 14px; color: #1a3a1a; }
   .result-info span   { font-size: 12px; color: #6b7280; }
 
@@ -86,6 +164,11 @@
   .search-empty, .search-loading, .search-start {
     text-align: center; padding: 3rem; color: #9ca3af;
   }
+  .search-start,
+.search-empty {
+  color: var(--text-muted);
+  font-size: 14px;
+}
   .search-empty   { font-size: 1rem; }
   .search-loading { font-size: 1.1rem; }
   .search-start .big { font-size: 3rem; margin-bottom: 0.5rem; }
@@ -137,47 +220,158 @@
 
 <script src="../js/api.js"></script>
 <script>
+  ALL_DATA.forEach(item => {
+  if (item.type === "fruit") item.module = "fruit";
+  if (item.type === "vegetable") item.module = "veg";
+});
+</script>
+<script>
 // ============================================================
 // DATA — extend these arrays to match your actual data
 // Each item: { id, name, emoji, tags, module, detailUrl }
 // ============================================================
 const ALL_DATA = [
-  // ── Fruits ──
-  { id:"apple",      name:"Apple",      emoji:"🍎", tags:["red","sweet","fiber"],          module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Apple" },
-  { id:"mango",      name:"Mango",      emoji:"🥭", tags:["tropical","sweet","vitamin-c"], module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Mango" },
-  { id:"banana",     name:"Banana",     emoji:"🍌", tags:["tropical","potassium"],         module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Banana" },
-  { id:"strawberry", name:"Strawberry", emoji:"🍓", tags:["berry","vitamin-c","summer"],   module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Strawberry" },
-  { id:"grape",      name:"Grape",      emoji:"🍇", tags:["antioxidants","sweet"],         module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Grape" },
-  { id:"watermelon", name:"Watermelon", emoji:"🍉", tags:["summer","hydrating"],           module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Watermelon" },
-  { id:"orange",     name:"Orange",     emoji:"🍊", tags:["citrus","vitamin-c","winter"],  module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Orange" },
-  { id:"pineapple",  name:"Pineapple",  emoji:"🍍", tags:["tropical","bromelain"],         module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Pineapple" },
-  { id:"blueberry",  name:"Blueberry",  emoji:"🫐", tags:["berry","antioxidants"],         module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Blueberry" },
-  { id:"cherry",     name:"Cherry",     emoji:"🍒", tags:["summer","antioxidants"],        module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Cherry" },
-  { id:"peach",      name:"Peach",      emoji:"🍑", tags:["summer","sweet","fiber"],       module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Peach" },
-  { id:"pear",       name:"Pear",       emoji:"🍐", tags:["fiber","sweet"],                module:"fruit", detailUrl:"../fruits/fruit-detail.html?name=Pear" },
+  // ── FRUITS ──────────────────────────────────────────────
+  {name:'Apple',latin:'Malus domestica',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Edible','Sweet'],img:'',desc:'A widely consumed fruit known for its crisp texture and sweet flavor.'},
+  {name:'Apricot',latin:'Prunus armeniaca',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–30°C',tags:['Stone fruit'],img:'',desc:'A small orange fruit with a soft texture and sweet taste.'},
+  {name:'Avocado',latin:'Persea americana',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Healthy fats'],img:'',desc:'A creamy fruit rich in healthy fats and nutrients.'},
+  {name:'Banana',latin:'Musa',type:'fruit',difficulty:'easy',water:'High',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'A soft, sweet tropical fruit rich in potassium.'},
+  {name:'Blueberry',latin:'Vaccinium',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Berry'],img:'',desc:'A small blue fruit packed with antioxidants.'},
+  {name:'Cherry',latin:'Prunus avium',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Sweet'],img:'',desc:'A small red fruit with a juicy and sweet taste.'},
+  {name:'Coconut',latin:'Cocos nucifera',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'A tropical fruit known for its water and white flesh.'},
+  {name:'Dragon Fruit',latin:'Hylocereus',type:'fruit',difficulty:'easy',water:'Low',light:'Full sun',temp:'20–35°C',tags:['Exotic'],img:'',desc:'A vibrant fruit with a mild sweet taste and unique appearance.'},
+  {name:'Durian',latin:'Durio',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'25–35°C',tags:['Tropical'],img:'',desc:'A strong-smelling fruit with creamy texture.'},
+  {name:'Fig',latin:'Ficus carica',type:'fruit',difficulty:'easy',water:'Low',light:'Full sun',temp:'15–30°C',tags:['Sweet'],img:'',desc:'A soft fruit with a unique texture and natural sweetness.'},
+  {name:'Grape',latin:'Vitis vinifera',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Juicy'],img:'',desc:'Small juicy fruits often eaten fresh or used for wine.'},
+  {name:'Grapefruit',latin:'Citrus paradisi',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Citrus'],img:'',desc:'A large citrus fruit with a slightly bitter taste.'},
+  {name:'Guava',latin:'Psidium guajava',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'A fragrant fruit rich in vitamin C.'},
+  {name:'Jackfruit',latin:'Artocarpus heterophyllus',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'25–35°C',tags:['Tropical'],img:'',desc:'A large tropical fruit with sweet yellow flesh.'},
+  {name:'Kiwi',latin:'Actinidia deliciosa',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Tangy'],img:'',desc:'A small fruit with green flesh and a tangy flavor.'},
+  {name:'Lemon',latin:'Citrus limon',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Citrus'],img:'',desc:'A sour citrus fruit widely used in cooking.'},
+  {name:'Lychee',latin:'Litchi chinensis',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Sweet'],img:'',desc:'A juicy tropical fruit with a floral sweetness.'},
+  {name:'Mango',latin:'Mangifera indica',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'25–40°C',tags:['Tropical'],img:'',desc:'A popular tropical fruit known for its sweetness.'},
+  {name:'Melon',latin:'Cucumis melo',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Hydrating'],img:'',desc:'A refreshing fruit with high water content.'},
+  {name:'Orange',latin:'Citrus sinensis',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Citrus'],img:'',desc:'A juicy citrus fruit rich in vitamin C.'},
+  {name:'Papaya',latin:'Carica papaya',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'A soft tropical fruit with sweet orange flesh.'},
+  {name:'Peach',latin:'Prunus persica',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Stone fruit'],img:'',desc:'A juicy fruit with fuzzy skin and sweet taste.'},
+  {name:'Pear',latin:'Pyrus',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Sweet'],img:'',desc:'A sweet fruit with a soft and grainy texture.'},
+  {name:'Pineapple',latin:'Ananas comosus',type:'fruit',difficulty:'moderate',water:'Low',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'A tropical fruit with a tangy-sweet taste.'},
+  {name:'Plum',latin:'Prunus domestica',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Stone fruit'],img:'',desc:'A small fruit with a sweet and tart flavor.'},
+  {name:'Pomegranate',latin:'Punica granatum',type:'fruit',difficulty:'easy',water:'Low',light:'Full sun',temp:'15–30°C',tags:['Seeds'],img:'',desc:'A fruit filled with juicy red seeds.'},
+  {name:'Raspberry',latin:'Rubus idaeus',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Berry'],img:'',desc:'A soft berry with a sweet-tart flavor.'},
+  {name:'Starfruit',latin:'Averrhoa carambola',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'A star-shaped fruit with a sweet-sour taste.'},
+  {name:'Strawberry',latin:'Fragaria',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Berry'],img:'',desc:'A popular red berry with sweet flavor.'},
+  {name:'Watermelon',latin:'Citrullus lanatus',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Hydrating'],img:'',desc:'A large fruit with refreshing juicy flesh.'},
+  {name:'Passion Fruit',latin:'Passiflora edulis',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'20–30°C',tags:['Tropical'],img:'',desc:'A tangy fruit with aromatic pulp.'},
+  {name:'Mulberry',latin:'Morus',type:'fruit',difficulty:'easy',water:'Low',light:'Full sun',temp:'15–30°C',tags:['Berry'],img:'',desc:'A small sweet fruit that grows on trees.'},
+  {name:'Mandarin',latin:'Citrus reticulata',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Citrus'],img:'',desc:'A small easy-to-peel citrus fruit.'},
+  {name:'Cranberry',latin:'Vaccinium macrocarpon',type:'fruit',difficulty:'moderate',water:'High',light:'Full sun',temp:'10–25°C',tags:['Berry'],img:'',desc:'A tart red berry used in juices and sauces.'},
+  {name:'Blackberry',latin:'Rubus fruticosus',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Berry'],img:'',desc:'A dark berry with a sweet-tart taste.'},
+  {name:'Custard Apple',latin:'Annona squamosa',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'A sweet fruit with creamy pulp.'},
+  {name:'Sapota',latin:'Manilkara zapota',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'A brown fruit with sweet grainy flesh.'},
+  {name:'Tamarind',latin:'Tamarindus indica',type:'fruit',difficulty:'easy',water:'Low',light:'Full sun',temp:'25–40°C',tags:['Sour'],img:'',desc:'A tangy fruit used in cooking.'},
+  {name:'Physalis',latin:'Physalis peruviana',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Berry'],img:'',desc:'A small fruit enclosed in a papery husk.'},
+  {name:'Rambutan',latin:'Nephelium lappaceum',type:'fruit',difficulty:'moderate',water:'High',light:'Full sun',temp:'25–35°C',tags:['Tropical'],img:'',desc:'A hairy tropical fruit with juicy flesh.'},
+  {name:'Persimmon',latin:'Diospyros kaki',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–30°C',tags:['Sweet'],img:'',desc:'A sweet fruit with smooth texture.'},
+  {name:'Pomelo',latin:'Citrus maxima',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Citrus'],img:'',desc:'A large citrus fruit with mild sweetness.'},
+  {name:'Jujube',latin:'Ziziphus jujuba',type:'fruit',difficulty:'easy',water:'Low',light:'Full sun',temp:'15–35°C',tags:['Dry fruit'],img:'',desc:'A small fruit eaten fresh or dried.'},
+  {name:'Star Gooseberry',latin:'Phyllanthus acidus',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Sour'],img:'',desc:'A small sour fruit used in pickles.'},
+  {name:'Longan',latin:'Dimocarpus longan',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'A sweet fruit similar to lychee.'},
+  {name:'Loquat',latin:'Eriobotrya japonica',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Sweet'],img:'',desc:'A small orange fruit with tangy taste.'},
+  {name:'Kumquat',latin:'Citrus japonica',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Citrus'],img:'',desc:'A tiny citrus fruit eaten whole.'},
+  {name:'Salak',latin:'Salacca zalacca',type:'fruit',difficulty:'moderate',water:'High',light:'Partial sun',temp:'25–35°C',tags:['Tropical'],img:'',desc:'Also called snake fruit due to its skin.'},
+  {name:'Ackee',latin:'Blighia sapida',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'25–35°C',tags:['Tropical'],img:'',desc:'A tropical fruit used in Caribbean cuisine.'},
+  {name:'Breadfruit',latin:'Artocarpus altilis',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'25–35°C',tags:['Staple'],img:'',desc:'A starchy fruit used as a staple food.'},
+  {name:'Carambola',latin:'Averrhoa carambola',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Tropical'],img:'',desc:'Also known as starfruit with a crisp texture.'},
+  {name:'Cherimoya',latin:'Annona cherimola',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'15–30°C',tags:['Tropical'],img:'',desc:'A creamy fruit with a custard-like texture.'},
+  {name:'Sapodilla',latin:'Manilkara zapota',type:'fruit',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Sweet'],img:'',desc:'A sweet fruit with malty flavor.'},
+  {name:'Santol',latin:'Sandoricum koetjape',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'25–35°C',tags:['Tropical'],img:'',desc:'A tropical fruit with tangy pulp.'},
+  {name:'Mangaba',latin:'Hancornia speciosa',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'25–35°C',tags:['Tropical'],img:'',desc:'A Brazilian fruit with aromatic flavor.'},
+  {name:'Canistel',latin:'Pouteria campechiana',type:'fruit',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'25–35°C',tags:['Tropical'],img:'',desc:'Also called egg fruit with custard texture.'},
 
-  // ── Vegetables ──
-  { id:"tomato",    name:"Tomato",    emoji:"🍅", tags:["lycopene","salad","summer"],      module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Tomato" },
-  { id:"carrot",    name:"Carrot",    emoji:"🥕", tags:["vitamin-a","root","crunchy"],     module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Carrot" },
-  { id:"broccoli",  name:"Broccoli",  emoji:"🥦", tags:["cruciferous","fiber","vitamin-c"],module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Broccoli" },
-  { id:"spinach",   name:"Spinach",   emoji:"🌿", tags:["iron","leafy","protein"],         module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Spinach" },
-  { id:"potato",    name:"Potato",    emoji:"🥔", tags:["starchy","potassium"],            module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Potato" },
-  { id:"pepper",    name:"Bell Pepper",emoji:"🫑",tags:["vitamin-c","colorful"],           module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Bell+Pepper" },
-  { id:"cucumber",  name:"Cucumber",  emoji:"🥒", tags:["hydrating","low-calorie"],        module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Cucumber" },
-  { id:"onion",     name:"Onion",     emoji:"🧅", tags:["allium","antioxidants"],          module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Onion" },
-  { id:"garlic",    name:"Garlic",    emoji:"🧄", tags:["allium","antibacterial"],         module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Garlic" },
-  { id:"cabbage",   name:"Cabbage",   emoji:"🥬", tags:["cruciferous","fiber"],            module:"veg", detailUrl:"../vegetables/vegetable-detail.html?name=Cabbage" },
 
-  // ── Plants ──
-  { id:"basil",      name:"Basil",      emoji:"🌿", tags:["herb","easy","aromatic"],        module:"plant", detailUrl:"../plants/plant-detail.html?name=Basil" },
-  { id:"aloe",       name:"Aloe Vera",  emoji:"🌵", tags:["succulent","medicinal","easy"],  module:"plant", detailUrl:"../plants/plant-detail.html?name=Aloe+Vera" },
-  { id:"lavender",   name:"Lavender",   emoji:"💜", tags:["herb","aromatic","medicinal"],   module:"plant", detailUrl:"../plants/plant-detail.html?name=Lavender" },
-  { id:"mint",       name:"Mint",       emoji:"🌱", tags:["herb","easy","aromatic"],        module:"plant", detailUrl:"../plants/plant-detail.html?name=Mint" },
-  { id:"rosemary",   name:"Rosemary",   emoji:"🌿", tags:["herb","aromatic","drought-tolerant"], module:"plant", detailUrl:"../plants/plant-detail.html?name=Rosemary" },
-  { id:"sunflower",  name:"Sunflower",  emoji:"🌻", tags:["annual","easy","full-sun"],      module:"plant", detailUrl:"../plants/plant-detail.html?name=Sunflower" },
-  { id:"chilli",     name:"Chilli",     emoji:"🌶️", tags:["spicy","warm-climate"],          module:"plant", detailUrl:"../plants/plant-detail.html?name=Chilli" },
-  { id:"tomato-p",   name:"Tomato (plant)", emoji:"🍅", tags:["vegetable","warm","beginner"],module:"plant", detailUrl:"../plants/plant-detail.html?name=Tomato" },
+  // ── VEGETABLES ──────────────────────────────────────────
+  {name:'Potato',latin:'Solanum tuberosum',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Root'],img:'',desc:'A starchy root vegetable widely used in cooking.'},
+  {name:'Sweet Potato',latin:'Ipomoea batatas',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–30°C',tags:['Root'],img:'',desc:'A sweet-tasting root vegetable rich in nutrients.'},
+  {name:'Carrot',latin:'Daucus carota',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Root'],img:'',desc:'An orange root vegetable rich in beta-carotene.'},
+  {name:'Onion',latin:'Allium cepa',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–30°C',tags:['Bulb'],img:'',desc:'A staple vegetable used in many dishes worldwide.'},
+  {name:'Garlic',latin:'Allium sativum',type:'vegetable',difficulty:'easy',water:'Low',light:'Full sun',temp:'10–30°C',tags:['Bulb'],img:'',desc:'A pungent vegetable known for its flavor and health benefits.'},
+  {name:'Beetroot',latin:'Beta vulgaris',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Root'],img:'',desc:'A red root vegetable rich in nutrients.'},
+  {name:'Radish',latin:'Raphanus sativus',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Root'],img:'',desc:'A crunchy root vegetable with a spicy taste.'},
+  {name:'Spinach',latin:'Spinacia oleracea',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'A leafy green vegetable rich in iron.'},
+  {name:'Broccoli',latin:'Brassica oleracea',type:'vegetable',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Cruciferous'],img:'',desc:'A green vegetable rich in vitamins and fiber.'},
+  {name:'Tomato',latin:'Solanum lycopersicum',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–30°C',tags:['Fruit vegetable'],img:'',desc:'A widely used vegetable in cooking with a tangy taste.'},
+  {name:'Turnip',latin:'Brassica rapa',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Root'],img:'',desc:'A root vegetable with a slightly spicy taste.'},
+  {name:'Rutabaga',latin:'Brassica napus',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Root'],img:'',desc:'A large root vegetable similar to turnip.'},
+  {name:'Celeriac',latin:'Apium graveolens var. rapaceum',type:'vegetable',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Root'],img:'',desc:'A root vegetable with celery-like flavor.'},
+  {name:'Cassava',latin:'Manihot esculenta',type:'vegetable',difficulty:'easy',water:'Low',light:'Full sun',temp:'25–35°C',tags:['Root'],img:'',desc:'A starchy root used in many tropical regions.'},
+  {name:'Daikon',latin:'Raphanus sativus var. longipinnatus',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Root'],img:'',desc:'A long white radish used in Asian cuisine.'},
+  {name:'Parsnip',latin:'Pastinaca sativa',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Root'],img:'',desc:'A sweet root vegetable similar to carrot.'},
+  {name:'Kale',latin:'Brassica oleracea var. sabellica',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'A nutrient-rich leafy green vegetable.'},
+  {name:'Swiss Chard',latin:'Beta vulgaris subsp. vulgaris',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'A colorful leafy vegetable rich in nutrients.'},
+  {name:'Mustard Greens',latin:'Brassica juncea',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'Leafy greens with a spicy flavor.'},
+  {name:'Bok Choy',latin:'Brassica rapa subsp. chinensis',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'A Chinese cabbage used in stir-fries.'},
+  {name:'Collard Greens',latin:'Brassica oleracea var. viridis',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'Large leafy greens used in cooking.'},
+  {name:'Arugula',latin:'Eruca vesicaria',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'A leafy green with peppery taste.'},
+  {name:'Romaine',latin:'Lactuca sativa var. longifolia',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'A crisp lettuce variety used in salads.'},
+  {name:'Cauliflower',latin:'Brassica oleracea var. botrytis',type:'vegetable',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Cruciferous'],img:'',desc:'A white vegetable used in many dishes.'},
+  {name:'Brussels Sprouts',latin:'Brassica oleracea var. gemmifera',type:'vegetable',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Cruciferous'],img:'',desc:'Small cabbage-like vegetables.'},
+  {name:'Kohlrabi',latin:'Brassica oleracea var. gongylodes',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Stem'],img:'',desc:'A bulbous vegetable with mild flavor.'},
+  {name:'Red Cabbage',latin:'Brassica oleracea var. capitata f. rubra',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'A purple cabbage rich in nutrients.'},
+  {name:'Cabbage',latin:'Brassica oleracea var. capitata',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'A common leafy vegetable used in many cuisines.'},
+  {name:'Tomato',latin:'Solanum lycopersicum',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–30°C',tags:['Fruit vegetable'],img:'',desc:'A juicy vegetable widely used in cooking.'},
+  {name:'Bell Pepper',latin:'Capsicum annuum',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–30°C',tags:['Colorful'],img:'',desc:'A sweet pepper available in many colors.'},
+  {name:'Chili Pepper',latin:'Capsicum annuum',type:'vegetable',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Spicy'],img:'',desc:'A spicy vegetable used in many dishes.'},
+  {name:'Cucumber',latin:'Cucumis sativus',type:'vegetable',difficulty:'easy',water:'High',light:'Full sun',temp:'20–35°C',tags:['Hydrating'],img:'',desc:'A refreshing vegetable with high water content.'},
+  {name:'Zucchini',latin:'Cucurbita pepo',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Summer squash'],img:'',desc:'A soft vegetable used in various dishes.'},
+  {name:'Eggplant',latin:'Solanum melongena',type:'vegetable',difficulty:'moderate',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Purple'],img:'',desc:'A soft vegetable with a spongy texture.'},
+  {name:'Okra',latin:'Abelmoschus esculentus',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Fiber'],img:'',desc:'A green vegetable known for its slimy texture.'},
+  {name:'Pumpkin',latin:'Cucurbita',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Squash'],img:'',desc:'A large vegetable used in soups and desserts.'},
+  {name:'Butternut Squash',latin:'Cucurbita moschata',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Squash'],img:'',desc:'A sweet squash with orange flesh.'},
+  {name:'Acorn Squash',latin:'Cucurbita pepo var. turbinata',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'20–35°C',tags:['Squash'],img:'',desc:'A small squash with ridged skin.'},
+  {name:'Parsley',latin:'Petroselinum crispum',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'10–25°C',tags:['Herb'],img:'',desc:'A fresh herb used as garnish and flavoring.'},
+  {name:'Coriander',latin:'Coriandrum sativum',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'10–25°C',tags:['Herb'],img:'',desc:'A leafy herb used in cooking.'},
+  {name:'Cilantro',latin:'Coriandrum sativum',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'10–25°C',tags:['Herb'],img:'',desc:'Fresh leaves of coriander plant used as herb.'},
+  {name:'Mint',latin:'Mentha',type:'vegetable',difficulty:'easy',water:'High',light:'Partial sun',temp:'15–25°C',tags:['Herb'],img:'',desc:'A refreshing herb used in drinks and dishes.'},
+  {name:'Rosemary',latin:'Salvia rosmarinus',type:'vegetable',difficulty:'moderate',water:'Low',light:'Full sun',temp:'10–30°C',tags:['Herb'],img:'',desc:'An aromatic herb used in cooking.'},
+  {name:'Thyme',latin:'Thymus vulgaris',type:'vegetable',difficulty:'easy',water:'Low',light:'Full sun',temp:'10–30°C',tags:['Herb'],img:'',desc:'A small herb with strong aroma.'},
+  {name:'Basil',latin:'Ocimum basilicum',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Full sun',temp:'18–30°C',tags:['Herb'],img:'',desc:'A fragrant herb commonly used in cooking.'},
+  {name:'Lettuce Iceberg',latin:'Lactuca sativa var. capitata',type:'vegetable',difficulty:'easy',water:'Moderate',light:'Partial sun',temp:'10–25°C',tags:['Leafy'],img:'',desc:'A crisp lettuce variety used in salads.'},
+
+// for plants
+{ name:"Aloe Vera", tags:["indoor","medicinal","easy"], module:"plant", detailUrl:"plant_detail.html?plant=Aloe+Vera" },
+{ name:"Snake Plant", tags:["indoor","low light","air purifier"], module:"plant", detailUrl:"plant_detail.html?plant=Snake+Plant" },
+{ name:"Spider Plant", tags:["indoor","air purifier","pet safe"], module:"plant", detailUrl:"plant_detail.html?plant=Spider+Plant" },
+{ name:"Peace Lily", tags:["indoor","flowering","low light"], module:"plant", detailUrl:"plant_detail.html?plant=Peace+Lily" },
+{ name:"Pothos", tags:["indoor","trailing","easy"], module:"plant", detailUrl:"plant_detail.html?plant=Pothos" },
+{ name:"Monstera", tags:["indoor","tropical","statement"], module:"plant", detailUrl:"plant_detail.html?plant=Monstera" },
+{ name:"ZZ Plant", tags:["indoor","low maintenance","drought tolerant"], module:"plant", detailUrl:"plant_detail.html?plant=ZZ+Plant" },
+{ name:"Fiddle Leaf Fig", tags:["indoor","statement","bright light"], module:"plant", detailUrl:"plant_detail.html?plant=Fiddle+Leaf+Fig" },
+{ name:"Rubber Plant", tags:["indoor","air purifier","tropical"], module:"plant", detailUrl:"plant_detail.html?plant=Rubber+Plant" },
+{ name:"Basil", tags:["herb","edible","kitchen"], module:"plant", detailUrl:"plant_detail.html?plant=Basil" },
+{ name:"Mint", tags:["herb","fast growing","cooling"], module:"plant", detailUrl:"plant_detail.html?plant=Mint" },
+{ name:"Rosemary", tags:["herb","aromatic","drought tolerant"], module:"plant", detailUrl:"plant_detail.html?plant=Rosemary" },
+{ name:"Lavender", tags:["flowering","aromatic","pollinator"], module:"plant", detailUrl:"plant_detail.html?plant=Lavender" },
+{ name:"Tomato", tags:["edible","fruiting","summer"], module:"plant", detailUrl:"plant_detail.html?plant=Tomato" },
+{ name:"Chili Pepper", tags:["edible","spicy","outdoor"], module:"plant", detailUrl:"plant_detail.html?plant=Chili+Pepper" },
+{ name:"Coriander", tags:["herb","edible","fast growing"], module:"plant", detailUrl:"plant_detail.html?plant=Coriander" },
+{ name:"Sunflower", tags:["outdoor","full sun","edible seeds"], module:"plant", detailUrl:"plant_detail.html?plant=Sunflower" },
+{ name:"Marigold", tags:["outdoor","pest repellent","flowering"], module:"plant", detailUrl:"plant_detail.html?plant=Marigold" },
+{ name:"Fern", tags:["indoor","humidity","air purifier"], module:"plant", detailUrl:"plant_detail.html?plant=Fern" },
+{ name:"Cactus", tags:["indoor","succulent","low water"], module:"plant", detailUrl:"plant_detail.html?plant=Cactus" },
+{ name:"Orchid", tags:["indoor","flowering","exotic"], module:"plant", detailUrl:"plant_detail.html?plant=Orchid" },
+{ name:"Curry Leaf", tags:["herb","edible","aromatic"], module:"plant", detailUrl:"plant_detail.html?plant=Curry+Leaf" },
+{ name:"Jade Plant", tags:["indoor","succulent","lucky"], module:"plant", detailUrl:"plant_detail.html?plant=Jade+Plant" },
+{ name:"Money Plant", tags:["indoor","trailing","air purifier"], module:"plant", detailUrl:"plant_detail.html?plant=Money+Plant" },
+{ name:"Tulsi", tags:["medicinal","sacred","aromatic"], module:"plant", detailUrl:"plant_detail.html?plant=Tulsi" },
+{ name:"Lemon Tree", tags:["outdoor","fruiting","citrus"], module:"plant", detailUrl:"plant_detail.html?plant=Lemon+Tree" },
+{ name:"Bird of Paradise", tags:["tropical","flowering","ornamental"], module:"plant", detailUrl:"plant_detail.html?plant=Bird+of+Paradise" },
+{ name:"Bamboo", tags:["outdoor","fast growing","tropical"], module:"plant", detailUrl:"plant_detail.html?plant=Bamboo" },
+{ name:"Thyme", tags:["herb","edible","aromatic"], module:"plant", detailUrl:"plant_detail.html?plant=Thyme" },
+{ name:"Hibiscus", tags:["flowering","tropical","ornamental"], module:"plant", detailUrl:"plant_detail.html?plant=Hibiscus" },
+{ name:"Jasmine", tags:["fragrant","flowering","climber"], module:"plant", detailUrl:"plant_detail.html?plant=Jasmine" }
 ];
+
 
 // ── State ──────────────────────────────────────────────────
 let activeFilter = "all";
@@ -234,7 +428,7 @@ function renderResults(results, query) {
         <div class="result-grid">
           ${items.map(item => `
             <a class="result-card ${mod}" href="${item.detailUrl}">
-              <span class="result-emoji">${item.emoji}</span>
+              <div class="result-info">
               <div class="result-info">
                 <strong>${highlight(item.name, query)}</strong>
                 <span>${item.tags.slice(0,2).join(" · ")}</span>

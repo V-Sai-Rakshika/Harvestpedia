@@ -3,220 +3,151 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fruit Details – Harvestpedia</title>
+  <title>Fruit Detail – Harvestpedia</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <script src="js/darkmode.js"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ═══════════════════════════════════════════
-       SAME CSS VARIABLES AS fruits.html
-    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
-      --green-50:  #f0f9f0;
-      --green-100: #d4edda;
-      --green-200: #a8d5b5;
-      --green-300: #72bb88;
-      --green-400: #5aab6f;
-      --green-600: #2d7a45;
-      --green-700: #236037;
-      --green-800: #1a4f2b;
-      --earth-50:  #fdf6ee;
-      --earth-100: #f5e6d0;
-      --earth-300: #d4a96a;
-      --earth-500: #a0703a;
-      --cream:      #fdfaf5;
-      --warm-white: #fffef9;
-      --text-dark:  #1c2b1e;
-      --text-mid:   #3d5440;
-      --text-muted: #6b8070;
-      --shadow-sm:  0 2px 12px rgba(30,60,35,0.07);
-      --shadow-md:  0 8px 32px rgba(30,60,35,0.11);
-      --shadow-lg:  0 18px 60px rgba(30,60,35,0.14);
-      --radius-sm:  12px;
-      --radius-md:  20px;
-      --radius-lg:  32px;
+      --green-50:#f0f9f0; --green-100:#d4edda; --green-200:#a8d5b5;
+      --green-300:#72bb88; --green-400:#5aab6f; --green-600:#2d7a45;
+      --green-700:#236037; --green-800:#1a4f2b;
+      --earth-50:#fdf6ee; --earth-100:#f5e6d0; --earth-300:#d4a96a; --earth-500:#a0703a;
+      --cream:#fdfaf5; --warm-white:#fffef9;
+      --text-dark:#1c2b1e; --text-mid:#3d5440; --text-muted:#6b8070;
+      --shadow-sm:0 2px 12px rgba(30,60,35,0.07);
+      --shadow-md:0 8px 32px rgba(30,60,35,0.11);
+      --shadow-lg:0 18px 60px rgba(30,60,35,0.14);
+      --radius-sm:12px; --radius-md:20px; --radius-lg:32px;
     }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text-dark); overflow-x:hidden; }
 
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:16px 48px; background:rgba(253,250,245,0.88); backdrop-filter:blur(16px); border-bottom:1px solid rgba(90,171,111,0.12); transition:box-shadow .3s; }
+    nav.scrolled { box-shadow:0 4px 24px rgba(30,60,35,0.08); }
+    .nav-logo { display:flex; align-items:center; gap:10px; font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--green-800); text-decoration:none; }
+    .nav-logo-leaf { width:34px; height:34px; background:linear-gradient(135deg,var(--green-400),var(--green-600)); border-radius:50% 12px 50% 12px; display:flex; align-items:center; justify-content:center; font-size:16px; box-shadow:0 4px 14px rgba(45,122,69,0.3); }
+    .nav-links { display:flex; align-items:center; gap:6px; list-style:none; }
+    .nav-links a { text-decoration:none; color:var(--text-mid); font-size:14px; font-weight:500; padding:8px 18px; border-radius:50px; transition:all .2s; }
+    .nav-links a:hover,.nav-links a.active { background:var(--green-50); color:var(--green-600); }
+    .nav-cta { background:var(--green-600)!important; color:white!important; box-shadow:0 4px 14px rgba(45,122,69,0.3); }
+    .nav-cta:hover { background:var(--green-800)!important; }
+    .dm-toggle { background:none; border:1.5px solid var(--green-200); border-radius:8px; padding:6px 12px; cursor:pointer; font-size:1rem; color:var(--text-mid); }
 
-    /* ── NAV (identical to fruits.html) ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 48px;
-      background: rgba(253,250,245,0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(90,171,111,0.12);
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--green-800); text-decoration: none; }
-    .nav-logo-leaf { width: 34px; height: 34px; background: linear-gradient(135deg, var(--green-400), var(--green-600)); border-radius: 50% 12px 50% 12px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 14px; font-weight: 500; padding: 8px 18px; border-radius: 50px; transition: all 0.2s; }
-    .nav-links a:hover, .nav-links a.active { background: var(--green-50); color: var(--green-600); }
-    .nav-cta { background: var(--green-600) !important; color: white !important; }
-    .nav-cta:hover { background: var(--green-800) !important; }
-    .dm-toggle { background: none; border: 1.5px solid var(--green-200); border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 1rem; color: var(--text-mid); }
+    .page-top { padding:110px 48px 0; background:var(--warm-white); position:relative; overflow:hidden; }
+    .page-top::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(90,171,111,0.10) 0%,transparent 70%); top:-150px; right:-100px; pointer-events:none; }
 
-    /* ── BREADCRUMB ── */
-    .breadcrumb { padding: 96px 48px 0; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
-    .breadcrumb a { color: var(--green-600); text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb .sep { opacity: 0.4; }
+    .breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-muted); padding-bottom:24px; position:relative; z-index:1; }
+    .breadcrumb a { text-decoration:none; color:var(--green-600); }
+    .breadcrumb span { opacity:.5; }
 
-    /* ── PAGE WRAPPER ── */
-    .page { max-width: 1100px; margin: 0 auto; padding: 32px 48px 80px; }
-    @media (max-width: 768px) { .page { padding: 24px 20px 60px; } nav { padding: 14px 20px; } .breadcrumb { padding: 84px 20px 0; } }
+    .hero-grid { display:grid; grid-template-columns:420px 1fr; gap:52px; align-items:start; position:relative; z-index:1; padding-bottom:52px; }
 
-    /* ── HERO STRIP ── */
-    .hero {
-      display: grid; grid-template-columns: 400px 1fr; gap: 48px;
-      align-items: start; margin-bottom: 40px;
-    }
-    @media (max-width: 800px) { .hero { grid-template-columns: 1fr; gap: 24px; } }
+    .hero-img-wrap { border-radius:var(--radius-md); overflow:hidden; aspect-ratio:4/3; box-shadow:var(--shadow-md); position:relative; background:var(--green-50); }
+    .hero-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+    .season-badge { position:absolute; top:14px; left:14px; padding:5px 14px; border-radius:50px; font-size:11px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; backdrop-filter:blur(8px); }
+    .season-badge.summer{background:rgba(255,200,50,0.92);color:#7a4f00;}
+    .season-badge.spring{background:rgba(255,160,180,0.92);color:#7a1f3a;}
+    .season-badge.autumn{background:rgba(220,120,50,0.92);color:#6b2800;}
+    .season-badge.winter{background:rgba(130,200,255,0.92);color:#003a6b;}
+    .season-badge.year{background:rgba(90,171,111,0.92);color:#0f3d1e;}
 
-    .hero-img-wrap {
-      border-radius: var(--radius-md); overflow: hidden;
-      aspect-ratio: 4/3; box-shadow: var(--shadow-md);
-      position: relative; background: var(--green-50);
-    }
-    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-tag { display:inline-flex; align-items:center; gap:6px; background:var(--green-50); border:1px solid var(--green-200); color:var(--green-600); font-size:11px; font-weight:700; padding:5px 14px; border-radius:50px; letter-spacing:.8px; text-transform:uppercase; margin-bottom:14px; }
+    .hero-name { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:700; color:var(--text-dark); line-height:1.1; margin-bottom:8px; }
+    .hero-latin { font-style:italic; font-size:15px; color:var(--text-muted); margin-bottom:14px; }
+    .hero-tagline { font-size:16px; color:var(--text-mid); line-height:1.7; margin-bottom:24px; }
 
-    .season-badge {
-      position: absolute; top: 14px; left: 14px;
-      padding: 5px 13px; border-radius: 99px; font-size: 12px; font-weight: 600;
-    }
-    .season-badge.summer { background: rgba(255,200,50,0.92); color: #7a4f00; }
-    .season-badge.spring { background: rgba(255,160,180,0.92); color: #7a1f3a; }
-    .season-badge.autumn { background: rgba(220,120,50,0.92); color: #6b2800; }
-    .season-badge.winter { background: rgba(130,200,255,0.92); color: #003a6b; }
-    .season-badge.year   { background: rgba(90,171,111,0.92); color: #0f3d1e; }
+    .stat-strip { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:22px; }
+    .stat-chip { display:flex; flex-direction:column; align-items:center; padding:12px 18px; background:white; border:1px solid rgba(90,171,111,0.12); border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); min-width:80px; }
+    .stat-chip .val { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--green-600); line-height:1; }
+    .stat-chip .lbl { font-size:11px; color:var(--text-muted); margin-top:4px; text-align:center; }
 
-    .hero-info { padding-top: 4px; }
-    .hero-family { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--green-600); margin-bottom: 8px; }
-    .hero-name { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: var(--text-dark); line-height: 1.1; margin-bottom: 10px; }
-    .hero-latin { font-style: italic; font-size: 15px; color: var(--text-muted); margin-bottom: 16px; }
-    .hero-tagline { font-size: 16px; color: var(--text-mid); line-height: 1.65; margin-bottom: 24px; }
+    .nutrient-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+    .nutrient-chip { padding:5px 12px; background:var(--green-50); border:1px solid var(--green-100); border-radius:50px; font-size:12px; font-weight:500; color:var(--green-700); }
 
-    .stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
-    .stat-chip {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 12px 18px; background: white; border: 1px solid var(--green-100);
-      border-radius: var(--radius-sm); min-width: 80px; box-shadow: var(--shadow-sm);
-    }
-    .stat-chip .val { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--green-700); }
-    .stat-chip .lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .action-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 26px; border-radius:50px; font-size:14px; font-weight:600; text-decoration:none; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .2s; }
+    .btn-green { background:var(--green-600); color:white; box-shadow:0 4px 14px rgba(45,122,69,0.3); }
+    .btn-green:hover { background:var(--green-800); transform:translateY(-2px); }
+    .btn-earth { background:var(--earth-500); color:white; }
+    .btn-earth:hover { background:#7a5022; transform:translateY(-2px); }
+    .btn-outline { background:transparent; border:2px solid var(--green-200); color:var(--green-700); }
+    .btn-outline:hover { border-color:var(--green-400); background:var(--green-50); }
 
-    .nutrient-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-    .nutrient-pill { padding: 5px 12px; background: var(--green-50); border: 1px solid var(--green-100); border-radius: 99px; font-size: 12px; font-weight: 500; color: var(--green-700); }
+    .content { max-width:1200px; margin:0 auto; padding:0 48px 80px; }
 
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all .2s; }
-    .btn-green { background: var(--green-600); color: white; }
-    .btn-green:hover { background: var(--green-800); }
-    .btn-earth { background: var(--earth-500); color: white; }
-    .btn-earth:hover { background: #7a5022; }
-    .btn-outline { background: transparent; border: 2px solid var(--green-200); color: var(--green-700); }
-    .btn-outline:hover { border-color: var(--green-400); background: var(--green-50); }
+    .sec-head { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--text-dark); margin:44px 0 20px; display:flex; align-items:center; gap:10px; padding-bottom:12px; border-bottom:2px solid var(--green-100); }
 
-    /* ── SECTION CARDS ── */
-    .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media (max-width: 700px) { .section-grid { grid-template-columns: 1fr; } }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .full { grid-column:1/-1; }
 
-    .card {
-      background: white; border: 1px solid var(--green-100);
-      border-radius: var(--radius-md); padding: 26px 28px;
-      box-shadow: var(--shadow-sm);
-    }
-    .card.full { grid-column: 1 / -1; }
-    .card.earth { border-left: 4px solid var(--earth-300); }
-    .card.accent { border-left: 4px solid var(--green-400); }
+    .card { background:white; border:1px solid rgba(90,171,111,0.10); border-radius:var(--radius-md); padding:24px 28px; box-shadow:var(--shadow-sm); }
+    .card.earth { border-left:4px solid var(--earth-300); }
+    .card.green { border-left:4px solid var(--green-400); }
+    .card-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); margin-bottom:16px; display:block; }
 
-    .card-title {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: .08em; color: var(--text-muted); margin-bottom: 16px;
-      display: flex; align-items: center; gap: 8px;
-    }
+    .nut-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .nut-row { display:flex; justify-content:space-between; align-items:center; padding:9px 13px; background:var(--green-50); border-radius:10px; }
+    .nut-name { font-size:13px; color:var(--text-muted); }
+    .nut-val { font-size:14px; font-weight:600; color:var(--green-700); }
+    .nut-src { grid-column:1/-1; font-size:11px; color:var(--text-muted); margin-top:4px; }
 
-    /* ── NUTRITION TABLE ── */
-    .nut-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .nut-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 9px 12px; background: var(--green-50); border-radius: 9px;
-    }
-    .nut-label { font-size: 13px; color: var(--text-muted); }
-    .nut-val { font-size: 14px; font-weight: 600; color: var(--green-700); }
-    .nut-note { grid-column: 1/-1; font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+    .b-list { display:flex; flex-direction:column; gap:11px; }
+    .b-row { display:flex; gap:11px; align-items:flex-start; }
+    .b-dot { width:8px; height:8px; min-width:8px; border-radius:50%; background:var(--green-400); margin-top:5px; }
+    .b-dot.amber { background:#f59e0b; }
+    .b-dot.purple { background:#8b5cf6; }
+    .b-row p { font-size:14px; line-height:1.6; color:var(--text-mid); }
 
-    /* ── BENEFITS ── */
-    .benefit-list { display: flex; flex-direction: column; gap: 10px; }
-    .benefit-row { display: flex; gap: 10px; align-items: flex-start; }
-    .benefit-dot { width: 8px; height: 8px; min-width: 8px; background: var(--green-400); border-radius: 50%; margin-top: 5px; }
-    .benefit-row p { font-size: 14px; line-height: 1.55; color: var(--text-mid); }
+    .s-pills { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:10px; }
+    .s-pill { padding:6px 14px; border-radius:50px; font-size:12px; font-weight:600; }
+    .s-peak{background:#d1fae5;color:#065f46;} .s-good{background:#fef3c7;color:#92400e;} .s-low{background:#f3f4f6;color:#6b7280;}
+    .s-note { font-size:13px; color:var(--text-muted); line-height:1.6; margin-top:8px; }
 
-    /* ── SEASON BAR ── */
-    .season-grid { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
-    .s-pill { padding: 5px 13px; border-radius: 99px; font-size: 12px; font-weight: 600; }
-    .s-peak { background: #d1fae5; color: #065f46; }
-    .s-good { background: #fef3c7; color: #92400e; }
-    .s-low  { background: #f3f4f6; color: #6b7280; }
-    .season-note { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin-top: 8px; }
+    .tip-list { display:flex; flex-direction:column; gap:10px; }
+    .tip-item { padding:13px 17px; background:var(--green-50); border-radius:11px; border-left:3px solid var(--green-400); font-size:14px; line-height:1.6; color:var(--text-mid); }
 
-    /* ── TIPS / STEPS ── */
-    .tips-list { display: flex; flex-direction: column; gap: 10px; }
-    .tip-item {
-      padding: 12px 16px; background: var(--green-50);
-      border-radius: 10px; border-left: 3px solid var(--green-400);
-      font-size: 14px; line-height: 1.55; color: var(--text-mid);
-    }
+    .var-table { width:100%; border-collapse:collapse; font-size:13px; }
+    .var-table th { text-align:left; padding:9px 13px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-muted); background:var(--green-50); border-bottom:1px solid var(--green-100); }
+    .var-table td { padding:11px 13px; border-bottom:1px solid var(--green-50); color:var(--text-mid); vertical-align:top; }
+    .var-table tr:last-child td { border-bottom:none; }
+    .var-table tr:hover td { background:var(--green-50); }
+    .var-name { font-weight:600; color:var(--text-dark); font-family:'Playfair Display',serif; font-size:14px; }
 
-    /* ── VARIETIES TABLE ── */
-    .variety-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .variety-table th {
-      text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: .06em;
-      color: var(--text-muted); background: var(--green-50);
-      border-bottom: 1px solid var(--green-100);
-    }
-    .variety-table td { padding: 10px 12px; border-bottom: 1px solid var(--green-50); color: var(--text-mid); vertical-align: top; }
-    .variety-table tr:last-child td { border-bottom: none; }
-    .variety-name { font-weight: 600; color: var(--text-dark); }
+    .fact-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .fact-chip { padding:12px 15px; background:var(--earth-50); border:1px solid var(--earth-100); border-radius:11px; }
+    .f-label { font-size:11px; color:var(--text-muted); display:block; margin-bottom:3px; }
+    .f-val { font-size:14px; font-weight:600; color:var(--earth-500); }
 
-    /* ── FACT PILLS ── */
-    .fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .fact-item { padding: 12px 14px; background: var(--earth-50); border: 1px solid var(--earth-100); border-radius: 10px; }
-    .fact-label { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 3px; }
-    .fact-val { font-size: 14px; font-weight: 600; color: var(--earth-500); }
+    .tag-row { display:flex; gap:8px; flex-wrap:wrap; }
+    .tag-pill { padding:6px 15px; background:var(--earth-50); border:1px solid var(--earth-100); border-radius:50px; font-size:12px; font-weight:500; color:var(--earth-500); }
+    .tag-pill.avoid { background:#fef2f2; border-color:#fecaca; color:#991b1b; }
 
-    /* ── TAGS ── */
-    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
-    .tag { padding: 5px 14px; background: var(--earth-50); border: 1px solid var(--earth-100); border-radius: 99px; font-size: 12px; font-weight: 500; color: var(--earth-500); }
+    .prose { font-size:15px; line-height:1.85; color:var(--text-mid); }
+    .empty-msg { font-size:13px; color:var(--text-muted); font-style:italic; }
+    .not-found { text-align:center; padding:80px 20px; }
+    .not-found h2 { font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:12px; }
+    .not-found p { color:var(--text-muted); margin-bottom:24px; }
 
-    /* ── ABOUT PROSE ── */
-    .prose { font-size: 15px; line-height: 1.8; color: var(--text-mid); }
-    .prose p { margin-bottom: 14px; }
-    .prose p:last-child { margin-bottom: 0; }
+    footer { background:var(--green-800); color:white; padding:60px 48px 40px; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+    .footer-logo { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+    .footer-leaf { width:28px; height:28px; background:var(--green-400); border-radius:50% 10px 50% 10px; display:flex; align-items:center; justify-content:center; font-size:13px; }
+    .footer-brand p { font-size:13px; opacity:.65; line-height:1.7; max-width:230px; }
+    .footer-col h5 { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; opacity:.5; margin-bottom:18px; }
+    .footer-col a { display:block; color:rgba(255,255,255,.75); font-size:14px; text-decoration:none; margin-bottom:10px; transition:color .2s; }
+    .footer-col a:hover { color:var(--green-200); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:28px; display:flex; align-items:center; justify-content:space-between; font-size:12px; opacity:.5; }
 
-    /* ── SECTION DIVIDER ── */
-    .section-label {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700;
-      color: var(--text-dark); margin: 40px 0 20px;
-      padding-bottom: 10px; border-bottom: 2px solid var(--green-100);
-      display: flex; align-items: center; gap: 10px;
-    }
+    @media(max-width:1024px){ nav{padding:14px 24px;} .page-top{padding:90px 24px 0;} .content{padding:0 24px 60px;} footer{padding:48px 24px 32px;} .footer-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:860px){ .hero-grid{grid-template-columns:1fr;gap:28px;} }
+    @media(max-width:680px){ .two-col{grid-template-columns:1fr;} .nut-grid,.fact-grid{grid-template-columns:1fr;} .nav-links{display:none;} .footer-grid{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════
-     NAV  — same as fruits.html
-══════════════════════════════════ -->
-<nav>
-  <a class="nav-logo" href="index.html">
-    <div class="nav-logo-leaf">🌿</div>Harvestpedia
-  </a>
+<nav id="navbar">
+  <a class="nav-logo" href="index.html"><div class="nav-logo-leaf">🌿</div>Harvestpedia</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="fruits.html" class="active">Fruits</a></li>
@@ -227,406 +158,40 @@
   </ul>
 </nav>
 
-<div class="breadcrumb">
-  <a href="index.html">🏠 Home</a>
-  <span class="sep">›</span>
-  <a href="fruits.html">Fruits</a>
-  <span class="sep">›</span>
-  <span id="bc-name">—</span>
+<div class="page-top">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="breadcrumb">
+      <a href="index.html">🏠 Home</a><span>›</span>
+      <a href="fruits.html">Fruits</a><span>›</span>
+      <span id="bc-name">—</span>
+    </div>
+    <div class="hero-grid" id="hero-grid"></div>
+  </div>
 </div>
 
-<div class="page">
+<div class="content" id="content"></div>
 
-  <!-- ══════════════════════════════════
-       HERO  — image + name + quick stats
-  ══════════════════════════════════ -->
-  <div class="hero">
-    <div class="hero-img-wrap">
-      <img id="hero-img" src="" alt=""/>
-      <span class="season-badge" id="season-badge"></span>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><div class="footer-leaf">🌿</div>Harvestpedia</div>
+      <p>Your trusted plant-based knowledge platform. Explore, learn, and grow with nature's best.</p>
     </div>
-    <div class="hero-info">
-      <div class="hero-family"   id="hero-family"></div>
-      <h1 class="hero-name"     id="hero-name">—</h1>
-      <div class="hero-latin"   id="hero-latin"></div>
-      <p class="hero-tagline"   id="hero-tagline"></p>
-
-      <div class="stat-row" id="stat-row">
-        <!-- filled by JS from FRUITS data -->
-      </div>
-
-      <div class="nutrient-pills" id="nutrient-pills">
-        <!-- filled by JS from FRUITS data -->
-      </div>
-
-      <div class="hero-actions">
-        <a id="btn-recipe"  href="recipes.html" class="btn btn-green">🍳 Recipes</a>
-        <a id="btn-compare" href="compare.html"  class="btn btn-outline">📊 Compare</a>
-        <a id="btn-season"  href="seasonal.html" class="btn btn-earth">🗓️ Season Guide</a>
-      </div>
-    </div>
+    <div class="footer-col"><h5>Explore</h5><a href="fruits.html">Fruits</a><a href="vegetables.html">Vegetables</a><a href="plants.html">Plants &amp; Herbs</a><a href="seasonal.html">Seasonal Guide</a></div>
+    <div class="footer-col"><h5>Learn</h5><a href="#">Nutrition Facts</a><a href="#">Health Benefits</a><a href="#">Grow at Home</a></div>
+    <div class="footer-col"><h5>About</h5><a href="#">Our Mission</a><a href="#">Contributors</a><a href="#">Contact</a></div>
   </div>
-
-  <!-- ══════════════════════════════════════════════════════
-       SECTION 1 — OVERVIEW & QUICK FACTS
-       PASTE DATA: Change the text inside each <p> or <span>
-  ══════════════════════════════════════════════════════ -->
-  <div class="section-label">📖 Overview</div>
-  <div class="section-grid">
-
-    <div class="card full accent">
-      <div class="card-title">🌍 About this fruit</div>
-      <div class="prose">
-        <!--
-        ┌─────────────────────────────────────────────┐
-        │  PASTE: 2–3 sentences from Perplexity here  │
-        │  about the fruit's origin, history, taste   │
-        └─────────────────────────────────────────────┘
-        -->
-        <p id="about-text">Loading…</p>
-      </div>
-    </div>
-
-    <div class="card earth">
-      <div class="card-title">📋 Quick Facts</div>
-      <div class="fact-grid" id="fact-grid">
-        <!--
-        ┌──────────────────────────────────────────────────────────────────┐
-        │  HOW TO ADD FACTS:                                               │
-        │  Copy one <div class="fact-item"> block per fact you want to add │
-        │                                                                  │
-        │  Example:                                                        │
-        │  <div class="fact-item">                                         │
-        │    <span class="fact-label">Origin</span>                        │
-        │    <span class="fact-val">Central Asia</span>                    │
-        │  </div>                                                          │
-        └──────────────────────────────────────────────────────────────────┘
-        -->
-        <div class="fact-item">
-          <span class="fact-label">Botanical name</span>
-          <span class="fact-val" id="fact-botanical">—</span>
-        </div>
-        <div class="fact-item">
-          <span class="fact-label">Family</span>
-          <span class="fact-val" id="fact-family">—</span>
-        </div>
-        <div class="fact-item">
-          <span class="fact-label">Origin</span>
-          <span class="fact-val" id="fact-origin">—</span>
-        </div>
-        <div class="fact-item">
-          <span class="fact-label">Best season</span>
-          <span class="fact-val" id="fact-season">—</span>
-        </div>
-        <div class="fact-item">
-          <span class="fact-label">Calories</span>
-          <span class="fact-val" id="fact-cal">—</span>
-        </div>
-        <div class="fact-item">
-          <span class="fact-label">Taste</span>
-          <span class="fact-val" id="fact-taste">—</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">🏷️ Tags</div>
-      <div class="tag-row" id="tag-row">
-        <!--
-        ┌──────────────────────────────────────────────┐
-        │  HOW TO ADD TAGS:                            │
-        │  <span class="tag">Your tag here</span>      │
-        └──────────────────────────────────────────────┘
-        -->
-      </div>
-    </div>
-
-  </div><!-- /section-grid -->
-
-
-  <!-- ══════════════════════════════════════════════════════
-       SECTION 2 — NUTRITION
-       PASTE DATA: Replace each nut-val with real numbers
-  ══════════════════════════════════════════════════════ -->
-  <div class="section-label">🧪 Nutrition</div>
-  <div class="section-grid">
-
-    <div class="card">
-      <div class="card-title">📊 Per 100g (raw)</div>
-      <div class="nut-grid">
-        <!--
-        ┌────────────────────────────────────────────────────────────┐
-        │  HOW TO ADD / EDIT NUTRITION ROWS:                         │
-        │  Copy one <div class="nut-row"> block per nutrient         │
-        │                                                            │
-        │  <div class="nut-row">                                     │
-        │    <span class="nut-label">Your nutrient</span>            │
-        │    <span class="nut-val">Your value</span>                 │
-        │  </div>                                                    │
-        └────────────────────────────────────────────────────────────┘
-        -->
-        <div class="nut-row"><span class="nut-label">Calories</span>     <span class="nut-val" id="n-cal">—</span></div>
-        <div class="nut-row"><span class="nut-label">Carbs</span>        <span class="nut-val" id="n-carbs">—</span></div>
-        <div class="nut-row"><span class="nut-label">Fiber</span>        <span class="nut-val" id="n-fiber">—</span></div>
-        <div class="nut-row"><span class="nut-label">Sugar</span>        <span class="nut-val" id="n-sugar">—</span></div>
-        <div class="nut-row"><span class="nut-label">Protein</span>      <span class="nut-val" id="n-protein">—</span></div>
-        <div class="nut-row"><span class="nut-label">Fat</span>          <span class="nut-val" id="n-fat">—</span></div>
-        <div class="nut-row"><span class="nut-label">Vitamin C</span>    <span class="nut-val" id="n-vitc">—</span></div>
-        <div class="nut-row"><span class="nut-label">Potassium</span>    <span class="nut-val" id="n-potassium">—</span></div>
-        <div class="nut-row"><span class="nut-label">Vitamin A</span>    <span class="nut-val" id="n-vita">—</span></div>
-        <div class="nut-row"><span class="nut-label">Calcium</span>      <span class="nut-val" id="n-calcium">—</span></div>
-        <div class="nut-row"><span class="nut-label">Iron</span>         <span class="nut-val" id="n-iron">—</span></div>
-        <div class="nut-row"><span class="nut-label">Magnesium</span>    <span class="nut-val" id="n-magnesium">—</span></div>
-        <p class="nut-note">Source: USDA FoodData Central</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">💊 Key Micronutrients</div>
-      <div class="benefit-list" id="micronutrient-list">
-        <!--
-        ┌───────────────────────────────────────────────────────────────────┐
-        │  HOW TO ADD MICRONUTRIENT INFO:                                   │
-        │                                                                   │
-        │  <div class="benefit-row">                                        │
-        │    <div class="benefit-dot"></div>                                │
-        │    <p><strong>Vitamin C</strong> — 8.4mg (14% DV).               │
-        │    Supports immune function and iron absorption.</p>              │
-        │  </div>                                                           │
-        └───────────────────────────────────────────────────────────────────┘
-        -->
-      </div>
-    </div>
-
-  </div><!-- /section-grid -->
-
-
-  <!-- ══════════════════════════════════════════════════════
-       SECTION 3 — HEALTH BENEFITS
-       PASTE DATA: Add benefit rows
-  ══════════════════════════════════════════════════════ -->
-  <div class="section-label">💚 Health Benefits</div>
-  <div class="section-grid">
-
-    <div class="card">
-      <div class="card-title">🩺 Proven Benefits</div>
-      <div class="benefit-list" id="benefits-list">
-        <!--
-        ┌───────────────────────────────────────────────────────────────────┐
-        │  HOW TO ADD BENEFITS:                                             │
-        │                                                                   │
-        │  <div class="benefit-row">                                        │
-        │    <div class="benefit-dot"></div>                                │
-        │    <p><strong>Heart health</strong> — Flavonoids reduce LDL       │
-        │    cholesterol and blood pressure.</p>                            │
-        │  </div>                                                           │
-        └───────────────────────────────────────────────────────────────────┘
-        -->
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">⚠️ Who should be careful</div>
-      <div class="benefit-list" id="caution-list">
-        <!--
-        ┌────────────────────────────────────────────────────────────────┐
-        │  HOW TO ADD CAUTIONS:                                          │
-        │                                                                │
-        │  <div class="benefit-row">                                     │
-        │    <div class="benefit-dot" style="background:#f59e0b"></div>  │
-        │    <p>People with diabetes should limit intake due to high     │
-        │    natural sugar content.</p>                                  │
-        │  </div>                                                        │
-        └────────────────────────────────────────────────────────────────┘
-        -->
-      </div>
-    </div>
-
-  </div><!-- /section-grid -->
-
-
-  <!-- ══════════════════════════════════════════════════════
-       SECTION 4 — SEASON & AVAILABILITY
-       PASTE DATA: Add month pills and notes
-  ══════════════════════════════════════════════════════ -->
-  <div class="section-label">🗓️ Season & Availability</div>
-  <div class="section-grid">
-
-    <div class="card">
-      <div class="card-title">📅 In India</div>
-      <div class="season-grid" id="india-seasons">
-        <!--
-        ┌──────────────────────────────────────────────────────────────┐
-        │  HOW TO ADD SEASON PILLS:                                    │
-        │                                                              │
-        │  Peak months:  <span class="s-pill s-peak">🌟 June</span>   │
-        │  Good months:  <span class="s-pill s-good">✅ May</span>    │
-        │  Low months:   <span class="s-pill s-low">〰️ Jan</span>    │
-        └──────────────────────────────────────────────────────────────┘
-        -->
-      </div>
-      <p class="season-note" id="india-season-note"></p>
-    </div>
-
-    <div class="card">
-      <div class="card-title">🌍 Global Availability</div>
-      <div class="season-grid" id="global-seasons">
-        <!-- Same pill syntax as above -->
-      </div>
-      <p class="season-note" id="global-season-note"></p>
-    </div>
-
-    <div class="card full">
-      <div class="card-title">🏪 How to pick a ripe one & store it</div>
-      <div class="tips-list" id="buying-tips">
-        <!--
-        ┌─────────────────────────────────────────────────────────────┐
-        │  HOW TO ADD TIPS:                                           │
-        │  <div class="tip-item">Your tip text here.</div>            │
-        └─────────────────────────────────────────────────────────────┘
-        -->
-      </div>
-    </div>
-
-  </div><!-- /section-grid -->
-
-
-  <!-- ══════════════════════════════════════════════════════
-       SECTION 5 — VARIETIES
-       PASTE DATA: Add variety rows to the table
-  ══════════════════════════════════════════════════════ -->
-  <div class="section-label">🌿 Popular Varieties</div>
-  <div class="card full">
-    <table class="variety-table" id="variety-table">
-      <thead>
-        <tr>
-          <th>Variety</th>
-          <th>Taste</th>
-          <th>Best for</th>
-          <th>Available in India</th>
-        </tr>
-      </thead>
-      <tbody id="variety-tbody">
-        <!--
-        ┌───────────────────────────────────────────────────────────────┐
-        │  HOW TO ADD VARIETIES:                                        │
-        │  Copy one <tr> block per variety                              │
-        │                                                               │
-        │  <tr>                                                         │
-        │    <td><span class="variety-name">Fuji</span></td>            │
-        │    <td>Sweet, mild</td>                                       │
-        │    <td>Eating fresh</td>                                      │
-        │    <td>Yes</td>                                               │
-        │  </tr>                                                        │
-        └───────────────────────────────────────────────────────────────┘
-        -->
-      </tbody>
-    </table>
+  <div class="footer-bottom">
+    <span>© 2025 Harvestpedia. All rights reserved.</span>
+    <span>Made with 🌿 for nature lovers</span>
   </div>
+</footer>
 
-
-  <!-- ══════════════════════════════════════════════════════
-       SECTION 6 — CULINARY USES
-       PASTE DATA: Add tips and pairings
-  ══════════════════════════════════════════════════════ -->
-  <div class="section-label">🍽️ Culinary Uses</div>
-  <div class="section-grid">
-
-    <div class="card">
-      <div class="card-title">👨‍🍳 How to use in cooking</div>
-      <div class="tips-list" id="culinary-tips">
-        <!--
-        Tip syntax: <div class="tip-item">Your tip here.</div>
-        -->
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">🤝 Pairs well with</div>
-      <div class="tag-row" id="pairing-tags" style="margin-bottom:16px">
-        <!--
-        Pairing tag syntax: <span class="tag">Cinnamon</span>
-        -->
-      </div>
-      <div class="card-title" style="margin-top:8px">🚫 Avoid pairing with</div>
-      <div class="tag-row" id="avoid-tags">
-        <!--
-        <span class="tag" style="background:#fef2f2;border-color:#fecaca;color:#991b1b">Milk</span>
-        -->
-      </div>
-    </div>
-
-  </div><!-- /section-grid -->
-
-
-  <!-- ══════════════════════════════════════════════════════
-       SECTION 7 — GROWING AT HOME  (optional)
-       PASTE DATA: Add growing tips
-  ══════════════════════════════════════════════════════ -->
-  <div class="section-label">🌱 Growing at Home</div>
-  <div class="section-grid">
-
-    <div class="card">
-      <div class="card-title">🪴 Can you grow it at home?</div>
-      <div class="tips-list" id="growing-tips">
-        <!--
-        Tip syntax: <div class="tip-item">Your tip here.</div>
-        -->
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">📋 Growing Requirements</div>
-      <div class="fact-grid" id="growing-facts">
-        <!--
-        ┌──────────────────────────────────────────────────────┐
-        │  Fact syntax:                                        │
-        │  <div class="fact-item">                             │
-        │    <span class="fact-label">Soil type</span>         │
-        │    <span class="fact-val">Well-drained loam</span>   │
-        │  </div>                                              │
-        └──────────────────────────────────────────────────────┘
-        -->
-      </div>
-    </div>
-
-  </div><!-- /section-grid -->
-
-
-  <!-- ══════════════════════════════════════════════════════
-       SECTION 8 — FUN FACTS  (optional)
-       PASTE DATA: Add fun facts as benefit-rows
-  ══════════════════════════════════════════════════════ -->
-  <div class="section-label">✨ Fun Facts</div>
-  <div class="card full">
-    <div class="benefit-list" id="fun-facts">
-      <!--
-      ┌───────────────────────────────────────────────────────────────────┐
-      │  Fun fact syntax:                                                 │
-      │                                                                   │
-      │  <div class="benefit-row">                                        │
-      │    <div class="benefit-dot" style="background:#8b5cf6"></div>     │
-      │    <p>Apples are 25% air, which is why they float in water.</p>   │
-      │  </div>                                                           │
-      └───────────────────────────────────────────────────────────────────┘
-      -->
-    </div>
-  </div>
-
-</div><!-- /page -->
-
-
-<!-- ══════════════════════════════════════════════════════════════════════
-     JAVASCRIPT
-     Reads the ?fruit= URL param, matches it to the FRUITS array,
-     and fills the hero section automatically.
-     You do NOT need to touch this.
-══════════════════════════════════════════════════════════════════════ -->
 <script src="js/api.js"></script>
 <script>
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
 
-/* ─── SAME FRUITS DATA AS fruits.html ─────────────────────────────────── */
-const fruits = [
+const FRUITS = [
   { name:'Apple', family:'Rosaceae', season:'autumn', cal:52, img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&q=80', nutrients:['Fiber','Quercetin','Vit C'] },
   { name:'Apricot', family:'Rosaceae', season:'spring', cal:48, img:'https://media.istockphoto.com/id/165089494/photo/apricots-with-leaves.jpg?s=612x612&w=0&k=20&c=Hma--a5rdJ_4TAHVaeY-YjURQhiXr1J8cNP3fEpMiq8=', nutrients:['Vit A','Beta-carotene','Potassium'] },
   { name:'Avocado', family:'Lauraceae', season:'year', cal:160, img:'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=500&q=80', nutrients:['Healthy fats','Potassium','Vit K'] },
@@ -685,217 +250,151 @@ const fruits = [
   { name:'Canistel', family:'Sapotaceae', season:'autumn', cal:155, img:'https://m.media-amazon.com/images/I/4125ihCkbtL._AC_UF1000,1000_QL80_.jpg', nutrients:['Complex carbs','Vit A','Fiber'] }
 ];
 
-const SEASON_LABELS = {
-  summer:'☀️ Summer', spring:'🌸 Spring',
-  autumn:'🍂 Autumn', winter:'❄️ Winter', year:'🌍 Year-round'
-};
 
-/* ─── AUTO-FILL HERO FROM URL PARAM ───────────────────────────────────── */
-function fillHero() {
-  const name = new URLSearchParams(window.location.search).get('fruit') || 'Apple';
-  const f = FRUITS.find(x => x.name.toLowerCase() === name.toLowerCase())
-            || { name, family: '', season: 'year', cal: '—', img: '', nutrients: [] };
+const SL={summer:'☀️ Summer',spring:'🌸 Spring',autumn:'🍂 Autumn',winter:'❄️ Winter',year:'🌍 Year-round'};
+const none=`<p class="empty-msg">Data coming soon.</p>`;
+const pill=(m,c)=>`<span class="s-pill ${c}">${m}</span>`;
+const tip=t=>`<div class="tip-item">${t}</div>`;
+const dot=(t,c='')=>`<div class="b-row"><div class="b-dot ${c}"></div><p>${t}</p></div>`;
 
-  document.title = f.name + ' – Harvestpedia';
-  document.getElementById('bc-name').textContent        = f.name;
-  document.getElementById('hero-name').textContent      = f.name;
-  document.getElementById('hero-family').textContent    = f.family;
-  document.getElementById('fact-family').textContent    = f.family || '—';
-  document.getElementById('fact-season').textContent    = SEASON_LABELS[f.season] || f.season;
-  document.getElementById('fact-cal').textContent       = f.cal ? f.cal + ' kcal/100g' : '—';
-  document.getElementById('n-cal').textContent          = f.cal ? f.cal + ' kcal' : '—';
-
-  if (f.img) {
-    document.getElementById('hero-img').src = f.img;
-    document.getElementById('hero-img').alt = f.name;
-  }
-
-  const sb = document.getElementById('season-badge');
-  sb.textContent = SEASON_LABELS[f.season] || f.season;
-  sb.className   = 'season-badge ' + (f.season || 'year');
-
-  document.getElementById('nutrient-pills').innerHTML =
-    (f.nutrients || []).map(n => `<span class="nutrient-pill">${n}</span>`).join('');
-
-  document.getElementById('stat-row').innerHTML = `
-    <div class="stat-chip"><span class="val">${f.cal}</span><span class="lbl">kcal/100g</span></div>
-    <div class="stat-chip"><span class="val">${SEASON_LABELS[f.season]||f.season}</span><span class="lbl">Season</span></div>
-    <div class="stat-chip"><span class="val">${f.family||'—'}</span><span class="lbl">Plant family</span></div>
-  `;
-
-  localStorage.setItem('hp-recipe-prefill', f.name);
-  document.getElementById('btn-compare').href = 'compare.html?item=' + encodeURIComponent(f.name);
+async function loadJSON(name){
+  try{ const r=await fetch('data/fruits.json'); const d=await r.json(); return d[name]||null; }
+  catch(e){ return null; }
 }
 
-fillHero();
+async function init(){
+  const name=new URLSearchParams(location.search).get('fruit')||'';
+  const base=FRUITS.find(x=>x.name.toLowerCase()===name.toLowerCase());
 
-</script>
-
-<!--
-═══════════════════════════════════════════════════════════════════════════
-  HOW TO ADD CUSTOM DATA FOR EACH FRUIT
-  ───────────────────────────────────────────────────────────────────────
-  The page auto-fills the hero (image, name, season, nutrients) from the
-  FRUITS array above — you don't touch that.
-
-  For the rich detail sections, paste your Perplexity data like this:
-
-  1. ABOUT TEXT
-     Find:  <p id="about-text">Loading…</p>
-     Change: <p id="about-text">Your 2–3 sentence description here.</p>
-
-  2. QUICK FACTS
-     Find the <div class="fact-grid" id="fact-grid"> block.
-     Edit the <span class="fact-val" id="fact-botanical"> etc. spans,
-     OR add new fact-item divs using the copy-paste syntax in the comments.
-
-  3. TAGS
-     Find: <div class="tag-row" id="tag-row">
-     Add:  <span class="tag">Sweet</span>
-           <span class="tag">Antioxidant-rich</span>
-
-  4. NUTRITION NUMBERS
-     Find each <span class="nut-val" id="n-cal"> etc.
-     Replace the — with the real value e.g. "52 kcal"
-
-  5. BENEFITS
-     Find: <div class="benefit-list" id="benefits-list">
-     Add each benefit using the syntax in the comment above that section.
-
-  6. SEASON PILLS
-     Find: <div class="season-grid" id="india-seasons">
-     Add:  <span class="s-pill s-peak">🌟 June</span>
-           <span class="s-pill s-good">✅ May</span>
-           <span class="s-pill s-low">〰️ January</span>
-
-  7. BUYING TIPS
-     Find: <div class="tips-list" id="buying-tips">
-     Add:  <div class="tip-item">Look for firm skin with no bruises.</div>
-
-  8. VARIETIES
-     Find: <tbody id="variety-tbody">
-     Add table rows using the <tr> syntax in the comment above.
-
-  9. CULINARY TIPS & PAIRINGS
-     Find: <div class="tips-list" id="culinary-tips">
-     Find: <div class="tag-row" id="pairing-tags">
-     Add tips and tags using the syntax in comments.
-
-  10. GROWING TIPS
-      Find: <div class="tips-list" id="growing-tips">
-      Add:  <div class="tip-item">Needs full sun and well-drained soil.</div>
-
-  11. FUN FACTS
-      Find: <div class="benefit-list" id="fun-facts">
-      Add fun facts using the benefit-row syntax.
-
-  HERO LATIN NAME & TAGLINE:
-      Find: <div class="hero-latin" id="hero-latin"></div>
-      Change to: <div class="hero-latin" id="hero-latin">Malus domestica</div>
-
-      Find: <p class="hero-tagline" id="hero-tagline"></p>
-      Change to: <p class="hero-tagline" id="hero-tagline">
-                   The world's most beloved temperate fruit.
-                 </p>
-═══════════════════════════════════════════════════════════════════════════
--->
-<script>
-/* ─────────────────────────────────────────────
-   FETCH EXTRA DATA FROM fruits.json
-   (DOES NOT TOUCH EXISTING UI / HERO)
-───────────────────────────────────────────── */
-
-async function loadFruitDetails(name) {
-  try {
-    const res = await fetch("data/fruits.json");
-    const data = await res.json();
-    return data[name];
-  } catch (err) {
-    console.error("JSON load error:", err);
-    return null;
-  }
-}
-
-async function fillExtraDetails() {
-  const name = new URLSearchParams(window.location.search).get('fruit') || 'Apple';
-  const data = await loadFruitDetails(name);
-
-  if (!data) return;
-
-  /* ─── ABOUT ─── */
-  if (data.about) {
-    document.getElementById("about-text").textContent = data.about;
+  if(!base){
+    document.getElementById('hero-grid').innerHTML=`<div class="not-found" style="grid-column:1/-1"><h2>Fruit not found</h2><p>"${name}" isn't in our database yet.</p><a href="fruits.html" class="btn btn-green" style="margin-top:20px">← Back to Fruits</a></div>`;
+    return;
   }
 
-  /* ─── NUTRITION ─── */
-  if (data.nutrition) {
-    if (data.nutrition.cal) document.getElementById("n-cal").textContent = data.nutrition.cal;
-    if (data.nutrition.carbs) document.getElementById("n-carbs").textContent = data.nutrition.carbs;
-    if (data.nutrition.fiber) document.getElementById("n-fiber").textContent = data.nutrition.fiber;
-    if (data.nutrition.sugar) document.getElementById("n-sugar").textContent = data.nutrition.sugar;
-    if (data.nutrition.protein) document.getElementById("n-protein").textContent = data.nutrition.protein;
-    if (data.nutrition.fat) document.getElementById("n-fat").textContent = data.nutrition.fat;
+  document.title=base.name+' – Harvestpedia';
+  document.getElementById('bc-name').textContent=base.name;
+  localStorage.setItem('hp-recipe-prefill',base.name);
+
+  document.getElementById('hero-grid').innerHTML=`
+    <div class="hero-img-wrap">
+      <img src="${base.img}" alt="${base.name}"/>
+      <span class="season-badge ${base.season}">${SL[base.season]||base.season}</span>
+    </div>
+    <div>
+      <div class="hero-tag">🍎 Fruit</div>
+      <h1 class="hero-name">${base.name}</h1>
+      <div class="hero-latin" id="h-latin"></div>
+      <p class="hero-tagline" id="h-tagline"></p>
+      <div class="stat-strip">
+        <div class="stat-chip"><span class="val">${base.cal}</span><span class="lbl">kcal/100g</span></div>
+        <div class="stat-chip"><span class="val">${SL[base.season]||base.season}</span><span class="lbl">Season</span></div>
+        <div class="stat-chip"><span class="val">${base.family}</span><span class="lbl">Family</span></div>
+      </div>
+      <div class="nutrient-row">${(base.nutrients||[]).map(n=>`<span class="nutrient-chip">${n}</span>`).join('')}</div>
+      <div class="action-row">
+        <a href="recipes.html" class="btn btn-green">🍳 Recipes</a>
+        <a href="compare.html?item=${encodeURIComponent(base.name)}" class="btn btn-outline">📊 Compare</a>
+        <a href="seasonal.html" class="btn btn-earth">🗓️ Season Guide</a>
+      </div>
+    </div>`;
+
+  document.getElementById('content').innerHTML=`<p class="empty-msg" style="padding:40px 0">Loading details…</p>`;
+  const d=await loadJSON(base.name);
+
+  if(!d){
+    document.getElementById('content').innerHTML=`<p class="empty-msg" style="padding:40px 0">Add "${base.name}" to <code>data/fruits.json</code> to see full details. See the JSON syntax guide below.</p>`;
+    return;
   }
 
-  /* ─── BENEFITS ─── */
-  if (data.benefits) {
-    document.getElementById("benefits-list").innerHTML =
-      data.benefits.map(b => `
-        <div class="benefit-row">
-          <div class="benefit-dot"></div>
-          <p>${b}</p>
+  if(d.latin) document.getElementById('h-latin').textContent=d.latin;
+  if(d.tagline) document.getElementById('h-tagline').textContent=d.tagline;
+
+  document.getElementById('content').innerHTML=`
+
+    <div class="sec-head">📖 Overview</div>
+    <div class="two-col">
+      <div class="card green full"><span class="card-label">🌍 About</span><div class="prose"><p>${d.about||'Coming soon.'}</p></div></div>
+      <div class="card earth">
+        <span class="card-label">📋 Quick Facts</span>
+        <div class="fact-grid">
+          <div class="fact-chip"><span class="f-label">Botanical name</span><span class="f-val">${d.latin||'—'}</span></div>
+          <div class="fact-chip"><span class="f-label">Family</span><span class="f-val">${base.family}</span></div>
+          <div class="fact-chip"><span class="f-label">Origin</span><span class="f-val">${d.origin||'—'}</span></div>
+          <div class="fact-chip"><span class="f-label">Taste</span><span class="f-val">${d.taste||'—'}</span></div>
+          <div class="fact-chip"><span class="f-label">Calories</span><span class="f-val">${base.cal} kcal/100g</span></div>
+          <div class="fact-chip"><span class="f-label">Best season</span><span class="f-val">${SL[base.season]||base.season}</span></div>
         </div>
-      `).join("");
-  }
+      </div>
+      <div class="card"><span class="card-label">🏷️ Tags</span><div class="tag-row">${d.tags?.length?d.tags.map(t=>`<span class="tag-pill">${t}</span>`).join(''):none}</div></div>
+    </div>
 
-  /* ─── SEASONS ─── */
-  if (data.seasons) {
-    document.getElementById("india-seasons").innerHTML = `
-      ${(data.seasons.peak || []).map(m => `<span class="s-pill s-peak">🌟 ${m}</span>`).join("")}
-      ${(data.seasons.good || []).map(m => `<span class="s-pill s-good">✅ ${m}</span>`).join("")}
-      ${(data.seasons.low || []).map(m => `<span class="s-pill s-low">〰️ ${m}</span>`).join("")}
-    `;
-  }
+    <div class="sec-head">🧪 Nutrition</div>
+    <div class="two-col">
+      <div class="card">
+        <span class="card-label">📊 Per 100g (raw)</span>
+        <div class="nut-grid">
+          ${d.nutrition?[['Calories',d.nutrition.cal],['Carbs',d.nutrition.carbs],['Fiber',d.nutrition.fiber],['Sugar',d.nutrition.sugar],['Protein',d.nutrition.protein],['Fat',d.nutrition.fat],['Vitamin C',d.nutrition.vitc],['Potassium',d.nutrition.potassium],['Vitamin A',d.nutrition.vita],['Calcium',d.nutrition.calcium],['Iron',d.nutrition.iron],['Magnesium',d.nutrition.magnesium]].filter(([,v])=>v&&v!=='—').map(([l,v])=>`<div class="nut-row"><span class="nut-name">${l}</span><span class="nut-val">${v}</span></div>`).join(''):`<p class="empty-msg" style="grid-column:1/-1">Add nutrition to fruits.json</p>`}
+          <p class="nut-src">Source: USDA FoodData Central</p>
+        </div>
+      </div>
+      <div class="card"><span class="card-label">💊 Key Micronutrients</span><div class="b-list">${d.micronutrients?.length?d.micronutrients.map(m=>dot(m)).join(''):none}</div></div>
+    </div>
 
-  /* ─── TIPS ─── */
-  if (data.tips) {
-    document.getElementById("buying-tips").innerHTML =
-      data.tips.map(t => `<div class="tip-item">${t}</div>`).join("");
-  }
+    <div class="sec-head">💚 Health Benefits</div>
+    <div class="two-col">
+      <div class="card"><span class="card-label">🩺 Proven Benefits</span><div class="b-list">${d.benefits?.length?d.benefits.map(b=>dot(b)).join(''):none}</div></div>
+      <div class="card"><span class="card-label">⚠️ Who should be careful</span><div class="b-list">${d.cautions?.length?d.cautions.map(c=>dot(c,'amber')).join(''):`<p class="empty-msg">No specific cautions noted.</p>`}</div></div>
+    </div>
 
-  /* ─── VARIETIES ─── */
-  if (data.varieties) {
-    document.getElementById("variety-tbody").innerHTML =
-      data.varieties.map(v => `
-        <tr>
-          <td><span class="variety-name">${v.name}</span></td>
-          <td>${v.taste}</td>
-          <td>${v.use}</td>
-          <td>${v.india}</td>
-        </tr>
-      `).join("");
-  }
+    <div class="sec-head">🗓️ Season & Availability</div>
+    <div class="two-col">
+      <div class="card">
+        <span class="card-label">📅 In India</span>
+        <div class="s-pills">
+          ${(d.india_seasons?.peak||[]).map(m=>pill('🌟 '+m,'s-peak')).join('')}
+          ${(d.india_seasons?.good||[]).map(m=>pill('✅ '+m,'s-good')).join('')}
+          ${(d.india_seasons?.low||[]).map(m=>pill('〰️ '+m,'s-low')).join('')}
+        </div>
+        <p class="s-note">${d.india_note||''}</p>
+      </div>
+      <div class="card">
+        <span class="card-label">🌍 Global Availability</span>
+        <div class="s-pills">
+          ${(d.global_seasons?.peak||[]).map(m=>pill('🌟 '+m,'s-peak')).join('')}
+          ${(d.global_seasons?.good||[]).map(m=>pill('✅ '+m,'s-good')).join('')}
+          ${(d.global_seasons?.low||[]).map(m=>pill('〰️ '+m,'s-low')).join('')}
+        </div>
+        <p class="s-note">${d.global_note||''}</p>
+      </div>
+      <div class="card full"><span class="card-label">🏪 How to pick & store</span><div class="tip-list">${d.tips?.length?d.tips.map(tip).join(''):none}</div></div>
+    </div>
 
-  /* ─── TAGS ─── */
-  if (data.tags) {
-    document.getElementById("tag-row").innerHTML =
-      data.tags.map(t => `<span class="tag">${t}</span>`).join("");
-  }
+    <div class="sec-head">🌿 Popular Varieties</div>
+    <div class="card">
+      ${d.varieties?.length?`<table class="var-table"><thead><tr><th>Variety</th><th>Taste</th><th>Best for</th><th>In India</th></tr></thead><tbody>${d.varieties.map(v=>`<tr><td><span class="var-name">${v.name}</span></td><td>${v.taste}</td><td>${v.use}</td><td>${v.india}</td></tr>`).join('')}</tbody></table>`:none}
+    </div>
 
-  /* ─── FACT (ORIGIN) ─── */
-  if (data.origin) {
-    document.getElementById("fact-origin").textContent = data.origin;
-  }
+    <div class="sec-head">🍽️ Culinary Uses</div>
+    <div class="two-col">
+      <div class="card"><span class="card-label">👨‍🍳 Cooking tips</span><div class="tip-list">${d.culinary_tips?.length?d.culinary_tips.map(tip).join(''):none}</div></div>
+      <div class="card">
+        <span class="card-label">🤝 Pairs well with</span>
+        <div class="tag-row" style="margin-bottom:${d.avoid_with?.length?'16px':'0'}">${d.pairs_with?.length?d.pairs_with.map(t=>`<span class="tag-pill">${t}</span>`).join(''):none}</div>
+        ${d.avoid_with?.length?`<span class="card-label" style="margin-top:12px;display:block">🚫 Avoid pairing with</span><div class="tag-row">${d.avoid_with.map(t=>`<span class="tag-pill avoid">${t}</span>`).join('')}</div>`:''}
+      </div>
+    </div>
+
+    <div class="sec-head">🌱 Growing at Home</div>
+    <div class="two-col">
+      <div class="card"><span class="card-label">🪴 Tips</span><div class="tip-list">${d.growing_tips?.length?d.growing_tips.map(tip).join(''):none}</div></div>
+      <div class="card earth"><span class="card-label">📋 Requirements</span><div class="fact-grid">${d.growing_facts?Object.entries(d.growing_facts).map(([l,v])=>`<div class="fact-chip"><span class="f-label">${l}</span><span class="f-val">${v}</span></div>`).join(''):none}</div></div>
+    </div>
+
+    ${d.fun_facts?.length?`<div class="sec-head">✨ Fun Facts</div><div class="card"><div class="b-list">${d.fun_facts.map(f=>dot(f,'purple')).join('')}</div></div>`:''}
+  `;
 }
 
-/* ─── INIT (RUN EVERYTHING PROPERLY) ─── */
-async function initPage() {
-  fillHero();              // existing function (DO NOT REMOVE)
-  await fillExtraDetails(); // load JSON data
-}
-
-initPage();
+init();
 </script>
-
 </body>
 </html>

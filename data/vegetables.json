@@ -1,0 +1,4229 @@
+{
+  "Potato": {
+    "latin": "Solanum tuberosum",
+    "tagline": "The world's most consumed vegetable — humble, filling, and infinitely versatile.",
+    "origin": "South America (Peru & Bolivia)",
+    "taste": "Mild, starchy, earthy",
+    "tags": ["Starchy", "Filling", "Potassium-rich", "Year-round", "Versatile"],
+    "about": "Potatoes originated in the Andes mountains of South America and were introduced to Europe by Spanish explorers in the 16th century. Today they are the world's fourth-largest food crop. India is among the top global producers, with UP, West Bengal, and Bihar leading production.",
+    "nutrition": {
+      "cal": "77 kcal",
+      "carbs": "17.5g",
+      "fiber": "2.2g",
+      "sugar": "0.8g",
+      "protein": "2g",
+      "fat": "0.1g",
+      "vitc": "19.7mg",
+      "potassium": "421mg",
+      "vita": "0µg",
+      "calcium": "12mg",
+      "iron": "0.8mg",
+      "magnesium": "23mg"
+    },
+    "micronutrients": [
+      "<strong>Potassium</strong> — 421mg (12% DV). More than a banana. Supports heart and muscle function.",
+      "<strong>Vitamin C</strong> — 19.7mg. Concentrated under the skin — keep skin on when possible.",
+      "<strong>Vitamin B6</strong> — supports brain health and mood regulation."
+    ],
+    "benefits": [
+      "<strong>Energy</strong> — complex carbohydrates provide sustained, slow-release energy.",
+      "<strong>Heart health</strong> — potassium and fiber support healthy blood pressure.",
+      "<strong>Gut health</strong> — resistant starch (especially in cooked-and-cooled potatoes) feeds beneficial bacteria.",
+      "<strong>Satiety</strong> — one of the most filling foods per calorie in studies."
+    ],
+    "cautions": [
+      "High glycemic index when baked or mashed — diabetics should prefer boiled or cooled potatoes.",
+      "Avoid green-tinted potatoes — they contain solanine which is toxic in large amounts.",
+      "Deep-frying dramatically increases calorie and fat content."
+    ],
+    "seasons": {
+      "peak": ["Jan", "Feb", "Mar"],
+      "good": ["Dec", "Apr"],
+      "low": ["Jun", "Jul", "Aug", "Sep"]
+    },
+    "india_note": "Available year-round across India via cold storage. Best fresh crop harvested Jan–Mar in UP, West Bengal, and Bihar.",
+    "global_seasons": {
+      "peak": ["Sep", "Oct", "Nov"],
+      "good": ["Aug", "Dec"],
+      "low": []
+    },
+    "global_note": "China is the world's largest producer. Available year-round globally via cold storage.",
+    "tips": [
+      "Store in a cool, dark, well-ventilated place — never in the refrigerator (converts starch to sugar).",
+      "Keep away from onions — they release gases that spoil each other faster.",
+      "Choose firm potatoes with no sprouts, green tinge, or soft spots.",
+      "Cooling cooked potatoes increases resistant starch — great for gut health."
+    ],
+    "varieties": [
+      { "name": "Kufri Jyoti", "taste": "Mild, floury", "use": "General cooking, chips", "india": "Yes (most common)" },
+      { "name": "Kufri Chandramukhi", "taste": "Soft, mild", "use": "Boiling, curries", "india": "Yes" },
+      { "name": "Russet (Idaho)", "taste": "Fluffy, dry", "use": "Baking, fries", "india": "Imported" },
+      { "name": "Baby/New Potato", "taste": "Sweet, waxy", "use": "Salads, roasting", "india": "Yes (seasonal)" }
+    ],
+    "culinary_tips": [
+      "Boil with skin on to retain maximum nutrients — peel after if desired.",
+      "For crispier roast potatoes: parboil, roughen edges, and roast in hot oil.",
+      "Add cold boiled potatoes to salads — the resistant starch is a gut prebiotic.",
+      "Make aloo paratha by stuffing spiced mashed potato in whole wheat dough."
+    ],
+    "pairs_with": ["Onion", "Garlic", "Butter", "Coriander", "Cumin", "Rosemary", "Cheese"],
+    "avoid_with": ["Store away from onions and bananas (ethylene gas speeds sprouting)"],
+    "growing_tips": [
+      "Plant seed potatoes (not regular potatoes) for disease-free crop.",
+      "Best grown Oct–Jan in Indian plains for a March harvest.",
+      "Earth up (mound soil around stems) as plants grow to increase yield.",
+      "Can be grown in large bags or containers — ideal for urban gardens."
+    ],
+    "growing_facts": {
+      "Climate": "Cool, temperate",
+      "Soil": "Loose, well-drained, slightly acidic",
+      "Sunlight": "Full sun",
+      "Water": "Moderate, consistent",
+      "Time to harvest": "70–120 days",
+      "Container": "Yes (large bags or pots)"
+    },
+    "fun_facts": [
+      "Potatoes were the first vegetable grown in space (on the Space Shuttle Columbia in 1995).",
+      "The average Indian consumes over 20kg of potatoes per year.",
+      "There are over 4,000 varieties of potato grown worldwide."
+    ]
+  },
+
+  "Tomato": {
+    "latin": "Solanum lycopersicum",
+    "tagline": "Technically a fruit, practically a vegetable — the backbone of global cuisines.",
+    "origin": "South America (Peru & Mexico)",
+    "taste": "Sweet, tangy, umami-rich",
+    "tags": ["Lycopene", "Antioxidant", "Vitamin-rich", "Versatile", "Summer"],
+    "about": "Tomatoes originated in South America and were introduced to Europe by Spanish explorers in the 16th century. Today they are one of the world's most consumed vegetables. India is the third-largest global producer with Karnataka, Andhra Pradesh, and Maharashtra leading output.",
+    "nutrition": {
+      "cal": "18 kcal",
+      "carbs": "3.9g",
+      "fiber": "1.2g",
+      "sugar": "2.6g",
+      "protein": "0.9g",
+      "fat": "0.2g",
+      "vitc": "14mg",
+      "potassium": "237mg",
+      "vita": "42µg",
+      "calcium": "10mg",
+      "iron": "0.3mg",
+      "magnesium": "11mg"
+    },
+    "micronutrients": [
+      "<strong>Lycopene</strong> — powerful carotenoid antioxidant. Concentration doubles when cooked.",
+      "<strong>Vitamin C</strong> — 14mg (23% DV). Supports immunity and collagen production.",
+      "<strong>Potassium</strong> — 237mg. Helps regulate blood pressure."
+    ],
+    "benefits": [
+      "<strong>Cancer protection</strong> — lycopene linked to reduced prostate and breast cancer risk.",
+      "<strong>Heart health</strong> — folate and potassium support cardiovascular function.",
+      "<strong>Skin health</strong> — lycopene and Vitamin C protect against UV-induced damage.",
+      "<strong>Eye health</strong> — lutein and zeaxanthin reduce macular degeneration risk."
+    ],
+    "cautions": [
+      "Nightshade family — may aggravate joint inflammation in sensitive individuals.",
+      "High acidity can worsen acid reflux and GERD.",
+      "Avoid unripe green tomatoes in large amounts — contain solanine."
+    ],
+    "seasons": {
+      "peak": ["Dec", "Jan", "Feb"],
+      "good": ["Nov", "Mar"],
+      "low": ["Jun", "Jul", "Aug", "Sep"]
+    },
+    "india_note": "Available year-round across India. Peak quality Dec–Feb. Karnataka, AP, and Maharashtra are top producers.",
+    "global_seasons": {
+      "peak": ["Jul", "Aug", "Sep"],
+      "good": ["Jun", "Oct"],
+      "low": ["Jan", "Feb"]
+    },
+    "global_note": "China is the world's largest producer. Greenhouse production ensures year-round global availability.",
+    "tips": [
+      "Choose firm, deeply coloured tomatoes that are heavy for their size.",
+      "Smell the stem end — ripe tomatoes have a strong earthy fragrance.",
+      "Never refrigerate tomatoes — cold destroys their flavour and texture.",
+      "Store stem-side down at room temperature for up to 5 days."
+    ],
+    "varieties": [
+      { "name": "Cherry Tomato", "taste": "Very sweet, burst", "use": "Salads, snacking", "india": "Yes" },
+      { "name": "Roma (Plum)", "taste": "Dense, low moisture", "use": "Sauces, puree", "india": "Yes" },
+      { "name": "Desi Round", "taste": "Tangy, juicy", "use": "Indian cooking", "india": "Yes (most common)" },
+      { "name": "Beefsteak", "taste": "Meaty, mild", "use": "Burgers, slicing", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Roast at high heat to concentrate flavour for sauces and soups.",
+      "Score the base and blanch 30 sec for easy peeling.",
+      "Salt cut tomatoes 15 min before use to remove excess moisture.",
+      "Sun-dry in the oven at low heat to intensify sweetness."
+    ],
+    "pairs_with": ["Basil", "Garlic", "Olive oil", "Mozzarella", "Onion", "Cumin", "Coriander"],
+    "avoid_with": ["Cucumber (Ayurvedic — different digestion rates)"],
+    "growing_tips": [
+      "Needs full sun (6+ hrs) and very consistent watering.",
+      "Stake or cage plants at 30cm height to support heavy fruit.",
+      "Pinch off suckers (side shoots) to direct energy into fruit.",
+      "Inconsistent watering causes blossom end rot — keep soil moisture even."
+    ],
+    "growing_facts": {
+      "Climate": "Warm, frost-free",
+      "Soil": "Rich, well-drained loam",
+      "Sunlight": "Full sun (6+ hrs)",
+      "Water": "Consistent, moderate",
+      "Time to harvest": "60–80 days",
+      "Container": "Yes (compact varieties)"
+    },
+    "fun_facts": [
+      "Tomatoes are botanically fruits — they are the seed-bearing part of the plant.",
+      "The word 'tomato' comes from the Aztec word 'tomatl'.",
+      "There are over 10,000 tomato varieties grown worldwide."
+    ]
+  },
+
+  "Carrot": {
+    "latin": "Daucus carota subsp. sativus",
+    "tagline": "Crunchy, sweet, and bursting with beta-carotene — the original superfood.",
+    "origin": "Central Asia (Afghanistan)",
+    "taste": "Sweet, earthy, crunchy",
+    "tags": ["Vitamin A", "Beta-carotene", "Crunchy", "Root veggie", "Eye health"],
+    "about": "Carrots were originally purple and yellow — the familiar orange variety was selectively developed in the Netherlands in the 17th century. India is among the top global producers. The winter carrot crop in Punjab and Haryana is considered among the sweetest in the world.",
+    "nutrition": {
+      "cal": "41 kcal",
+      "carbs": "9.6g",
+      "fiber": "2.8g",
+      "sugar": "4.7g",
+      "protein": "0.9g",
+      "fat": "0.2g",
+      "vitc": "5.9mg",
+      "potassium": "320mg",
+      "vita": "835µg",
+      "calcium": "33mg",
+      "iron": "0.3mg",
+      "magnesium": "12mg"
+    },
+    "micronutrients": [
+      "<strong>Beta-carotene</strong> — 8285µg. Converts to Vitamin A; absorption increases significantly when cooked with fat.",
+      "<strong>Vitamin K1</strong> — essential for blood clotting and bone health.",
+      "<strong>Biotin</strong> — supports fat and protein metabolism."
+    ],
+    "benefits": [
+      "<strong>Eye health</strong> — beta-carotene converts to Vitamin A, preventing night blindness.",
+      "<strong>Cancer protection</strong> — carotenoid antioxidants linked to reduced cancer risk.",
+      "<strong>Heart health</strong> — fiber and potassium support blood pressure and cholesterol.",
+      "<strong>Gut health</strong> — high fiber content feeds beneficial bacteria."
+    ],
+    "cautions": [
+      "Eating very large amounts can cause carotenemia — harmless yellowing of the skin.",
+      "Higher glycemic index when cooked — diabetics may prefer raw carrots."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": ["Jun", "Jul", "Aug"]
+    },
+    "india_note": "Best quality in winter months. Punjab, Haryana, and UP are top producers. Available year-round in metro markets via cold chain.",
+    "global_seasons": {
+      "peak": ["Aug", "Sep", "Oct"],
+      "good": ["Jul", "Nov"],
+      "low": ["Feb", "Mar"]
+    },
+    "global_note": "China is the world's largest producer. Available year-round globally.",
+    "tips": [
+      "Choose firm, smooth carrots with bright colour and no cracks or soft spots.",
+      "Fresh tops (if attached) should be green and perky — not wilted.",
+      "Remove greens before storing — they draw moisture from the root.",
+      "Refrigerate in a sealed bag for up to 3 weeks."
+    ],
+    "varieties": [
+      { "name": "Nantes", "taste": "Sweet, tender", "use": "Juicing, fresh eating", "india": "Yes (common)" },
+      { "name": "Pusa Kesar", "taste": "Sweet, red-orange", "use": "Indian halwa, cooking", "india": "Yes (local variety)" },
+      { "name": "Imperator", "taste": "Mild, crunchy", "use": "Storage, export", "india": "Yes" },
+      { "name": "Purple Carrot", "taste": "Earthy, slightly bitter", "use": "Salads, roasting", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Cook lightly to preserve nutrients — steaming is better than boiling.",
+      "Pair with fat (butter, oil) to maximise beta-carotene absorption.",
+      "Grate raw into salads, coleslaws, and raitas for crunch and colour.",
+      "Roast with honey and cumin for a simple Indian-inspired side."
+    ],
+    "pairs_with": ["Ginger", "Cumin", "Honey", "Orange", "Coriander", "Butter", "Cardamom"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Grow in loose, deep, stone-free soil — rocks cause forked, misshapen roots.",
+      "Sow seeds directly — carrots do not transplant well.",
+      "Thin seedlings to 5cm apart after germination for proper root development.",
+      "Best sown Oct–Feb in Indian plains for a winter-spring harvest."
+    ],
+    "growing_facts": {
+      "Climate": "Cool, temperate",
+      "Soil": "Loose, deep sandy loam",
+      "Sunlight": "Full sun",
+      "Water": "Moderate, consistent",
+      "Time to harvest": "70–80 days",
+      "Container": "Deep containers (30cm+)"
+    },
+    "fun_facts": [
+      "Original wild carrots were purple or yellow — not orange.",
+      "Carrots are 88% water.",
+      "The largest carrot ever grown weighed over 10kg."
+    ]
+  },
+
+  "Spinach": {
+    "latin": "Spinacia oleracea",
+    "tagline": "One of the most nutrient-dense leafy greens on the planet.",
+    "origin": "Ancient Persia (Iran)",
+    "taste": "Mild, slightly bitter, earthy",
+    "tags": ["Iron-rich", "Vitamin K", "Leafy green", "Antioxidant", "Low calorie"],
+    "about": "Spinach was first cultivated in ancient Persia and reached Europe via Arab trade routes. It is a staple in Indian cuisine as palak and is used worldwide in salads, smoothies, and cooked dishes. China produces over 90% of global spinach supply.",
+    "nutrition": {
+      "cal": "23 kcal",
+      "carbs": "3.6g",
+      "fiber": "2.2g",
+      "sugar": "0.4g",
+      "protein": "2.9g",
+      "fat": "0.4g",
+      "vitc": "28mg",
+      "potassium": "558mg",
+      "vita": "469µg",
+      "calcium": "99mg",
+      "iron": "2.7mg",
+      "magnesium": "79mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin K</strong> — 483µg per 100g (403% DV). Critical for blood clotting and bone mineralisation.",
+      "<strong>Iron</strong> — 2.7mg. Non-heme iron — pair with Vitamin C for best absorption.",
+      "<strong>Folate</strong> — 194µg. Essential during pregnancy for neural tube development."
+    ],
+    "benefits": [
+      "<strong>Bone health</strong> — exceptional Vitamin K content supports bone mineralisation.",
+      "<strong>Blood health</strong> — iron and folate support healthy red blood cell production.",
+      "<strong>Eye health</strong> — lutein and zeaxanthin protect against cataracts and macular degeneration.",
+      "<strong>Blood pressure</strong> — dietary nitrates help relax blood vessels and lower pressure."
+    ],
+    "cautions": [
+      "High in oxalates — people prone to kidney stones should limit consumption.",
+      "Very high Vitamin K may interfere with blood thinners (warfarin) — consult a doctor.",
+      "Cooking reduces oxalate content and makes iron more bioavailable."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": ["Jun", "Jul", "Aug"]
+    },
+    "india_note": "Available year-round; best quality in winter. Widely used across all Indian cuisines as palak.",
+    "global_seasons": {
+      "peak": ["Apr", "May", "Oct", "Nov"],
+      "good": ["Mar", "Sep"],
+      "low": ["Jul", "Aug"]
+    },
+    "global_note": "China produces over 90% of world spinach. Prefers cool weather globally.",
+    "tips": [
+      "Choose dark green leaves with no yellowing, wilting, or sliminess.",
+      "Baby spinach is milder and more tender than mature spinach.",
+      "Refrigerate unwashed in a sealed bag for up to 5 days.",
+      "Wash just before use — excess moisture speeds spoilage."
+    ],
+    "varieties": [
+      { "name": "Baby Spinach", "taste": "Mild, tender", "use": "Salads, smoothies", "india": "Yes" },
+      { "name": "Palak", "taste": "Slightly bitter", "use": "Indian curries, dal", "india": "Yes (most common)" },
+      { "name": "Savoy", "taste": "Crinkly, stronger flavour", "use": "Cooked dishes", "india": "Yes" }
+    ],
+    "culinary_tips": [
+      "Wilt in a hot pan with garlic and oil in under 2 minutes.",
+      "Add raw to smoothies — flavour is masked by banana or mango.",
+      "Blanch and squeeze dry before adding to curries to prevent wateriness.",
+      "Pair with paneer, lentils, or eggs for a protein-complete meal."
+    ],
+    "pairs_with": ["Paneer", "Garlic", "Lemon", "Nutmeg", "Eggs", "Chickpeas", "Ginger"],
+    "avoid_with": ["Milk at the same time (Ayurvedic caution)"],
+    "growing_tips": [
+      "Cool-season crop — sow Oct–Feb across most Indian plains.",
+      "Grows well in containers — needs only 15cm depth.",
+      "Bolts (flowers) quickly in heat — harvest before this happens.",
+      "Succession sow every 2 weeks for a continuous harvest."
+    ],
+    "growing_facts": {
+      "Climate": "Cool, mild",
+      "Soil": "Rich, moist, well-drained",
+      "Sunlight": "Partial to full sun",
+      "Water": "Regular, keep moist",
+      "Time to harvest": "40–50 days",
+      "Container": "Yes (15cm depth minimum)"
+    },
+    "fun_facts": [
+      "Spinach contains more protein per calorie than most vegetables.",
+      "The iron in spinach is non-heme iron — absorbed best with Vitamin C.",
+      "NASA has studied spinach as a candidate crop for growing in space."
+    ]
+  },
+
+  "Onion": {
+    "latin": "Allium cepa",
+    "tagline": "The humble foundation of every great dish — raw, cooked, or caramelised.",
+    "origin": "Central Asia (Iran & West Pakistan)",
+    "taste": "Pungent raw, sweet when cooked",
+    "tags": ["Allium", "Antioxidant", "Antibacterial", "Year-round", "Culinary staple"],
+    "about": "Onions are among the oldest cultivated vegetables, grown for over 5,000 years. India is the world's second-largest producer and the leading exporter. Onions are central to Indian cooking and hold cultural significance — Indian onion prices are even a political issue.",
+    "nutrition": {
+      "cal": "40 kcal",
+      "carbs": "9.3g",
+      "fiber": "1.7g",
+      "sugar": "4.2g",
+      "protein": "1.1g",
+      "fat": "0.1g",
+      "vitc": "7.4mg",
+      "potassium": "146mg",
+      "vita": "0µg",
+      "calcium": "23mg",
+      "iron": "0.2mg",
+      "magnesium": "10mg"
+    },
+    "micronutrients": [
+      "<strong>Quercetin</strong> — powerful flavonoid antioxidant, highest in outer layers and red onions.",
+      "<strong>Allicin precursors</strong> — released when cut, providing antibacterial and anti-inflammatory effects.",
+      "<strong>Fructooligosaccharides</strong> — prebiotic fiber that feeds beneficial gut bacteria."
+    ],
+    "benefits": [
+      "<strong>Heart health</strong> — quercetin reduces LDL oxidation and lowers blood pressure.",
+      "<strong>Antibacterial</strong> — allicin compounds inhibit E. coli, Salmonella, and Staphylococcus.",
+      "<strong>Blood sugar control</strong> — chromium and quercetin improve insulin sensitivity.",
+      "<strong>Gut health</strong> — prebiotic fiber feeds beneficial gut bacteria."
+    ],
+    "cautions": [
+      "Can cause bad breath and body odour due to sulfur compounds.",
+      "May cause heartburn in people with acid reflux.",
+      "Toxic to dogs and cats — do not feed onions to pets."
+    ],
+    "seasons": {
+      "peak": ["Jan", "Feb", "Mar"],
+      "good": ["Dec", "Apr"],
+      "low": ["Jul", "Aug"]
+    },
+    "india_note": "Available year-round. Maharashtra (Nashik) is India's onion capital. Prices spike in monsoon months due to limited fresh supply.",
+    "global_seasons": {
+      "peak": ["Aug", "Sep", "Oct"],
+      "good": ["Jul", "Nov"],
+      "low": []
+    },
+    "global_note": "China and India are the top two producers globally. Available year-round worldwide.",
+    "tips": [
+      "Choose firm onions with dry, papery skin and no soft spots or sprouting.",
+      "Store in a cool, dry, well-ventilated place — not in the fridge.",
+      "Keep away from potatoes — they absorb moisture and gas from each other.",
+      "Refrigerate cut onions in an airtight container for up to 5 days."
+    ],
+    "varieties": [
+      { "name": "Red Onion (Nashik)", "taste": "Sharp, pungent", "use": "Raw salads, Indian cooking", "india": "Yes (most common)" },
+      { "name": "White Onion", "taste": "Milder, slightly sweet", "use": "Mexican cuisine, cooking", "india": "Yes" },
+      { "name": "Shallots (Sambar Onion)", "taste": "Sweet, mild", "use": "South Indian cooking", "india": "Yes (South India)" },
+      { "name": "Spring Onion", "taste": "Fresh, mild", "use": "Garnish, stir-fries", "india": "Yes" }
+    ],
+    "culinary_tips": [
+      "Chill onions in the fridge 30 min before cutting to reduce eye irritation.",
+      "Caramelise slowly over low heat 30–40 min for natural sweetness.",
+      "Raw thin slices with lemon and salt make a classic Indian salad.",
+      "Fry until golden-brown for birista — the crispy topping for biryanis."
+    ],
+    "pairs_with": ["Garlic", "Tomato", "Ginger", "Coriander", "Butter", "Balsamic vinegar", "Thyme"],
+    "avoid_with": ["Pets — toxic to dogs and cats"],
+    "growing_tips": [
+      "Grow from sets (small bulbs) for faster, easier results than seed.",
+      "Best sown Oct–Nov in Indian plains for a Feb–Mar harvest.",
+      "Needs full sun and well-drained soil — waterlogging causes rot.",
+      "Stop watering when tops fall over — this signals the bulb is mature."
+    ],
+    "growing_facts": {
+      "Climate": "Cool to mild",
+      "Soil": "Well-drained, sandy loam",
+      "Sunlight": "Full sun",
+      "Water": "Moderate",
+      "Time to harvest": "100–175 days from seed",
+      "Container": "Yes (medium depth pots)"
+    },
+    "fun_facts": [
+      "Onions make you cry because cutting releases syn-propanethial-S-oxide, which reacts with eye moisture to form sulfuric acid.",
+      "Ancient Egyptians worshipped onions and placed them in pharaoh tombs.",
+      "India is the world's largest onion exporter."
+    ]
+  },
+  "Sweet Potato": {
+    "latin": "Ipomoea batatas",
+    "tagline": "Versatile root packed with natural sweetness and vibrant color.",
+    "origin": "Central and South America",
+    "taste": "Sweet, earthy, starchy",
+    "tags": ["Root", "Vitamin A", "Antioxidant", "Year-round", "Gluten-free"],
+    "about": "Sweet potatoes are a staple in many cuisines, especially in India where they're boiled, roasted, or fried. India ranks among top producers, with major cultivation in Uttar Pradesh and Bihar.",
+    "nutrition": {
+      "cal": "86 kcal",
+      "carbs": "20g",
+      "fiber": "3g",
+      "sugar": "4.2g",
+      "protein": "1.6g",
+      "fat": "0.1g",
+      "vitc": "2.4mg",
+      "potassium": "337mg",
+      "vita": "709µg",
+      "calcium": "30mg",
+      "iron": "0.6mg",
+      "magnesium": "25mg"
+    },
+    "micronutrients": [
+      "<strong>Beta-carotene</strong> — converts to vitamin A, highest in orange varieties.",
+      "<strong>Anthocyanins</strong> — antioxidants in purple types, fight inflammation.",
+      "<strong>Fiber</strong> — supports digestion and blood sugar stability."
+    ],
+    "benefits": [
+      "<strong>Eye health</strong> — beta-carotene protects vision.",
+      "<strong>Immune boost</strong> — vitamin A and C strengthen defenses.",
+      "<strong>Blood sugar control</strong> — low glycemic index despite sweetness.",
+      "<strong>Gut health</strong> — fiber promotes healthy microbiome."
+    ],
+    "cautions": [
+      "High carb content — portion control for diabetics.",
+      "Raw consumption can cause digestive upset due to oxalates.",
+      "Avoid green spots — indicate solanine toxin."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Dec"],
+      "good": ["Sep", "Jan"],
+      "low": ["Apr", "May"]
+    },
+    "india_note": "Year-round availability, peaks post-monsoon. Affordable staple in rural diets.",
+    "global_seasons": {
+      "peak": ["Sep", "Oct", "Nov"],
+      "good": ["Aug", "Dec"],
+      "low": []
+    },
+    "global_note": "China leads production; widely exported year-round.",
+    "tips": [
+      "Pick firm tubers with smooth, unblemished skin.",
+      "Store in cool, dark place — avoid fridge to prevent starch conversion.",
+      "Do not wash until use; lasts 1-2 months.",
+      "Bake whole for maximum flavor."
+    ],
+    "varieties": [
+      { "name": "Orange Sweet Potato", "taste": "Sweet, moist", "use": "Baking, fries", "india": "Yes" },
+      { "name": "Purple Sweet Potato", "taste": "Nutty, less sweet", "use": "Desserts, salads", "india": "Limited" },
+      { "name": "White Sweet Potato", "taste": "Dry, potato-like", "use": "Mashing, curries", "india": "Common" }
+    ],
+    "culinary_tips": [
+      "Roast at 200°C for 45 min with oil and spices.",
+      "Boil and mash with ghee for Indian-style sabzi.",
+      "Make halwa by grating and cooking with milk.",
+      "Fry thin chips for healthy snack."
+    ],
+    "pairs_with": ["Ginger", "Coconut", "Chili", "Butter", "Cumin", "Curry leaves"],
+    "avoid_with": ["Raw milk — can spoil faster"],
+    "growing_tips": [
+      "Plant slips in loose soil during monsoon.",
+      "Harvest when leaves yellow, 3-4 months.",
+      "Space 30cm apart in mounds to prevent rot.",
+      "Cure in shade 7-10 days post-harvest."
+    ],
+    "growing_facts": {
+      "Climate": "Warm, tropical",
+      "Soil": "Sandy loam, well-drained",
+      "Sunlight": "Full sun",
+      "Water": "Regular, not waterlogged",
+      "Time to harvest": "90-150 days",
+      "Container": "Yes (large pots)"
+    },
+    "fun_facts": [
+      "Not a potato — belongs to morning glory family.",
+      "Orange color from beta-carotene, selectively bred in US.",
+      "NASA studied them for space farming."
+    ]
+ },
+  "Garlic": {
+    "latin": "Allium sativum",
+    "tagline": "Nature's antibiotic — punches up every savory dish.",
+    "origin": "Central Asia",
+    "taste": "Pungent raw, mellow roasted",
+    "tags": ["Allium", "Antimicrobial", "Antioxidant", "Year-round", "Medicinal"],
+    "about": "Garlic is essential in Indian tadka and global cuisines. India is second-largest producer after China.",
+    "nutrition": {
+      "cal": "149 kcal",
+      "carbs": "33g",
+      "fiber": "2.1g",
+      "sugar": "1g",
+      "protein": "6.4g",
+      "fat": "0.5g",
+      "vitc": "31.2mg",
+      "potassium": "401mg",
+      "vita": "0µg",
+      "calcium": "181mg",
+      "iron": "1.7mg",
+      "magnesium": "25mg"
+    },
+    "micronutrients": [
+      "<strong>Allicin</strong> — formed when crushed, powerful antibacterial.",
+      "<strong>Ajoene</strong> — anti-clotting compound.",
+      "<strong>S-allyl cysteine</strong> — organosulfur antioxidant."
+    ],
+    "benefits": [
+      "<strong>Immune support</strong> — allicin fights infections.",
+      "<strong>Heart health</strong> — lowers cholesterol and blood pressure.",
+      "<strong>Anticancer</strong> — sulfur compounds inhibit tumor growth.",
+      "<strong>Detox</strong> — supports liver function."
+    ],
+    "cautions": [
+      "Can thin blood — caution with anticoagulants.",
+      "Raw garlic irritates stomach lining.",
+      "Toxic to pets in large amounts."
+    ],
+    "seasons": {
+      "peak": ["Feb", "Mar", "Apr"],
+      "good": ["Jan", "May"],
+      "low": ["Aug", "Sep"]
+    },
+    "india_note": "Indore (MP) produces premium garlic. Year-round but winter best.",
+    "global_seasons": {
+      "peak": ["Jun", "Jul"],
+      "good": ["May", "Aug"],
+      "low": []
+    },
+    "global_note": "China produces 80% of world supply.",
+    "tips": [
+      "Buy firm bulbs with intact paper skin.",
+      "Store in cool, dark place — lasts months.",
+      "Sprouted still good — just remove sprout.",
+      "Freeze peeled cloves for convenience."
+    ],
+    "varieties": [
+      { "name": "Desi Garlic", "taste": "Strong", "use": "Indian cooking", "india": "Yes" },
+      { "name": "Chinese Garlic", "taste": "Mild", "use": "Roasting", "india": "Imported" },
+      { "name": "Elephant Garlic", "taste": "Mild, sweet", "use": "Roasting", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Crush and rest 10 min before cooking to activate allicin.",
+      "Roast whole bulbs for sweet spread.",
+      "Make garlic pickle with oil and chili.",
+      "Single clove garlic (lashun) for milder flavor."
+    ],
+    "pairs_with": ["Ginger", "Onion", "Chili", "Butter", "Olive oil", "Rosemary"],
+    "avoid_with": ["Metal knives — discolors"],
+    "growing_tips": [
+      "Plant cloves pointed end up in Oct-Nov.",
+      "Harvest when lower leaves brown.",
+      "Dry in shade 2-3 weeks.",
+      "Needs well-drained soil."
+    ],
+    "growing_facts": {
+      "Climate": "Cool winters",
+      "Soil": "Loamy, pH 6-7",
+      "Sunlight": "Full sun",
+      "Water": "Moderate",
+      "Time to harvest": "150-200 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Garlic was used in WWII as penicillin substitute.",
+      "Egyptians fed it to pyramid builders.",
+      "Vampire repellent myth from real antimicrobial properties."
+    ]
+  },
+  "Beetroot": {
+    "latin": "Beta vulgaris",
+    "tagline": "Earthy sweetness with stunning ruby color.",
+    "origin": "Mediterranean basin",
+    "taste": "Sweet, earthy, mildly bitter",
+    "tags": ["Root", "Antioxidant", "Detox", "Winter", "Staining"],
+    "about": "Beets stain everything red but pack serious nutrition. Popular in Indian salads and borscht worldwide.",
+    "nutrition": {
+      "cal": "43 kcal",
+      "carbs": "10g",
+      "fiber": "2.8g",
+      "sugar": "6.8g",
+      "protein": "1.6g",
+      "fat": "0.2g",
+      "vitc": "4.9mg",
+      "potassium": "325mg",
+      "vita": "2µg",
+      "calcium": "16mg",
+      "iron": "0.8mg",
+      "magnesium": "23mg"
+    },
+    "micronutrients": [
+      "<strong>Betalains</strong> — unique antioxidants giving red color.",
+      "<strong>Folate</strong> — essential for DNA synthesis.",
+      "<strong>Manganese</strong> — bone health and metabolism."
+    ],
+    "benefits": [
+      "<strong>Exercise performance</strong> — nitrates boost stamina.",
+      "<strong>Liver detox</strong> — betalains support phase II detox.",
+      "<strong>Blood pressure</strong> — natural nitrates dilate vessels.",
+      "<strong>Anti-inflammatory</strong> — antioxidants reduce chronic inflammation."
+    ],
+    "cautions": [
+      "Can turn urine/stool red (beeturia) — harmless.",
+      "High oxalates — caution for kidney stones.",
+      "May lower blood pressure too much."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan"],
+      "good": ["Oct", "Feb"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "Winter crop in Punjab, Maharashtra. Boiled with chaat masala classic.",
+    "global_seasons": {
+      "peak": ["Jun", "Jul", "Aug"],
+      "good": ["May", "Sep"],
+      "low": []
+    },
+    "global_note": "Russia, USA top producers.",
+    "tips": [
+      "Choose heavy beets with greens attached.",
+      "Store in fridge crisper up to 3 months.",
+      "Cook with skin on, rub off after.",
+      "Greens edible and nutritious."
+    ],
+    "varieties": [
+      { "name": "Detroit Dark Red", "taste": "Classic sweet", "use": "Boiling, roasting", "india": "Yes" },
+      { "name": "Golden Beet", "taste": "Milder, less earthy", "use": "Salads", "india": "Rare" },
+      { "name": "Chioggia (Candy Stripe)", "taste": "Sweet", "use": "Raw slices", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Roast whole at 180°C for 1 hour.",
+      "Boil 30-45 min, serve with yogurt.",
+      "Grate raw for salads with lemon.",
+      "Ferment for probiotic patlacha."
+    ],
+    "pairs_with": ["Goat cheese", "Walnuts", "Orange", "Feta", "Balsamic", "Yogurt"],
+    "avoid_with": ["White clothes — permanent stains"],
+    "growing_tips": [
+      "Sow seeds directly spring/fall.",
+      "Thin to 10cm spacing.",
+      "Harvest at golf ball size for tenderness.",
+      "Long season — succession plant."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Loose, sandy loam",
+      "Sunlight": "Full/partial",
+      "Water": "Consistent",
+      "Time to harvest": "50-70 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Sugar beets = 30% world's sugar.",
+      "Used as natural food coloring.",
+      "Napoleon used beet sugar against British blockade."
+    ]
+  },
+  "Radish": {
+    "latin": "Raphanus sativus",
+    "tagline": "Spicy crunch that grows in weeks — salad's best friend.",
+    "origin": "Southeast Asia",
+    "taste": "Peppery, crisp, mild when cooked",
+    "tags": ["Root", "Quick-growing", "Cool-season", "Digestive", "Low-cal"],
+    "about": "Radishes are the fastest vegetable to grow. Mula is popular in Indian cooking, especially Bengali cuisine.",
+    "nutrition": {
+      "cal": "16 kcal",
+      "carbs": "3.4g",
+      "fiber": "1.6g",
+      "sugar": "1.9g",
+      "protein": "0.7g",
+      "fat": "0.1g",
+      "vitc": "14.8mg",
+      "potassium": "233mg",
+      "vita": "0µg",
+      "calcium": "25mg",
+      "iron": "0.3mg",
+      "magnesium": "10mg"
+    },
+    "micronutrients": [
+      "<strong>Glucosinolates</strong> — convert to cancer-fighting isothiocyanates.",
+      "<strong>Vitamin C</strong> — antioxidant and immune support.",
+      "<strong>Folate</strong> — cell growth and repair."
+    ],
+    "benefits": [
+      "<strong>Digestion</strong> — fiber and enzymes aid breakdown.",
+      "<strong>Detox</strong> — liver support from sulfur compounds.",
+      "<strong>Anti-cancer</strong> — glucosinolates inhibit tumor growth.",
+      "<strong>Weight loss</strong> — ultra-low calories, high water."
+    ],
+    "cautions": [
+      "Can cause gas in excess.",
+      "Goitrogenic raw — limit if thyroid issues.",
+      "Pesticide residue common — wash well."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Dec", "Jan", "Feb"],
+      "good": ["Sep", "Mar"],
+      "low": ["Jun", "Jul"]
+    },
+    "india_note": "Winter crop everywhere. White mooli for sabzi, red for salads.",
+    "global_seasons": {
+      "peak": ["Apr", "May"],
+      "good": ["Mar", "Jun"],
+      "low": []
+    },
+    "global_note": "China produces 40% of world supply.",
+    "tips": [
+      "Pick firm with fresh greens.",
+      "Store in fridge up to 1 month.",
+      "Greens edible — cook like spinach.",
+      "Yellowing means old — use quickly."
+    ],
+    "varieties": [
+      { "name": "White Mooli", "taste": "Mild, juicy", "use": "Cooking, grating", "india": "Yes" },
+      { "name": "Red Radish", "taste": "Spicy", "use": "Salads", "india": "Yes" },
+      { "name": "Daikon", "taste": "Very mild", "use": "Pickling", "india": "Limited" },
+      { "name": "Black Radish", "taste": "Very hot", "use": "Medicinal", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Grate with green chili for raita.",
+      "Roast whole for sweet flavor.",
+      "Pickle in vinegar for snacks.",
+      "Mula paratha filling classic Bengali."
+    ],
+    "pairs_with": ["Lemon", "Black salt", "Green chili", "Yogurt", "Cucumber"],
+    "avoid_with": ["Heavy makeup — spicy oils irritate"],
+    "growing_tips": [
+      "Sow every 2 weeks for continuous harvest.",
+      "Harvest at 3-5cm for tenderness.",
+      "Loose soil prevents splitting.",
+      "30 days from seed!"
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Loose, fertile",
+      "Sunlight": "Full sun",
+      "Water": "Regular",
+      "Time to harvest": "25-40 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Oldest cultivated vegetable — 2700 BC China.",
+      "Shapes like animals in Japan.",
+      "Horse radish unrelated, different genus."
+    ]
+  },
+  "Turnip": {
+    "latin": "Brassica rapa subsp. rapa",
+    "tagline": "Underrated root with peppery bite and tender greens.",
+    "origin": "Europe, Asia",
+    "taste": "Mildly peppery, sweet when young",
+    "tags": ["Root", "Cruciferous", "Winter", "Vitamin C", "Dual-purpose"],
+    "about": "Turnips store well and both roots and greens are edible. Shalgam in North Indian cooking.",
+    "nutrition": {
+      "cal": "28 kcal",
+      "carbs": "6.4g",
+      "fiber": "1.8g",
+      "sugar": "3.8g",
+      "protein": "0.9g",
+      "fat": "0.1g",
+      "vitc": "21mg",
+      "potassium": "191mg",
+      "vita": "0µg",
+      "calcium": "30mg",
+      "iron": "0.3mg",
+      "magnesium": "11mg"
+    },
+    "micronutrients": [
+      "<strong>Glucosinolates</strong> — anti-cancer sulfur compounds.",
+      "<strong>Vitamin C</strong> — immunity and antioxidant.",
+      "<strong>Folate</strong> — heart health."
+    ],
+    "benefits": [
+      "<strong>Anti-cancer</strong> — glucosinolates detoxify carcinogens.",
+      "<strong>Weight control</strong> — low calorie, high fiber.",
+      "<strong>Heart health</strong> — folate lowers homocysteine.",
+      "<strong>Respiratory health</strong> — expectorant properties."
+    ],
+    "cautions": [
+      "Goitrogenic raw — cook if thyroid issues.",
+      "Large amounts cause gas.",
+      "Bigger = woodier texture."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": ["Jun", "Jul", "Aug"]
+    },
+    "india_note": "Shalgam popular in Punjab winter. Pickle and curry.",
+    "global_seasons": {
+      "peak": ["Oct", "Nov"],
+      "good": ["Sep", "Dec"],
+      "low": []
+    },
+    "global_note": "China dominates production.",
+    "tips": [
+      "Choose smooth, firm turnips under 7cm.",
+      "Store in fridge 2 weeks or root cellar months.",
+      "Greens wilt quickly — use immediately.",
+      "Purple tops normal, not spoilage."
+    ],
+    "varieties": [
+      { "name": "Purple Top White Globe", "taste": "Classic", "use": "Boiling", "india": "Yes" },
+      { "name": "Tokyo Market", "taste": "Mild", "use": "Salads", "india": "No" },
+      { "name": "Golden Ball", "taste": "Sweet", "use": "Roasting", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Boil young turnips whole with skin.",
+      "Roast with olive oil 20 min.",
+      "Shalgam ka achar famous Punjabi pickle.",
+      "Turnip greens like mustard — sauté."
+    ],
+    "pairs_with": ["Potatoes", "Carrots", "Dill", "Mustard", "Butter"],
+    "avoid_with": ["Raw if thyroid problems"],
+    "growing_tips": [
+      "Sow fall for winter harvest.",
+      "Thin to 10cm spacing.",
+      "Harvest before flowering.",
+      "Frost improves sweetness."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Well-drained",
+      "Sunlight": "Full sun",
+      "Water": "Even moisture",
+      "Time to harvest": "40-55 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Turnip lanterns predated jack-o-lanterns.",
+      "Scottish neeps = turnips at Hogmanay.",
+      "Vitamin C source prevented scurvy."
+    ]
+  },
+  "Rutabaga": {
+    "latin": "Brassica napobrassica",
+    "tagline": "Sweeter, larger cousin of turnip — winter storage star.",
+    "origin": "Scandinavia or Russia",
+    "taste": "Sweet, mild mustard flavor",
+    "tags": ["Root", "Cruciferous", "Winter storage", "Vitamin C", "Yellow flesh"],
+    "about": "Rutabaga (swede) stores for months. Less common in India but nutritious.",
+    "nutrition": {
+      "cal": "37 kcal",
+      "carbs": "8.6g",
+      "fiber": "2.5g",
+      "sugar": "4.5g",
+      "protein": "1.1g",
+      "fat": "0.2g",
+      "vitc": "25mg",
+      "potassium": "305mg",
+      "vita": "0µg",
+      "calcium": "43mg",
+      "iron": "0.5mg",
+      "magnesium": "18mg"
+    },
+    "micronutrients": [
+      "<strong>Glucosinolates</strong> — cancer-fighting compounds.",
+      "<strong>Vitamin C</strong> — antioxidant protection.",
+      "<strong>Potassium</strong> — blood pressure regulation."
+    ],
+    "benefits": [
+      "<strong>Immune support</strong> — high vitamin C.",
+      "<strong>Anti-cancer</strong> — sulfur compounds.",
+      "<strong>Heart health</strong> — potassium balance.",
+      "<strong>Storage nutrition</strong> — vitamin C survives months."
+    ],
+    "cautions": [
+      "Wax coating common — scrub well.",
+      "Goitrogenic raw.",
+      "Gas-producing for some."
+    ],
+    "seasons": {
+      "peak": ["Dec", "Jan", "Feb"],
+      "good": ["Nov", "Mar"],
+      "low": ["Jun", "Jul"]
+    },
+    "india_note": "Rare fresh, imported occasionally. Substitute large turnip.",
+    "global_seasons": {
+      "peak": ["Oct", "Nov", "Dec"],
+      "good": ["Sep"],
+      "low": []
+    },
+    "global_note": "Northern Europe staple.",
+    "tips": [
+      "Choose heavy for size, firm.",
+      "Peel thick skin.",
+      "Store cool dark months.",
+      "Wax safe to eat."
+    ],
+    "varieties": [
+      { "name": "American Purple Top", "taste": "Sweet", "use": "Mashing", "india": "No" },
+      { "name": "Marian", "taste": "Fine-grained", "use": "Puree", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Mash with carrots and potato.",
+      "Roast cubes 25 min.",
+      "Scandinavian oven-baked slices.",
+      "Ferment like sauerkraut."
+    ],
+    "pairs_with": ["Carrots", "Potatoes", "Cream", "Nutmeg"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Long season crop.",
+      "Harvest after frost.",
+      "Stores like potatoes.",
+      "Mulch heavily."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "80-100 days",
+      "Container": "No"
+    },
+    "fun_facts": [
+      "Cross between turnip and cabbage.",
+      "Wax coating invented 1930s.",
+      "Halloween lanterns in Europe."
+    ]
+  },
+  "Celeriac": {
+    "latin": "Apium graveolens var. rapaceum",
+    "tagline": "Celery's ugly root cousin with nutty flavor.",
+    "origin": "Mediterranean",
+    "taste": "Celery-like, nutty, parsley-ish",
+    "tags": ["Root", "Low-carb", "Winter", "Vitamin K", "Knobby"],
+    "about": "Celeriac (celery root) shines in remoulade. Rare in India.",
+    "nutrition": {
+      "cal": "42 kcal",
+      "carbs": "9.2g",
+      "fiber": "1.8g",
+      "sugar": "1.6g",
+      "protein": "1.5g",
+      "fat": "0.3g",
+      "vitc": "8mg",
+      "potassium": "300mg",
+      "vita": "0µg",
+      "calcium": "43mg",
+      "iron": "0.7mg",
+      "magnesium": "20mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin K</strong> — blood clotting.",
+      "<strong>Phosphorus</strong> — bone health.",
+      "<strong>Vitamin B6</strong> — metabolism."
+    ],
+    "benefits": [
+      "<strong>Weight loss</strong> — low calorie bulk.",
+      "<strong>Bone health</strong> — vitamin K, phosphorus.",
+      "<strong>Anti-inflammatory</strong> — polyacetylenes.",
+      "<strong>Heart health</strong> — phthalides relax arteries."
+    ],
+    "cautions": [
+      "Urushiol-like compound — handle with care.",
+      "Bitter if old.",
+      "Peel thoroughly."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan"],
+      "good": ["Oct", "Feb"],
+      "low": ["Jun", "Jul"]
+    },
+    "india_note": "Very rare. Grow experimentally.",
+    "global_seasons": {
+      "peak": ["Oct", "Nov", "Dec"],
+      "good": ["Sep"],
+      "low": []
+    },
+    "global_note": "France, N. Europe favorite.",
+    "tips": [
+      "Choose firm, no soft spots.",
+      "Store fridge 1 month.",
+      "Peel with knife.",
+      "Rub cut surfaces with lemon."
+    ],
+    "varieties": [
+      { "name": "Monarch", "taste": "Smooth", "use": "All", "india": "No" },
+      { "name": "Alabaster", "taste": "Sweet", "use": "Raw", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Celeriac remoulade: grated + mayo.",
+      "Mash substitute for potato.",
+      "Roast with parsnips.",
+      "Puree soup base."
+    ],
+    "pairs_with": ["Apple", "Walnut", "Lemon", "Mustard", "Cream"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Start indoors.",
+      "Blanch crowns.",
+      "Long season.",
+      "Frost tolerant."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Rich moist",
+      "Sunlight": "Full/partial",
+      "Water": "Consistent",
+      "Time to harvest": "100-120 days",
+      "Container": "Large"
+    },
+    "fun_facts": [
+      "Victorians prized over celery.",
+      "50% cellulose vs celery.",
+      "Natural potato substitute."
+    ]
+  },
+  "Cassava": {
+    "latin": "Manihot esculenta",
+    "tagline": "Tropical starch powerhouse — tapioca's source.",
+    "origin": "South America",
+    "taste": "Mild, starchy, slightly sweet",
+    "tags": ["Root", "Starch", "Tropical", "Gluten-free", "High-yield"],
+    "about": "Cassava feeds 800M people. Major crop in Kerala, Tamil Nadu.",
+    "nutrition": {
+      "cal": "160 kcal",
+      "carbs": "38g",
+      "fiber": "1.8g",
+      "sugar": "1.7g",
+      "protein": "1.4g",
+      "fat": "0.3g",
+      "vitc": "20.6mg",
+      "potassium": "271mg",
+      "vita": "0µg",
+      "calcium": "16mg",
+      "iron": "0.3mg",
+      "magnesium": "21mg"
+    },
+    "micronutrients": [
+      "<strong>Resistant starch</strong> — prebiotic fiber.",
+      "<strong>Vitamin C</strong> — antioxidant.",
+      "<strong>Folate</strong> — pregnancy nutrition."
+    ],
+    "benefits": [
+      "<strong>Gluten-free flour</strong> — tapioca starch.",
+      "<strong>Gut health</strong> — resistant starch feeds good bacteria.",
+      "<strong>High yield</strong> — famine food.",
+      "<strong>Energy dense</strong> — calorie powerhouse."
+    ],
+    "cautions": [
+      "**TOXIC RAW** — cyanide precursors. Always cook.",
+      "Poor protein quality.",
+      "Weight gain risk — pure starch."
+    ],
+    "seasons": {
+      "peak": ["Year-round"],
+      "good": [],
+      "low": []
+    },
+    "india_note": "Kerala tapioca staple. Chips, puttu, kappa biriyani.",
+    "global_seasons": {
+      "peak": ["Year-round tropical"],
+      "good": [],
+      "low": []
+    },
+    "global_note": "Nigeria #1 producer.",
+    "tips": [
+      "Firm, no blemishes.",
+      "Peel, soak, boil.",
+      "Store whole 2 days fridge.",
+      "Grate for fermentation."
+    ],
+    "varieties": [
+      { "name": "Bitter Cassava", "taste": "More cyanide", "use": "Industrial", "india": "Limited" },
+      { "name": "Sweet Cassava", "taste": "Milder", "use": "Table", "india": "Yes" }
+    ],
+    "culinary_tips": [
+      "Boil 30-45 min till soft.",
+      "Kerala chips: thin slice, fry.",
+      "Puttu: steamed with coconut.",
+      "Tapioca pearls for sweets."
+    ],
+    "pairs_with": ["Coconut", "Chili", "Fish curry", "Fermented rice"],
+    "avoid_with": ["Raw consumption"],
+    "growing_tips": [
+      "15cm cuttings rainy season.",
+      "Harvest 8-18 months.",
+      "Poor soils OK.",
+      "Virus diseases common."
+    ],
+    "growing_facts": {
+      "Climate": "Tropical",
+      "Soil": "Any",
+      "Sunlight": "Full",
+      "Water": "High",
+      "Time to harvest": "8-24 months",
+      "Container": "No"
+    },
+    "fun_facts": [
+      "3rd largest carb source globally.",
+      "Portuguese spread worldwide.",
+      "Cyanide worse than apple seeds."
+    ]
+  },
+  "Ginger": {
+    "latin": "Zingiber officinale",
+    "tagline": "Fiery rhizome that warms body and soul.",
+    "origin": "Southeast Asia (India)",
+    "taste": "Spicy, warming, aromatic",
+    "tags": ["Rhizome", "Digestive", "Anti-inflammatory", "Year-round", "Medicinal"],
+    "about": "India produces 35% of world's ginger. Adrak essential in every Indian kitchen.",
+    "nutrition": {
+      "cal": "80 kcal",
+      "carbs": "18g",
+      "fiber": "2g",
+      "sugar": "1.7g",
+      "protein": "1.8g",
+      "fat": "0.8g",
+      "vitc": "5mg",
+      "potassium": "415mg",
+      "vita": "0µg",
+      "calcium": "16mg",
+      "iron": "0.6mg",
+      "magnesium": "43mg"
+    },
+    "micronutrients": [
+      "<strong>Gingerol</strong> — active compound, anti-nausea anti-inflammatory.",
+      "<strong>Shogaol</strong> — forms when dried, more potent.",
+      "<strong>Zingerone</strong> — gives sweet note when cooked."
+    ],
+    "benefits": [
+      "<strong>Motion sickness</strong> — #1 natural remedy.",
+      "<strong>Digestion</strong> — speeds gastric emptying.",
+      "<strong>Anti-inflammatory</strong> — gingerol rivals NSAIDs.",
+      "<strong>Morning sickness</strong> — safe in pregnancy."
+    ],
+    "cautions": [
+      "Blood thinner — caution with warfarin.",
+      "Heartburn in excess.",
+      "Gallstone patients consult doctor."
+    ],
+    "seasons": {
+      "peak": ["Jan", "Feb", "Mar"],
+      "good": ["Dec", "Apr"],
+      "low": []
+    },
+    "india_note": "Kerala #1 producer. Fresh year-round, dry ginger from Cochin.",
+    "global_seasons": {
+      "peak": ["Year-round"],
+      "good": [],
+      "low": []
+    },
+    "global_note": "India, China top producers.",
+    "tips": [
+      "Choose firm, heavy rhizomes.",
+      "Store fridge 1 month or freeze.",
+      "Peel thin skin with spoon.",
+      "Dry ginger lasts years."
+    ],
+    "varieties": [
+      { "name": "Fresh Green Ginger", "taste": "Mild", "use": "Tea, cooking", "india": "Yes" },
+      { "name": "Dry Ginger (Sonth)", "taste": "Hot", "use": "Medicinal, powder", "india": "Yes" },
+      { "name": "Rio de Janeiro", "taste": "Very pungent", "use": "Pickling", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Grate fresh into chai.",
+      "Adrak wale parathe.",
+      "Ginger-garlic paste freezer staple.",
+      "Candied ginger dessert."
+    ],
+    "pairs_with": ["Garlic", "Turmeric", "Honey", "Lemon", "Chili"],
+    "avoid_with": ["Blood thinners"],
+    "growing_tips": [
+      "Plant rhizomes with buds up June.",
+      "Harvest 8-10 months.",
+      "Shade first 3 months.",
+      "Needs humidity."
+    ],
+    "growing_facts": {
+      "Climate": "Warm humid",
+      "Soil": "Loamy",
+      "Sunlight": "Partial shade",
+      "Water": "High",
+      "Time to harvest": "8-10 months",
+      "Container": "Yes (large)"
+    },
+    "fun_facts": [
+      "Worth more than gold in Middle Ages.",
+      "Romans imported at huge cost.",
+      "NASA anti-radiation research."
+    ]
+  },
+  "Turmeric": {
+    "latin": "Curcuma longa",
+    "tagline": "Golden spice with superfood healing power.",
+    "origin": "India",
+    "taste": "Bitter, warm, earthy",
+    "tags": ["Rhizome", "Anti-inflammatory", "Antioxidant", "Medicinal", "Coloring"],
+    "about": "India produces 80% world turmeric. Haldi in every Indian home.",
+    "nutrition": {
+      "cal": "354 kcal",
+      "carbs": "65g",
+      "fiber": "21g",
+      "sugar": "3.2g",
+      "protein": "8g",
+      "fat": "10g",
+      "vitc": "26mg",
+      "potassium": "2520mg",
+      "vita": "0µg",
+      "calcium": "183mg",
+      "iron": "41mg",
+      "magnesium": "193mg"
+    },
+    "micronutrients": [
+      "<strong>Curcumin</strong> — 3% content, most potent natural anti-inflammatory.",
+      "<strong>Turmerones</strong> — essential oils, brain health.",
+      "<strong>Volatile oils</strong> — 5%, antimicrobial."
+    ],
+    "benefits": [
+      "<strong>Arthritis relief</strong> — curcumin > ibuprofen.",
+      "<strong>Liver protection</strong> — detox pathways.",
+      "<strong>Brain health</strong> — crosses blood-brain barrier.",
+      "<strong>Wound healing</strong> — antibacterial paste."
+    ],
+    "cautions": [
+      "Stains everything yellow.",
+      "Gallbladder contraction — gallstone caution.",
+      "Blood thinner effect.",
+      "Iron absorption interference."
+    ],
+    "seasons": {
+      "peak": ["Jan", "Feb", "Mar"],
+      "good": ["Dec", "Apr"],
+      "low": []
+    },
+    "india_note": "Erode (TN) turmeric capital. Lakadong (Meghalaya) highest curcumin.",
+    "global_seasons": {
+      "peak": ["Year-round"],
+      "good": [],
+      "low": []
+    },
+    "global_note": "India exports 70% world supply.",
+    "tips": [
+      "Choose deep orange, heavy.",
+      "Store airtight dark place.",
+      "Fresh lasts 1 month fridge.",
+      "Black pepper boosts absorption 2000%."
+    ],
+    "varieties": [
+      { "name": "Erode Local", "taste": "Classic", "use": "Cooking", "india": "Yes" },
+      { "name": "Lakadong", "taste": "High curcumin 7-12%", "use": "Medicinal", "india": "Yes" },
+      { "name": "Madras", "taste": "Mild", "use": "Export", "india": "Yes" }
+    ],
+    "culinary_tips": [
+      "Haldi doodh golden milk.",
+      "Turmeric rice jeera haldi.",
+      "Pickle fresh rhizomes.",
+      "+black pepper + fat = maximum absorption."
+    ],
+    "pairs_with": ["Black pepper", "Ginger", "Milk", "Oil", "Lemon"],
+    "avoid_with": ["White clothes"],
+    "growing_tips": [
+      "Rhizomes May-June.",
+      "Harvest 9 months.",
+      "Boil cure after harvest.",
+      "Partial shade."
+    ],
+    "growing_facts": {
+      "Climate": "Tropical",
+      "Soil": "Loam clay",
+      "Sunlight": "Partial shade",
+      "Water": "High",
+      "Time to harvest": "9 months",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "\"Indian saffron\" cheaper alternative.",
+      "Ayurveda 4000+ years.",
+      "4000% more curcumin with piperine."
+    ]
+  },
+  "Daikon": {
+    "latin": "Raphanus sativus var. longipinnatus",
+    "tagline": "Giant mild radish for pickling and purity.",
+    "origin": "East Asia",
+    "taste": "Very mild, crisp, slightly sweet",
+    "tags": ["Root", "Low-cal", "Digestive", "Winter", "Mukimame"],
+    "about": "Mooli/daikon popular in Japan, Korea, India. Excellent digestive.",
+    "nutrition": {
+      "cal": "18 kcal",
+      "carbs": "4.1g",
+      "fiber": "1.6g",
+      "sugar": "2.5g",
+      "protein": "0.6g",
+      "fat": "0.1g",
+      "vitc": "22mg",
+      "potassium": "227mg",
+      "vita": "0µg",
+      "calcium": "27mg",
+      "iron": "0.2mg",
+      "magnesium": "16mg"
+    },
+    "micronutrients": [
+      "<strong>Isothiocyanates</strong> — cancer prevention.",
+      "<strong>Vitamin C</strong> — immunity.",
+      "<strong>Enzymes</strong> — amylase, diastase digestion."
+    ],
+    "benefits": [
+      "<strong>Super digestive</strong> — enzymes break down starch, protein.",
+      "<strong>Respiratory health</strong> — clears congestion.",
+      "<strong>Detox</strong> — liver support.",
+      "<strong>Weight loss</strong> — filling, low calorie."
+    ],
+    "cautions": [
+      "Gas if overeaten.",
+      "Goitrogenic raw.",
+      "Pesticide heavy — organic best."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Dec", "Jan"],
+      "good": ["Sep", "Feb"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "White mooli = daikon. Grated raita, steamed sabzi.",
+    "global_seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": []
+    },
+    "global_note": "Japan consumes most.",
+    "tips": [
+      "Heavy for size, smooth skin.",
+      "Fridge 1 month upright.",
+      "Peel only if thick skin.",
+      "Leaves/spicy nutritious."
+    ],
+    "varieties": [
+      { "name": "Japanese Mooli", "taste": "Very mild", "use": "All", "india": "Yes" },
+      { "name": "Chinese White", "taste": "Slightly hot", "use": "Soup", "india": "Limited" },
+      { "name": "Watermelon Radish", "taste": "Sweet", "use": "Salad", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Mooli paratha grated filling.",
+      "Japanese oden stew.",
+      "Korean kimchi ingredient.",
+      "Grated with lemon digestive."
+    ],
+    "pairs_with": ["Sesame", "Rice vinegar", "Soy", "Chili", "Yuzu"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Loose soil essential.",
+      "Succession sow.",
+      "Harvest 60-70 days.",
+      "Frost sweetens."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Deep loose",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "60 days",
+      "Container": "Deep pots"
+    },
+    "fun_facts": [
+      "2 feet long records.",
+      "Buddhist purity symbol.",
+      "Digestion tea in Japan."
+    ]
+  },
+  "Parsnip": {
+    "latin": "Pastinaca sativa",
+    "tagline": "Sweet winter carrot cousin — frost makes magic.",
+    "origin": "Mediterranean",
+    "taste": "Sweet, nutty, anise-like when roasted",
+    "tags": ["Root", "Winter", "Vitamin", "Frost-sweetened", "Carrot family"],
+    "about": "Parsnips improve with frost. Rare in India but excellent roasted.",
+    "nutrition": {
+      "cal": "75 kcal",
+      "carbs": "18g",
+      "fiber": "4.9g",
+      "sugar": "4.8g",
+      "protein": "1.6g",
+      "fat": "0.3g",
+      "vitc": "17mg",
+      "potassium": "367mg",
+      "vita": "0µg",
+      "calcium": "38mg",
+      "iron": "0.6mg",
+      "magnesium": "29mg"
+    },
+    "micronutrients": [
+      "<strong>Folate</strong> — heart health.",
+      "<strong>Vitamin C</strong> — antioxidant.",
+      "<strong>Antioxidants</strong> — increase with frost."
+    ],
+    "benefits": [
+      "<strong>Digestion</strong> — highest vegetable fiber.",
+      "<strong>Heart health</strong> — folate, potassium.",
+      "<strong>Immunity</strong> — vitamin C.",
+      "<strong>Satiety</strong> — filling low calorie."
+    ],
+    "cautions": [
+      "Psoralens — skin sun sensitivity.",
+      "Cook — raw bitter.",
+      "Old ones woody."
+    ],
+    "seasons": {
+      "peak": ["Jan", "Feb", "Mar"],
+      "good": ["Dec", "Apr"],
+      "low": ["Jul", "Aug"]
+    },
+    "india_note": "Very rare. Grow in hills.",
+    "global_seasons": {
+      "peak": ["Nov", "Dec", "Jan"],
+      "good": ["Oct", "Feb"],
+      "low": []
+    },
+    "global_note": "Europe, Canada main.",
+    "tips": [
+      "Firm, no blemish, tapered.",
+      "Fridge 2 months.",
+      "Frost improves — leave ground.",
+      "Peel thick skin."
+    ],
+    "varieties": [
+      { "name": "Hollow Crown", "taste": "Classic sweet", "use": "All", "india": "No" },
+      { "name": "Avonresister", "taste": "Smooth", "use": "Puree", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Roast 200°C 30 min.",
+      "Parsnip puree.",
+      "Soup with apple.",
+      "Chips crispy baked."
+    ],
+    "pairs_with": ["Honey", "Thyme", "Orange", "Nutmeg"],
+    "avoid_with": ["Sun exposure after handling"],
+    "growing_tips": [
+      "Fall sow overwinter.",
+      "Harvest post-frost.",
+      "Mulch crowns.",
+      "Rotate 4 years."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Deep loose",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "100-120 days",
+      "Container": "Deep"
+    },
+    "fun_facts": [
+      "Sweetener before sugar.",
+      "Replaced carrots Medieval.",
+      "Frost converts starch to sugar."
+    ]
+  },
+  "Kale": {
+    "latin": "Brassica oleracea var. acephala",
+    "tagline": "Nutrient powerhouse leafy green — king of superfoods.",
+    "origin": "Mediterranean/Asia Minor",
+    "taste": "Bitter, cabbage-like, tenderizes when massaged",
+    "tags": ["Leafy green", "Cruciferous", "Vitamin K", "Antioxidant", "Cold-hardy"],
+    "about": "Kale exploded in popularity for nutrition. Gaining traction in urban Indian gardens.",
+    "nutrition": {
+      "cal": "35 kcal",
+      "carbs": "6.6g",
+      "fiber": "4.1g",
+      "sugar": "1.5g",
+      "protein": "2.9g",
+      "fat": "1.5g",
+      "vitc": "93mg",
+      "potassium": "348mg",
+      "vita": "241µg",
+      "calcium": "134mg",
+      "iron": "1.6mg",
+      "magnesium": "33mg"
+    },
+    "micronutrients": [
+      "<strong>Quercetin, Kaempferol</strong> — potent flavonoids.",
+      "<strong>Sulforaphane</strong> — cancer-fighting compound.",
+      "<strong>Vitamin K1</strong> — 7x daily needs per cup."
+    ],
+    "benefits": [
+      "<strong>Eye health</strong> — lutein/zeaxanthin.",
+      "<strong>Detox</strong> — phase II enzymes.",
+      "<strong>Anti-cancer</strong> — sulforaphane.",
+      "<strong>Bone health</strong> — massive vitamin K."
+    ],
+    "cautions": [
+      "Oxalates — kidney stone risk.",
+      "Goitrogenic raw — rotate with thyroid issues.",
+      "Tough texture — massage/de-rib."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Dec", "Jan", "Feb"],
+      "good": ["Sep", "Mar"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "Cool hill stations. Kale chips trendy urban.",
+    "global_seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": []
+    },
+    "global_note": "US, Europe superfood craze.",
+    "tips": [
+      "Bunch heavy, leaves deep color.",
+      "Fridge damp towel 1 week.",
+      "Massage with salt/oil tenderizes.",
+      "Freeze for smoothies."
+    ],
+    "varieties": [
+      { "name": "Lacinato (Dino)", "taste": "Nutty", "use": "Salads", "india": "Limited" },
+      { "name": "Curly Kale", "taste": "Classic bitter", "use": "Chips", "india": "Common" },
+      { "name": "Red Russian", "taste": "Mild sweet", "use": "Baby greens", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Kale chips: oil, salt, 150°C 20min.",
+      "Massage salad lemon + olive oil.",
+      "Smoothie with pineapple masks bitterness.",
+      "Indian: sauté tadka like palak."
+    ],
+    "pairs_with": ["Lemon", "Garlic", "Olive oil", "Pineapple", "Avocado"],
+    "avoid_with": ["Calcium supplements — vitamin K interferes"],
+    "growing_tips": [
+      "Fall sow, overwinter.",
+      "Cut outer leaves continuous harvest.",
+      "-10°C hardy.",
+      "Succession plant."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile",
+      "Sunlight": "Full/partial",
+      "Water": "Regular",
+      "Time to harvest": "50-65 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Original cabbage — no head.",
+      "Scottish \"kail\" = all greens.",
+      "100x more vitamin C than spinach."
+    ]
+  },
+  "Cabbage": {
+    "latin": "Brassica oleracea var. capitata",
+    "tagline": "Crisp layers of versatility — from salad to sauerkraut.",
+    "origin": "Europe",
+    "taste": "Mild, sweet when cooked, peppery raw",
+    "tags": ["Cruciferous", "Vitamin C", "Winter", "Fermentable", "Budget"],
+    "about": "India 2nd largest producer. Bandh gobi in every kitchen.",
+    "nutrition": {
+      "cal": "25 kcal",
+      "carbs": "6g",
+      "fiber": "2.5g",
+      "sugar": "3.2g",
+      "protein": "1.3g",
+      "fat": "0.1g",
+      "vitc": "36mg",
+      "potassium": "170mg",
+      "vita": "5µg",
+      "calcium": "40mg",
+      "iron": "0.5mg",
+      "magnesium": "12mg"
+    },
+    "micronutrients": [
+      "<strong>Glucosinolates</strong> — anti-cancer sulfur.",
+      "<strong>Anthocyanins</strong> — red cabbage antioxidants.",
+      "<strong>Vitamin U</strong> — S-methylmethionine, ulcer healing."
+    ],
+    "benefits": [
+      "<strong>Ulcer healing</strong> — vitamin U.",
+      "<strong>Cancer prevention</strong> — glucosinolates.",
+      "<strong>Digestion</strong> — fiber + probiotics from fermentation.",
+      "<strong>Heart health</strong> — polyphenols."
+    ],
+    "cautions": [
+      "Gas/bloating — ferment first.",
+      "Goitrogenic raw.",
+      "Thyroid medication spacing."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": ["Jun", "Jul"]
+    },
+    "india_note": "Maharashtra, UP major. Sabzi, paratha, Manchurian.",
+    "global_seasons": {
+      "peak": ["Dec", "Jan", "Feb"],
+      "good": ["Nov", "Mar"],
+      "low": []
+    },
+    "global_note": "China #1 producer.",
+    "tips": [
+      "Heavy dense heads.",
+      "Fridge whole 2 months.",
+      "Core resists rot.",
+      "Outer leaves compost."
+    ],
+    "varieties": [
+      { "name": "Green Cabbage", "taste": "Classic", "use": "All", "india": "Yes" },
+      { "name": "Red Cabbage", "taste": "Peppery", "use": "Salads", "india": "Yes" },
+      { "name": "Savoy", "taste": "Sweet tender", "use": "Stir-fry", "india": "Limited" },
+      { "name": "Chinese/Napa", "taste": "Mild", "use": "Kimchi", "india": "Yes" }
+    ],
+    "culinary_tips": [
+      "Patta gobhi sabzi onion tadka.",
+      "Sauerkraut: salt massage 2% weight.",
+      "Cabbage poriyal South Indian.",
+      "Manchurian batter-fried."
+    ],
+    "pairs_with": ["Caraway", "Apple", "Vinegar", "Mustard", "Sesame"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Transplant 6 weeks old.",
+      "Net vs. caterpillars.",
+      "Harvest crack heads.",
+      "Succession plant."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile pH 6.5",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "70-120 days",
+      "Container": "Large"
+    },
+    "fun_facts": [
+      "Sauerkraut fed to sailors vs. scurvy.",
+      "Captain Cook 28 months at sea.",
+      "\"Cash vegetable\" poor man's food."
+    ]
+  },
+  "Lettuce": {
+    "latin": "Lactuca sativa",
+    "tagline": "Crisp hydration with endless salad variety.",
+    "origin": "Mediterranean",
+    "taste": "Mild, buttery (looseleaf), crisp (romaine)",
+    "tags": ["Leafy green", "Hydration", "Low-cal", "Cool-season", "Quick"],
+    "about": "Salad essential. Hydroponic boom in India metros.",
+    "nutrition": {
+      "cal": "15 kcal",
+      "carbs": "2.9g",
+      "fiber": "1.3g",
+      "sugar": "0.9g",
+      "protein": "1.4g",
+      "fat": "0.2g",
+      "vitc": "9mg",
+      "potassium": "194mg",
+      "vita": "370µg",
+      "calcium": "36mg",
+      "iron": "0.9mg",
+      "magnesium": "13mg"
+    },
+    "micronutrients": [
+      "<strong>Lutein</strong> — eye health.",
+      "<strong>Folate</strong> — cell division.",
+      "<strong>Vitamin A</strong> — vision, immunity."
+    ],
+    "benefits": [
+      "<strong>Hydration</strong> — 96% water.",
+      "<strong>Eye health</strong> — lutein/zeaxanthin.",
+      "<strong>Weight loss</strong> — bulk no calories.",
+      "<strong>Heart health</strong> — potassium."
+    ],
+    "cautions": [
+      "E.coli risk — wash well.",
+      "Bitter when bolt.",
+      "Pesticide heavy."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Feb", "Mar"],
+      "good": ["Sep", "Dec", "Jan"],
+      "low": ["Apr", "May", "Jun"]
+    },
+    "india_note": "Hydroponics Pune, Bangalore. Salad bars boom.",
+    "global_seasons": {
+      "peak": ["Apr", "May", "Sep", "Oct"],
+      "good": ["Mar", "Jun", "Nov"],
+      "low": ["Jul", "Aug"]
+    },
+    "global_note": "China largest producer.",
+    "tips": [
+      "Crisp heavy heads.",
+      "Fridge crisper 1 week.",
+      "Wash separate spin dry.",
+      "Root intact longer."
+    ],
+    "varieties": [
+      { "name": "Romaine/Cos", "taste": "Crisp", "use": "Caesar", "india": "Yes" },
+      { "name": "Butterhead", "taste": "Buttery", "use": "Sandwich", "india": "Yes" },
+      { "name": "Iceberg", "taste": "Very crisp", "use": "Wedges", "india": "Yes" },
+      { "name": "Looseleaf", "taste": "Varied", "use": "Salads", "india": "Yes" }
+    ],
+    "culinary_tips": [
+      "Hydroponic salad mixes.",
+      "Grilled romaine Caesar.",
+      "Lettuce wraps Asian.",
+      "Soup base mild."
+    ],
+    "pairs_with": ["Vinaigrette", "Blue cheese", "Avocado", "Cucumber", "Radish"],
+    "avoid_with": ["Heat — wilts"],
+    "growing_tips": [
+      "21 days harvest looseleaf.",
+      "Shade cloth summer.",
+      "Succession every 2 weeks.",
+      "Bolt resistant varieties."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Loose fertile",
+      "Sunlight": "Full/partial",
+      "Water": "Consistent",
+      "Time to harvest": "30-60 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Opium lettuce wild ancestor.",
+      "Iceberg = durable shipping.",
+      "96% water vegetable."
+    ]
+  },
+  "Swiss Chard": {
+    "latin": "Beta vulgaris subsp. cicla",
+    "tagline": "Colorful stems, mild spinach taste — ornamental edible.",
+    "origin": "Mediterranean",
+    "taste": "Mild spinach/beat, stems celery-like",
+    "tags": ["Leafy green", "Vitamin K", "Colorful", "Heat tolerant", "Cut-and-come"],
+    "about": "Stems add crunch/color. Rare India but grows well.",
+    "nutrition": {
+      "cal": "19 kcal",
+      "carbs": "3.7g",
+      "fiber": "1.6g",
+      "sugar": "1.1g",
+      "protein": "1.8g",
+      "fat": "0.2g",
+      "vitc": "30mg",
+      "potassium": "379mg",
+      "vita": "61µg",
+      "calcium": "51mg",
+      "iron": "1.8mg",
+      "magnesium": "33mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin K</strong> — bone health.",
+      "<strong>Magnesium</strong> — 150mg/cup cooked.",
+      "<strong>Iron</strong> — non-heme, vitamin C helps."
+    ],
+    "benefits": [
+      "<strong>Blood sugar</strong> — soluble fiber.",
+      "<strong>Eye health</strong> — lutein.",
+      "<strong>Detox</strong> — betalains.",
+      "<strong>Exercise recovery</strong> — nitrates."
+    ],
+    "cautions": [
+      "Oxalates — cook, moderate.",
+      "Nitrates accumulate.",
+      "Sow fresh — poor germination."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Feb", "Mar"],
+      "good": ["Sep", "Dec", "Jan"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "Urban gardens. Rainbow stems impress.",
+    "global_seasons": {
+      "peak": ["Year-round mild climates"],
+      "good": [],
+      "low": []
+    },
+    "global_note": "Switzerland national vegetable?",
+    "tips": [
+      "Vibrant color, crisp.",
+      "Fridge 1 week.",
+      "Separate stems cook longer.",
+      "Freeze blanched."
+    ],
+    "varieties": [
+      { "name": "Bright Lights", "taste": "Sweet stems", "use": "All", "india": "Limited" },
+      { "name": "Fordhook Giant", "taste": "Meaty", "use": "Main crop", "india": "No" },
+      { "name": "Rainbow", "taste": "Colorful", "use": "Garnish", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Sauté stems first, then leaves.",
+      "Swiss chard gratin.",
+      "Wraps like collards.",
+      "Stems pickle vibrant."
+    ],
+    "pairs_with": ["Lemon", "Garlic", "Bacon", "Nutmeg", "Vinegar"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Cut outer leaves.",
+      "Heat tolerant spinach sub.",
+      "Perennial mild climates.",
+      "Self-seeds."
+    ],
+    "growing_facts": {
+      "Climate": "Cool-warm",
+      "Soil": "Fertile",
+      "Sunlight": "Full/partial",
+      "Water": "Regular",
+      "Time to harvest": "55 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Beet cousin, no bulb.",
+      "Ancient Roman aphrodisiac.",
+      "Perennial in Mediterranean."
+    ]
+  },
+  "Mustard Greens": {
+    "latin": "Brassica juncea",
+    "tagline": "Spicy heat that cuts through richness.",
+    "origin": "Central Asia",
+    "taste": "Sharp mustard bite, less bitter cooked",
+    "tags": ["Leafy green", "Cruciferous", "Spicy", "Winter", "Indian"],
+    "about": "Sarson ka saag Punjabi winter staple with makki ki roti.",
+    "nutrition": {
+      "cal": "27 kcal",
+      "carbs": "4.4g",
+      "fiber": "3.2g",
+      "sugar": "1.3g",
+      "protein": "2.7g",
+      "fat": "0.4g",
+      "vitc": "70mg",
+      "potassium": "384mg",
+      "vita": "302µg",
+      "calcium": "115mg",
+      "iron": "1.6mg",
+      "magnesium": "13mg"
+    },
+    "micronutrients": [
+      "<strong>Glucosinolates</strong> — isothiocyanates cancer fight.",
+      "<strong>Vitamin A</strong> — vision.",
+      "<strong>Calcium</strong> — bones."
+    ],
+    "benefits": [
+      "<strong>Cancer prevention</strong> — potent glucosinolates.",
+      "<strong>Detoxification</strong> — liver enzymes.",
+      "<strong>Respiratory</strong> — clears sinuses.",
+      "<strong>Anti-microbial</strong> — natural antibiotic."
+    ],
+    "cautions": [
+      "Very gassy — cook well.",
+      "Goitrogenic raw.",
+      "Pungent smell cooking."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": ["Jun", "Jul"]
+    },
+    "india_note": "Punjab sarson saag season. Rai for seeds.",
+    "global_seasons": {
+      "peak": ["Nov", "Dec", "Jan"],
+      "good": ["Oct", "Feb"],
+      "low": []
+    },
+    "global_note": "India largest producer.",
+    "tips": [
+      "Deep green, no yellow.",
+      "Fridge 5 days.",
+      "Blanch reduces bitterness.",
+      "Seeds pungent longer."
+    ],
+    "varieties": [
+      { "name": "Sarson", "taste": "Classic Punjabi", "use": "Saag", "india": "Yes" },
+      { "name": "Red Giant", "taste": "Hot", "use": "Southern", "india": "Limited" },
+      { "name": "Green Wave", "taste": "Mild", "use": "Salad", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Sarson saag: slow cook 4+ hours.",
+      "Mustard greens dal.",
+      "Southern US pot likker.",
+      "Korean bibimbap spicy."
+    ],
+    "pairs_with": ["Ginger", "Garlic", "Cornbread", "Bacon", "Vinegar"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Fall sow.",
+      "Harvest young tender.",
+      "Heat bolts fast.",
+      "Self-sows."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "40 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Mustard seed faith parable.",
+      "Hottest spice Guinness.",
+      "Ancient Chinese cure-all."
+    ]
+  },
+  "Bok Choy": {
+    "latin": "Brassica rapa subsp. chinensis",
+    "tagline": "Baby Chinese cabbage — tender stems, mild flavor.",
+    "origin": "China",
+    "taste": "Mild cabbage, crisp juicy stems",
+    "tags": ["Cruciferous", "Stir-fry", "Quick-cook", "Calcium", "Baby vegetable"],
+    "about": "Pak choi boom in India with Chinese food popularity. Grows fast.",
+    "nutrition": {
+      "cal": "13 kcal",
+      "carbs": "1.2g",
+      "fiber": "1g",
+      "sugar": "0.7g",
+      "protein": "1.5g",
+      "fat": "0.2g",
+      "vitc": "32mg",
+      "potassium": "252mg",
+      "vita": "223µg",
+      "calcium": "93mg",
+      "iron": "0.7mg",
+      "magnesium": "14mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin A</strong> — vision, immunity.",
+      "<strong>Calcium</strong> — 10% DV small serving.",
+      "<strong>Selenium</strong> — antioxidant."
+    ],
+    "benefits": [
+      "<strong>Bone health</strong> — rare leafy calcium source.",
+      "<strong>Eye health</strong> — beta-carotene.",
+      "<strong>Anti-cancer</strong> — glucosinolates.",
+      "<strong>Low calorie</strong> — volume eating."
+    ],
+    "cautions": [
+      "Goitrogenic raw.",
+      "E.coli risk.",
+      "Overcook = mushy."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Feb", "Mar"],
+      "good": ["Sep", "Dec", "Jan"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "Hydroponic favorite. Hakka noodles essential.",
+    "global_seasons": {
+      "peak": ["Year-round greenhouse"],
+      "good": [],
+      "low": []
+    },
+    "global_note": "China produces most.",
+    "tips": [
+      "Crisp stems, vibrant green.",
+      "Fridge 3-5 days.",
+      "Don't wash till use.",
+      "Baby size most tender."
+    ],
+    "varieties": [
+      { "name": "Baby Bok Choy", "taste": "Most tender", "use": "Stir-fry", "india": "Yes" },
+      { "name": "Shanghai", "taste": "Dark spoon-shaped", "use": "Steaming", "india": "Limited" },
+      { "name": "Choy Sum", "taste": "Flowering stems", "use": "Blanch", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Stir-fry 2 min high heat.",
+      "Blanch 30 sec salad.",
+      "Soup addition last minute.",
+      "Hakka noodles classic."
+    ],
+    "pairs_with": ["Ginger", "Garlic", "Oyster sauce", "Sesame oil", "Chili"],
+    "avoid_with": [],
+    "growing_tips": [
+      "30 days harvest.",
+      "Cut and regrow.",
+      "Heat bolts quick.",
+      "Succession sow."
+    ],
+    "growing_facts": {
+      "Climate": "Cool-moderate",
+      "Soil": "Fertile",
+      "Sunlight": "Full/partial",
+      "Water": "Regular",
+      "Time to harvest": "30-45 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "500 varieties China.",
+      "Most eaten vegetable China.",
+      "15 days seed to salad."
+    ]
+  },
+  "Collard Greens": {
+    "latin": "Brassica oleracea var. viridis",
+    "tagline": "Southern soul food — tough leaves turn silky slow-cooked.",
+    "origin": "Greece",
+    "taste": "Mild cabbage, less bitter than kale",
+    "tags": ["Leafy green", "Cruciferous", "Winter", "Vitamin A", "Slow-cook"],
+    "about": "Collards gaining popularity in India for nutrition. Tough leaves need cooking.",
+    "nutrition": {
+      "cal": "33 kcal",
+      "carbs": "5.7g",
+      "fiber": "4g",
+      "sugar": "0.5g",
+      "protein": "3g",
+      "fat": "0.6g",
+      "vitc": "35mg",
+      "potassium": "213mg",
+      "vita": "251µg",
+      "calcium": "232mg",
+      "iron": "0.5mg",
+      "magnesium": "27mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin K</strong> — 836% DV!",
+      "<strong>Vitamin A</strong> — vision.",
+      "<strong>Calcium</strong> — 23% DV cooked."
+    ],
+    "benefits": [
+      "<strong>Bone health</strong> — massive K + calcium.",
+      "<strong>Anti-cancer</strong> — glucosinolates.",
+      "<strong>Detox</strong> — sulforaphane.",
+      "<strong>Eye health</strong> — lutein."
+    ],
+    "cautions": [
+      "Oxalates reduce calcium absorption.",
+      "Goitrogenic.",
+      "Long cook reduces nutrients — balance."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": ["Jun", "Jul"]
+    },
+    "india_note": "Rare but grows like sarson. Slow-cook tadka.",
+    "global_seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb", "Mar"],
+      "good": ["Oct"],
+      "low": []
+    },
+    "global_note": "US South New Year's luck.",
+    "tips": [
+      "Deep green, no yellow.",
+      "Fridge 1 week.",
+      "Strip tough stem.",
+      "Freeze after blanch."
+    ],
+    "varieties": [
+      { "name": "Georgia Southern", "taste": "Classic", "use": "Southern style", "india": "No" },
+      { "name": "Vates", "taste": "Cold hardy", "use": "Winter", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Slow simmer smoked meat 3+ hours.",
+      "Collard wraps raw young.",
+      "Chopped salad massaged.",
+      "Indian: palak saag style."
+    ],
+    "pairs_with": ["Ham hock", "Vinegar", "Hot sauce", "Garlic", "Onion"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Fall transplant.",
+      "-15°C hardy.",
+      "Cut outer continuous.",
+      "Heavy feeder."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "65-80 days",
+      "Container": "Large"
+    },
+    "fun_facts": [
+      "New Year's wealth tradition.",
+      "Tougher than kale.",
+      "African slaves US staple."
+    ]
+  },
+  "Arugula": {
+    "latin": "Eruca vesicaria",
+    "tagline": "Peppery salad rocket — gourmet pepper without calories.",
+    "origin": "Mediterranean",
+    "taste": "Nutty pepper, mustard bite intensifies with age",
+    "tags": ["Leafy green", "Brassicaceae", "Quick", "Vitamin K", "Gourmet"],
+    "about": "Rocket salad trendy in India urban dining. Grows anywhere.",
+    "nutrition": {
+      "cal": "25 kcal",
+      "carbs": "3.7g",
+      "fiber": "1.6g",
+      "sugar": "2.1g",
+      "protein": "2.6g",
+      "fat": "0.7g",
+      "vitc": "15mg",
+      "potassium": "369mg",
+      "vita": "119µg",
+      "calcium": "160mg",
+      "iron": "1.5mg",
+      "magnesium": "47mg"
+    },
+    "micronutrients": [
+      "<strong>Glucosinolates</strong> — cancer prevention.",
+      "<strong>Vitamin K</strong> — 100% DV.",
+      "<strong>Folate</strong> — 25% DV."
+    ],
+    "benefits": [
+      "<strong>Anti-cancer</strong> — erucin.",
+      "<strong>Bone health</strong> — vitamin K.",
+      "<strong>Weight loss</strong> — low cal, high flavor.",
+      "<strong>Exercise</strong> — nitrates boost stamina."
+    ],
+    "cautions": [
+      "Oxalates.",
+      "Nitrates.",
+      "Bitter old — harvest young."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Feb", "Mar"],
+      "good": ["Sep", "Dec", "Jan"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "Roquette in fancy salads. Terrace garden star.",
+    "global_seasons": {
+      "peak": ["Apr", "May", "Sep", "Oct"],
+      "good": ["Mar", "Jun"],
+      "low": ["Jul", "Aug"]
+    },
+    "global_note": "Italy pizza topping.",
+    "tips": [
+      "Deep green, no yellow.",
+      "Fridge 4 days.",
+      "Harvest outer leaves.",
+      "Self-sows vigorously."
+    ],
+    "varieties": [
+      { "name": "Astro", "taste": "Mild", "use": "Baby", "india": "Yes" },
+      { "name": "Wild Rocket", "taste": "Very hot", "use": "Garnish", "india": "Limited" },
+      { "name": "Sylvetta", "taste": "Extra peppery", "use": "Premium", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Arugula pesto pine nuts.",
+      "Pizza topping wilts perfect.",
+      "Salad with parmesan lemon.",
+      "Sandwich peppery kick."
+    ],
+    "pairs_with": ["Lemon", "Parmesan", "Pine nuts", "Balsamic", "Pear"],
+    "avoid_with": [],
+    "growing_tips": [
+      "21 days baby harvest.",
+      "Cut and come again.",
+      "Cool weather best.",
+      "Self-seeds invasive."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Any fertile",
+      "Sunlight": "Full/partial",
+      "Water": "Regular",
+      "Time to harvest": "40 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Roman aphrodisiac.",
+      "Viagra of antiquity.",
+      "Rocket = Italian name."
+    ]
+  },
+  "Romaine": {
+    "latin": "Lactuca sativa var. longifolia",
+    "tagline": "Crisp Caesar king — sturdy leaves hold dressing.",
+    "origin": "Mediterranean (Rome)",
+    "taste": "Mild, crisp heart sweetens",
+    "tags": ["Lettuce", "Crunchy", "Vitamin A", "Heat tolerant", "Salad base"],
+    "about": "Cos/romaine essential Caesar. Reliable India grower.",
+    "nutrition": {
+      "cal": "17 kcal",
+      "carbs": "3.3g",
+      "fiber": "2.1g",
+      "sugar": "1.2g",
+      "protein": "1.2g",
+      "fat": "0.3g",
+      "vitc": "4mg",
+      "potassium": "247mg",
+      "vita": "436µg",
+      "calcium": "33mg",
+      "iron": "1mg",
+      "magnesium": "14mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin A</strong> — 29% DV.",
+      "<strong>Folate</strong> — DNA synthesis.",
+      "<strong>Potassium</strong> — blood pressure."
+    ],
+    "benefits": [
+      "<strong>Eye health</strong> — lutein.",
+      "<strong>Hydration</strong> — 95% water.",
+      "<strong>Weight loss</strong> — crunchy volume.",
+      "<strong>Heart health</strong> — potassium."
+    ],
+    "cautions": [
+      "E.coli outbreaks.",
+      "Tip burn = calcium deficiency.",
+      "Bitter if bolted."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Feb", "Mar"],
+      "good": ["Sep", "Dec", "Jan"],
+      "low": ["Apr", "May"]
+    },
+    "india_note": "Caesar salad staple. Grows hydroponic.",
+    "global_seasons": {
+      "peak": ["Spring", "Fall"],
+      "good": [],
+      "low": ["Summer heat"]
+    },
+    "global_note": "US favorite.",
+    "tips": [
+      "Heavy upright heads.",
+      "Fridge intact 2 weeks.",
+      "Outer leaves tougher.",
+      "Heart sweetest."
+    ],
+    "varieties": [
+      { "name": "Parris Island Cos", "taste": "Classic", "use": "Caesar", "india": "Yes" },
+      { "name": "Little Gem", "taste": "Mini sweet", "use": "Gourmet", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Classic Caesar dressing.",
+      "Grilled romaine wedge.",
+      "Wraps sturdy.",
+      "Soup mild base."
+    ],
+    "pairs_with": ["Anchovy", "Parmesan", "Croutons", "Lemon"],
+    "avoid_with": [],
+    "growing_tips": [
+      "45 days head.",
+      "Heat tolerant lettuce.",
+      "Bolt resistant.",
+      "Self-blanching."
+    ],
+    "growing_facts": {
+      "Climate": "Cool-moderate",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Even",
+      "Time to harvest": "65-70 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Named for Rome.",
+      "Hardy lettuce.",
+      "Shipped intact iceberg rival."
+    ]
+  },
+  "Broccoli": {
+    "latin": "Brassica oleracea var. italica",
+    "tagline": "Mini trees packed with cancer-fighting sulforaphane.",
+    "origin": "Italy (Etruscans)",
+    "taste": "Mild cabbage, grassy raw, sweet roasted",
+    "tags": ["Cruciferous", "Sulforaphane", "Vitamin C", "Spring/Fall", "Kids veggie"],
+    "about": "India production booming. Hari phoolgobhi nutritious.",
+    "nutrition": {
+      "cal": "35 kcal",
+      "carbs": "6.6g",
+      "fiber": "2.6g",
+      "sugar": "1.7g",
+      "protein": "2.8g",
+      "fat": "0.4g",
+      "vitc": "89mg",
+      "potassium": "316mg",
+      "vita": "31µg",
+      "calcium": "51mg",
+      "iron": "0.7mg",
+      "magnesium": "21mg"
+    },
+    "micronutrients": [
+      "<strong>Sulforaphane</strong> — #1 cancer fighter.",
+      "<strong>Glucoraphanin</strong> — precursor.",
+      "<strong>Vitamin C</strong> — 150% DV."
+    ],
+    "benefits": [
+      "<strong>Cancer prevention</strong> — detox enzymes.",
+      "<strong>Hormone balance</strong> — DIM estrogen metabolism.",
+      "<strong>Eye health</strong> — lutein.",
+      "<strong>Heart health</strong> — fiber + antioxidants."
+    ],
+    "cautions": [
+      "Goitrogenic raw.",
+      "Gas common.",
+      "Overcook = sulfur smell."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Feb", "Mar"],
+      "good": ["Sep", "Dec", "Jan"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "Maharashtra #1. Stir-fry, sabzi, paratha.",
+    "global_seasons": {
+      "peak": ["Apr", "May", "Sep", "Oct"],
+      "good": ["Mar", "Jun"],
+      "low": ["Jul", "Aug"]
+    },
+    "global_note": "China 50% world production.",
+    "tips": [
+      "Dark green, tight buds.",
+      "Fridge 1 week perforated bag.",
+      "Yellow = overmature.",
+      "Stems edible peeled."
+    ],
+    "varieties": [
+      { "name": "Green Magic", "taste": "Sweet", "use": "Main", "india": "Yes" },
+      { "name": "Calabrese", "taste": "Classic", "use": "All", "india": "Yes" },
+      { "name": "Purple Sprouting", "taste": "Nutty", "use": "Gourmet", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Steam 5 min crisp-tender.",
+      "Roast 200°C 20 min.",
+      "Broccoli 65°C 30min max sulforaphane.",
+      "Puree soup mild."
+    ],
+    "pairs_with": ["Lemon", "Garlic", "Cheese", "Almonds", "Chili flakes"],
+    "avoid_with": ["Boil long"],
+    "growing_tips": [
+      "Transplant cool weather.",
+      "Side shoots after main head.",
+      "Net cabbage worms.",
+      "Mulch cool soil."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile pH 6-7",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "60-70 days",
+      "Container": "Large"
+    },
+    "fun_facts": [
+      "Broccolini = hybrid.",
+      "Sprouts 20x sulforaphane.",
+      "Thomas Jefferson grew 1800s."
+    ]
+  },
+  "Cauliflower": {
+    "latin": "Brassica oleracea var. botrytis",
+    "tagline": "Versatile blank canvas — rice, mash, roast, fry.",
+    "origin": "Cyprus (ancient)",
+    "taste": "Mild, nutty roasted, absorbs flavors",
+    "tags": ["Cruciferous", "Low-carb", "Vitamin C", "Winter", "Versatile"],
+    "about": "India #2 producer after China. Phoolgobhi everyday sabzi.",
+    "nutrition": {
+      "cal": "25 kcal",
+      "carbs": "5g",
+      "fiber": "2g",
+      "sugar": "1.9g",
+      "protein": "1.9g",
+      "fat": "0.3g",
+      "vitc": "48mg",
+      "potassium": "299mg",
+      "vita": "0µg",
+      "calcium": "22mg",
+      "iron": "0.4mg",
+      "magnesium": "15mg"
+    },
+    "micronutrients": [
+      "<strong>Sulforaphane</strong> — cancer prevention.",
+      "<strong>Choline</strong> — brain health.",
+      "<strong>Glucosinolates</strong> — detox."
+    ],
+    "benefits": [
+      "<strong>Detoxification</strong> — liver enzymes.",
+      "<strong>Anti-inflammatory</strong> — antioxidants.",
+      "<strong>Brain health</strong> — choline.",
+      "<strong>Weight loss</strong> — low carb rice sub."
+    ],
+    "cautions": [
+      "Goitrogenic raw.",
+      "Gas producing.",
+      "Browning = oxidation."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": ["Jun", "Jul"]
+    },
+    "india_note": "Punjab, UP winter king. Aloo gobi, paratha, pakora.",
+    "global_seasons": {
+      "peak": ["Nov", "Dec", "Jan"],
+      "good": ["Oct", "Feb"],
+      "low": []
+    },
+    "global_note": "China, India top 2.",
+    "tips": [
+      "Firm white, tight curds.",
+      "Fridge 2 weeks.",
+      "Trim leaves protect.",
+      "Purple/orange higher antioxidants."
+    ],
+    "varieties": [
+      { "name": "White", "taste": "Classic mild", "use": "All", "india": "Yes" },
+      { "name": "Purple", "taste": "Nutty", "use": "Raw", "india": "Limited" },
+      { "name": "Romanesco", "taste": "Sweet", "use": "Gourmet", "india": "Rare" },
+      { "name": "Cheddar", "taste": "Sweet", "use": "Kids", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Cauliflower rice: pulse, sauté.",
+      "Gobi masala tadka.",
+      "Roast whole 180°C 90min.",
+      "Pakora batter fried."
+    ],
+    "pairs_with": ["Potato", "Turmeric", "Cumin", "Cheese", "Curry"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Transplant cool weather.",
+      "Blanch heads sun protection.",
+      "Side shoots harvest.",
+      "Heavy feeder nitrogen."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Rich pH 6.5-7.5",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "70-100 days",
+      "Container": "Large"
+    },
+    "fun_facts": [
+      "Colored versions 1970s breeding.",
+      "Whole roasted Instagram star.",
+      "Richest vegetable choline."
+    ]
+  },
+  "Brussels Sprouts": {
+    "latin": "Brassica oleracea var. gemmifera",
+    "tagline": "Mini cabbages that taste better after frost.",
+    "origin": "Belgium",
+    "taste": "Nutty, cabbage-like, bitter young",
+    "tags": ["Cruciferous", "Vitamin K", "Winter", "Frost improves", "Hated by kids"],
+    "about": "Cold weather crop. Rare India but hill stations.",
+    "nutrition": {
+      "cal": "43 kcal",
+      "carbs": "9g",
+      "fiber": "3.8g",
+      "sugar": "2.2g",
+      "protein": "3.4g",
+      "fat": "0.3g",
+      "vitc": "85mg",
+      "potassium": "389mg",
+      "vita": "38µg",
+      "calcium": "42mg",
+      "iron": "1.4mg",
+      "magnesium": "23mg"
+    },
+    "micronutrients": [
+      "<strong>Kaempferol</strong> — anti-cancer flavonoid.",
+      "<strong>Vitamin K</strong> — 200% DV.",
+      "<strong>Sulforaphane</strong> — detox."
+    ],
+    "benefits": [
+      "<strong>Cancer prevention</strong> — most potent brassica.",
+      "<strong>Anti-inflammatory</strong> — kaempferol.",
+      "<strong>Heart health</strong> — fiber + K.",
+      "<strong>DNA protection</strong> — glucosinolates."
+    ],
+    "cautions": [
+      "Goitrogenic.",
+      "Very gassy.",
+      "Overcook sulfur bomb."
+    ],
+    "seasons": {
+      "peak": ["Dec", "Jan", "Feb"],
+      "good": ["Nov", "Mar"],
+      "low": ["Jun", "Jul"]
+    },
+    "india_note": "Ooty, Kodaikanal winter. Roast trendy.",
+    "global_seasons": {
+      "peak": ["Nov", "Dec", "Jan", "Feb"],
+      "good": ["Oct", "Mar"],
+      "low": []
+    },
+    "global_note": "Belgium, Netherlands specialty.",
+    "tips": [
+      "Firm, tight, green.",
+      "Fridge 3 weeks.",
+      "Trim stem end.",
+      "Frost = sweet."
+    ],
+    "varieties": [
+      { "name": "Long Island Improved", "taste": "Classic", "use": "Roast", "india": "No" },
+      { "name": "Redball", "taste": "Milder", "use": "Raw", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Roast 200°C 25min caramelized.",
+      "Shredded slaw.",
+      "Brussels bacon balsamic.",
+      "Mash potato sub."
+    ],
+    "pairs_with": ["Bacon", "Balsamic", "Maple", "Walnuts", "Lemon"],
+    "avoid_with": ["Boil long"],
+    "growing_tips": [
+      "Fall transplant.",
+      "Harvest bottom up.",
+      "Frost converter.",
+      "Stake tall plants."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "90-120 days",
+      "Container": "No"
+    },
+    "fun_facts": [
+      "Named Brussels 1587.",
+      "Frost destroys sinigrin = bitter gone.",
+      "Most hated vegetable surveys."
+    ]
+  },
+  "Kohlrabi": {
+    "latin": "Brassica oleracea var. gongylodes",
+    "tagline": "Alien spaceship veggie — crunchy cabbage turnip.",
+    "origin": "Germany",
+    "taste": "Mild cabbage/turnip, broccoli stem raw",
+    "tags": ["Cruciferous", "Quick", "Vitamin C", "Cool-season", "Space-looking"],
+    "about": "German turnip. Growing popularity India for crunch.",
+    "nutrition": {
+      "cal": "27 kcal",
+      "carbs": "6.2g",
+      "fiber": "3.6g",
+      "sugar": "2.6g",
+      "protein": "1.7g",
+      "fat": "0.1g",
+      "vitc": "62mg",
+      "potassium": "350mg",
+      "vita": "3µg",
+      "calcium": "24mg",
+      "iron": "0.4mg",
+      "magnesium": "19mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin C</strong> — 100% DV.",
+      "<strong>Glucosinolates</strong> — anti-cancer.",
+      "<strong>Fiber</strong> — insoluble crunch."
+    ],
+    "benefits": [
+      "<strong>Immunity</strong> — vitamin C.",
+      "<strong>Digestion</strong> — fiber bulk.",
+      "<strong>Cancer prevention</strong> — sulfur compounds.",
+      "<strong>Low calorie</strong> — crunchy filler."
+    ],
+    "cautions": [
+      "Goitrogenic.",
+      "Stringy if large.",
+      "Peel thick skin."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Feb", "Mar"],
+      "good": ["Sep", "Dec", "Jan"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "Kolarabi novelty. Slaw, stir-fry.",
+    "global_seasons": {
+      "peak": ["Spring", "Fall"],
+      "good": [],
+      "low": ["Summer"]
+    },
+    "global_note": "Germany, Kashmir.",
+    "tips": [
+      "Firm 5-7cm bulbs.",
+      "Fridge 2 weeks.",
+      "Peel fibrous skin.",
+      "Leaves like kale."
+    ],
+    "varieties": [
+      { "name": "Kossak", "taste": "Purple skin", "use": "Storage", "india": "Limited" },
+      { "name": "Gigante", "taste": "Large", "use": "Main crop", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Raw sticks yogurt dip.",
+      "Roast like potato.",
+      "Kohlrabi slaw apple.",
+      "Puree mild soup."
+    ],
+    "pairs_with": ["Apple", "Carrot", "Lemon", "Mustard"],
+    "avoid_with": [],
+    "growing_tips": [
+      "45 days tennis ball size.",
+      "Cut leaves continuous.",
+      "Heat bolts.",
+      "Succession."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "45-60 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "17th century Germany.",
+      "Kashmir knol khol.",
+      "Fastest brassica."
+    ]
+  },
+  "Cabbage Red": {
+    "latin": "Brassica oleracea var. capitata f. rubra",
+    "tagline": "Vibrant purple crunch — antioxidants + beauty.",
+    "origin": "Germany",
+    "taste": "Peppier than green, turns blue cooking",
+    "tags": ["Cruciferous", "Anthocyanins", "Vitamin C", "Winter", "Colorful"],
+    "about": "Red cabbage slaw favorite. India salads.",
+    "nutrition": {
+      "cal": "31 kcal",
+      "carbs": "7.4g",
+      "fiber": "2g",
+      "sugar": "3.8g",
+      "protein": "1.4g",
+      "fat": "0.2g",
+      "vitc": "57mg",
+      "potassium": "243mg",
+      "vita": "11µg",
+      "calcium": "45mg",
+      "iron": "0.7mg",
+      "magnesium": "16mg"
+    },
+    "micronutrients": [
+      "<strong>Anthocyanins</strong> — 36x green cabbage.",
+      "<strong>Vitamin C</strong> — stable red.",
+      "<strong>Glucosinolates</strong> — anti-cancer."
+    ],
+    "benefits": [
+      "<strong>Anti-cancer</strong> — anthocyanins + sulforaphane.",
+      "<strong>Brain health</strong> — antioxidants.",
+      "<strong>Anti-inflammatory</strong> — polyphenols.",
+      "<strong>Urinary health</strong> — hippuric acid."
+    ],
+    "cautions": [
+      "Goitrogenic.",
+      "Turns blue alkaline — vinegar fixes.",
+      "Gas."
+    ],
+    "seasons": {
+      "peak": ["Nov", "Dec", "Jan"],
+      "good": ["Oct", "Feb"],
+      "low": ["Jun", "Jul"]
+    },
+    "india_note": "Salads, slaw. Rare traditional.",
+    "global_seasons": {
+      "peak": ["Oct", "Nov", "Dec"],
+      "good": ["Sep"],
+      "low": []
+    },
+    "global_note": "Germany specialty.",
+    "tips": [
+      "Heavy purple heads.",
+      "Fridge months.",
+      "Acid keeps color.",
+      "Raw max nutrition."
+    ],
+    "varieties": [
+      { "name": "Red Express", "taste": "Solid", "use": "Slaw", "india": "Limited" },
+      { "name": "Mammoth Red", "taste": "Large", "use": "Sauerkraut", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Red cabbage slaw vinegar.",
+      "Ferment purple kraut.",
+      "Roast color holds.",
+      "Salad raw crunch."
+    ],
+    "pairs_with": ["Apple", "Caraway", "Vinegar", "Fennel"],
+    "avoid_with": ["Baking soda"],
+    "growing_tips": [
+      "Fall sow.",
+      "Sun = deeper color.",
+      "Long storage.",
+      "Split heads harvest."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "85-110 days",
+      "Container": "Large"
+    },
+    "fun_facts": [
+      "16th century Germany.",
+      "pH indicator cabbage.",
+      "Blue stew no acid."
+    ]
+  },
+  "Bell Pepper": {
+    "latin": "Capsicum annuum var. grossum",
+    "tagline": "Sweet rainbow crunch — vitamin C bombs.",
+    "origin": "South America",
+    "taste": "Sweet, juicy, red = ripest sweetest",
+    "tags": ["Fruit-veg", "Vitamin C", "Antioxidant", "Summer", "Colorful"],
+    "about": "Shimla mirch India favorite. Color = ripeness stage.",
+    "nutrition": {
+      "cal": "26 kcal",
+      "carbs": "6g",
+      "fiber": "2.1g",
+      "sugar": "3.6g",
+      "protein": "1g",
+      "fat": "0.2g",
+      "vitc": "128mg",
+      "potassium": "211mg",
+      "vita": "157µg",
+      "calcium": "10mg",
+      "iron": "0.4mg",
+      "magnesium": "12mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin C</strong> — 3x orange.",
+      "<strong>Beta-carotene</strong> — red/yellow.",
+      "<strong>Quercetin</strong> — anti-inflammatory."
+    ],
+    "benefits": [
+      "<strong>Immunity</strong> — vitamin C powerhouse.",
+      "<strong>Eye health</strong> — lutein.",
+      "<strong>Heart health</strong> — antioxidants.",
+      "<strong>Skin health</strong> — collagen vitamin C."
+    ],
+    "cautions": [
+      "Nightshade sensitivity.",
+      "Pesticide heavy.",
+      "Green bitter immature."
+    ],
+    "seasons": {
+      "peak": ["Feb", "Mar", "Apr"],
+      "good": ["Jan", "May"],
+      "low": ["Aug", "Sep"]
+    },
+    "india_note": "Maharashtra polyhouse. Capsicum sabzi, stuffed.",
+    "global_seasons": {
+      "peak": ["Jul", "Aug", "Sep"],
+      "good": ["Jun", "Oct"],
+      "low": []
+    },
+    "global_note": "China, Mexico top.",
+    "tips": [
+      "Firm, heavy, glossy.",
+      "Fridge 1 week.",
+      "Red = 7x vitamin C green.",
+      "Freeze roasted."
+    ],
+    "varieties": [
+      { "name": "California Wonder", "taste": "Sweet red", "use": "All", "india": "Yes" },
+      { "name": "Chocolate", "taste": "Brown sweet", "use": "Gourmet", "india": "Rare" },
+      { "name": "Purple Beauty", "taste": "Mild", "use": "Ornamental", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Shimla mirch masala.",
+      "Stuffed capsicum potato.",
+      "Roast char peel.",
+      "Raw salad crunch."
+    ],
+    "pairs_with": ["Onion", "Tomato", "Cheese", "Balsamic", "Herbs"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Transplant after frost.",
+      "Stake heavy fruit.",
+      "Harvest green or color.",
+      "Pinch flowers early."
+    ],
+    "growing_facts": {
+      "Climate": "Warm",
+      "Soil": "Well-drained pH 6-7",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "70 days green, 90 red",
+      "Container": "Yes large"
+    },
+    "fun_facts": [
+      "Columbus brought 1493.",
+      "Bell = non-pungent.",
+      "Largest 10cm diameter record."
+    ]
+  },
+  "Chili Pepper": {
+    "latin": "Capsicum annuum / frutescens / chinense",
+    "tagline": "Heat engine — capsaicin painkiller and metabolism booster.",
+    "origin": "South America",
+    "taste": "Burning heat varies wildly by variety",
+    "tags": ["Fruit-veg", "Capsaicin", "Vitamin C", "Warm-season", "Preserve well"],
+    "about": "India #1 chili producer. Mirch defines spice level everywhere.",
+    "nutrition": {
+      "cal": "40 kcal",
+      "carbs": "9g",
+      "fiber": "1.5g",
+      "sugar": "5g",
+      "protein": "2g",
+      "fat": "0.4g",
+      "vitc": "144mg",
+      "potassium": "322mg",
+      "vita": "48µg",
+      "calcium": "14mg",
+      "iron": "1.1mg",
+      "magnesium": "23mg"
+    },
+    "micronutrients": [
+      "<strong>Capsaicin</strong> — pain relief, metabolism boost.",
+      "<strong>Vitamin C</strong> — massive dose.",
+      "<strong>Capsanthin</strong> — red antioxidant."
+    ],
+    "benefits": [
+      "<strong>Pain relief</strong> — topical arthritis.",
+      "<strong>Metabolism</strong> — thermogenesis 8%.",
+      "<strong>Heart health</strong> — blood thinner.",
+      "<strong>Antibacterial</strong> — food preservation."
+    ],
+    "cautions": [
+      "Handle with gloves.",
+      "Eyes/mucous membranes burn.",
+      "GERD trigger.",
+      "Children/elderly moderation."
+    ],
+    "seasons": {
+      "peak": ["Jan", "Feb", "Mar", "Apr"],
+      "good": ["Dec", "May"],
+      "low": ["Aug", "Sep"]
+    },
+    "india_note": "Guntur (AP) hottest. Andhra #1 production.",
+    "global_seasons": {
+      "peak": ["Aug", "Sep", "Oct"],
+      "good": ["Jul", "Nov"],
+      "low": []
+    },
+    "global_note": "India 30% world supply.",
+    "tips": [
+      "Firm, glossy, heavy.",
+      "Fridge 2 weeks.",
+      "Freeze whole.",
+      "Dry string garlands."
+    ],
+    "varieties": [
+      { "name": "Bhut Jolokia", "taste": "1M+ SHU", "use": "World's hottest", "india": "Yes (Assam)" },
+      { "name": "Guntur Sannam", "taste": "35k SHU", "use": "Andhra cooking", "india": "Yes" },
+      { "name": "Byadagi", "taste": "15k SHU color", "use": "Karnataka masala", "india": "Yes" },
+      { "name": "Jwala", "taste": "30k SHU", "use": "Gujarat", "india": "Yes" }
+    ],
+    "culinary_tips": [
+      "Green frying, red powder.",
+      "Chili pickle oil mustard.",
+      "Bhujia masala coating.",
+      "Thecha Maharashtrian chutney."
+    ],
+    "pairs_with": ["Coconut", "Tamarind", "Yogurt", "Lime", "Sesame"],
+    "avoid_with": ["Hands to eyes"],
+    "growing_tips": [
+      "Start indoor Feb.",
+      "Perennial pots.",
+      "Harvest green continuous.",
+      "Sun + heat = hot."
+    ],
+    "growing_facts": {
+      "Climate": "Warm",
+      "Soil": "Sandy loam",
+      "Sunlight": "Full hot",
+      "Water": "Moderate",
+      "Time to harvest": "75-90 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Bhut Jolokia Guinness 2007-2010.",
+      "Capsaicin pepper spray.",
+      "Endorphin rush explains addiction."
+    ]
+  },
+  "Cucumber": {
+    "latin": "Cucumis sativus",
+    "tagline": "95% water cooling crunch — summer refresher.",
+    "origin": "India",
+    "taste": "Mild, refreshing, burpless varieties",
+    "tags": ["Cucurbit", "Hydration", "Low-cal", "Summer", "Pickling"],
+    "about": "India origin! Kakdi summer staple raita, salad.",
+    "nutrition": {
+      "cal": "16 kcal",
+      "carbs": "3.6g",
+      "fiber": "1g",
+      "sugar": "1.7g",
+      "protein": "0.7g",
+      "fat": "0.1g",
+      "vitc": "2.8mg",
+      "potassium": "164mg",
+      "vita": "5µg",
+      "calcium": "16mg",
+      "iron": "0.3mg",
+      "magnesium": "13mg"
+    },
+    "micronutrients": [
+      "<strong>Cucurbitacins</strong> — bitter compounds medicinal.",
+      "<strong>Lignans</strong> — breast cancer protection.",
+      "<strong>Flavonoids</strong> — antioxidants."
+    ],
+    "benefits": [
+      "<strong>Hydration</strong> — electrolyte balance.",
+      "<strong>Skin health</strong> — silica collagen.",
+      "<strong>Weight loss</strong> — filling low calorie.",
+      "<strong>Anti-cancer</strong> — lignans."
+    ],
+    "cautions": [
+      "Burpee/bitter varieties.",
+      "Pesticide skin.",
+      "Cool storage only."
+    ],
+    "seasons": {
+      "peak": ["May", "Jun", "Jul"],
+      "good": ["Apr", "Aug"],
+      "low": ["Dec", "Jan"]
+    },
+    "india_note": "Kakdi raita chaat. Dosakaya Andhra.",
+    "global_seasons": {
+      "peak": ["Jun", "Jul", "Aug"],
+      "good": ["May", "Sep"],
+      "low": []
+    },
+    "global_note": "China, India top.",
+    "tips": [
+      "Firm, no yellow, heavy.",
+      "Fridge 1 week.",
+      "Don't wash till use.",
+      "Burpless = English."
+    ],
+    "varieties": [
+      { "name": "Kakdi", "taste": "Indian classic", "use": "Salad", "india": "Yes" },
+      { "name": "English", "taste": "Burpless long", "use": "Salad", "india": "Yes" },
+      { "name": "Pickling", "taste": "Small bumpy", "use": "Pickles", "india": "Yes" },
+      { "name": "Dosakaya", "taste": "Yellow sweet", "use": "Andhra", "india": "Yes" }
+    ],
+    "culinary_tips": [
+      "Kheera raita yogurt mint.",
+      "Cucumber cooler juice.",
+      "Pickle spears dill.",
+      "Tea sandwiches English."
+    ],
+    "pairs_with": ["Yogurt", "Mint", "Lemon", "Dill", "Vinegar"],
+    "avoid_with": ["Room temp long"],
+    "growing_tips": [
+      "Direct sow warm soil.",
+      "Trellis save space.",
+      "Harvest 6-8 inches.",
+      "Female flowers need bees."
+    ],
+    "growing_facts": {
+      "Climate": "Warm",
+      "Soil": "Sandy pH 6-7",
+      "Sunlight": "Full",
+      "Water": "High",
+      "Time to harvest": "50-70 days",
+      "Container": "Yes large"
+    },
+    "fun_facts": [
+      "India 3000BC domestication.",
+      "95% water vegetable.",
+      "Sea cucumbers unrelated."
+    ]
+  },
+  "Zucchini": {
+    "latin": "Cucurbita pepo",
+    "tagline": "Prolific summer squash — noodles, fries, bread.",
+    "origin": "Mesoamerica",
+    "taste": "Mild, watery, absorbs flavor",
+    "tags": ["Summer squash", "Low-carb", "Prolific", "Summer", "Versatile"],
+    "about": "Italian zucchini boom India urban cooking.",
+    "nutrition": {
+      "cal": "17 kcal",
+      "carbs": "3.1g",
+      "fiber": "1g",
+      "sugar": "2.5g",
+      "protein": "1.2g",
+      "fat": "0.3g",
+      "vitc": "18mg",
+      "potassium": "261mg",
+      "vita": "10µg",
+      "calcium": "16mg",
+      "iron": "0.4mg",
+      "magnesium": "18mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin C</strong> — immunity.",
+      "<strong>Potassium</strong> — blood pressure.",
+      "<strong>Lutein</strong> — eyes."
+    ],
+    "benefits": [
+      "<strong>Weight loss</strong> — zucchini noodles.",
+      "<strong>Eye health</strong> — lutein.",
+      "<strong>Hydration</strong> — 94% water.",
+      "<strong>Prostate health</strong> — phytosterols."
+    ],
+    "cautions": [
+      "Overmature seedy watery.",
+      "Daily harvest prevent.",
+      "Cucurbitacin rare bitter."
+    ],
+    "seasons": {
+      "peak": ["May", "Jun", "Jul", "Aug"],
+      "good": ["Apr", "Sep"],
+      "low": ["Dec", "Jan"]
+    },
+    "india_note": "Italian veg trend. Zucchini sabzi, grilled.",
+    "global_seasons": {
+      "peak": ["Jul", "Aug"],
+      "good": ["Jun", "Sep"],
+      "low": []
+    },
+    "global_note": "Italy, China.",
+    "tips": [
+      "6-8 inches best.",
+      "Fridge 1 week.",
+      "No wash till use.",
+      "Blossom edible."
+    ],
+    "varieties": [
+      { "name": "Black Beauty", "taste": "Classic dark", "use": "All", "india": "Yes" },
+      { "name": "Golden", "taste": "Sweet", "use": "Raw", "india": "Limited" },
+      { "name": "Round", "taste": "Stuffed", "use": "Grill", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Zoodles spiralized.",
+      "Grilled slices marinade.",
+      "Zucchini bread cake.",
+      "Ratatouille French."
+    ],
+    "pairs_with": ["Garlic", "Parmesan", "Lemon", "Herbs", "Tomato"],
+    "avoid_with": [],
+    "growing_tips": [
+      "3 plants max family.",
+      "Harvest frequent.",
+      "Powdery mildew watch.",
+      "Bee pollination."
+    ],
+    "growing_facts": {
+      "Climate": "Warm",
+      "Soil": "Rich pH 6-7",
+      "Sunlight": "Full",
+      "Water": "High",
+      "Time to harvest": "45-60 days",
+      "Container": "Large"
+    },
+    "fun_facts": [
+      "1 plant 10kg summer.",
+      "Flower tempura Italy.",
+      "Native pumpkin cousin."
+    ]
+  },
+  "Eggplant": {
+    "latin": "Solanum melongena",
+    "tagline": "Sponge absorbs oil/flavor — baingan king.",
+    "origin": "India/Burma",
+    "taste": "Mild bitter, creamy cooked",
+    "tags": ["Nightshade", "Low-cal", "Summer", "Versatile", "Indian staple"],
+    "about": "India origin! Brinjal/baingan 100+ varieties.",
+    "nutrition": {
+      "cal": "25 kcal",
+      "carbs": "6g",
+      "fiber": "3g",
+      "sugar": "3.5g",
+      "protein": "1g",
+      "fat": "0.2g",
+      "vitc": "2.2mg",
+      "potassium": "229mg",
+      "vita": "1µg",
+      "calcium": "9mg",
+      "iron": "0.2mg",
+      "magnesium": "14mg"
+    },
+    "micronutrients": [
+      "<strong>Nasunin</strong> — brain-protecting anthocyanin.",
+      "<strong>Chlorogenic acid</strong> — antioxidant.",
+      "<strong>Solanine</strong> — minimal green parts."
+    ],
+    "benefits": [
+      "<strong>Brain health</strong> — nasunin protects neurons.",
+      "<strong>Antiviral</strong> — compounds.",
+      "<strong>Weight loss</strong> — low cal bulk.",
+      "<strong>Cholesterol</strong> — fiber binds."
+    ],
+    "cautions": [
+      "Nightshade allergy.",
+      "Salt draws bitter water.",
+      "Overcook mushy.",
+      "Green parts solanine."
+    ],
+    "seasons": {
+      "peak": ["Year-round"],
+      "good": [],
+      "low": []
+    },
+    "india_note": "Every state dish. Bharta, curry, fry.",
+    "global_seasons": {
+      "peak": ["Aug", "Sep"],
+      "good": ["Jul", "Oct"],
+      "low": []
+    },
+    "global_note": "China, India top.",
+    "tips": [
+      "Heavy firm, no soft spots.",
+      "Fridge 1 week.",
+      "Salt 30min degorge.",
+      "No peel needed."
+    ],
+    "varieties": [
+      { "name": "Green Long", "taste": "Mild", "use": "North India", "india": "Yes" },
+      { "name": "Purple Bharta", "taste": "Smoky", "use": "Baingan bharta", "india": "Yes" },
+      { "name": "Baby Italian", "taste": "Sweet", "use": "Grill", "india": "Yes" },
+      { "name": "Thai Pea", "taste": "Tiny", "use": "Stir-fry", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Baingan bharta smoke roast.",
+      "Begun bhaja Bengali shallow fry.",
+      "Stuffed brinjal masala.",
+      "Parmigiana Italian."
+    ],
+    "pairs_with": ["Peanut", "Sesame", "Tamarind", "Curry leaf", "Coconut"],
+    "avoid_with": ["Excess oil"],
+    "growing_tips": [
+      "Transplant warm soil.",
+      "Stake heavy fruit.",
+      "Harvest glossy firm.",
+      "Flea beetle control."
+    ],
+    "growing_facts": {
+      "Climate": "Warm",
+      "Soil": "Well-drained pH 6-7",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "65-80 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "India 4000BC cultivation.",
+      "Eggplant emoji phallic.",
+      "White varieties egg-shaped."
+    ]
+  },
+  "Okra": {
+    "latin": "Abelmoschus esculentus",
+    "tagline": "Slippery pods with mucilage magic — bhindi rules.",
+    "origin": "Ethiopia/India",
+    "taste": "Mild grassy, texture key",
+    "tags": ["Mucilaginous", "Fiber", "Summer", "Low-cal", "Indian"],
+    "about": "Bhindi India's favorite. Lady's finger debated origin.",
+    "nutrition": {
+      "cal": "33 kcal",
+      "carbs": "7.5g",
+      "fiber": "3.2g",
+      "sugar": "1.5g",
+      "protein": "2g",
+      "fat": "0.2g",
+      "vitc": "23mg",
+      "potassium": "299mg",
+      "vita": "36µg",
+      "calcium": "82mg",
+      "iron": "0.6mg",
+      "magnesium": "57mg"
+    },
+    "micronutrients": [
+      "<strong>Soluble fiber</strong> — blood sugar control.",
+      "<strong>Folate</strong> — pregnancy.",
+      "<strong>Vitamin K</strong> — clotting."
+    ],
+    "benefits": [
+      "<strong>Blood sugar</strong> — slows sugar absorption.",
+      "<strong>Cholesterol</strong> — soluble fiber.",
+      "<strong>Probiotics</strong> — prebiotic fiber.",
+      "<strong>Laxative</strong> — mucilage."
+    ],
+    "cautions": [
+      "Slimy texture aversion.",
+      "Allergy rare.",
+      "Overcook stringy."
+    ],
+    "seasons": {
+      "peak": ["Jun", "Jul", "Aug"],
+      "good": ["May", "Sep"],
+      "low": ["Dec", "Jan"]
+    },
+    "india_note": "Everywhere summer. Bhindi masala, fry, sabzi.",
+    "global_seasons": {
+      "peak": ["Jul", "Aug"],
+      "good": ["Jun", "Sep"],
+      "low": []
+    },
+    "global_note": "India #1 producer.",
+    "tips": [
+      "Bright green, firm 3-4 inches.",
+      "Fridge paper bag 3 days.",
+      "Dry before cook.",
+      "Acid reduces slime."
+    ],
+    "varieties": [
+      { "name": "Arka Anamika", "taste": "Non-spineless", "use": "Cooking", "india": "Yes" },
+      { "name": "Pusa Sawani", "taste": "Spineless", "use": "Fry", "india": "Yes" },
+      { "name": "Red Burgundy", "taste": "Mild", "use": "Ornamental", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Bhindi masala onion tomato.",
+      "Bhindi fry slit dry.",
+      "Dahi bhindi yogurt.",
+      "Gumbo thickener."
+    ],
+    "pairs_with": ["Onion", "Cumin", "Dry masala", "Yogurt", "Lemon"],
+    "avoid_with": ["Wet hands"],
+    "growing_tips": [
+      "Direct sow hot weather.",
+      "Harvest daily 4-6 inches.",
+      "Drought tolerant.",
+      "Continuous till frost."
+    ],
+    "growing_facts": {
+      "Climate": "Hot",
+      "Soil": "Sandy pH 6-7",
+      "Sunlight": "Full",
+      "Water": "Moderate",
+      "Time to harvest": "50-60 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Mucilage WWII wound dressing.",
+      "Abelmosk perfume base.",
+      "Seed oil substitute."
+    ]
+  },
+  "Pumpkin": {
+    "latin": "Cucurbita moschata / maxima / pepo",
+    "tagline": "Halloween icon, sweet creamy flesh for pies and curries.",
+    "origin": "Mesoamerica",
+    "taste": "Sweet, dense, orange flesh",
+    "tags": ["Winter squash", "Vitamin A", "Fall", "Long storage", "Halloween"],
+    "about": "Kaddu India Diwali sweet. Pumpkins = specific varieties.",
+    "nutrition": {
+      "cal": "26 kcal",
+      "carbs": "6.5g",
+      "fiber": "0.5g",
+      "sugar": "2.8g",
+      "protein": "1g",
+      "fat": "0.1g",
+      "vitc": "9mg",
+      "potassium": "340mg",
+      "vita": "426µg",
+      "calcium": "21mg",
+      "iron": "0.8mg",
+      "magnesium": "12mg"
+    },
+    "micronutrients": [
+      "<strong>Beta-carotene</strong> — converts vitamin A.",
+      "<strong>Lutein</strong> — eye health.",
+      "<strong>Potassium</strong> — blood pressure."
+    ],
+    "benefits": [
+      "<strong>Eye health</strong> — massive vitamin A.",
+      "<strong>Immune</strong> — vitamin A.",
+      "<strong>Weight loss</strong> — low calorie filling.",
+      "<strong>Heart</strong> — potassium + fiber."
+    ],
+    "cautions": [
+      "Wax coating scrub.",
+      "Immature stringy.",
+      "Heavy lifting!"
+    ],
+    "seasons": {
+      "peak": ["Sep", "Oct", "Nov"],
+      "good": ["Aug", "Dec"],
+      "low": ["Mar", "Apr"]
+    },
+    "india_note": "Kaddu sabzi, halwa Diwali. Sugar baby mini.",
+    "global_seasons": {
+      "peak": ["Oct", "Nov"],
+      "good": ["Sep"],
+      "low": []
+    },
+    "global_note": "China, India top.",
+    "tips": [
+      "Heavy solid, dull rind.",
+      "Room temp months.",
+      "Cook skin on.",
+      "Seeds roast pepitas."
+    ],
+    "varieties": [
+      { "name": "Sugar Pie", "taste": "Sweet pie", "use": "Dessert", "india": "Limited" },
+      { "name": "Atlantic Giant", "taste": "Coarse", "use": "Contests", "india": "No" },
+      { "name": "Kabocha", "taste": "Dense sweet", "use": "Savory", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Kaddu ki sabzi jeera.",
+      "Pumpkin pie spice.",
+      "Roast cubes curry.",
+      "Soup Thai coconut."
+    ],
+    "pairs_with": ["Nutmeg", "Cinnamon", "Ginger", "Coconut", "Chili"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Hills space hogs.",
+      "50cm mounds.",
+      "Harvest rind hardens.",
+      "Cure sun 10 days."
+    ],
+    "growing_facts": {
+      "Climate": "Warm",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Deep",
+      "Time to harvest": "90-120 days",
+      "Container": "No"
+    },
+    "fun_facts": [
+      "1816 2725lb record.",
+      "Columbus seed 1494.",
+      "Native sacred squash."
+    ]
+  },
+  "Butternut Squash": {
+    "latin": "Cucurbita moschata",
+    "tagline": "Smooth sweet pear-shaped — roast, puree perfection.",
+    "origin": "South Africa? (named)",
+    "taste": "Nutty sweet, dense orange flesh",
+    "tags": ["Winter squash", "Vitamin A", "Fall", "Storage", "Roasting"],
+    "about": "Popular India imported. Dubki/kadu substitute.",
+    "nutrition": {
+      "cal": "45 kcal",
+      "carbs": "12g",
+      "fiber": "2.2g",
+      "sugar": "2.6g",
+      "protein": "1g",
+      "fat": "0.1g",
+      "vitc": "22mg",
+      "potassium": "284mg",
+      "vita": "1062µg",
+      "calcium": "48mg",
+      "iron": "0.7mg",
+      "magnesium": "34mg"
+    },
+    "micronutrients": [
+      "<strong>Beta-carotene</strong> — ultra high.",
+      "<strong>Vitamin C</strong> — immunity.",
+      "<strong>Omega-3</strong> — rare vegetable."
+    ],
+    "benefits": [
+      "<strong>Eye health</strong> — vitamin A.",
+      "<strong>Immune boost</strong> — C + A.",
+      "<strong>Anti-aging</strong> — antioxidants.",
+      "<strong>Stable blood sugar</strong> — fiber."
+    ],
+    "cautions": [
+      "Heavy.",
+      "Raw very hard.",
+      "Cut side down store."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Dec"],
+      "good": ["Sep", "Jan"],
+      "low": ["Apr", "May"]
+    },
+    "india_note": "Urban fancy. Butternut curry, soup.",
+    "global_seasons": {
+      "peak": ["Oct", "Nov"],
+      "good": ["Sep", "Dec"],
+      "low": []
+    },
+    "global_note": "US favorite winter squash.",
+    "tips": [
+      "Tan hard rind, heavy.",
+      "Room temp 3 months.",
+      "Microwave soften cut.",
+      "Peel after cook."
+    ],
+    "varieties": [
+      { "name": "Waltham Butternut", "taste": "Classic", "use": "All", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Roast halves 200°C 45min.",
+      "Soup blend creamy.",
+      "Risotto substitute rice.",
+      "Curry Thai massaman."
+    ],
+    "pairs_with": ["Sage", "Butter", "Nutmeg", "Coconut milk", "Chili"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Space 2m vines.",
+      "Harvest full color.",
+      "Cure 2 weeks.",
+      "Vine borer watch."
+    ],
+    "growing_facts": {
+      "Climate": "Warm",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Deep",
+      "Time to harvest": "100-110 days",
+      "Container": "No"
+    },
+    "fun_facts": [
+      "1960 US commercial.",
+      "Dry matter high.",
+      "Vitamin A richest squash."
+    ]
+  },
+  "Acorn Squash": {
+    "latin": "Cucurbita pepo",
+    "tagline": "Sweet nutty mini acorns — perfect stuffed boats.",
+    "origin": "North America",
+    "taste": "Sweet, fibrous, orange flesh",
+    "tags": ["Winter squash", "Vitamin A", "Fall", "Small", "Stuffing"],
+    "about": "Rare India. Small size apartment friendly.",
+    "nutrition": {
+      "cal": "40 kcal",
+      "carbs": "10g",
+      "fiber": "1.5g",
+      "sugar": "0g",
+      "protein": "1g",
+      "fat": "0.1g",
+      "vitc": "9mg",
+      "potassium": "347mg",
+      "vita": "646µg",
+      "calcium": "37mg",
+      "iron": "0.8mg",
+      "magnesium": "30mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin A</strong> — vision.",
+      "<strong>Potassium</strong> — muscles.",
+      "<strong>Thiamine</strong> — energy."
+    ],
+    "benefits": [
+      "<strong>Weight control</strong> — filling fiber.",
+      "<strong>Eye health</strong> — beta-carotene.",
+      "<strong>Potassium balance</strong> — blood pressure.",
+      "<strong>Low glycemic</strong> — diabetes friendly."
+    ],
+    "cautions": [
+      "Very hard raw.",
+      "Stringy center.",
+      "Small = fast cook."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov"],
+      "good": ["Sep", "Dec"],
+      "low": ["Apr", "May"]
+    },
+    "india_note": "Very rare. Import gourmet.",
+    "global_seasons": {
+      "peak": ["Oct", "Nov"],
+      "good": ["Sep"],
+      "low": []
+    },
+    "global_note": "US Thanksgiving.",
+    "tips": [
+      "Dark green hard.",
+      "Room 2 months.",
+      "Halve bake face down.",
+      "Seeds roast."
+    ],
+    "varieties": [
+      { "name": "Table Queen", "taste": "Sweet", "use": "Stuffed", "india": "No" },
+      { "name": "Honey Bear", "taste": "Improved", "use": "All", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Halves brown sugar bake.",
+      "Stuffed quinoa sausage.",
+      "Mash sweet potato.",
+      "Soup blend creamy."
+    ],
+    "pairs_with": ["Brown sugar", "Butter", "Sage", "Apple"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Bush varieties small space.",
+      "Harvest full slip.",
+      "Cure warm dry.",
+      "Powdery mildew."
+    ],
+    "growing_facts": {
+      "Climate": "Warm",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "80-100 days",
+      "Container": "Large"
+    },
+    "fun_facts": [
+      "Native American 1700s.",
+      "Acorn shape trademark.",
+      "Sweetest small squash."
+    ]
+  },
+  "Parsley": {
+    "latin": "Petroselinum crispum",
+    "tagline": "Nutrient bomb garnish — more than plate decoration.",
+    "origin": "Mediterranean",
+    "taste": "Fresh green, slightly bitter",
+    "tags": ["Herb", "Vitamin K", "Vitamin C", "Biennial", "Garnish"],
+    "about": "Hara dhaniya India. Flat/curly parsley.",
+    "nutrition": {
+      "cal": "36 kcal",
+      "carbs": "6.3g",
+      "fiber": "3.3g",
+      "sugar": "0.9g",
+      "protein": "3g",
+      "fat": "0.8g",
+      "vitc": "133mg",
+      "potassium": "554mg",
+      "vita": "421µg",
+      "calcium": "138mg",
+      "iron": "6.2mg",
+      "magnesium": "50mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin K</strong> — 1640% DV!",
+      "<strong>Vitamin C</strong> — 220% DV.",
+      "<strong>Apigenin</strong> — anti-cancer."
+    ],
+    "benefits": [
+      "<strong>Bone health</strong> — vitamin K.",
+      "<strong>Immunity</strong> — vitamin C.",
+      "<strong>Anti-cancer</strong> — apigenin.",
+      "<strong>Fresh breath</strong> — chlorophyll."
+    ],
+    "cautions": [
+      "Oxalates kidney stones.",
+      "Uterine stimulant pregnancy.",
+      "Parsley seed toxic large."
+    ],
+    "seasons": {
+      "peak": ["Year-round"],
+      "good": [],
+      "low": []
+    },
+    "india_note": "Coriander leaf = cilantro. Parsley fancy.",
+    "global_seasons": {
+      "peak": ["Year-round"],
+      "good": [],
+      "low": []
+    },
+    "global_note": "Mediterranean staple.",
+    "tips": [
+      "Bright green, no wilt.",
+      "Fridge damp towel.",
+      "Root down water.",
+      "Freeze cubes ice."
+    ],
+    "varieties": [
+      { "name": "Italian Flat", "taste": "Superior flavor", "use": "Cooking", "india": "Limited" },
+      { "name": "Moss Curled", "taste": "Garnish", "use": "Decoration", "india": "Yes" },
+      { "name": "Hamburg Root", "taste": "Parsley root", "use": "Soup", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Tabouli bulgur parsley.",
+      "Chimichurri Argentine.",
+      "Gremolata lemon garlic.",
+      "Parsley potatoes boiled."
+    ],
+    "pairs_with": ["Lemon", "Garlic", "Olive oil", "Vinegar"],
+    "avoid_with": ["Pregnancy large amounts"],
+    "growing_tips": [
+      "Slow germinate 3 weeks.",
+      "Cut outer continuous.",
+      "Biennial self-seeds.",
+      "Likes rich moist."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Rich moist",
+      "Sunlight": "Full/partial",
+      "Water": "Regular",
+      "Time to harvest": "70 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Greek victory wreath.",
+      "Vitamin C > orange per gram.",
+      "Pet detox parsley."
+    ]
+  },
+  "Coriander": {
+    "latin": "Coriandrum sativum",
+    "tagline": "Love it/hate it — genetic! Dhania transforms dishes.",
+    "origin": "Mediterranean",
+    "taste": "Citrusy fresh, soapy to some",
+    "tags": ["Herb", "Vitamin C", "Annual", "Cool-season", "Indian essential"],
+    "about": "Dhania patta India kitchen staple. Genetic taste divide.",
+    "nutrition": {
+      "cal": "23 kcal",
+      "carbs": "3.7g",
+      "fiber": "2.8g",
+      "sugar": "0.9g",
+      "protein": "2.2g",
+      "fat": "0.5g",
+      "vitc": "21mg",
+      "potassium": "521mg",
+      "vita": "135µg",
+      "calcium": "67mg",
+      "iron": "1.8mg",
+      "magnesium": "33mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin K</strong> — blood clotting.",
+      "<strong>Vitamin A</strong> — vision.",
+      "<strong>Linalool</strong> — anxiety relief."
+    ],
+    "benefits": [
+      "<strong>Digestion</strong> — carminative gas relief.",
+      "<strong>Heavy metal detox</strong> — chelates.",
+      "<strong>Anti-anxiety</strong> — linalool.",
+      "<strong>Antibacterial</strong> — salmonella."
+    ],
+    "cautions": [
+      "Aldehydes soapy taste 10-20%.",
+      "Allergy rare.",
+      "Contamination salmonella."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Feb", "Mar"],
+      "good": ["Sep", "Dec", "Jan"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "Dhania chatni, garnish EVERY dish.",
+    "global_seasons": {
+      "peak": ["Spring", "Fall"],
+      "good": [],
+      "low": ["Summer heat"]
+    },
+    "global_note": "India, Morocco.",
+    "tips": [
+      "Vibrant no wilt.",
+      "Fridge damp 1 week.",
+      "Root water glass.",
+      "Roots medicinal Thai."
+    ],
+    "varieties": [
+      { "name": "Slow Bolt", "taste": "Long harvest", "use": "Cooking", "india": "Yes" },
+      { "name": "Santo", "taste": "Fine cut", "use": "Garnish", "india": "Yes" }
+    ],
+    "culinary_tips": [
+      "Dhania chatni coconut mint.",
+      "Pesto coriander peanut.",
+      "Pho Vietnamese.",
+      "Salsa fresca lime."
+    ],
+    "pairs_with": ["Lime", "Chili", "Garlic", "Peanut", "Coconut"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Cool weather bolts heat.",
+      "Succession sow.",
+      "Self-seeds.",
+      "Harvest before flower."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile",
+      "Sunlight": "Full/partial",
+      "Water": "Regular",
+      "Time to harvest": "45 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "OR6A38 gene soap taste.",
+      "Ancient Egyptian tombs.",
+      "Coriander seed same plant."
+    ]
+  },
+  "Cilantro": {
+  "latin": "Coriandrum sativum",
+  "tagline": "Fresh citrusy burst — dhania patta genetic love/hate.",
+  "origin": "Mediterranean",
+  "taste": "Bright citrus, soapy to 15% genetically",
+  "tags": ["Herb", "Vitamin K", "Digestive", "Annual", "Controversial"],
+  "about": "Dhania India EVERY dish. Same plant coriander.",
+  "nutrition": {
+    "cal": "23 kcal",
+    "carbs": "3.7g",
+    "fiber": "2.8g",
+    "sugar": "0.9g",
+    "protein": "2.1g",
+    "fat": "0.5g",
+    "vitc": "27mg",
+    "potassium": "521mg",
+    "vita": "135µg",
+    "calcium": "67mg",
+    "iron": "1.8mg",
+    "magnesium": "33mg"
+  },
+  "micronutrients": [
+    "<strong>Vitamin K</strong> — 258% DV handful.",
+    "<strong>Vitamin A</strong> — vision.",
+    "<strong>Quercetin</strong> — antihistamine."
+  ],
+  "benefits": [
+    "<strong>Digestion</strong> — settles stomach.",
+    "<strong>Detox</strong> — heavy metals.",
+    "<strong>Allergy relief</strong> — quercetin.",
+    "<strong>Anti-anxiety</strong> — aroma compounds."
+  ],
+  "cautions": [
+    "Genetic soapy taste OR6A38.",
+    "Freshness fades fast.",
+    "Contamination risk."
+  ],
+  "seasons": {
+    "peak": ["Oct", "Nov", "Feb", "Mar"],
+    "good": ["Sep", "Dec", "Jan"],
+    "low": ["May", "Jun"]
+  },
+  "india_note": "Dhania patta market staple. Chatni, garnish.",
+  "global_seasons": {
+    "peak": ["Spring", "Fall"],
+    "good": [],
+    "low": ["Summer"]
+  },
+  "global_note": "India largest consumer.",
+  "tips": [
+    "Vibrant no wilt.",
+    "Fridge damp towel 1 week.",
+    "Root water prolongs.",
+    "Freeze chopped trays."
+  ],
+  "varieties": [
+    { "name": "Calypso", "taste": "Slow bolt", "use": "Long harvest", "india": "Limited" },
+    { "name": "Santo", "taste": "Fine traditional", "use": "Cooking", "india": "Yes" }
+  ],
+  "culinary_tips": [
+    "Dhania chatni green chili.",
+    "Guacamole essential.",
+    "Pho garnish.",
+    "Salsa fresca lime."
+  ],
+  "pairs_with": ["Lime", "Chili", "Garlic", "Onion", "Tomato"],
+  "avoid_with": [],
+  "growing_tips": [
+    "Cool weather success.",
+    "Cut outer leaves.",
+    "Self-sows nuisance.",
+    "Succession every 3 weeks."
+  ],
+  "growing_facts": {
+    "Climate": "Cool",
+    "Soil": "Loose fertile",
+    "Sunlight": "Full/partial",
+    "Water": "Moist",
+    "Time to harvest": "45-60 days",
+    "Container": "Yes"
+  },
+  "fun_facts": [
+    "10-20% world hates taste.",
+    "Ancient tomb finds.",
+    "Coriander seed same plant."
+  ]
+},
+  "Mint": {
+    "latin": "Mentha spicata",
+    "tagline": "Cool refreshing — pudina cools body and breath.",
+    "origin": "Mediterranean/Asia",
+    "taste": "Cool menthol, sweet spearmint",
+    "tags": ["Herb", "Digestive", "Perennial", "Invasive", "Tea"],
+    "about": "Pudina India raita, chatni, chai.",
+    "nutrition": {
+      "cal": "44 kcal",
+      "carbs": "8.4g",
+      "fiber": "6.8g",
+      "sugar": "0.4g",
+      "protein": "3.3g",
+      "fat": "0.7g",
+      "vitc": "32mg",
+      "potassium": "569mg",
+      "vita": "0µg",
+      "calcium": "243mg",
+      "iron": "5.1mg",
+      "magnesium": "48mg"
+    },
+    "micronutrients": [
+      "<strong>Menthol</strong> — cooling analgesic.",
+      "<strong>Rosmarinic acid</strong> — anti-inflammatory.",
+      "<strong>Perillaldehyde</strong> — antimicrobial."
+    ],
+    "benefits": [
+      "<strong>Digestion</strong> — IBS relief.",
+      "<strong>Breath freshener</strong> — natural.",
+      "<strong>Headache relief</strong> — menthol.",
+      "<strong>Anti-nausea</strong> — pregnancy safe."
+    ],
+    "cautions": [
+      "Invasive spreader.",
+      "Heartburn reflux trigger.",
+      "Peppermint vs spearmint milder."
+    ],
+    "seasons": {
+      "peak": ["Year-round"],
+      "good": [],
+      "low": []
+    },
+    "india_note": "Pudina raita, chatni, pulao.",
+    "global_seasons": {
+      "peak": ["Summer"],
+      "good": ["Spring", "Fall"],
+      "low": ["Winter cold"]
+    },
+    "global_note": "India, Morocco.",
+    "tips": [
+      "Bright green no black spots.",
+      "Fridge damp 1 week.",
+      "Root jar water.",
+      "Freeze cubes."
+    ],
+    "varieties": [
+      { "name": "Spearmint", "taste": "Sweet mild", "use": "Culinary", "india": "Yes" },
+      { "name": "Peppermint", "taste": "Strong menthol", "use": "Tea/medicinal", "india": "Limited" },
+      { "name": "Apple Mint", "taste": "Fruity", "use": "Drinks", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Pudina raita yogurt cumin.",
+      "Mint chutney sweet tamarind.",
+      "Mojito muddle.",
+      "Mint tea Moroccan."
+    ],
+    "pairs_with": ["Yogurt", "Lemon", "Cumin", "Sugar", "Rum"],
+    "avoid_with": ["Reflux sufferers"],
+    "growing_tips": [
+      "Contain pots invasive.",
+      "Cut flower prolong.",
+      "Divide every 3 years.",
+      "Wet soil loves."
+    ],
+    "growing_facts": {
+      "Climate": "Moist",
+      "Soil": "Rich wet",
+      "Sunlight": "Partial",
+      "Water": "High",
+      "Time to harvest": "60 days",
+      "Container": "Essential"
+    },
+    "fun_facts": [
+      "Mythology Pluto Proserpine.",
+      "4000 years cultivation.",
+      "Menthol 0.05% leaf."
+    ]
+  },
+  "Rosemary": {
+    "latin": "Salvia rosmarinus",
+    "tagline": "Piney memory herb — roast lamb essential.",
+    "origin": "Mediterranean",
+    "taste": "Resinous pine, lemon, camphor",
+    "tags": ["Herb", "Memory", "Antioxidant", "Perennial", "Roasting"],
+    "about": "Rosemary rare India but growing grilling trend.",
+    "nutrition": {
+      "cal": "131 kcal",
+      "carbs": "20g",
+      "fiber": "14g",
+      "sugar": "0g",
+      "protein": "3.3g",
+      "fat": "15g",
+      "vitc": "29mg",
+      "potassium": "955mg",
+      "vita": "0µg",
+      "calcium": "317mg",
+      "iron": "6.7mg",
+      "magnesium": "91mg"
+    },
+    "micronutrients": [
+      "<strong>Carnosic acid</strong> — brain protection.",
+      "<strong>Rosmarinic acid</strong> — anti-inflammatory.",
+      "<strong>1,8-cineole</strong> — Alzheimer's aid."
+    ],
+    "benefits": [
+      "<strong>Memory boost</strong> — aroma improves recall.",
+      "<strong>Hair growth</strong> — scalp circulation.",
+      "<strong>Anti-cancer</strong> — carnosic acid.",
+      "<strong>Antimicrobial</strong> — food preservative."
+    ],
+    "cautions": [
+      "Pregnancy large doses.",
+      "Seizure patients.",
+      "Camphor smell strong."
+    ],
+    "seasons": {
+      "peak": ["Year-round"],
+      "good": [],
+      "low": []
+    },
+    "india_note": "Exotic herb urban. Grill marinade.",
+    "global_seasons": {
+      "peak": ["Summer"],
+      "good": ["Spring"],
+      "low": ["Winter cold"]
+    },
+    "global_note": "Spain largest.",
+    "tips": [
+      "Needle green no brown.",
+      "Damp fridge 2 weeks.",
+      "Dry hanging.",
+      "Freeze oil."
+    ],
+    "varieties": [
+      { "name": "Tuscan Blue", "taste": "Upright cooking", "use": "Roast", "india": "Limited" },
+      { "name": "Prostratus", "taste": "Trailing", "use": "Groundcover", "india": "Rare" },
+      { "name": "Arp", "taste": "Cold hardy", "use": "Landscape", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Rosemary lemon roast chicken.",
+      "Potato fries chop fine.",
+      "Focaccia dimple oil.",
+      "Steak rub salt."
+    ],
+    "pairs_with": ["Garlic", "Lemon", "Olive oil", "Lamb", "Potato"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Dry poor soil.",
+      "Prune woody.",
+      "Full sun drainage.",
+      "Root cuttings easy."
+    ],
+    "growing_facts": {
+      "Climate": "Dry Mediterranean",
+      "Soil": "Sandy poor",
+      "Sunlight": "Full",
+      "Water": "Low",
+      "Time to harvest": "Perennial",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Rosemary = sea dew.",
+      "Wedding remembrance.",
+      "Hamlet Ophelia memory."
+    ]
+  },
+  "Thyme": {
+    "latin": "Thymus vulgaris",
+    "tagline": "Tiny leaves mighty medicine — thyme kills germs.",
+    "origin": "Mediterranean",
+    "taste": "Earthy mint lemon pungent",
+    "tags": ["Herb", "Antimicrobial", "Perennial", "Dry tolerant", "Soup"],
+    "about": "Rare India but soup/stew potential.",
+    "nutrition": {
+      "cal": "101 kcal",
+      "carbs": "24g",
+      "fiber": "14g",
+      "sugar": "0.3g",
+      "protein": "9g",
+      "fat": "1.7g",
+      "vitc": "160mg",
+      "potassium": "814mg",
+      "vita": "0µg",
+      "calcium": "1890mg",
+      "iron": "17.5mg",
+      "magnesium": "160mg"
+    },
+    "micronutrients": [
+      "<strong>Thymol</strong> — kills 90% germs.",
+      "<strong>Carvacrol</strong> — antifungal.",
+      "<strong>Vitamin C</strong> — immunity."
+    ],
+    "benefits": [
+      "<strong>Antibacterial</strong> — throat sore relief.",
+      "<strong>Cough suppressant</strong> — bronchitis.",
+      "<strong>Antifungal</strong> — candida.",
+      "<strong>Antioxidant</strong> — ORAC high."
+    ],
+    "cautions": [
+      "Thujone rare toxicity.",
+      "Pregnancy moderate.",
+      "Skin irritant oil."
+    ],
+    "seasons": {
+      "peak": ["Year-round"],
+      "good": [],
+      "low": []
+    },
+    "india_note": "Exotic. Soup, marinade potential.",
+    "global_seasons": {
+      "peak": ["Summer"],
+      "good": ["Spring"],
+      "low": []
+    },
+    "global_note": "Spain, Morocco.",
+    "tips": [
+      "No yellow leaves.",
+      "Damp fridge 2 weeks.",
+      "Dry excellent.",
+      "Stem woody OK."
+    ],
+    "varieties": [
+      { "name": "Common Thyme", "taste": "Classic", "use": "Cooking", "india": "Limited" },
+      { "name": "Lemon Thyme", "taste": "Citrus", "use": "Fish", "india": "Rare" },
+      { "name": "Creeping", "taste": "Mild", "use": "Groundcover", "india": "No" }
+    ],
+    "culinary_tips": [
+      "Thyme roast chicken.",
+      "Carrot soup puree.",
+      "Lemon thyme fish.",
+      "Herbes Provence mix."
+    ],
+    "pairs_with": ["Lemon", "Garlic", "Olive oil", "Mushroom", "Potato"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Gravel dry soil.",
+      "Trim woody.",
+      "Divide clumps.",
+      "Bee magnet."
+    ],
+    "growing_facts": {
+      "Climate": "Dry",
+      "Soil": "Poor drainage",
+      "Sunlight": "Full",
+      "Water": "Low",
+      "Time to harvest": "Perennial",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "Roman temple purification.",
+      "WW1 battlefield antiseptic.",
+      "Thymus courage Greek."
+    ]
+  },
+  "Basil": {
+    "latin": "Ocimum basilicum",
+    "tagline": "Sweet spicy holy tulsi cousin — pesto perfection.",
+    "origin": "India/Africa",
+    "taste": "Sweet clove anise, Genovese classic",
+    "tags": ["Herb", "Anti-inflammatory", "Annual", "Summer", "Pesto"],
+    "about": "Tulsi India sacred. Italian basil different.",
+    "nutrition": {
+      "cal": "23 kcal",
+      "carbs": "2.7g",
+      "fiber": "1.6g",
+      "sugar": "0.3g",
+      "protein": "3.2g",
+      "fat": "0.6g",
+      "vitc": "18mg",
+      "potassium": "295mg",
+      "vita": "263µg",
+      "calcium": "177mg",
+      "iron": "3.2mg",
+      "magnesium": "64mg"
+    },
+    "micronutrients": [
+      "<strong>Eugenol</strong> — anti-inflammatory.",
+      "<strong>Linalool</strong> — antibacterial.",
+      "<strong>Beta-caryophyllene</strong> — pain relief."
+    ],
+    "benefits": [
+      "<strong>Anti-inflammatory</strong> — arthritis relief.",
+      "<strong>Antibacterial</strong> — food poisoning.",
+      "<strong>Stress reduction</strong> — adaptogen.",
+      "<strong>Blood sugar</strong> — fasting glucose."
+    ],
+    "cautions": [
+      "Basil oil skin sensitize.",
+      "Pregnancy moderate.",
+      "Downy mildew watch."
+    ],
+    "seasons": {
+      "peak": ["Apr", "May", "Jun"],
+      "good": ["Mar", "Jul"],
+      "low": ["Dec", "Jan"]
+    },
+    "india_note": "Tulsi sacred vs. culinary basil.",
+    "global_seasons": {
+      "peak": ["Summer"],
+      "good": ["Spring"],
+      "low": ["Winter"]
+    },
+    "global_note": "Italy, India.",
+    "tips": [
+      "Vibrant no black spots.",
+      "Counter room temp 3 days.",
+      "Freeze pesto cubes.",
+      "Root water propagate."
+    ],
+    "varieties": [
+      { "name": "Genovese", "taste": "Pesto king", "use": "Italian", "india": "Limited" },
+      { "name": "Thai", "taste": "Licorice", "use": "Asian", "india": "Yes" },
+      { "name": "Holy Tulsi", "taste": "Camphor", "use": "Ayurveda", "india": "Yes" },
+      { "name": "Lemon", "taste": "Citrus", "use": "Fish", "india": "Rare" }
+    ],
+    "culinary_tips": [
+      "Pesto Genovese pine nut.",
+      "Caprese tomato mozzarella.",
+      "Thai basil stir-fry.",
+      "Tulsi tea kadha."
+    ],
+    "pairs_with": ["Tomato", "Garlic", "Pine nut", "Olive oil", "Mozzarella"],
+    "avoid_with": [],
+    "growing_tips": [
+      "Pinch flowers leaves.",
+      "6 hours sun minimum.",
+      "Succession sow.",
+      "Heat lover."
+    ],
+    "growing_facts": {
+      "Climate": "Warm",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Regular",
+      "Time to harvest": "60 days",
+      "Container": "Yes"
+    },
+    "fun_facts": [
+      "India origin 5000BC.",
+      "Tulsi = incomparable.",
+      "300 varieties worldwide."
+    ]
+  },
+  "Lettuce Iceberg": {
+    "latin": "Lactuca sativa var. capitata",
+    "tagline": "Crunchy iceberg cool core — durable salad base.",
+    "origin": "Mediterranean",
+    "taste": "Mild crisp watery, sweetest heart",
+    "tags": ["Lettuce", "Crunch", "Hydration", "Storage", "Classic"],
+    "about": "Iceberg India burgers, salads. Crispest lettuce.",
+    "nutrition": {
+      "cal": "14 kcal",
+      "carbs": "3g",
+      "fiber": "1.2g",
+      "sugar": "1.9g",
+      "protein": "0.9g",
+      "fat": "0.1g",
+      "vitc": "3mg",
+      "potassium": "141mg",
+      "vita": "25µg",
+      "calcium": "18mg",
+      "iron": "0.4mg",
+      "magnesium": "7mg"
+    },
+    "micronutrients": [
+      "<strong>Vitamin K</strong> — clotting.",
+      "<strong>Folate</strong> — heart.",
+      "<strong>Water</strong> — 96% hydration."
+    ],
+    "benefits": [
+      "<strong>Hydration</strong> — electrolyte balance.",
+      "<strong>Low calorie</strong> — volume eating.",
+      "<strong>Digestion</strong> — fiber bulk.",
+      "<strong>Eye health</strong> — lutein modest."
+    ],
+    "cautions": [
+      "E.coli outbreaks.",
+      "Tip burn calcium.",
+      "Nutrition low vs. dark greens."
+    ],
+    "seasons": {
+      "peak": ["Oct", "Nov", "Feb", "Mar"],
+      "good": ["Sep", "Dec", "Jan"],
+      "low": ["May", "Jun"]
+    },
+    "india_note": "McD burgers, fast food salads.",
+    "global_seasons": {
+      "peak": ["Spring", "Fall"],
+      "good": [],
+      "low": ["Summer heat"]
+    },
+    "global_note": "US iceberg capital.",
+    "tips": [
+      "Heavy dense core.",
+      "Fridge crisper 3 weeks.",
+      "Wedge intact.",
+      "Core resists rot."
+    ],
+    "varieties": [
+      { "name": "Great Lakes", "taste": "Classic crisp", "use": "Wedges", "india": "Yes" },
+      { "name": "Crispino", "taste": "Iceberg romaine", "use": "Grill", "india": "Limited" }
+    ],
+    "culinary_tips": [
+      "Iceberg wedge blue cheese.",
+      "BLT essential.",
+      "Shredded taco topping.",
+      "Asian salad sesame."
+    ],
+    "pairs_with": ["Blue cheese", "Bacon", "Thousand island", "Ranch"],
+    "avoid_with": [],
+    "growing_tips": [
+      "65 days head.",
+      "Heat bolts bitter.",
+      "Heavy nitrogen.",
+      "Blanch self naturally."
+    ],
+    "growing_facts": {
+      "Climate": "Cool",
+      "Soil": "Fertile",
+      "Sunlight": "Full",
+      "Water": "Consistent",
+      "Time to harvest": "65-80 days",
+      "Container": "Large"
+    },
+    "fun_facts": [
+      "Named 1920s shipping.",
+      "Crisp = iceberg collision.",
+      "Most shipped lettuce."
+    ]
+  }
+}

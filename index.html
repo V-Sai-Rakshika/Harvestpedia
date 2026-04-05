@@ -500,8 +500,6 @@
       .nav-links { display: none; }
     }
   </style>
-  <script src="js/api.js"></script>
-  <script src="js/darkmode.js"></script>
 </head>
 <body>
 
@@ -540,9 +538,14 @@
     </p>
 
     <div class="search-wrap">
-      <input class="search-input" type="text" placeholder="Search fruits, vegetables, plants..." />
-      <button class="search-btn">🔍</button>
-    </div>
+  <input 
+    id="home-search-input"
+    class="search-input"
+    type="text"
+    placeholder="Search fruits, vegetables, plants..." 
+  />
+  <button id="home-search-btn" class="search-btn">Search</button>
+</div>
 
     <div class="hero-actions">
       <a class="btn-primary" href="fruits.html">Start Exploring →</a>
@@ -831,6 +834,70 @@
     });
   });
 
+</script>
+<script src="js/searchIndex.js"></script>
+
+<script>
+const input = document.getElementById("home-search-input");
+const btn = document.getElementById("home-search-btn");
+
+function goToSearch() {
+  const query = input.value.trim().toLowerCase();
+  if (!query) return;
+
+  const item = SEARCH_INDEX.find(i =>
+    i.name.toLowerCase().includes(query)
+  );
+
+  if (!item) {
+    alert("Item not found 😢");
+    return;
+  }
+
+  // redirect based on type
+  if (item.type === "fruit") {
+    window.location.href = `fruit_detail.html?fruit=${encodeURIComponent(item.name)}`;
+  } 
+  else if (item.type === "vegetable") {
+    window.location.href = `vegetable_detail.html?vegetable=${encodeURIComponent(item.name)}`;
+  } 
+  else if (item.type === "plant") {
+    window.location.href = `plant_detail.html?plant=${encodeURIComponent(item.name)}`;
+  }
+}
+
+// button click
+btn.addEventListener("click", goToSearch);
+
+// enter key
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") goToSearch();
+});
+</script>
+<script>
+{
+
+  // redirect based on type
+  if (item.type === "fruit") {
+    window.location.href = `fruit_detail.html?fruit=${encodeURIComponent(item.name)}`;
+  }
+
+  if (item.type === "vegetable") {
+    window.location.href = `vegetable_detail.html?vegetable=${encodeURIComponent(item.name)}`;
+  }
+
+  if (item.type === "plant") {
+    window.location.href = `plant_detail.html?plant=${encodeURIComponent(item.name)}`;
+  }
+}
+
+// button click
+btn.addEventListener("click", goToSearch);
+
+// enter key
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") goToSearch();
+});
 </script>
 </body>
 </html>

@@ -1,0 +1,253 @@
+/* ═══════════════════════════════════════════════════════
+   Harvestpedia – Shared Stylesheet  (css/style.css)
+   All pages import this. Page-specific overrides go in
+   a <style> block inside the page itself.
+═══════════════════════════════════════════════════════ */
+
+/* ── RESET & ROOT ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Green palette */
+  --green-50:  #f0f9f0;
+  --green-100: #d4edda;
+  --green-200: #a8d5b5;
+  --green-300: #72bb88;
+  --green-400: #5aab6f;
+  --green-600: #2d7a45;
+  --green-700: #236037;
+  --green-800: #1a4f2b;
+
+  /* Earth palette */
+  --earth-50:  #fdf6ee;
+  --earth-100: #f5e6d0;
+  --earth-300: #d4a96a;
+  --earth-500: #a0703a;
+
+  /* Surface */
+  --cream:      #fdfaf5;
+  --warm-white: #fffef9;
+
+  /* Text */
+  --text-dark:  #1c2b1e;
+  --text-mid:   #3d5440;
+  --text-muted: #6b8070;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 12px rgba(30,60,35,0.07);
+  --shadow-md: 0 6px 30px rgba(30,60,35,0.10);
+  --shadow-lg: 0 18px 60px rgba(30,60,35,0.14);
+
+  /* Radius */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+}
+
+/* ── DARK MODE ─────────────────────────────────────── */
+[data-theme="dark"] {
+  --cream:      #111a11;
+  --warm-white: #1a2a1a;
+  --text-dark:  #e8f4e8;
+  --text-mid:   #b8d4b8;
+  --text-muted: #7a9a7a;
+  --green-50:   #1a2a1a;
+  --green-100:  #2d4a2d;
+  --green-200:  #3d6a3d;
+  --earth-50:   #1e1a14;
+  --earth-100:  #2e2416;
+}
+
+[data-theme="dark"] body     { background: var(--cream); color: var(--text-dark); }
+[data-theme="dark"] nav      { background: rgba(17,26,17,0.92) !important; }
+[data-theme="dark"] footer   { background: #0a150a; }
+[data-theme="dark"] .card,
+[data-theme="dark"] .info-card { background: #1e2d1e !important; border-color: #2d4a2d !important; }
+
+/* ── BASE ──────────────────────────────────────────── */
+html   { scroll-behavior: smooth; }
+body   { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+button { cursor: pointer; font-family: inherit; }
+a      { color: inherit; }
+img    { display: block; max-width: 100%; }
+
+/* ── NAVBAR ────────────────────────────────────────── */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 48px;
+  background: rgba(253,250,245,0.90);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(90,171,111,0.12);
+  transition: box-shadow .3s;
+}
+#navbar.scrolled { box-shadow: var(--shadow-md); }
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--green-800); text-decoration: none;
+}
+.nav-logo-leaf {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--green-400), var(--green-600));
+  border-radius: 50% 12px 50% 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 6px; list-style: none;
+}
+.nav-links a {
+  text-decoration: none; color: var(--text-mid);
+  font-size: 14px; font-weight: 500;
+  padding: 8px 18px; border-radius: 50px;
+  transition: all .2s;
+}
+.nav-links a:hover,
+.nav-links a.active { background: var(--green-50); color: var(--green-600); }
+
+.nav-cta {
+  background: var(--green-600) !important;
+  color: white !important;
+  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+}
+.nav-cta:hover { background: var(--green-800) !important; transform: translateY(-1px); }
+
+.dm-toggle {
+  background: none; border: 1.5px solid var(--green-200);
+  border-radius: 8px; padding: 6px 12px;
+  font-size: 1rem; color: var(--text-mid);
+  transition: border-color .2s;
+}
+.dm-toggle:hover { border-color: var(--green-400); }
+
+/* ── FOOTER ────────────────────────────────────────── */
+footer {
+  background: var(--green-800); color: white;
+  padding: 60px 48px 40px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 48px;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+  margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+}
+.footer-leaf {
+  width: 28px; height: 28px; background: var(--green-400);
+  border-radius: 50% 10px 50% 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 13px;
+}
+.footer-brand p { font-size: 13px; opacity: .65; line-height: 1.7; max-width: 230px; }
+.footer-col h5  { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: .5; margin-bottom: 18px; }
+.footer-col a   { display: block; color: rgba(255,255,255,.75); font-size: 14px; text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+.footer-col a:hover { color: var(--green-200); }
+.footer-bottom  { border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; opacity: .5; }
+
+/* ── SEASON BADGES ─────────────────────────────────── */
+.season-badge { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 50px; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; backdrop-filter: blur(8px); }
+.season-badge.summer { background: rgba(255,200,50,0.9);  color: #7a4f00; }
+.season-badge.spring { background: rgba(255,160,180,0.9); color: #7a1f3a; }
+.season-badge.autumn { background: rgba(220,120,50,0.9);  color: #6b2800; }
+.season-badge.winter { background: rgba(130,200,255,0.9); color: #003a6b; }
+.season-badge.year   { background: rgba(90,171,111,0.9);  color: #0f3d1e; }
+
+/* ── BUTTONS ───────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 26px; border-radius: 50px; border: none;
+  font-size: 14px; font-weight: 600; font-family: inherit;
+  text-decoration: none; cursor: pointer; transition: all .2s;
+}
+.btn-green   { background: var(--green-600); color: white; box-shadow: 0 4px 14px rgba(45,122,69,0.3); }
+.btn-green:hover  { background: var(--green-800); transform: translateY(-1px); }
+.btn-earth   { background: var(--earth-500); color: white; }
+.btn-earth:hover  { background: #7a5022; transform: translateY(-1px); }
+.btn-outline { background: transparent; border: 2px solid var(--green-200); color: var(--green-700); }
+.btn-outline:hover { border-color: var(--green-400); background: var(--green-50); }
+.btn-ghost   { background: var(--green-50); border: 1px dashed var(--green-300); color: var(--green-600); }
+.btn-ghost:hover { background: var(--green-100); }
+
+/* ── CARD BASE ─────────────────────────────────────── */
+.card {
+  background: white; border: 1px solid rgba(90,171,111,0.10);
+  border-radius: var(--radius-md); padding: 24px 28px;
+  box-shadow: var(--shadow-sm);
+}
+.card.earth-accent { border-left: 4px solid var(--earth-300); }
+.card.green-accent { border-left: 4px solid var(--green-400); }
+.card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: 16px; display: block; }
+
+/* ── SECTION HEADING ───────────────────────────────── */
+.sec-head {
+  font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700;
+  color: var(--text-dark); margin: 44px 0 20px;
+  display: flex; align-items: center; gap: 10px;
+  padding-bottom: 12px; border-bottom: 2px solid var(--green-100);
+}
+
+/* ── TWO-COL GRID ──────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.two-col .full { grid-column: 1 / -1; }
+
+/* ── SEASON PILLS ──────────────────────────────────── */
+.s-pill { padding: 5px 13px; border-radius: 50px; font-size: 12px; font-weight: 600; }
+.s-peak { background: #d1fae5; color: #065f46; }
+.s-good { background: #fef3c7; color: #92400e; }
+.s-low  { background: #f3f4f6; color: #6b7280; }
+
+/* ── TIP / BENEFIT ─────────────────────────────────── */
+.tip-item { padding: 12px 16px; background: var(--green-50); border-radius: 11px; border-left: 3px solid var(--green-400); font-size: 14px; line-height: 1.6; color: var(--text-mid); }
+.b-row    { display: flex; gap: 11px; align-items: flex-start; }
+.b-dot    { width: 8px; height: 8px; min-width: 8px; border-radius: 50%; background: var(--green-400); margin-top: 5px; }
+.b-dot.amber  { background: #f59e0b; }
+.b-dot.purple { background: #8b5cf6; }
+.b-row p  { font-size: 14px; line-height: 1.6; color: var(--text-mid); }
+
+/* ── NUTRITION ROW ─────────────────────────────────── */
+.nut-row   { display: flex; justify-content: space-between; align-items: center; padding: 9px 13px; background: var(--green-50); border-radius: 10px; }
+.nut-name  { font-size: 13px; color: var(--text-muted); }
+.nut-val   { font-size: 14px; font-weight: 600; color: var(--green-700); }
+
+/* ── FACT CHIP ─────────────────────────────────────── */
+.fact-chip { padding: 12px 15px; background: var(--earth-50); border: 1px solid var(--earth-100); border-radius: 11px; }
+.f-label   { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 3px; }
+.f-val     { font-size: 14px; font-weight: 600; color: var(--earth-500); }
+
+/* ── TAG PILL ──────────────────────────────────────── */
+.tag-row  { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag-pill { padding: 6px 15px; background: var(--earth-50); border: 1px solid var(--earth-100); border-radius: 50px; font-size: 12px; font-weight: 500; color: var(--earth-500); }
+.tag-pill.avoid { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+
+/* ── VARIETY TABLE ─────────────────────────────────── */
+.var-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.var-table th { text-align: left; padding: 9px 13px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); background: var(--green-50); border-bottom: 1px solid var(--green-100); }
+.var-table td { padding: 11px 13px; border-bottom: 1px solid var(--green-50); color: var(--text-mid); vertical-align: top; }
+.var-table tr:last-child td { border-bottom: none; }
+.var-table tr:hover td { background: var(--green-50); }
+.var-name  { font-weight: 600; color: var(--text-dark); }
+
+/* ── EMPTY / NOT FOUND ─────────────────────────────── */
+.empty-msg  { font-size: 13px; color: var(--text-muted); font-style: italic; }
+.not-found  { text-align: center; padding: 80px 20px; }
+.not-found h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 12px; }
+.not-found p  { color: var(--text-muted); margin-bottom: 24px; }
+
+/* ── RESPONSIVE ────────────────────────────────────── */
+@media (max-width: 1024px) {
+  #navbar { padding: 14px 24px; }
+  footer  { padding: 48px 24px 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  #navbar { padding: 12px 20px; }
+  .nav-links { display: none; }
+  .two-col { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}

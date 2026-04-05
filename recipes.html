@@ -6,33 +6,215 @@
 <title>Recipes – Harvestpedia</title>
 <link rel="stylesheet" href="../css/style.css"/>
 <style>
-  .recipe-hero {
-    padding:2.5rem 1.5rem 2rem; text-align:center;
-    background:linear-gradient(135deg,#fff8f0 0%,#fef5e7 100%);
+  /* ── NAVBAR ───────────────────────────────── */
+:root {
+  --green-50:  #f0f9f0;
+  --green-100: #d4edda;
+  --green-200: #a8d5b5;
+  --green-300: #72bb88;
+  --green-400: #5aab6f;
+  --green-600: #2d7a45;
+  --green-800: #1a4f2b;
+
+  --earth-50:  #fdf6ee;
+
+  --cream:      #fdfaf5;
+  --warm-white: #fffef9;
+
+  --text-dark:  #1c2b1e;
+  --text-mid:   #3d5440;
+  --text-muted: #6b8070;
+
+  --shadow-md:  0 6px 30px rgba(30,60,35,0.10);
+  --radius-lg:  32px;
+}
+  #navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 40px;
+
+  background: rgba(253,250,245,0.88);
+  backdrop-filter: blur(16px);
+
+  border-bottom: 1px solid rgba(90,171,111,0.12);
+  transition: all 0.3s ease;
+}
+
+/* Shadow on scroll */
+#navbar.scrolled {
+  box-shadow: 0 6px 30px rgba(30,60,35,0.08);
+}
+
+/* ── LOGO ───────────────────────────────── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+
+  color: var(--green-800);
+  text-decoration: none;
+}
+
+.nav-logo-leaf {
+  width: 34px;
+  height: 34px;
+
+  background: linear-gradient(135deg, var(--green-400), var(--green-600));
+  border-radius: 50% 12px 50% 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+
+  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+}
+
+/* ── LINKS ───────────────────────────────── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  list-style: none;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-mid);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  padding: 8px 18px;
+  border-radius: 50px;
+
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.nav-links a:hover {
+  background: var(--green-50);
+  color: var(--green-600);
+}
+
+/* Active page */
+.nav-links a.active {
+  background: var(--green-50);
+  color: var(--green-600);
+}
+
+/* CTA Button */
+.nav-cta {
+  background: var(--green-600) !important;
+  color: white !important;
+
+  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+}
+
+.nav-cta:hover {
+  background: var(--green-800) !important;
+  transform: translateY(-1px);
+}
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width: 768px) {
+  #navbar {
+    padding: 12px 20px;
   }
-  .recipe-hero h1 { font-size:2rem; font-weight:700; color:#1a3a1a; }
-  .recipe-hero p  { color:#6b7280; margin-top:.4rem; }
+
+  .nav-links {
+    display: none; /* later you can add hamburger */
+  }
+}
+  .recipe-hero {
+  padding: 100px 24px 50px;
+  text-align: center;
+  background: var(--warm-white);
+}
+
+.recipe-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.recipe-hero p {
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-size: 15px;
+}
 
   .recipe-wrap { max-width:900px; margin:0 auto; padding:2rem 1.5rem; }
 
   /* Search & options */
   .recipe-search-box {
-    background:#fff; border:1px solid #e5e7eb; border-radius:14px;
-    padding:1.5rem; margin-bottom:1.5rem;
-  }
-  .recipe-search-box h2 { font-size:1rem; font-weight:600; margin-bottom:1rem; color:#1a3a1a; }
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+
+  border: 1px solid var(--green-100);
+  box-shadow: var(--shadow-md);
+
+  margin-bottom: 1.5rem;
+}
+
+.recipe-search-box h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
   .recipe-input-row { display:flex; gap:8px; margin-bottom:1rem; }
   #recipe-ingredient-input {
-    flex:1; padding:10px 14px; border:1.5px solid #e5e7eb; border-radius:10px;
-    font-size:14px; color:#1a3a1a; outline:none; transition:border-color .15s;
-  }
-  #recipe-ingredient-input:focus { border-color:#3B6D11; }
+  flex: 1;
+  padding: 12px 18px;
+
+  border: 1.5px solid var(--green-200);
+  border-radius: 50px;
+
+  font-size: 14px;
+  background: white;
+
+  transition: border-color 0.2s;
+}
+
+#recipe-ingredient-input:focus {
+  border-color: var(--green-400);
+}
   .add-btn {
-    padding:10px 18px; background:#3B6D11; color:#fff; border:none;
-    border-radius:10px; font-weight:600; cursor:pointer; font-size:14px;
-    transition:background .2s;
-  }
-  .add-btn:hover { background:#2d5209; }
+  padding: 12px 20px;
+  border-radius: 50px;
+
+  background: var(--green-600);
+  color: white;
+
+  border: none;
+  font-weight: 600;
+
+  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+}
+
+.add-btn:hover {
+  background: var(--green-800);
+}
 
   .chips-row { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1rem; min-height:28px; }
   .chip {
@@ -40,8 +222,17 @@
     padding:4px 10px 4px 12px; background:#f0faf0; border:1px solid #d1fae5;
     border-radius:99px; font-size:13px; color:#065f46; font-weight:500;
   }
-  .chip button { background:none; border:none; cursor:pointer; color:#9ca3af; font-size:13px; padding:0; }
-  .chip button:hover { color:#ef4444; }
+  .chip {
+  padding: 6px 14px;
+  border-radius: 50px;
+
+  background: var(--green-50);
+  border: 1px solid var(--green-100);
+
+  font-size: 12px;
+  color: var(--green-600);
+  font-weight: 500;
+}
 
   .options-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
   .options-row label { font-size:13px; color:#374151; display:flex; align-items:center; gap:6px; }
@@ -50,28 +241,75 @@
     font-size:13px; color:#374151; background:#fff; outline:none;
   }
   .gen-btn {
-    margin-left:auto; padding:10px 24px; background:#BA7517; color:#fff;
-    border:none; border-radius:10px; font-weight:700; cursor:pointer; font-size:14px;
-    transition:background .2s;
-  }
-  .gen-btn:hover { background:#8c5a10; }
-  .gen-btn:disabled { background:#9ca3af; cursor:not-allowed; }
+  margin-left: auto;
+  padding: 12px 26px;
+
+  border-radius: 50px;
+  border: none;
+
+  font-weight: 700;
+
+  background: var(--green-600);
+  color: white;
+
+  box-shadow: 0 6px 24px rgba(45,122,69,0.3);
+}
+.gen-btn {
+  color: white !important;
+}
+
+.add-btn {
+  color: white !important;
+}
+
+.nav-links a {
+  color: var(--text-mid);
+}
+
+.nav-cta {
+  background: var(--green-600) !important;
+  color: white !important;
+}
+
+.nav-cta:hover {
+  background: var(--green-800) !important;
+  color: white !important;
+}
+
+.gen-btn:hover {
+  background: var(--green-800);
+  transform: translateY(-1px);
+}
 
   /* Quick picks */
-  .quick-picks { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem; }
   .qp-btn {
-    padding:6px 14px; border:1.5px solid #e5e7eb; border-radius:99px;
-    font-size:12px; font-weight:500; cursor:pointer; background:#fff; color:#374151;
-    transition:all .15s;
-  }
-  .qp-btn:hover { border-color:#3B6D11; background:#f5f9f0; color:#3B6D11; }
+  padding: 8px 16px;
+  border-radius: 50px;
 
+  border: 1px solid var(--green-100);
+  background: var(--green-50);
+
+  font-size: 12px;
+  color: var(--text-mid);
+
+  transition: all 0.2s ease;
+}
+
+.qp-btn:hover {
+  border-color: var(--green-300);
+  color: var(--green-600);
+}
   /* Recipe output */
   .recipe-output { display:none; }
   .recipe-card {
-    background:#fff; border:1px solid #e5e7eb; border-radius:14px;
-    padding:2rem; margin-bottom:1.5rem;
-  }
+  background: white;
+  border-radius: var(--radius-lg);
+
+  padding: 2rem;
+
+  border: 1px solid var(--green-100);
+  box-shadow: var(--shadow-md);
+}
   .recipe-card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:1rem; }
   .recipe-card-title  { font-size:1.3rem; font-weight:700; color:#1a3a1a; }
   .recipe-card-meta   { font-size:12px; color:#9ca3af; margin-top:4px; }
@@ -96,27 +334,48 @@
   @keyframes spin { to { transform:rotate(360deg); } }
 
   .new-recipe-btn {
-    display:block; width:100%; padding:12px; text-align:center;
-    background:#f5f9f0; border:1.5px dashed #c3e6cb; border-radius:12px;
-    color:#3B6D11; font-weight:600; cursor:pointer; font-size:14px;
-    transition:background .15s; margin-top:.5rem;
-  }
-  .new-recipe-btn:hover { background:#e8f4e8; }
+  padding: 12px;
+  border-radius: 50px;
+
+  background: var(--green-50);
+  border: 1px dashed var(--green-300);
+
+  color: var(--green-600);
+  font-weight: 600;
+}
+
+.new-recipe-btn:hover {
+  background: var(--green-100);
+}
+
+body {
+  color: var(--text-dark);
+}
+:root {
+  --text-mid: #3d5440;
+}
+
 </style>
-<script src="/Harvestpedia/js/api.js"></script>
-<script src="Harvestpedia/js/darkmode.js"></script>
+<script src="js/api.js"></script>
+<script src="js/darkmode.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<nav class="navbar">
-  <a href="../index.html" class="nav-logo">🌿 Harvestpedia</a>
-  <div class="nav-links">
-    <a href="../fruits/fruits.html">Fruits</a>
-    <a href="../vegetables/vegetables.html">Vegetables</a>
-    <a href="../plants/plants.html">Plants</a>
-    <a href="recipes.html" class="active">Recipes</a>
-    <button class="dm-toggle" id="dm-toggle"></button>
-  </div>
+<nav id="navbar">
+  <a class="nav-logo" href="../index.html">
+    <div class="nav-logo-leaf">🌿</div>
+    Harvestpedia
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fruits.html">Fruits</a></li>
+    <li><a href="vegetables.html">Vegetables</a></li>
+    <li><a href="plants.html">Plants</a></li>
+    <li><a href="recipes.html" class="active">Recipes</a></li>
+    <li><a href="fruits.html" class="nav-cta">Explore</a></li>
+  </ul>
 </nav>
 
 <section class="recipe-hero">

@@ -7,14 +7,28 @@
 <link rel="stylesheet" href="../css/style.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-  .compare-hero {
-    padding: 2.5rem 1.5rem 2rem; text-align: center;
-    background: linear-gradient(135deg, #f5f9f0 0%, #e8f4e8 100%);
-  }
-  .compare-hero h1 { font-size: 2rem; font-weight: 700; color: #1a3a1a; }
-  .compare-hero p  { color: #6b7280; margin-top: 0.4rem; }
+  .compare-btn {
+  margin-left: auto;
+  padding: 10px 22px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--green-600);
+  color: white;
+  box-shadow: 0 6px 24px rgba(45,122,69,0.3);
+  transition: all 0.25s ease;
+}
 
-  .compare-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+.compare-btn:hover {
+  background: var(--green-800);
+  transform: translateY(-2px);
+}
+
+.compare-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
 
   /* Item picker */
   .picker-section { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:1.5rem; margin-bottom:1.5rem; }
@@ -32,26 +46,46 @@
 
   /* Selected bar */
   .selected-bar {
-    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-    padding:0.75rem 1rem; background:#f9fafb; border-radius:10px; margin-bottom:1rem;
-  }
-  .sel-tag {
-    display:flex; align-items:center; gap:5px; padding:4px 10px 4px 12px;
-    background:#fff; border:1px solid #d1fae5; border-radius:99px; font-size:13px;
-    color:#065f46;
-  }
-  .sel-tag button { background:none; border:none; cursor:pointer; color:#6b7280; font-size:14px; padding:0 0 0 4px; }
-  .sel-tag button:hover { color:#ef4444; }
-  .compare-btn {
-    margin-left:auto; padding:8px 20px; background:#3B6D11; color:#fff;
-    border:none; border-radius:8px; font-weight:600; cursor:pointer; font-size:14px;
-    transition:background .2s;
-  }
-  .compare-btn:hover { background:#2d5209; }
-  .compare-btn:disabled { background:#9ca3af; cursor:not-allowed; }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: var(--green-50);
+  border: 1px solid var(--green-100);
+}
 
+.sel-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: white;
+  border: 1px solid var(--green-100);
+  font-size: 12px;
+  color: var(--green-600);
+  font-weight: 500;
+}
+
+.sel-tag button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #999;
+}
+
+.sel-tag button:hover {
+  color: red;
+}
   /* Chart area */
-  .chart-section { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:1.5rem; margin-bottom:1.5rem; }
+  .chart-section {
+  background: var(--warm-white);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--green-100);
+}
   .chart-tabs { display:flex; gap:4px; border-bottom:1.5px solid #e5e7eb; margin-bottom:1.5rem; }
   .chart-tab {
     padding:7px 16px; border:none; background:none; cursor:pointer;
@@ -77,23 +111,189 @@
 
   /* Color palette for up to 5 items */
   :root {
-    --c0:#3B6D11; --c1:#BA7517; --c2:#0F6E56; --c3:#534AB7; --c4:#993C1D;
+  --green-50:  #f0f9f0;
+  --green-100: #d4edda;
+  --green-300: #72bb88;
+  --green-600: #2d7a45;
+  --green-800: #1a4f2b;
+
+  --earth-50:  #fdf6ee;
+  --earth-300: #d4a96a;
+
+  --cream:      #fdfaf5;
+  --warm-white: #fffef9;
+
+  --text-dark:  #1c2b1e;
+  --text-mid:   #3d5440;
+  --text-muted: #6b8070;
+
+  --shadow-sm:  0 2px 12px rgba(30,60,35,0.07);
+  --shadow-md:  0 6px 30px rgba(30,60,35,0.10);
+
+  --radius-md: 20px;
+  --radius-lg: 32px;
+}
+  .pick-item {
+  padding: 10px 14px;
+  border-radius: 50px;
+  border: 1px solid var(--green-100);
+  background: var(--green-50);
+  color: var(--text-mid);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pick-item:hover {
+  border-color: var(--green-300);
+  color: var(--green-600);
+}
+
+.pick-item.selected {
+  background: var(--green-600);
+  color: white;
+  border-color: var(--green-600);
+  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+}
+/* ── NAVBAR ───────────────────────────────── */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 40px;
+
+  background: rgba(253,250,245,0.88);
+  backdrop-filter: blur(16px);
+
+  border-bottom: 1px solid rgba(90,171,111,0.12);
+  transition: all 0.3s ease;
+}
+
+/* Shadow on scroll */
+#navbar.scrolled {
+  box-shadow: 0 6px 30px rgba(30,60,35,0.08);
+}
+
+/* ── LOGO ───────────────────────────────── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+
+  color: var(--green-800);
+  text-decoration: none;
+}
+
+.nav-logo-leaf {
+  width: 34px;
+  height: 34px;
+
+  background: linear-gradient(135deg, var(--green-400), var(--green-600));
+  border-radius: 50% 12px 50% 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+
+  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+}
+
+/* ── LINKS ───────────────────────────────── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  list-style: none;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-mid);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  padding: 8px 18px;
+  border-radius: 50px;
+
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.nav-links a:hover {
+  background: var(--green-50);
+  color: var(--green-600);
+}
+
+/* Active page */
+.nav-links a.active {
+  background: var(--green-50);
+  color: var(--green-600);
+}
+
+/* CTA Button */
+.nav-cta {
+  background: var(--green-600) !important;
+  color: white !important;
+
+  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+}
+
+.nav-cta:hover {
+  background: var(--green-800) !important;
+  transform: translateY(-1px);
+}
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width: 768px) {
+  #navbar {
+    padding: 12px 20px;
   }
+
+  .nav-links {
+    display: none; /* later you can add hamburger */
+  }
+}
+
 </style>
-<script src="/Harvestpedia/js/api.js"></script>
-<script src="Harvestpedia/js/darkmode.js"></script>
+<script src="js/api.js"></script>
+<script src="js/darkmode.js"></script>
 </head>
 <body>
 
-<nav class="navbar">
-  <a href="index.html" class="nav-logo">🌿 Harvestpedia</a>
-  <div class="nav-links">
-    <a href="fruits.html">Fruits</a>
-    <a href="vegetables.html">Vegetables</a>
-    <a href="plants.html">Plants</a>
-    <a href="search.html">Search</a>
-    <button class="dm-toggle" id="dm-toggle"></button>
-  </div>
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-leaf">🌿</div>
+    Harvestpedia
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fruits.html">Fruits</a></li>
+    <li><a href="vegetables.html">Vegetables</a></li>
+    <li><a href="compare.html" class="active">Compare</a></li>
+    <li><a href="recipes.html">Recipes</a></li>
+    <li><a href="fruits.html" class="nav-cta">Explore</a></li>
+  </ul>
 </nav>
 
 <section class="compare-hero">
@@ -149,104 +349,252 @@
 // ── Data ──────────────────────────────────────────────────
 // Static nutrition per 100g – extend to match your full dataset
 const NUTRITION_DB = {
-  Apple:      { calories:52,  protein:0.3, carbs:14,  fat:0.2, fiber:2.4, vitaminC:4.6,  potassium:107 },
-  Mango:      { calories:60,  protein:0.8, carbs:15,  fat:0.4, fiber:1.6, vitaminC:36.4, potassium:168 },
-  Banana:     { calories:89,  protein:1.1, carbs:23,  fat:0.3, fiber:2.6, vitaminC:8.7,  potassium:358 },
-  Strawberry: { calories:32,  protein:0.7, carbs:7.7, fat:0.3, fiber:2.0, vitaminC:58.8, potassium:153 },
-  Orange:     { calories:47,  protein:0.9, carbs:12,  fat:0.1, fiber:2.4, vitaminC:53.2, potassium:181 },
-  Blueberry:  { calories:57,  protein:0.7, carbs:14,  fat:0.3, fiber:2.4, vitaminC:9.7,  potassium:77  },
-  Pineapple:  { calories:50,  protein:0.5, carbs:13,  fat:0.1, fiber:1.4, vitaminC:47.8, potassium:109 },
-  Grape:      { calories:62,  protein:0.6, carbs:17,  fat:0.2, fiber:0.9, vitaminC:3.2,  potassium:191 },
-  Watermelon: { calories:30,  protein:0.6, carbs:7.6, fat:0.2, fiber:0.4, vitaminC:8.1,  potassium:112 },
-  Cherry:     { calories:50,  protein:1.0, carbs:12,  fat:0.3, fiber:1.6, vitaminC:7.0,  potassium:222 },
-  Peach:      { calories:39,  protein:0.9, carbs:10,  fat:0.3, fiber:1.5, vitaminC:6.6,  potassium:190 },
-  Pear:       { calories:57,  protein:0.4, carbs:15,  fat:0.1, fiber:3.1, vitaminC:4.3,  potassium:116 },
 
-  Tomato:     { calories:18,  protein:0.9, carbs:3.9, fat:0.2, fiber:1.2, vitaminC:13.7, potassium:237 },
-  Carrot:     { calories:41,  protein:0.9, carbs:10,  fat:0.2, fiber:2.8, vitaminC:5.9,  potassium:320 },
-  Broccoli:   { calories:34,  protein:2.8, carbs:7.0, fat:0.4, fiber:2.6, vitaminC:89.2, potassium:316 },
-  Spinach:    { calories:23,  protein:2.9, carbs:3.6, fat:0.4, fiber:2.2, vitaminC:28.1, potassium:558 },
-  Potato:     { calories:77,  protein:2.0, carbs:17,  fat:0.1, fiber:2.2, vitaminC:19.7, potassium:421 },
-  "Bell Pepper":{ calories:31, protein:1.0,carbs:6.0, fat:0.3, fiber:2.1, vitaminC:127.7,potassium:211 },
-  Cucumber:   { calories:15,  protein:0.7, carbs:3.6, fat:0.1, fiber:0.5, vitaminC:2.8,  potassium:147 },
-  Onion:      { calories:40,  protein:1.1, carbs:9.3, fat:0.1, fiber:1.7, vitaminC:7.4,  potassium:146 },
-  Garlic:     { calories:149, protein:6.4, carbs:33,  fat:0.5, fiber:2.1, vitaminC:31.2, potassium:401 },
-  Cabbage:    { calories:25,  protein:1.3, carbs:5.8, fat:0.1, fiber:2.5, vitaminC:36.6, potassium:170 },
+  // 🍎 FRUITS
+  Apple:{calories:52,protein:0.3,carbs:14,fat:0.2,fiber:2.4,vitaminC:4.6,potassium:107},
+  Apricot:{calories:48,protein:1.4,carbs:11,fat:0.4,fiber:2.0,vitaminC:10,potassium:259},
+  Avocado:{calories:160,protein:2.0,carbs:9,fat:15,fiber:7.0,vitaminC:10,potassium:485},
+  Banana:{calories:89,protein:1.1,carbs:23,fat:0.3,fiber:2.6,vitaminC:8.7,potassium:358},
+  Blueberry:{calories:57,protein:0.7,carbs:14,fat:0.3,fiber:2.4,vitaminC:9.7,potassium:77},
+  Cherry:{calories:50,protein:1.0,carbs:12,fat:0.3,fiber:1.6,vitaminC:7.0,potassium:222},
+  Coconut:{calories:354,protein:3.3,carbs:15,fat:33,fiber:9.0,vitaminC:3.3,potassium:356},
+  "Dragon Fruit":{calories:60,protein:1.2,carbs:13,fat:0.1,fiber:3.0,vitaminC:9,potassium:268},
+  Durian:{calories:147,protein:1.5,carbs:27,fat:5,fiber:3.8,vitaminC:20,potassium:436},
+  Fig:{calories:74,protein:0.8,carbs:19,fat:0.3,fiber:2.9,vitaminC:2,potassium:232},
+  Grape:{calories:62,protein:0.6,carbs:17,fat:0.2,fiber:0.9,vitaminC:3.2,potassium:191},
+  Grapefruit:{calories:42,protein:0.8,carbs:11,fat:0.1,fiber:1.6,vitaminC:31.2,potassium:135},
+  Guava:{calories:68,protein:2.6,carbs:14,fat:1.0,fiber:5.4,vitaminC:228,potassium:417},
+  Jackfruit:{calories:95,protein:1.7,carbs:23,fat:0.6,fiber:1.5,vitaminC:13.7,potassium:448},
+  Kiwi:{calories:61,protein:1.1,carbs:15,fat:0.5,fiber:3.0,vitaminC:92.7,potassium:312},
+  Lemon:{calories:29,protein:1.1,carbs:9,fat:0.3,fiber:2.8,vitaminC:53,potassium:138},
+  Lychee:{calories:66,protein:0.8,carbs:17,fat:0.4,fiber:1.3,vitaminC:71,potassium:171},
+  Mango:{calories:60,protein:0.8,carbs:15,fat:0.4,fiber:1.6,vitaminC:36.4,potassium:168},
+  Melon:{calories:34,protein:0.8,carbs:8,fat:0.2,fiber:0.9,vitaminC:36.7,potassium:267},
+  Orange:{calories:47,protein:0.9,carbs:12,fat:0.1,fiber:2.4,vitaminC:53.2,potassium:181},
+  Papaya:{calories:43,protein:0.5,carbs:11,fat:0.3,fiber:1.7,vitaminC:60,potassium:182},
+  Peach:{calories:39,protein:0.9,carbs:10,fat:0.3,fiber:1.5,vitaminC:6.6,potassium:190},
+  Pear:{calories:57,protein:0.4,carbs:15,fat:0.1,fiber:3.1,vitaminC:4.3,potassium:116},
+  Pineapple:{calories:50,protein:0.5,carbs:13,fat:0.1,fiber:1.4,vitaminC:47.8,potassium:109},
+  Plum:{calories:46,protein:0.7,carbs:11,fat:0.3,fiber:1.4,vitaminC:9.5,potassium:157},
+  Pomegranate:{calories:83,protein:1.7,carbs:19,fat:1.2,fiber:4.0,vitaminC:10,potassium:236},
+  Raspberry:{calories:52,protein:1.2,carbs:12,fat:0.7,fiber:6.5,vitaminC:26,potassium:151},
+  Starfruit:{calories:31,protein:1.0,carbs:7,fat:0.3,fiber:2.8,vitaminC:34,potassium:133},
+  Strawberry:{calories:32,protein:0.7,carbs:7.7,fat:0.3,fiber:2.0,vitaminC:58.8,potassium:153},
+  Watermelon:{calories:30,protein:0.6,carbs:7.6,fat:0.2,fiber:0.4,vitaminC:8.1,potassium:112},
+  "Passion Fruit":{calories:97,protein:2.2,carbs:23,fat:0.7,fiber:10.4,vitaminC:30,potassium:348},
+  Mulberry:{calories:43,protein:1.4,carbs:10,fat:0.4,fiber:1.7,vitaminC:36.4,potassium:194},
+  Mandarin:{calories:53,protein:0.8,carbs:13,fat:0.3,fiber:1.8,vitaminC:26.7,potassium:166},
+  Cranberry:{calories:46,protein:0.4,carbs:12,fat:0.1,fiber:4.6,vitaminC:14,potassium:85},
+  Blackberry:{calories:43,protein:1.4,carbs:10,fat:0.5,fiber:5.3,vitaminC:21,potassium:162},
+  "Custard Apple":{calories:94,protein:2.1,carbs:23,fat:0.6,fiber:4.4,vitaminC:36,potassium:247},
+  Sapota:{calories:83,protein:0.4,carbs:20,fat:1.1,fiber:5.3,vitaminC:14,potassium:193},
+  Tamarind:{calories:239,protein:2.8,carbs:63,fat:0.6,fiber:5.1,vitaminC:3.5,potassium:628},
+  Physalis:{calories:53,protein:1.9,carbs:11,fat:0.7,fiber:4.9,vitaminC:11,potassium:268},
+  Rambutan:{calories:68,protein:0.9,carbs:16,fat:0.2,fiber:0.9,vitaminC:4.9,potassium:42},
+  Persimmon:{calories:70,protein:0.6,carbs:19,fat:0.2,fiber:3.6,vitaminC:7.5,potassium:161},
+  Pomelo:{calories:38,protein:0.8,carbs:10,fat:0.0,fiber:1.0,vitaminC:61,potassium:216},
+  Jujube:{calories:79,protein:1.2,carbs:20,fat:0.2,fiber:10,vitaminC:69,potassium:250},
+  "Star Gooseberry":{calories:44,protein:0.9,carbs:10,fat:0.6,fiber:3.0,vitaminC:8,potassium:25},
+  Longan:{calories:60,protein:1.3,carbs:15,fat:0.1,fiber:1.1,vitaminC:84,potassium:266},
+  Loquat:{calories:47,protein:0.4,carbs:12,fat:0.2,fiber:1.7,vitaminC:1,potassium:266},
+  Kumquat:{calories:71,protein:1.9,carbs:16,fat:0.9,fiber:6.5,vitaminC:43.9,potassium:186},
+  Salak:{calories:82,protein:0.5,carbs:22,fat:0.4,fiber:2.6,vitaminC:8.4,potassium:256},
+  Ackee:{calories:151,protein:2.9,carbs:8,fat:15,fiber:2.7,vitaminC:30,potassium:270},
+  Breadfruit:{calories:103,protein:1.1,carbs:27,fat:0.2,fiber:4.9,vitaminC:29,potassium:490},
+  Carambola:{calories:31,protein:1.0,carbs:7,fat:0.3,fiber:2.8,vitaminC:34,potassium:133},
+  Cherimoya:{calories:75,protein:1.6,carbs:18,fat:0.7,fiber:3.0,vitaminC:12.6,potassium:287},
+  Sapodilla:{calories:83,protein:0.4,carbs:20,fat:1.1,fiber:5.3,vitaminC:14,potassium:193},
+  Santol:{calories:73,protein:0.7,carbs:18,fat:0.2,fiber:2.3,vitaminC:45,potassium:222},
+  Mangaba:{calories:47,protein:0.6,carbs:12,fat:0.3,fiber:2.0,vitaminC:24,potassium:180},
+  Canistel:{calories:138,protein:1.7,carbs:36,fat:0.1,fiber:4.6,vitaminC:58,potassium:258},
+
+  // 🥦 VEGETABLES
+  Potato:{calories:77,protein:2.0,carbs:17,fat:0.1,fiber:2.2,vitaminC:19.7,potassium:421},
+  "Sweet Potato":{calories:86,protein:1.6,carbs:20,fat:0.1,fiber:3.0,vitaminC:2.4,potassium:337},
+  Carrot:{calories:41,protein:0.9,carbs:10,fat:0.2,fiber:2.8,vitaminC:5.9,potassium:320},
+  Onion:{calories:40,protein:1.1,carbs:9.3,fat:0.1,fiber:1.7,vitaminC:7.4,potassium:146},
+  Garlic:{calories:149,protein:6.4,carbs:33,fat:0.5,fiber:2.1,vitaminC:31.2,potassium:401},
+  Beetroot:{calories:43,protein:1.6,carbs:10,fat:0.2,fiber:2.8,vitaminC:4.9,potassium:325},
+  Radish:{calories:16,protein:0.7,carbs:3.4,fat:0.1,fiber:1.6,vitaminC:14.8,potassium:233},
+  Turnip:{calories:28,protein:0.9,carbs:6.4,fat:0.1,fiber:1.8,vitaminC:21,potassium:191},
+  Rutabaga:{calories:37,protein:1.1,carbs:9,fat:0.2,fiber:2.3,vitaminC:25,potassium:305},
+  Celeriac:{calories:42,protein:1.5,carbs:9,fat:0.3,fiber:1.8,vitaminC:8,potassium:300},
+  Cassava:{calories:160,protein:1.4,carbs:38,fat:0.3,fiber:1.8,vitaminC:20,potassium:271},
+  Ginger:{calories:80,protein:1.8,carbs:18,fat:0.8,fiber:2.0,vitaminC:5,potassium:415},
+  Turmeric:{calories:312,protein:9.7,carbs:67,fat:3.3,fiber:22,vitaminC:0.7,potassium:2080},
+  Daikon:{calories:18,protein:0.6,carbs:4.1,fat:0.1,fiber:1.6,vitaminC:22,potassium:227},
+  Parsnip:{calories:75,protein:1.2,carbs:18,fat:0.3,fiber:4.9,vitaminC:17,potassium:375},
+  Spinach:{calories:23,protein:2.9,carbs:3.6,fat:0.4,fiber:2.2,vitaminC:28.1,potassium:558},
+  Kale:{calories:49,protein:4.3,carbs:9,fat:0.9,fiber:4.1,vitaminC:120,potassium:491},
+  Cabbage:{calories:25,protein:1.3,carbs:5.8,fat:0.1,fiber:2.5,vitaminC:36.6,potassium:170},
+  Lettuce:{calories:15,protein:1.4,carbs:2.9,fat:0.2,fiber:1.3,vitaminC:9.2,potassium:194},
+  "Swiss Chard":{calories:19,protein:1.8,carbs:3.7,fat:0.2,fiber:1.6,vitaminC:30,potassium:379},
+  "Mustard Greens":{calories:27,protein:2.9,carbs:4.7,fat:0.4,fiber:3.2,vitaminC:70,potassium:384},
+  "Bok Choy":{calories:13,protein:1.5,carbs:2.2,fat:0.2,fiber:1.0,vitaminC:45,potassium:252},
+  "Collard Greens":{calories:32,protein:3.0,carbs:5.4,fat:0.6,fiber:4.0,vitaminC:35,potassium:213},
+  Arugula:{calories:25,protein:2.6,carbs:3.7,fat:0.7,fiber:1.6,vitaminC:15,potassium:369},
+  Romaine:{calories:17,protein:1.2,carbs:3.3,fat:0.3,fiber:2.1,vitaminC:24,potassium:247},
+  Broccoli:{calories:34,protein:2.8,carbs:7,fat:0.4,fiber:2.6,vitaminC:89.2,potassium:316},
+  Cauliflower:{calories:25,protein:1.9,carbs:5,fat:0.3,fiber:2.0,vitaminC:48,potassium:299},
+  "Brussels Sprouts":{calories:43,protein:3.4,carbs:9,fat:0.3,fiber:3.8,vitaminC:85,potassium:389},
+  Kohlrabi:{calories:27,protein:1.7,carbs:6.2,fat:0.1,fiber:3.6,vitaminC:62,potassium:350},
+  "Cabbage Red":{calories:31,protein:1.4,carbs:7.4,fat:0.2,fiber:2.1,vitaminC:57,potassium:243},
+  Tomato:{calories:18,protein:0.9,carbs:3.9,fat:0.2,fiber:1.2,vitaminC:13.7,potassium:237},
+  "Bell Pepper":{calories:31,protein:1.0,carbs:6,fat:0.3,fiber:2.1,vitaminC:127.7,potassium:211},
+  "Chili Pepper":{calories:40,protein:2.0,carbs:9,fat:0.4,fiber:1.5,vitaminC:144,potassium:322},
+  Cucumber:{calories:15,protein:0.7,carbs:3.6,fat:0.1,fiber:0.5,vitaminC:2.8,potassium:147},
+  Zucchini:{calories:17,protein:1.2,carbs:3.1,fat:0.3,fiber:1.0,vitaminC:17.9,potassium:261},
+  Eggplant:{calories:25,protein:1.0,carbs:6,fat:0.2,fiber:3.0,vitaminC:2.2,potassium:229},
+  Okra:{calories:33,protein:1.9,carbs:7,fat:0.2,fiber:3.2,vitaminC:23,potassium:299},
+  Pumpkin:{calories:26,protein:1.0,carbs:7,fat:0.1,fiber:0.5,vitaminC:9,potassium:340},
+  "Butternut Squash":{calories:45,protein:1.0,carbs:12,fat:0.1,fiber:2.0,vitaminC:21,potassium:352},
+  "Acorn Squash":{calories:40,protein:1.0,carbs:10,fat:0.1,fiber:1.5,vitaminC:9,potassium:347},
+  Parsley:{calories:36,protein:3.0,carbs:6.3,fat:0.8,fiber:3.3,vitaminC:133,potassium:554},
+  Coriander:{calories:23,protein:2.1,carbs:3.7,fat:0.5,fiber:2.8,vitaminC:27,potassium:521},
+  Cilantro:{calories:23,protein:2.1,carbs:3.7,fat:0.5,fiber:2.8,vitaminC:27,potassium:521},
+  Mint:{calories:44,protein:3.3,carbs:8.4,fat:0.7,fiber:6.8,vitaminC:31,potassium:458},
+  Rosemary:{calories:131,protein:3.3,carbs:21,fat:5.9,fiber:14,vitaminC:21,potassium:668},
+  Thyme:{calories:101,protein:5.6,carbs:24,fat:1.7,fiber:14,vitaminC:160,potassium:609},
+  Basil:{calories:23,protein:3.2,carbs:2.7,fat:0.6,fiber:1.6,vitaminC:18,potassium:295},
+  "Lettuce Iceberg":{calories:14,protein:0.9,carbs:3,fat:0.1,fiber:1.2,vitaminC:2.8,potassium:141}
+
 };
 
-const FRUITS = ["Apple","Mango","Banana","Strawberry","Orange","Blueberry","Pineapple","Grape","Watermelon","Cherry","Peach","Pear"];
-const VEGS   = ["Tomato","Carrot","Broccoli","Spinach","Potato","Bell Pepper","Cucumber","Onion","Garlic","Cabbage"];
-const EMOJIS = {Apple:"🍎",Mango:"🥭",Banana:"🍌",Strawberry:"🍓",Orange:"🍊",Blueberry:"🫐",Pineapple:"🍍",Grape:"🍇",Watermelon:"🍉",Cherry:"🍒",Peach:"🍑",Pear:"🍐",Tomato:"🍅",Carrot:"🥕",Broccoli:"🥦",Spinach:"🌿",Potato:"🥔","Bell Pepper":"🫑",Cucumber:"🥒",Onion:"🧅",Garlic:"🧄",Cabbage:"🥬"};
-const COLORS  = ["#3B6D11","#BA7517","#0F6E56","#534AB7","#993C1D"];
+
+const FRUITS = [
+  "Apple","Apricot","Avocado","Banana","Blueberry","Cherry","Coconut","Dragon Fruit","Durian","Fig",
+  "Grape","Grapefruit","Guava","Jackfruit","Kiwi","Lemon","Lychee","Mango","Melon","Orange",
+  "Papaya","Peach","Pear","Pineapple","Plum","Pomegranate","Raspberry","Starfruit","Strawberry","Watermelon",
+  "Passion Fruit","Mulberry","Mandarin","Cranberry","Blackberry","Custard Apple","Sapota","Tamarind","Physalis",
+  "Rambutan","Persimmon","Pomelo","Jujube","Star Gooseberry","Longan","Loquat","Kumquat","Salak",
+  "Ackee","Breadfruit","Carambola","Cherimoya","Sapodilla","Santol","Mangaba","Canistel"
+];
+const VEGS = [
+  "Potato","Sweet Potato","Carrot","Onion","Garlic","Beetroot","Radish","Turnip","Rutabaga","Celeriac",
+  "Cassava","Ginger","Turmeric","Daikon","Parsnip","Spinach","Kale","Cabbage","Lettuce","Swiss Chard",
+  "Mustard Greens","Bok Choy","Collard Greens","Arugula","Romaine","Broccoli","Cauliflower","Brussels Sprouts",
+  "Kohlrabi","Cabbage Red","Tomato","Bell Pepper","Chili Pepper","Cucumber","Zucchini","Eggplant","Okra",
+  "Pumpkin","Butternut Squash","Acorn Squash","Parsley","Coriander","Cilantro","Mint","Rosemary","Thyme",
+  "Basil","Lettuce Iceberg"
+];
+const COLORS = ["#3B6D11","#BA7517","#0F6E56","#534AB7","#993C1D"];
 const METRICS = ["calories","protein","carbs","fat","fiber","vitaminC","potassium"];
 const LABELS  = {calories:"Calories (kcal)",protein:"Protein (g)",carbs:"Carbs (g)",fat:"Fat (g)",fiber:"Fiber (g)",vitaminC:"Vitamin C (mg)",potassium:"Potassium (mg)"};
 
 // ── State ─────────────────────────────────────────────────
-let selected = [];
+let selectedItems = [];
 let barChartInst = null, radarChartInst = null;
+
 
 // ── Render pickers ────────────────────────────────────────
 function renderPicker(containerId, items) {
   const el = document.getElementById(containerId);
+
   el.innerHTML = items.map(name => `
-    <div class="pick-item" data-name="${name}" onclick="toggleItem('${name}')">
-      <span class="emoji">${EMOJIS[name]||"🌿"}</span>${name}
+    <div class="pick-item" data-name="${name}" onclick="toggleItem(this.dataset.name)">
+      ${name}
     </div>
   `).join("");
 }
+
 renderPicker("fruits-picker", FRUITS);
 renderPicker("vegs-picker", VEGS);
 
 // ── Toggle item selection ─────────────────────────────────
 function toggleItem(name) {
-  const idx = selected.indexOf(name);
-  if (idx === -1) {
-    if (selected.length >= 5) return;
-    selected.push(name);
+  const index = selectedItems.indexOf(name);
+
+  if (index > -1) {
+    selectedItems.splice(index, 1);
   } else {
-    selected.splice(idx, 1);
+    if (selectedItems.length >= 5) return; // limit
+    selectedItems.push(name);
   }
-  syncUI();
+
+  updateUI();
 }
 
-function syncUI() {
-  // Update picker chips
+// ── Update UI ─────────────────────────────────────────────
+function updateUI() {
+  // Highlight selected items
   document.querySelectorAll(".pick-item").forEach(el => {
-    el.classList.toggle("selected", selected.includes(el.dataset.name));
+    const name = el.dataset.name;
+
+    if (selectedItems.includes(name)) {
+      el.classList.add("selected");
+    } else {
+      el.classList.remove("selected");
+    }
   });
 
   // Update selected bar
   const bar = document.getElementById("selected-bar");
-  if (selected.length === 0) {
-    bar.innerHTML = `<span style="font-size:13px;color:#9ca3af;">No items selected</span><button class="compare-btn" id="compare-btn" disabled>Compare</button>`;
+  const btn = document.getElementById("compare-btn");
+
+  if (selectedItems.length === 0) {
+    bar.innerHTML = `
+      <span style="font-size:13px;color:#9ca3af;">No items selected</span>
+      <button class="compare-btn" id="compare-btn" disabled>Compare</button>
+    `;
   } else {
-    const tags = selected.map(n => `
-      <span class="sel-tag">${EMOJIS[n]||""} ${n}
-        <button onclick="toggleItem('${n}')">✕</button>
-      </span>`).join("");
-    bar.innerHTML = `${tags}<button class="compare-btn" id="compare-btn" ${selected.length<2?"disabled":""} onclick="runCompare()">Compare ${selected.length > 0 ? selected.length : ""}</button>`;
+    bar.innerHTML = `
+      ${selectedItems.map(name => `
+        <span class="sel-tag">
+          ${name}
+          <button onclick="removeItem('${name}')">×</button>
+        </span>
+      `).join("")}
+      <button class="compare-btn" id="compare-btn" ${selectedItems.length < 2 ? "disabled" : ""} onclick="runCompare()">Compare</button>
+    `;
   }
+}
+
+function removeItem(name) {
+  selectedItems = selectedItems.filter(item => item !== name);
+  updateUI();
 }
 
 // ── Run comparison ─────────────────────────────────────────
 async function runCompare() {
-  if (selected.length < 2) return;
+  if (selectedItems.length < 2) return;
 
   document.getElementById("loading").classList.remove("hidden");
   document.getElementById("results-section").classList.add("hidden");
 
-  // Get nutrition data (from static DB, could also call Claude API)
-  const data = selected.map(name => ({
-    name,
-    emoji: EMOJIS[name] || "🌿",
-    nutrition: NUTRITION_DB[name] || {}
-  }));
+  try {
+    const data = selectedItems.map(name => {
 
-  document.getElementById("loading").classList.add("hidden");
-  renderCharts(data);
-  document.getElementById("results-section").classList.remove("hidden");
+      // Debug missing items
+      if (!NUTRITION_DB[name]) {
+        console.warn("Missing nutrition data for:", name);
+      }
+
+      return {
+        name,
+        emoji: "",
+        nutrition: NUTRITION_DB[name] || {
+          calories:0,
+          protein:0,
+          carbs:0,
+          fat:0,
+          fiber:0,
+          vitaminC:0,
+          potassium:0
+        }
+      };
+    });
+
+    console.log(data);
+
+    document.getElementById("loading").classList.add("hidden");
+    renderCharts(data);
+    document.getElementById("results-section").classList.remove("hidden");
+
+  } catch (err) {
+    console.error("COMPARE ERROR:", err);
+    document.getElementById("loading").innerText = "❌ Error loading data";
+  }
 }
-
 // ── Render charts ─────────────────────────────────────────
 function renderCharts(data) {
   renderBar(data);
