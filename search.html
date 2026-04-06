@@ -173,6 +173,7 @@
   .search-loading { font-size: 1.1rem; }
   .search-start .big { font-size: 3rem; margin-bottom: 0.5rem; }
   .highlight { background: #fef08a; border-radius: 3px; padding: 0 2px; }
+
 </style>
 <script src="/Harvestpedia/js/api.js"></script>
 <script src="Harvestpedia/js/darkmode.js"></script>
@@ -187,7 +188,6 @@
     <a href="../vegetables/vegetables.html">Vegetables</a>
     <a href="../plants/plants.html">Plants</a>
     <a href="search.html" class="active">Search</a>
-    <button class="dm-toggle" id="dm-toggle"></button>
   </div>
 </nav>
 
@@ -372,7 +372,10 @@ const ALL_DATA = [
 { name:"Jasmine", tags:["fragrant","flowering","climber"], module:"plant", detailUrl:"plant_detail.html?plant=Jasmine" }
 ];
 
-
+ALL_DATA.forEach(item => {
+  if (item.type === "fruit") item.module = "fruit";
+  if (item.type === "vegetable") item.module = "veg";
+});
 // ── State ──────────────────────────────────────────────────
 let activeFilter = "all";
 

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nutrition Facts – Harvestpedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green-50:  #f0f9f0;
+      --green-100: #d4edda;
+      --green-200: #a8d5b5;
+      --green-300: #72bb88;
+      --green-400: #5aab6f;
+      --green-600: #2d7a45;
+      --green-700: #236037;
+      --green-800: #1a4f2b;
+      --earth-50:  #fdf6ee;
+      --earth-100: #f5e6d0;
+      --earth-300: #d4a96a;
+      --earth-500: #a0703a;
+      --earth-700: #6b4520;
+      --cream:      #fdfaf5;
+      --warm-white: #fffef9;
+      --text-dark:  #1c2b1e;
+      --text-mid:   #3d5440;
+      --text-muted: #6b8070;
+      --shadow-sm:  0 2px 12px rgba(30,60,35,0.07);
+      --shadow-md:  0 6px 30px rgba(30,60,35,0.10);
+      --shadow-lg:  0 16px 60px rgba(30,60,35,0.13);
+      --radius-sm:  12px;
+      --radius-md:  20px;
+      --radius-lg:  32px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(253,250,245,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(90,171,111,0.12);
+      transition: box-shadow 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(30,60,35,0.08); }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+      color: var(--green-800); text-decoration: none;
+    }
+    .nav-logo-leaf {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--green-400), var(--green-600));
+      border-radius: 50% 12px 50% 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+    }
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-mid); font-size: 14px; font-weight: 500;
+      padding: 8px 18px; border-radius: 50px; transition: all 0.2s ease;
+    }
+    .nav-links a:hover  { background: var(--green-50); color: var(--green-600); }
+    .nav-links a.active { background: var(--green-50); color: var(--green-600); }
+    .nav-cta { background: var(--green-600) !important; color: white !important; box-shadow: 0 4px 14px rgba(45,122,69,0.3); }
+    .nav-cta:hover { background: var(--green-800) !important; transform: translateY(-1px); }
+
+    section { padding: 100px 48px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--green-600); margin-bottom: 12px;
+    }
+    .section-label::before { content: ''; width: 20px; height: 2px; background: var(--green-400); border-radius: 2px; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 50px);
+      font-weight: 700; color: var(--text-dark); line-height: 1.15; margin-bottom: 14px;
+    }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 540px; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 160px 48px 80px;
+      background: var(--warm-white); position: relative; overflow: hidden;
+    }
+    .page-hero .blob { position: absolute; border-radius: 50%; pointer-events: none; }
+    .page-hero .blob-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(90,171,111,0.10) 0%, transparent 70%);
+      top: -200px; right: -100px;
+    }
+    .page-hero .blob-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,169,106,0.09) 0%, transparent 70%);
+      bottom: -100px; left: -80px;
+    }
+    .page-hero-inner { max-width: 700px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-50); border: 1px solid var(--green-200);
+      color: var(--green-600); font-size: 11px; font-weight: 700;
+      padding: 6px 14px; border-radius: 50px; margin-bottom: 24px;
+      letter-spacing: 0.8px; text-transform: uppercase;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 700; line-height: 1.1; margin-bottom: 20px; color: var(--text-dark);
+    }
+    .page-hero h1 .accent { color: var(--green-600); }
+    .page-hero p { font-size: 17px; color: var(--text-muted); line-height: 1.75; max-width: 580px; }
+
+    /* ── INTRO SECTION ── */
+    .intro { background: var(--cream); }
+    .intro-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 52px;
+      align-items: start; margin-top: 52px;
+    }
+    .intro-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 14px;
+    }
+    .intro-text p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .nutrient-overview {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .overview-card {
+      background: white; border-radius: var(--radius-md);
+      border: 1px solid var(--green-100); padding: 22px;
+      box-shadow: var(--shadow-sm); text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .overview-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .overview-card .icon { font-size: 32px; margin-bottom: 10px; display: block; }
+    .overview-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;
+    }
+    .overview-card p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── MACRONUTRIENTS ── */
+    .macros { background: var(--earth-50); }
+    .macro-cards { display: flex; flex-direction: column; gap: 24px; margin-top: 52px; }
+    .macro-card {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid rgba(90,171,111,0.10);
+      padding: 36px 40px; box-shadow: var(--shadow-sm);
+      display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .macro-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .macro-label-col { display: flex; flex-direction: column; gap: 12px; }
+    .macro-icon-wrap {
+      width: 60px; height: 60px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; font-size: 28px;
+    }
+    .macro-icon-wrap.green { background: var(--green-50); border: 1px solid var(--green-100); }
+    .macro-icon-wrap.earth { background: var(--earth-50); border: 1px solid var(--earth-100); }
+    .macro-label-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; color: var(--text-dark);
+    }
+    .macro-pill {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 50px;
+    }
+    .macro-pill.green { background: var(--green-50); color: var(--green-600); border: 1px solid var(--green-100); }
+    .macro-pill.earth { background: var(--earth-50); color: var(--earth-700); border: 1px solid var(--earth-100); }
+    .macro-body h4 {
+      font-size: 13px; font-weight: 700; color: var(--green-700);
+      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;
+    }
+    .macro-body p { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+    .macro-body p:last-child { margin-bottom: 0; }
+    .sources-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+    .source-chip {
+      font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 50px;
+      background: var(--green-50); color: var(--green-700); border: 1px solid var(--green-100);
+    }
+
+    /* ── MICRONUTRIENTS ── */
+    .micros { background: var(--warm-white); }
+    .micro-intro-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 52px;
+    }
+    .micro-intro-card {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid var(--green-100); padding: 36px;
+      box-shadow: var(--shadow-sm);
+    }
+    .micro-intro-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .micro-intro-card p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+    /* ── KEY NUTRIENTS ── */
+    .key-nutrients { background: var(--cream); }
+    .key-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 52px;
+    }
+    .key-card {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid rgba(90,171,111,0.10);
+      padding: 30px 32px; box-shadow: var(--shadow-sm);
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .key-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .key-card-top { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+    .key-icon {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      background: var(--green-50); border: 1px solid var(--green-100);
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .key-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px;
+    }
+    .key-header .key-type {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; color: var(--green-600);
+    }
+    .key-card p { font-size: 13px; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .key-card p:last-of-type { margin-bottom: 12px; }
+    .key-sources { display: flex; gap: 7px; flex-wrap: wrap; }
+    .key-sources .source-chip { font-size: 11px; }
+
+    /* ── EXPLORE BANNER ── */
+    .explore-banner {
+      background: var(--earth-50);
+      padding: 60px 48px;
+      border-top: 1px solid var(--earth-100);
+    }
+    .explore-banner-inner {
+      max-width: 900px; margin: 0 auto; text-align: center;
+    }
+    .explore-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 3vw, 38px); font-weight: 700;
+      color: var(--text-dark); margin-bottom: 10px;
+    }
+    .explore-banner p {
+      font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 36px;
+    }
+    .explore-banner-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 640px; margin: 0 auto;
+    }
+    .explore-banner-card {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid var(--green-100); padding: 30px 28px;
+      box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      text-decoration: none; color: inherit;
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .explore-banner-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .explore-banner-card .card-icon { font-size: 36px; }
+    .explore-banner-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700; color: var(--text-dark);
+    }
+    .explore-banner-card p { font-size: 13px; color: var(--text-muted); text-align: center; line-height: 1.6; }
+    .explore-banner-card .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: white;
+      background: var(--green-600); padding: 9px 20px; border-radius: 50px;
+      transition: background 0.2s ease; margin-top: 4px;
+      box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+    }
+    .explore-banner-card:hover .card-link { background: var(--green-800); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--green-800); color: white; padding: 60px 48px 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+    .footer-logo {
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .footer-leaf {
+      width: 28px; height: 28px; background: var(--green-400);
+      border-radius: 50% 10px 50% 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+    }
+    .footer-brand p { font-size: 13px; opacity: 0.65; line-height: 1.7; max-width: 230px; }
+    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.5; margin-bottom: 18px; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.75); font-size: 14px; text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--green-200); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; opacity: 0.5; }
+
+    @media (max-width: 1024px) {
+      nav { padding: 14px 24px; }
+      section { padding: 70px 24px; }
+      .page-hero { padding: 120px 24px 60px; }
+      .intro-grid, .micro-intro-grid { grid-template-columns: 1fr; gap: 32px; }
+      .macro-card { grid-template-columns: 1fr; gap: 20px; }
+      .key-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .explore-banner-cards { grid-template-columns: 1fr; }
+      .explore-banner { padding: 50px 24px; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nutrient-overview { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-leaf">🌿</div>
+    Harvestpedia
+  </a>
+    <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fruits.html">Fruits</a></li>
+    <li><a href="vegetables.html">Vegetables</a></li>
+    <li><a href="plants.html">Plants</a></li>
+    <li><a href="compare.html" >Compare</a></li>
+    <li><a href="recipes.html">Recipes</a></li>
+    <li><a href="vegetables.html" class="nav-cta">Explore</a></li>
+  </ul>
+</nav>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="page-hero-inner">
+    <div class="hero-badge">Learn · Nutrition Facts</div>
+    <h1>Understanding <span class="accent">Nutrients</span></h1>
+    <p>Every food you eat is a collection of nutrients — each one performing a specific role in your body. Here is a clear, complete guide to what nutrients are, how they work, and where to find them in fruits and vegetables.</p>
+  </div>
+</div>
+
+<!-- ── WHAT ARE NUTRIENTS ── -->
+<section class="intro">
+  <div class="section-label">The Basics</div>
+  <h2 class="section-title">What are nutrients?</h2>
+  <p class="section-sub">Nutrients are the substances your body extracts from food to survive, grow, and function properly.</p>
+
+  <div class="intro-grid">
+    <div class="intro-text reveal">
+      <h3>The building blocks of your health</h3>
+      <p>When you eat, your digestive system breaks food down into its core components — nutrients. These are absorbed into the bloodstream and delivered to every cell in your body, fueling everything from breathing to building muscle.</p>
+      <p>Nutrients are divided into two broad categories: macronutrients, which your body needs in large amounts for energy and structure, and micronutrients, which are required in smaller amounts but are equally essential for health and wellbeing.</p>
+      <p>Fruits and vegetables are among the richest and most diverse sources of nutrients in the human diet — providing a natural combination of vitamins, minerals, fiber, and phytocompounds that work together in ways supplements cannot replicate.</p>
+    </div>
+    <div class="nutrient-overview reveal delay-1">
+      <div class="overview-card">
+        <h4>Macronutrients</h4>
+        <p>Protein, carbohydrates, and fats — your primary sources of energy and structural material.</p>
+      </div>
+      <div class="overview-card">
+        <h4>Micronutrients</h4>
+        <p>Vitamins and minerals that regulate body processes and protect your cells from damage.</p>
+      </div>
+      <div class="overview-card">
+        <h4>Phytonutrients</h4>
+        <p>Naturally occurring plant compounds with powerful antioxidant and anti-inflammatory effects.</p>
+      </div>
+      <div class="overview-card">
+        <h4>Water</h4>
+        <p>The most essential nutrient of all — fruits and vegetables provide high-quality dietary water.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MACRONUTRIENTS ── -->
+<section class="macros">
+  <div class="section-label">Macronutrients</div>
+  <h2 class="section-title">Energy and structure</h2>
+  <p class="section-sub">Macronutrients are the three major nutrient groups that provide calories and form the physical structure of your body.</p>
+
+  <div class="macro-cards">
+    <!-- Protein -->
+    <div class="macro-card reveal">
+      <div class="macro-label-col">
+        <h3>Protein</h3>
+        <div class="macro-pill green">Macronutrient</div>
+      </div>
+      <div class="macro-body">
+        <h4>What it does</h4>
+        <p>Protein is the foundation of every cell in your body. It builds and repairs muscle tissue, produces enzymes and hormones, and supports immune function. Proteins are made up of chains of amino acids, nine of which your body cannot produce on its own.</p>
+        <h4>Why it matters</h4>
+        <p>Without adequate protein, the body cannot maintain muscle mass, heal wounds, or produce the antibodies it needs to fight infection. For those following a plant-based diet, combining diverse protein sources ensures a complete amino acid profile.</p>
+        <h4>Plant sources</h4>
+        <div class="sources-row">
+          <span class="source-chip">Edamame</span>
+          <span class="source-chip">Green Peas</span>
+          <span class="source-chip">Lentils</span>
+          <span class="source-chip">Broccoli</span>
+          <span class="source-chip">Spinach</span>
+          <span class="source-chip">Avocado</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carbohydrates -->
+    <div class="macro-card reveal">
+      <div class="macro-label-col">
+        <h3>Carbohydrates</h3>
+        <div class="macro-pill earth">Macronutrient</div>
+      </div>
+      <div class="macro-body">
+        <h4>What it does</h4>
+        <p>Carbohydrates are your body's preferred fuel source. When digested, they break down into glucose — the primary energy currency used by your brain, muscles, and organs. Complex carbohydrates also provide fiber, which supports digestive health.</p>
+        <h4>Why it matters</h4>
+        <p>Not all carbohydrates behave the same way. Simple carbohydrates are digested quickly and cause rapid blood sugar spikes. Complex carbohydrates — found abundantly in whole fruits and vegetables — digest slowly, providing sustained energy and improved blood sugar control.</p>
+        <h4>Plant sources</h4>
+        <div class="sources-row">
+          <span class="source-chip">Banana</span>
+          <span class="source-chip">Sweet Potato</span>
+          <span class="source-chip">Mango</span>
+          <span class="source-chip">Beetroot</span>
+          <span class="source-chip">Plantain</span>
+          <span class="source-chip">Apple</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fats -->
+    <div class="macro-card reveal">
+      <div class="macro-label-col">
+        <h3>Fats</h3>
+        <div class="macro-pill green">Macronutrient</div>
+      </div>
+      <div class="macro-body">
+        <h4>What it does</h4>
+        <p>Dietary fats support brain function, cushion organs, regulate hormones, and enable the absorption of fat-soluble vitamins A, D, E, and K. Healthy unsaturated fats — particularly omega-3 and omega-6 fatty acids — are essential for cardiovascular and neurological health.</p>
+        <h4>Why it matters</h4>
+        <p>Fat has historically been misunderstood. The key distinction is fat quality. Natural plant-based fats from fruits like avocado and coconut provide beneficial lipids without the inflammatory effects associated with processed trans fats.</p>
+        <h4>Plant sources</h4>
+        <div class="sources-row">
+          <span class="source-chip">Avocado</span>
+          <span class="source-chip">Coconut</span>
+          <span class="source-chip">Olives</span>
+          <span class="source-chip">Flaxseed</span>
+          <span class="source-chip">Walnuts</span>
+          <span class="source-chip">Chia Seeds</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MICRONUTRIENTS ── -->
+<section class="micros">
+  <div class="section-label">Micronutrients</div>
+  <h2 class="section-title">Small amounts, large impact</h2>
+  <p class="section-sub">Vitamins and minerals are required in smaller quantities than macronutrients, but their absence leads to serious health consequences.</p>
+
+  <div class="micro-intro-grid">
+    <div class="micro-intro-card reveal">
+      <h3>Vitamins <span style="font-size:28px;"></span></h3>
+      <p>Vitamins are organic compounds that support hundreds of biochemical reactions in your body. They are divided into two groups: fat-soluble vitamins (A, D, E, K), which are stored in body fat and the liver, and water-soluble vitamins (B-complex, C), which must be replenished regularly through diet.</p>
+      <p style="margin-top:14px; font-size:14px; color:var(--text-muted); line-height:1.8;">Fruits and vegetables are the most concentrated dietary sources of vitamins. A single serving of bell pepper, for example, exceeds the daily recommended intake of Vitamin C.</p>
+    </div>
+    <div class="micro-intro-card reveal delay-1">
+      <h3>Minerals <span style="font-size:28px;"></span></h3>
+      <p>Minerals are inorganic elements absorbed from soil into the plants we eat. They are categorized as macrominerals — needed in larger amounts, such as calcium, magnesium, and potassium — and trace minerals, needed in very small quantities, such as iron, zinc, and selenium.</p>
+      <p style="margin-top:14px; font-size:14px; color:var(--text-muted); line-height:1.8;">Plant-based foods are excellent mineral sources, particularly leafy greens, legumes, root vegetables, and many fruits.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── KEY NUTRIENTS ── -->
+<section class="key-nutrients">
+  <div class="section-label">Key Nutrients</div>
+  <h2 class="section-title">Nutrients worth knowing</h2>
+  <p class="section-sub">These four nutrients are especially important for everyday health — and abundantly found in the natural foods Harvestpedia covers.</p>
+
+  <div class="key-grid">
+    <!-- Potassium -->
+    <div class="key-card reveal">
+      <div class="key-card-top">
+        <div class="key-header">
+          <h3>Potassium</h3>
+          <div class="key-type">Macromineral</div>
+        </div>
+      </div>
+      <p>Potassium is a mineral and electrolyte that regulates fluid balance, nerve signals, and muscle contractions. It plays a central role in maintaining healthy blood pressure by counteracting the effects of sodium.</p>
+      <p>A diet rich in potassium is associated with a significantly reduced risk of stroke, heart disease, and kidney stones. Most adults do not consume enough of it.</p>
+      <div class="key-sources">
+        <span class="source-chip">Banana</span>
+        <span class="source-chip">Avocado</span>
+        <span class="source-chip">Sweet Potato</span>
+        <span class="source-chip">Spinach</span>
+        <span class="source-chip">Coconut Water</span>
+      </div>
+    </div>
+
+    <!-- Iron -->
+    <div class="key-card reveal delay-1">
+      <div class="key-card-top">
+        <div class="key-header">
+          <h3>Iron</h3>
+          <div class="key-type">Trace Mineral</div>
+        </div>
+      </div>
+      <p>Iron is essential for producing hemoglobin — the protein in red blood cells that carries oxygen from your lungs to every part of your body. It also supports energy metabolism and immune function.</p>
+      <p>Iron deficiency is the most common nutritional deficiency worldwide, particularly among women. Plant-based (non-heme) iron is absorbed more effectively when consumed alongside Vitamin C-rich foods.</p>
+      <div class="key-sources">
+        <span class="source-chip">Spinach</span>
+        <span class="source-chip">Beetroot</span>
+        <span class="source-chip">Peas</span>
+        <span class="source-chip">Mulberry</span>
+        <span class="source-chip">Dried Apricot</span>
+      </div>
+    </div>
+
+    <!-- Biotin -->
+    <div class="key-card reveal delay-2">
+      <div class="key-card-top">
+        <div class="key-header">
+          <h3>Biotin</h3>
+          <div class="key-type">B-Vitamin · B7</div>
+        </div>
+      </div>
+      <p>Biotin, also known as Vitamin B7, helps your body convert carbohydrates, fats, and proteins into usable energy. It is essential for cell growth, fatty acid synthesis, and the maintenance of healthy hair, skin, and nails.</p>
+      <p>Biotin also plays a role in regulating gene expression and supporting proper embryonic growth, making it particularly important during pregnancy.</p>
+      <div class="key-sources">
+        <span class="source-chip">Avocado</span>
+        <span class="source-chip">Sweet Potato</span>
+        <span class="source-chip">Cauliflower</span>
+        <span class="source-chip">Raspberries</span>
+        <span class="source-chip">Onion</span>
+      </div>
+    </div>
+
+    <!-- Fiber -->
+    <div class="key-card reveal delay-3">
+      <div class="key-card-top">
+        <div class="key-header">
+          <h3>Fiber</h3>
+          <div class="key-type">Dietary Carbohydrate</div>
+        </div>
+      </div>
+      <p>Dietary fiber is the indigestible portion of plant foods. Soluble fiber dissolves in water and forms a gel that slows digestion, stabilizes blood sugar, and lowers LDL cholesterol. Insoluble fiber adds bulk to stool and promotes regular bowel movements.</p>
+      <p>Fiber also acts as a prebiotic — feeding the beneficial bacteria in your gut microbiome, which in turn influences immunity, inflammation, and even mental health.</p>
+      <div class="key-sources">
+        <span class="source-chip">Apple</span>
+        <span class="source-chip">Pear</span>
+        <span class="source-chip">Broccoli</span>
+        <span class="source-chip">Carrot</span>
+        <span class="source-chip">Guava</span>
+        <span class="source-chip">Lentils</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPLORE BANNER ── -->
+<div class="explore-banner">
+  <div class="explore-banner-inner">
+    <div class="section-label" style="justify-content:center;">Go Further</div>
+    <h2>Explore Natural Foods</h2>
+    <p>Now that you know what nutrients do, discover which fruits and vegetables are richest in each one. Browse our full database to find the best natural sources for your diet.</p>
+    <div class="explore-banner-cards">
+      <a class="explore-banner-card" href="fruits.html">
+        <span class="card-icon"></span>
+        <h4>Explore Fruits</h4>
+        <p>Discover the nutritional profiles of 240+ fruits from around the world.</p>
+        <span class="card-link">Browse Fruits →</span>
+      </a>
+      <a class="explore-banner-card" href="vegetables.html">
+        <span class="card-icon"></span>
+        <h4>Explore Vegetables</h4>
+        <p>Dive into 180+ vegetables and find your best sources of vitamins and minerals.</p>
+        <span class="card-link">Browse Vegetables →</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><div class="footer-leaf">🌿</div>Harvestpedia</div>
+      <p>Your trusted plant-based knowledge platform. Explore, learn, and grow with nature's best.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <a href="fruits.html">Fruits</a>
+      <a href="vegetables.html">Vegetables</a>
+      <a href="plants.html">Plants &amp; Herbs</a>
+      <a href="seasonal.html">Seasonal Guide</a>
+    </div>
+    <div class="footer-col">
+      <h5>Learn</h5>
+      <a href="nutrition.html">Nutrition Facts</a>
+      <a href="health.html">Health Benefits</a>
+      <a href="plants.html">Grow at Home</a>
+      <a href="recipes.html">Recipes</a>
+    </div>
+    <div class="footer-col">
+      <h5>About</h5>
+      <a href="about.html">Our Mission</a>
+      <a href="about.html">Contributors</a>
+      <a href="about.html">Contact</a>
+      <a href="about.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Harvestpedia. All rights reserved.</span>
+    <span>Made with 🌿 for nature lovers</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+</body>
+</html>

@@ -155,10 +155,16 @@
       animation: fadeUp 0.8s ease 0.3s both;
     }
 
-    .search-wrap {
-      display: flex; margin-bottom: 24px; max-width: 460px;
-      animation: fadeUp 0.8s ease 0.35s both;
-    }
+   .search-wrap {
+  position: relative; 
+  z-index: 1000;  
+  width: 100%;
+  margin-bottom: 24px; 
+  display: flex;  
+  max-width: 460px;
+  animation: fadeUp 0.8s ease 0.35s both;
+}
+
     .search-input {
       flex: 1; padding: 14px 20px;
       border: 1.5px solid var(--green-200); border-right: none;
@@ -499,6 +505,38 @@
       .footer-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
     }
+
+.suggestions-box {
+  position: absolute;
+  top: calc(100% + 6px); 
+  left: 0;
+  width: 100%; 
+
+  background: white;
+  border: 1px solid #d4edda;
+  border-radius: 12px;
+
+  max-height: 220px;
+  overflow-y: auto;
+
+  z-index: 9999;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+.cat-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.seasonal-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.fruit-hero-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
   </style>
 </head>
 <body>
@@ -509,13 +547,14 @@
     <div class="nav-logo-leaf">🌿</div>
     Harvestpedia
   </a>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
+    <ul class="nav-links">
+    <li><a href="index.html"class="active">Home</a></li>
     <li><a href="fruits.html">Fruits</a></li>
     <li><a href="vegetables.html">Vegetables</a></li>
     <li><a href="plants.html">Plants</a></li>
-    <button class="dm-toggle" id="dm-toggle"></button>
-    <li><a href="fruits.html" class="nav-cta">Explore Now</a></li>
+    <li><a href="compare.html" >Compare</a></li>
+    <li><a href="recipes.html">Recipes</a></li>
+    <li><a href="fruits.html" class="nav-cta">Explore</a></li>
   </ul>
 </nav>
 
@@ -537,14 +576,11 @@
       Discover nutritional profiles, health benefits, and how to grow your own.
     </p>
 
-    <div class="search-wrap">
-  <input 
-    id="home-search-input"
-    class="search-input"
-    type="text"
-    placeholder="Search fruits, vegetables, plants..." 
-  />
+
+<div class="search-wrap">
+  <input id="home-search-input" class="search-input" type="text" placeholder="Search fruits, vegetables, plants..." />
   <button id="home-search-btn" class="search-btn">Search</button>
+  <div id="search-suggestions" class="suggestions-box"></div>
 </div>
 
     <div class="hero-actions">
@@ -570,7 +606,7 @@
     </div>
   </div>
 
-  <!-- Hero photo grid -->
+<!-- Hero photo grid -->
   <div class="hero-visual">
     <div class="hero-fruit-grid">
       <div class="fruit-hero-card large" style="height:100%;">
@@ -598,6 +634,7 @@
   </div>
 </section>
 
+
 <!-- ── CATEGORIES ── -->
 <section class="categories">
   <div class="section-label">Browse by Category</div>
@@ -605,7 +642,9 @@
   <p class="section-sub">Dive into our comprehensive database of plant-based foods, organized for easy exploration.</p>
 
   <div class="categories-grid">
-    <div class="cat-card reveal">
+
+    <!-- 🍎 Fruits -->
+    <a href="fruits.html" class="cat-card reveal">
       <div class="cat-img">
         <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&q=80" alt="Fruits" loading="lazy" />
         <span class="cat-tag">Popular</span>
@@ -615,12 +654,13 @@
         <p>From tropical exotics to everyday favorites — discover flavors, nutrients, and seasonal picks from nature's sweetest gifts.</p>
         <div class="cat-footer">
           <span class="cat-count">240 varieties</span>
-          <a class="cat-arrow" href="fruits.html">→</a>
+          <span class="cat-arrow"> → </span>
         </div>
       </div>
-    </div>
+    </a>
 
-    <div class="cat-card reveal delay-1">
+    <!-- 🥕 Vegetables -->
+    <a href="vegetables.html" class="cat-card reveal delay-1">
       <div class="cat-img">
         <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&q=80" alt="Vegetables" loading="lazy" />
         <span class="cat-tag">Trending</span>
@@ -630,12 +670,13 @@
         <p>Explore the world of greens, roots, and cruciferous wonders. Find the perfect vegetable for your dietary needs.</p>
         <div class="cat-footer">
           <span class="cat-count">180 varieties</span>
-          <a class="cat-arrow" href="vegetables.html">→</a>
+          <span class="cat-arrow"> → </span>
         </div>
       </div>
-    </div>
+    </a>
 
-    <div class="cat-card reveal delay-2">
+    <!-- 🌿 Plants -->
+    <a href="plants.html" class="cat-card reveal delay-2">
       <div class="cat-img">
         <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80" alt="Plants" loading="lazy" />
         <span class="cat-tag">New</span>
@@ -645,10 +686,11 @@
         <p>Medicinal herbs, aromatic spices, and indoor plants — learn to grow your own green companions at home.</p>
         <div class="cat-footer">
           <span class="cat-count">120 species</span>
-          <a class="cat-arrow" href="plants.html">→</a>
+          <span class="cat-arrow"> → </span>
         </div>
       </div>
-    </div>
+    </a>
+
   </div>
 </section>
 
@@ -734,17 +776,17 @@
     </div>
     <div class="footer-col">
       <h5>Learn</h5>
-      <a href="#">Nutrition Facts</a>
-      <a href="#">Health Benefits</a>
-      <a href="#">Grow at Home</a>
+      <a href="nutrition.html">Nutrition Facts</a>
+      <a href="health.html">Health Benefits</a>
+      <a href="plants.html">Grow at Home</a>
       <a href="recipes.html">Recipes</a>
     </div>
     <div class="footer-col">
-      <h5>About</h5>
-      <a href="#">Our Mission</a>
-      <a href="#">Contributors</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy Policy</a>
+      <a href="about.html"><h5>About</h5></a>
+      <a href="about.html#mission">Our Mission</a>
+      <a href="about.html">Contributors</a>
+      <a href="about.html">Contact</a>
+      <a href="about.html">Privacy Policy</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -757,28 +799,28 @@
   /* ── Seasonal Data ── */
   const seasonData = {
     summer: [
-      { name:'Mango',      meta:'Tropical · Peak: Jun–Aug',   img:'https://media.istockphoto.com/id/168370138/photo/mango.jpg?s=612x612&w=0&k=20&c=ENq2BrUV8dNH2rth_ZYBBtS9RWDwCbI25SfulxirmnQ=', pills:['Vit A','Vit C','Fiber'] },
-      { name:'Watermelon', meta:'Gourd · Peak: Jul–Sep',      img:'https://images.unsplash.com/photo-1652031552021-50bcc01121a7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdhdGVybWVsb258ZW58MHx8MHx8fDA%3D', pills:['Hydration','Lycopene'] },
-      { name:'Peach',      meta:'Stone fruit · Peak: Jul–Aug',img:'https://media.istockphoto.com/id/1369429481/photo/ripe-peaches-with-thyme-leaves-in-a-plate-on-a-wooden-board-on-a-background.jpg?s=612x612&w=0&k=20&c=tEQJ-8dQ0B4PU8CmPSKJUSGJykcysIkeZ0RGBEbK97Y=', pills:['Vit C','Potassium'] },
-      { name:'Cherry',     meta:'Stone fruit · Peak: Jun–Jul',img:'https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=400&q=80', pills:['Antioxidants','Melatonin'] },
+      { name:'Mango',      type:'fruit',   meta:'Tropical · Peak: Jun–Aug',   img:'https://media.istockphoto.com/id/168370138/photo/mango.jpg?s=612x612&w=0&k=20&c=ENq2BrUV8dNH2rth_ZYBBtS9RWDwCbI25SfulxirmnQ=', pills:['Vit A','Vit C','Fiber'] },
+      { name:'Watermelon', type:'fruit',   meta:'Gourd · Peak: Jul–Sep',      img:'https://images.unsplash.com/photo-1652031552021-50bcc01121a7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdhdGVybWVsb258ZW58MHx8MHx8fDA%3D', pills:['Hydration','Lycopene'] },
+      { name:'Peach',      type:'fruit',   meta:'Stone fruit · Peak: Jul–Aug',img:'https://media.istockphoto.com/id/1369429481/photo/ripe-peaches-with-thyme-leaves-in-a-plate-on-a-wooden-board-on-a-background.jpg?s=612x612&w=0&k=20&c=tEQJ-8dQ0B4PU8CmPSKJUSGJykcysIkeZ0RGBEbK97Y=', pills:['Vit C','Potassium'] },
+      { name:'Cherry',     type:'fruit',   meta:'Stone fruit · Peak: Jun–Jul',img:'https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=400&q=80', pills:['Antioxidants','Melatonin'] },
     ],
     spring: [
-      { name:'Strawberry', meta:'Berry · Peak: Apr–Jun',       img:'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&q=80', pills:['Vit C','Folate'] },
-      { name:'Apricot',    meta:'Stone fruit · Peak: May–Jun', img:'https://media.istockphoto.com/id/165089494/photo/apricots-with-leaves.jpg?s=612x612&w=0&k=20&c=Hma--a5rdJ_4TAHVaeY-YjURQhiXr1J8cNP3fEpMiq8=', pills:['Beta-carotene','Vit A'] },
-      { name:'Pineapple',  meta:'Tropical · Peak: Mar–Jun',    img:'https://images.unsplash.com/photo-1621409443141-46c42dc0afb5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGluZWFwcGxlfGVufDB8fDB8fHww', pills:['Bromelain','Vit C'] },
-      { name:'Lychee',     meta:'Tropical · Peak: May–Jun',    img:'https://plus.unsplash.com/premium_photo-1722961407854-fcc0004b4929?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bHljaGVlfGVufDB8fDB8fHww', pills:['Vit C','Copper'] },
+      { name:'Strawberry', type:'fruit',   meta:'Berry · Peak: Apr–Jun',       img:'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&q=80', pills:['Vit C','Folate'] },
+      { name:'Apricot',    type:'fruit',   meta:'Stone fruit · Peak: May–Jun', img:'https://media.istockphoto.com/id/165089494/photo/apricots-with-leaves.jpg?s=612x612&w=0&k=20&c=Hma--a5rdJ_4TAHVaeY-YjURQhiXr1J8cNP3fEpMiq8=', pills:['Beta-carotene','Vit A'] },
+      { name:'Pineapple',  type:'fruit',   meta:'Tropical · Peak: Mar–Jun',    img:'https://images.unsplash.com/photo-1621409443141-46c42dc0afb5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGluZWFwcGxlfGVufDB8fDB8fHww', pills:['Bromelain','Vit C'] },
+      { name:'Lychee',     type:'fruit',   meta:'Tropical · Peak: May–Jun',    img:'https://plus.unsplash.com/premium_photo-1722961407854-fcc0004b4929?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bHljaGVlfGVufDB8fDB8fHww', pills:['Vit C','Copper'] },
     ],
     autumn: [
-      { name:'Apple',       meta:'Pome · Peak: Sep–Nov',        img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=80', pills:['Fiber','Quercetin'] },
-      { name:'Pear',        meta:'Pome · Peak: Aug–Oct',        img:'https://media.istockphoto.com/id/1766780576/photo/podium-for-exhibitions-and-product-presentations-material-stone-fruit-beautiful-green.jpg?s=612x612&w=0&k=20&c=lhvwq5VkrmNPj-wPhOBfVRgARiAiW_M-2qI1APxlNB4=', pills:['Fiber','Vit K'] },
-      { name:'Pomegranate', meta:'Berry · Peak: Sep–Jan',       img:'https://media.istockphoto.com/id/877321098/photo/ripe-pomegranate-fruits.jpg?s=612x612&w=0&k=20&c=btD4lMY0XPDNC7YuP5dxsgWJl90seFS01d51CuNj0-Q=', pills:['Punicalagins','Antioxidants'] },
-      { name:'Grape',       meta:'Berry · Peak: Aug–Oct',       img:'https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=400&q=80', pills:['Resveratrol','Vit K'] },
+      { name:'Apple',       type:'fruit',   meta:'Pome · Peak: Sep–Nov',        img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=80', pills:['Fiber','Quercetin'] },
+      { name:'Pear',        type:'fruit',   meta:'Pome · Peak: Aug–Oct',        img:'https://media.istockphoto.com/id/1766780576/photo/podium-for-exhibitions-and-product-presentations-material-stone-fruit-beautiful-green.jpg?s=612x612&w=0&k=20&c=lhvwq5VkrmNPj-wPhOBfVRgARiAiW_M-2qI1APxlNB4=', pills:['Fiber','Vit K'] },
+      { name:'Pomegranate', type:'fruit',   meta:'Berry · Peak: Sep–Jan',       img:'https://media.istockphoto.com/id/877321098/photo/ripe-pomegranate-fruits.jpg?s=612x612&w=0&k=20&c=btD4lMY0XPDNC7YuP5dxsgWJl90seFS01d51CuNj0-Q=', pills:['Punicalagins','Antioxidants'] },
+      { name:'Grape',       type:'fruit',   meta:'Berry · Peak: Aug–Oct',       img:'https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=400&q=80', pills:['Resveratrol','Vit K'] },
     ],
     winter: [
-      { name:'Orange',     meta:'Citrus · Peak: Nov–Mar',  img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=400&q=80', pills:['Vit C','Folate'] },
-      { name:'Kiwi',       meta:'Berry · Peak: Dec–Feb',   img:'https://images.unsplash.com/photo-1585059895524-72359e06133a?w=400&q=80', pills:['Vit C','Vit K'] },
-      { name:'Grapefruit', meta:'Citrus · Peak: Dec–Apr',  img:'https://images.unsplash.com/photo-1671624759854-ced22d6a6d28?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3JhcGVmcnVpdHxlbnwwfHwwfHx8MA%3D%3D', pills:['Vit A','Vit C'] },
-      { name:'Banana',     meta:'Berry · Year-round',      img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80', pills:['Potassium','B6'] },
+      { name:'Orange',     type:'fruit',   meta:'Citrus · Peak: Nov–Mar',  img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=400&q=80', pills:['Vit C','Folate'] },
+      { name:'Kiwi',       type:'fruit',   meta:'Berry · Peak: Dec–Feb',   img:'https://images.unsplash.com/photo-1585059895524-72359e06133a?w=400&q=80', pills:['Vit C','Vit K'] },
+      { name:'Grapefruit', type:'fruit',   meta:'Citrus · Peak: Dec–Apr',  img:'https://images.unsplash.com/photo-1671624759854-ced22d6a6d28?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3JhcGVmcnVpdHxlbnwwfHwwfHx8MA%3D%3D', pills:['Vit A','Vit C'] },
+      { name:'Banana',     type:'fruit',   meta:'Berry · Year-round',      img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80', pills:['Potassium','B6'] },
     ]
   };
 
@@ -787,18 +829,25 @@
     grid.style.opacity = '0';
     grid.style.transform = 'translateY(14px)';
     setTimeout(() => {
-      grid.innerHTML = seasonData[season].map(c => `
-        <div class="seasonal-card">
-          <div class="seasonal-img">
-            <img src="${c.img}" alt="${c.name}" loading="lazy" />
-            <div class="badge">${c.emoji}</div>
-          </div>
-          <div class="seasonal-body">
-            <h4>${c.name}</h4>
-            <div class="meta">${c.meta}</div>
-            <div class="nutrients">${c.pills.map(p=>`<span class="pill">${p}</span>`).join('')}</div>
-          </div>
-        </div>`).join('');
+grid.innerHTML = seasonData[season].map(c => `
+  <a href="${
+  c.type === "fruit"
+    ? `fruit_detail.html?fruit=${encodeURIComponent(c.name)}`
+    : `vegetable_detail.html?vegetable=${encodeURIComponent(c.name)}`
+}" class="seasonal-card">
+    <div class="seasonal-img">
+      <img src="${c.img}" alt="${c.name}" loading="lazy" />
+      <div class="badge">${c.emoji || ''}</div>
+    </div>
+    <div class="seasonal-body">
+      <h4>${c.name}</h4>
+      <div class="meta">${c.meta}</div>
+      <div class="nutrients">
+        ${c.pills.map(p=>`<span class="pill">${p}</span>`).join('')}
+      </div>
+    </div>
+  </a>
+`).join('');
       grid.style.transition = 'all 0.35s ease';
       grid.style.opacity = '1';
       grid.style.transform = 'translateY(0)';
@@ -835,69 +884,85 @@
   });
 
 </script>
+
 <script src="js/searchIndex.js"></script>
 
 <script>
 const input = document.getElementById("home-search-input");
 const btn = document.getElementById("home-search-btn");
+const box = document.getElementById("search-suggestions");
 
-function goToSearch() {
-  const query = input.value.trim().toLowerCase();
-  if (!query) return;
+function showSuggestions(query) {
+  box.innerHTML = "";
 
-  const item = SEARCH_INDEX.find(i =>
-    i.name.toLowerCase().includes(query)
-  );
-
-  if (!item) {
-    alert("Item not found 😢");
+  if (!query) {
+    box.style.display = "none";
     return;
   }
 
-  // redirect based on type
+  const results = SEARCH_INDEX.filter(item =>
+    item.name.toLowerCase().includes(query)
+  ).slice(0, 8);
+
+  if (results.length === 0) {
+    box.style.display = "none";
+    return;
+  }
+
+  results.forEach(item => {
+    const div = document.createElement("div");
+    div.classList.add("suggestion-item");
+    const name = item.name;
+const q = query.toLowerCase();
+const highlighted = name.replace(
+  new RegExp(q, "i"),
+  match => `<b>${match}</b>`
+);
+
+div.innerHTML = `${highlighted} (${item.type})`;
+
+    div.onclick = () => goToItem(item);
+
+    box.appendChild(div);
+  });
+
+  box.style.display = "block";
+}
+
+function goToItem(item) {
   if (item.type === "fruit") {
     window.location.href = `fruit_detail.html?fruit=${encodeURIComponent(item.name)}`;
   } 
   else if (item.type === "vegetable") {
     window.location.href = `vegetable_detail.html?vegetable=${encodeURIComponent(item.name)}`;
   } 
-  else if (item.type === "plant") {
+  else {
     window.location.href = `plant_detail.html?plant=${encodeURIComponent(item.name)}`;
   }
 }
 
-// button click
-btn.addEventListener("click", goToSearch);
-
-// enter key
-input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") goToSearch();
+// 🔥 live typing
+input.addEventListener("input", () => {
+  showSuggestions(input.value.trim().toLowerCase());
 });
-</script>
-<script>
-{
 
-  // redirect based on type
-  if (item.type === "fruit") {
-    window.location.href = `fruit_detail.html?fruit=${encodeURIComponent(item.name)}`;
-  }
+// 🔍 button click
+btn.addEventListener("click", () => {
+  const query = input.value.trim().toLowerCase();
+  const item = SEARCH_INDEX.find(i => i.name.toLowerCase().includes(query));
+  if (item) goToItem(item);
+});
 
-  if (item.type === "vegetable") {
-    window.location.href = `vegetable_detail.html?vegetable=${encodeURIComponent(item.name)}`;
+// ❌ click outside → close
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".search-wrap")) {
+    box.style.display = "none";
   }
+});
 
-  if (item.type === "plant") {
-    window.location.href = `plant_detail.html?plant=${encodeURIComponent(item.name)}`;
-  }
+function goToFruit(name) {
+  window.location.href = `fruit_detail.html?fruit=${encodeURIComponent(name)}`;
 }
-
-// button click
-btn.addEventListener("click", goToSearch);
-
-// enter key
-input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") goToSearch();
-});
 </script>
 </body>
 </html>

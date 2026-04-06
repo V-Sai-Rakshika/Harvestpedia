@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Harvestpedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green-50:  #f0f9f0;
+      --green-100: #d4edda;
+      --green-200: #a8d5b5;
+      --green-300: #72bb88;
+      --green-400: #5aab6f;
+      --green-600: #2d7a45;
+      --green-700: #236037;
+      --green-800: #1a4f2b;
+      --earth-50:  #fdf6ee;
+      --earth-100: #f5e6d0;
+      --earth-300: #d4a96a;
+      --earth-500: #a0703a;
+      --earth-700: #6b4520;
+      --cream:      #fdfaf5;
+      --warm-white: #fffef9;
+      --text-dark:  #1c2b1e;
+      --text-mid:   #3d5440;
+      --text-muted: #6b8070;
+      --shadow-sm:  0 2px 12px rgba(30,60,35,0.07);
+      --shadow-md:  0 6px 30px rgba(30,60,35,0.10);
+      --shadow-lg:  0 16px 60px rgba(30,60,35,0.13);
+      --radius-sm:  12px;
+      --radius-md:  20px;
+      --radius-lg:  32px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(253,250,245,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(90,171,111,0.12);
+      transition: box-shadow 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(30,60,35,0.08); }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--green-800); text-decoration: none;
+    }
+    .nav-logo-leaf {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--green-400), var(--green-600));
+      border-radius: 50% 12px 50% 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; box-shadow: 0 4px 14px rgba(45,122,69,0.3);
+    }
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-mid);
+      font-size: 14px; font-weight: 500;
+      padding: 8px 18px; border-radius: 50px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover  { background: var(--green-50); color: var(--green-600); }
+    .nav-links a.active { background: var(--green-50); color: var(--green-600); }
+    .nav-cta { background: var(--green-600) !important; color: white !important; box-shadow: 0 4px 14px rgba(45,122,69,0.3); }
+    .nav-cta:hover { background: var(--green-800) !important; transform: translateY(-1px); }
+
+    section { padding: 100px 48px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--green-600); margin-bottom: 12px;
+    }
+    .section-label::before { content: ''; width: 20px; height: 2px; background: var(--green-400); border-radius: 2px; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 50px);
+      font-weight: 700; color: var(--text-dark); line-height: 1.15; margin-bottom: 14px;
+    }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 540px; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 160px 48px 80px;
+      background: var(--warm-white);
+      position: relative; overflow: hidden;
+    }
+    .page-hero .blob {
+      position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .page-hero .blob-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(90,171,111,0.10) 0%, transparent 70%);
+      top: -200px; right: -100px;
+    }
+    .page-hero .blob-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,169,106,0.09) 0%, transparent 70%);
+      bottom: -100px; left: -80px;
+    }
+    .page-hero-inner { max-width: 700px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-50); border: 1px solid var(--green-200);
+      color: var(--green-600); font-size: 11px; font-weight: 700;
+      padding: 6px 14px; border-radius: 50px; margin-bottom: 24px;
+      letter-spacing: 0.8px; text-transform: uppercase;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 700; line-height: 1.1; margin-bottom: 20px; color: var(--text-dark);
+    }
+    .page-hero h1 .accent { color: var(--green-600); }
+    .page-hero p { font-size: 17px; color: var(--text-muted); line-height: 1.75; max-width: 580px; }
+
+    /* ── MISSION ── */
+    .mission { background: var(--cream); }
+    .mission-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 52px;
+      align-items: start; margin-top: 52px;
+    }
+    .mission-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 14px;
+    }
+    .mission-text p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 18px; }
+    .mission-values { display: flex; flex-direction: column; gap: 16px; }
+    .value-item {
+      background: white; border-radius: var(--radius-md);
+      border: 1px solid var(--green-100);
+      padding: 22px 24px; box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .value-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .value-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;
+    }
+    .value-item p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+    .value-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--green-600);
+      background: var(--green-50); border: 1px solid var(--green-100);
+      padding: 3px 10px; border-radius: 50px; margin-bottom: 10px;
+    }
+
+    /* ── CONTRIBUTORS ── */
+    .contributors { background: var(--earth-50); }
+    .contributors-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 52px;
+    }
+    .contributor-card {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid rgba(90,171,111,0.10);
+      padding: 32px 28px; box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+    }
+    .contributor-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .contributor-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-100), var(--green-200));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin: 0 auto 18px;
+      box-shadow: 0 4px 16px rgba(45,122,69,0.15);
+    }
+    .contributor-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;
+    }
+    .contributor-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+    .contributor-pill {
+      display: inline-block; margin-top: 14px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 50px;
+      background: var(--green-50); color: var(--green-600); border: 1px solid var(--green-100);
+    }
+    .contributors-note {
+      margin-top: 40px; padding: 28px 32px;
+      background: white; border-radius: var(--radius-md);
+      border: 1px solid var(--green-100);
+      display: flex; align-items: center; gap: 20px;
+    }
+    .contributors-note p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .contributors-note strong { color: var(--green-700); }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--warm-white); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 52px;
+      margin-top: 52px; align-items: start;
+    }
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px;
+    }
+    .contact-info p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 28px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 18px 20px; margin-bottom: 12px;
+      background: white; border-radius: var(--radius-sm);
+      border: 1px solid var(--green-100); box-shadow: var(--shadow-sm);
+    }
+    .contact-item-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: var(--green-50); border-radius: 10px;
+      border: 1px solid var(--green-100);
+      display: flex; align-items: center; justify-content: center; font-size: 17px;
+    }
+    .contact-item-body h5 {
+      font-size: 12px; font-weight: 700; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;
+    }
+    .contact-item-body span { font-size: 14px; color: var(--text-dark); font-weight: 500; }
+    .contact-form-wrap {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid var(--green-100); padding: 36px;
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-form-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 22px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 12px; font-weight: 700;
+      color: var(--text-mid); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 7px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid var(--green-100); border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
+      color: var(--text-dark); background: var(--cream); outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--green-400); background: white; }
+    .form-group textarea { height: 100px; resize: vertical; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-600); color: white;
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+      padding: 13px 28px; border-radius: 50px; border: none; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(45,122,69,0.35);
+      transition: all 0.25s ease; text-decoration: none; width: 100%; justify-content: center;
+    }
+    .btn-primary:hover { background: var(--green-800); transform: translateY(-2px); }
+
+    /* ── PRIVACY ── */
+    .privacy { background: var(--cream); }
+    .privacy-content { max-width: 780px; margin-top: 52px; }
+    .privacy-block {
+      background: white; border-radius: var(--radius-md);
+      border: 1px solid var(--green-100);
+      padding: 32px 36px; margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease;
+    }
+    .privacy-block:hover { transform: translateY(-3px); }
+    .privacy-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .privacy-block h3 span {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 50px;
+      background: var(--green-50); color: var(--green-600); border: 1px solid var(--green-100);
+    }
+    .privacy-block p { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 10px; }
+    .privacy-block p:last-child { margin-bottom: 0; }
+    .privacy-note {
+      background: var(--earth-50); border: 1px solid var(--earth-100);
+      border-radius: var(--radius-sm); padding: 16px 20px; margin-top: 12px;
+      font-size: 13px; color: var(--earth-700); line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--green-800); color: white; padding: 60px 48px 40px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px; margin-bottom: 48px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-leaf {
+      width: 28px; height: 28px; background: var(--green-400);
+      border-radius: 50% 10px 50% 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+    }
+    .footer-brand p { font-size: 13px; opacity: 0.65; line-height: 1.7; max-width: 230px; }
+    .footer-col h5 {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; opacity: 0.5; margin-bottom: 18px;
+    }
+    .footer-col a {
+      display: block; color: rgba(255,255,255,0.75); font-size: 14px;
+      text-decoration: none; margin-bottom: 10px; transition: color 0.2s; cursor: pointer;
+    }
+    .footer-col a:hover { color: var(--green-200); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; opacity: 0.5;
+    }
+
+    @media (max-width: 1024px) {
+      nav { padding: 14px 24px; }
+      section { padding: 70px 24px; }
+      .page-hero { padding: 120px 24px 60px; }
+      .mission-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contributors-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .contributors-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-leaf">🌿</div>
+    Harvestpedia
+  </a>
+    <ul class="nav-links">
+    <li><a href="index.html"class="active">Home</a></li>
+    <li><a href="fruits.html">Fruits</a></li>
+    <li><a href="vegetables.html">Vegetables</a></li>
+    <li><a href="plants.html">Plants</a></li>
+    <li><a href="compare.html" >Compare</a></li>
+    <li><a href="recipes.html">Recipes</a></li>
+    <li><a href="index.html" class="nav-cta">Explore</a></li>
+  </ul>
+</nav>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="page-hero-inner">
+    <div class="hero-badge">About Harvestpedia</div>
+    <h1>Where <span class="accent">Nature</span> Meets Knowledge</h1>
+    <p>We believe that understanding what you eat is the first step toward living better. Harvestpedia exists to make plant-based nutrition knowledge accessible, accurate, and inspiring — for everyone.</p>
+  </div>
+</div>
+
+<!-- ── OUR MISSION ── -->
+<section id="mission" class="mission">
+  <div class="section-label">Our Mission</div>
+  <h2 class="section-title">Built for a healthier world</h2>
+  <p class="section-sub">Harvestpedia was created to bridge the gap between nature's abundance and everyday health choices.</p>
+
+  <div class="mission-grid">
+    <div class="mission-text reveal">
+      <h3>Why Harvestpedia exists</h3>
+      <p>Nutrition information today is scattered, overly technical, or buried behind paywalls. We set out to build a single, trustworthy platform where anyone — a student, a parent, a health enthusiast — can look up any fruit, vegetable, or plant and instantly understand its value.</p>
+      <p>Our focus is plant-based knowledge: what foods grow in nature, what they contain, and how they benefit the human body. We cover everything from common grocery staples to rare seasonal varieties — all presented in plain, accessible language.</p>
+      <p>Harvestpedia is free, open, and constantly growing. We are committed to keeping knowledge available to all, without barriers.</p>
+    </div>
+    <div class="mission-values reveal delay-1">
+      <div class="value-item">
+        <div class="value-tag">Health First</div>
+        <h4>Evidence-based information</h4>
+        <p>Every nutritional fact on Harvestpedia is grounded in established dietary science. We avoid trends and focus on what the evidence actually supports.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-tag">Accessibility</div>
+        <h4>Simple language, deep insight</h4>
+        <p>We translate complex nutritional data into language anyone can understand — without oversimplifying the science behind it.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-tag">Plant-based</div>
+        <h4>Celebrating nature's diversity</h4>
+        <p>From tropical fruits to humble root vegetables, we document the full spectrum of plant-based foods and their unique contributions to human health.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTRIBUTORS ── -->
+<section id="contributors" class="contributors">
+  <div class="section-label">Contributors</div>
+  <h2 class="section-title">Built by a community of curious minds</h2>
+  <p class="section-sub">Harvestpedia is shaped by the combined effort of developers, researchers, and nutrition enthusiasts who share a common goal.</p>
+
+  <div class="contributors-grid">
+    <div class="contributor-card reveal">
+      <div class="contributor-icon">💻</div>
+      <h3>Developers</h3>
+      <p>Our development team designs and maintains the platform — ensuring fast, reliable access to information across every device.</p>
+      <div class="contributor-pill">Platform & Engineering</div>
+    </div>
+    <div class="contributor-card reveal delay-1">
+      <div class="contributor-icon">🔬</div>
+      <h3>Researchers</h3>
+      <p>Nutritional researchers and dietitians review and curate the content, keeping data accurate, up-to-date, and scientifically grounded.</p>
+      <div class="contributor-pill">Science & Content</div>
+    </div>
+    <div class="contributor-card reveal delay-2">
+      <div class="contributor-icon">🌱</div>
+      <h3>Nutrition Enthusiasts</h3>
+      <p>Community contributors from around the world help expand our database with regional plants, seasonal guides, and local dietary knowledge.</p>
+      <div class="contributor-pill">Community</div>
+    </div>
+  </div>
+
+  <div class="contributors-note reveal">
+    <div style="font-size: 32px; flex-shrink: 0;">🤝</div>
+    <p>Harvestpedia is a collaborative project and we welcome new contributors. Whether you specialize in nutrition science, botany, writing, or design — <strong>there is a place for you here.</strong> Reach out to us and help us grow this platform for everyone.</p>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">We would love to hear from you</h2>
+  <p class="section-sub">Have a suggestion, spotted an error, or want to contribute? Get in touch — we read every message.</p>
+
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Reach out directly</h3>
+      <p>Whether you have a question about our content, want to collaborate, or simply want to say hello — we are here and happy to connect.</p>
+
+      <div class="contact-item">
+        <div class="contact-item-icon"></div>
+        <div class="contact-item-body">
+          <h5>Email</h5>
+          <span>vsr@harvestpedia.com</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon"></div>
+        <div class="contact-item-body">
+          <h5>Partnerships & Contributions</h5>
+          <span>contribute@harvestpedia.com</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon"></div>
+        <div class="contact-item-body">
+          <h5>Report an Issue</h5>
+          <span>support@harvestpedia.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap reveal delay-1">
+      <h3>Send us a message</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Jane Smith" />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="jane@example.com" />
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" placeholder="How can we help?" />
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Write your message here..."></textarea>
+      </div>
+      <button class="btn-primary">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRIVACY POLICY ── -->
+<section id= "privacy" class="privacy">
+  <div class="section-label">Privacy Policy</div>
+  <h2 class="section-title">Your privacy, clearly explained</h2>
+  <p class="section-sub">We keep this simple. No legal jargon — just a straightforward explanation of how we handle your information.</p>
+
+  <div class="privacy-content">
+    <div class="privacy-block reveal">
+      <h3>What we collect <span>Minimal</span></h3>
+      <p>Harvestpedia does not require you to create an account to use the platform. We do not collect personal information unless you choose to contact us directly through our contact form.</p>
+      <p>When you use our site, standard server logs may record your browser type and approximate region purely for performance and security monitoring. This data is never sold or shared.</p>
+    </div>
+
+    <div class="privacy-block reveal">
+      <h3>How we use data <span>Transparently</span></h3>
+      <p>Any information you provide — such as your name and email via the contact form — is used solely to respond to your message. We do not subscribe you to mailing lists without your explicit consent.</p>
+      <p>We may use anonymized, aggregated usage statistics (such as which pages are visited most) to improve the platform. This data cannot be used to identify any individual user.</p>
+    </div>
+
+    <div class="privacy-block reveal">
+      <h3>Cookies &amp; Tracking <span>Non-intrusive</span></h3>
+      <p>Harvestpedia uses only essential cookies necessary for basic site functionality, such as remembering your seasonal filter preference. We do not use advertising cookies or third-party tracking tools that profile your behavior across the web.</p>
+      <div class="privacy-note">We do not display advertisements and we do not sell user data. Your visit to Harvestpedia is your own.</div>
+    </div>
+
+    <div class="privacy-block reveal">
+      <h3>Third-party services <span>Limited</span></h3>
+      <p>Our platform may load fonts and images from trusted external sources such as Google Fonts and Unsplash. These services operate under their own privacy policies. We choose partners carefully and limit external dependencies wherever possible.</p>
+    </div>
+
+    <div class="privacy-block reveal">
+      <h3>Your rights <span>Always respected</span></h3>
+      <p>You have the right to request deletion of any personal information you have submitted to us. Simply email us at privacy@harvestpedia.com and we will action your request promptly. If you have any questions about this policy, we are happy to clarify.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-leaf">🌿</div>
+        Harvestpedia
+      </div>
+      <p>Your trusted plant-based knowledge platform. Explore, learn, and grow with nature's best.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <a href="fruits.html">Fruits</a>
+      <a href="vegetables.html">Vegetables</a>
+      <a href="plants.html">Plants &amp; Herbs</a>
+      <a href="seasonal.html">Seasonal Guide</a>
+    </div>
+    <div class="footer-col">
+      <h5>Learn</h5>
+      <a href="nutrition.html">Nutrition Facts</a>
+      <a href="health.html">Health Benefits</a>
+      <a href="plants.html">Grow at Home</a>
+      <a href="recipes.html">Recipes</a>
+    </div>
+    <div class="footer-col">
+      <h5>About</h5>
+      <a href="about.html#mission">Our Mission</a>
+      <a href="about.html#contributors">Contributors</a>
+      <a href="about.html#contact">Contact</a>
+      <a href="about.html#privacy">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Harvestpedia. All rights reserved.</span>
+    <span>Made with 🌿 for nature lovers</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+</body>
+</html>
