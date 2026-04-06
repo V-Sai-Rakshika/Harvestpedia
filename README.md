@@ -4,7 +4,7 @@
 
 🌐 **Live Demo:** https://harvestpedia.vercel.app/
 
-![Harvestpedia](<img width="1600" height="900" alt="Screenshot (75)" src="https://github.com/user-attachments/assets/46fad53c-e7d7-4b72-ab69-728845c1a4e0" />)
+<img width="1600" height="900" alt="Screenshot (75)" src="https://github.com/user-attachments/assets/46fad53c-e7d7-4b72-ab69-728845c1a4e0" />
 
 ---
 
