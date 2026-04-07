@@ -1,319 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Seasonal Calendar – Harvestpedia</title>
-<link rel="stylesheet" href="../css/style.css"/>
-<style>
-  :root {
-  --green-50:  #f0f9f0;
-  --green-100: #d4edda;
-  --green-200: #a8d5b5;
-  --green-300: #72bb88;
-  --green-400: #5aab6f;
-  --green-600: #2d7a45;
-  --green-800: #1a4f2b;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seasonal Calendar – Harvestpedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
 
-  --earth-50:  #fdf6ee;
+    /* ── PAGE HERO ─────────────────────────────────────────── */
+    .page-hero {
+      padding: 140px 48px 64px;
+      background: var(--warm-white);
+      position: relative; overflow: hidden;
+    }
+    .blob { position: absolute; border-radius: 50%; pointer-events: none; }
+    .blob-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(90,171,111,0.10) 0%, transparent 70%);
+      top: -200px; right: -120px;
+    }
+    .blob-2 {
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(212,169,106,0.09) 0%, transparent 70%);
+      bottom: -80px; left: -80px;
+    }
+    .page-hero-inner { max-width: 680px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-50); border: 1px solid var(--green-200);
+      color: var(--green-600); font-size: 11px; font-weight: 700;
+      padding: 6px 14px; border-radius: 50px; margin-bottom: 22px;
+      letter-spacing: 0.8px; text-transform: uppercase;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 5vw, 62px);
+      font-weight: 700; line-height: 1.1; color: var(--text-dark); margin-bottom: 16px;
+    }
+    .page-hero h1 .accent { color: var(--green-600); }
+    .page-hero p { font-size: 17px; color: var(--text-muted); line-height: 1.75; max-width: 540px; }
 
-  --cream:      #fdfaf5;
-  --warm-white: #fffef9;
+    /* ── MAIN WRAPPER ───────────────────────────────────────── */
+    .cal-wrap { max-width: 1100px; margin: 0 auto; padding: 56px 48px 80px; }
 
-  --text-dark:  #1c2b1e;
-  --text-mid:   #3d5440;
-  --text-muted: #6b8070;
+    /* ── MONTH STRIP ────────────────────────────────────────── */
+    .months-strip {
+      display: grid; grid-template-columns: repeat(12, 1fr);
+      gap: 8px; margin-bottom: 36px;
+    }
+    .month-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 12px 6px; border-radius: var(--radius-sm);
+      background: white; border: 1.5px solid var(--green-100);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 600; color: var(--text-muted);
+      cursor: pointer; transition: all 0.2s ease;
+    }
+    .month-btn:hover { border-color: var(--green-300); color: var(--green-600); background: var(--green-50); }
+    .month-btn.active {
+      background: var(--green-600); color: white;
+      border-color: var(--green-600);
+      box-shadow: 0 4px 14px rgba(45,122,69,0.30);
+    }
+    .month-btn .m-season { font-size: 9px; font-weight: 500; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.4px; }
 
-  --shadow-md:  0 6px 30px rgba(30,60,35,0.10);
-  --radius-lg:  32px;
-}
-  .cal-hero {
-    padding: 2.5rem 1.5rem 2rem; text-align:center;
-    background: linear-gradient(135deg, #e8f4e8 0%, #faf5e8 100%);
-  }
-  .cal-hero h1 { font-size:2rem; font-weight:700; color:#1a3a1a; }
-  .cal-hero p  { color:#6b7280; margin-top:.4rem; }
+    /* ── LEGEND ─────────────────────────────────────────────── */
+    .season-legend {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 28px; align-items: center;
+    }
+    .leg-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); font-weight: 500; }
+    .leg-dot  { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-  .cal-wrap { max-width:1000px; margin:0 auto; padding:2rem 1.5rem; }
+    /* ── FILTER TABS ────────────────────────────────────────── */
+    .filter-tabs { display: flex; gap: 8px; margin-bottom: 36px; flex-wrap: wrap; }
+    .filter-tab {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: 50px;
+      border: 1.5px solid var(--green-100);
+      background: var(--green-50); color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+      cursor: pointer; transition: all 0.2s ease; user-select: none;
+    }
+    .filter-tab:hover { border-color: var(--green-300); color: var(--green-600); }
+    .filter-tab.active {
+      background: var(--green-600); color: white;
+      border-color: var(--green-600);
+      box-shadow: 0 4px 14px rgba(45,122,69,0.30);
+    }
 
-  /* Month strip */
-  .month-btn {
-  border-radius: 14px;
-  padding: 10px 6px;
+    /* ── MONTH HEADER ───────────────────────────────────────── */
+    .current-header {
+      display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .current-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3.5vw, 38px); font-weight: 700; color: var(--text-dark);
+    }
+    .current-header .month-sub {
+      font-size: 14px; color: var(--text-muted); font-weight: 400;
+    }
 
-  background: white;
-  border: 1px solid var(--green-100);
+    /* ── PRODUCE GROUP ──────────────────────────────────────── */
+    .produce-group { margin-bottom: 40px; }
+    .group-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--green-600); margin-bottom: 16px;
+    }
+    .group-label::before { content: ''; width: 20px; height: 2px; background: var(--green-400); border-radius: 2px; }
+    .group-label .group-count {
+      font-size: 11px; font-weight: 500; color: var(--text-muted);
+      letter-spacing: 0; text-transform: none;
+    }
 
-  font-size: 11px;
-  color: var(--text-mid);
+    /* ── PRODUCE GRID ───────────────────────────────────────── */
+    .produce-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+    }
 
-  transition: all 0.2s;
-}
+    /* ── PRODUCE CARD — matches category card system ────────── */
+    .produce-card {
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(90,171,111,0.10);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 16px 16px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.3s ease,
+                  border-color 0.3s ease;
+    }
+    .produce-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+    .produce-card.peak::before  { background: var(--green-400); }
+    .produce-card.good::before  { background: var(--earth-300); }
+    .produce-card.low::before   { background: var(--green-100); }
 
-.month-btn.active {
-  background: var(--green-600);
-  color: white;
-  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
-}
+    .produce-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
 
-  /* Season legend */
-  .season-legend {
-    display:flex; gap:16px; flex-wrap:wrap; margin-bottom:1.5rem;
-    justify-content:center;
-  }
-  .leg-item { display:flex; align-items:center; gap:6px; font-size:12px; color:#374151; }
-  .leg-dot  { width:10px; height:10px; border-radius:50%; }
+    .p-name   {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px; font-weight: 600; color: var(--text-dark);
+      line-height: 1.3;
+    }
+    .p-type {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.6px;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .peak-badge {
+      font-size: 10px; font-weight: 700;
+      padding: 3px 10px; border-radius: 50px;
+      letter-spacing: 0.3px;
+    }
+    .badge-peak { background: var(--green-50); color: var(--green-700); border: 1px solid var(--green-100); }
+    .badge-good { background: var(--earth-50); color: var(--earth-700); border: 1px solid var(--earth-100); }
+    .badge-low  { background: #f3f4f6; color: var(--text-muted); border: 1px solid #e5e7eb; }
 
-  /* Filter tabs */
-  .filter-tab {
-  padding: 8px 18px;
-  border-radius: 50px;
+    /* ── HEATMAP ────────────────────────────────────────────── */
+    .heatmap-section { margin-top: 56px; }
+    .heatmap-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 700; color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .heatmap-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+    .heatmap-wrap {
+      background: white; border-radius: var(--radius-lg);
+      border: 1px solid var(--green-100);
+      box-shadow: var(--shadow-sm);
+      overflow-x: auto; padding: 28px 24px;
+    }
+    .heatmap-table { width: 100%; border-collapse: collapse; font-size: 11px; min-width: 600px; }
+    .heatmap-table th {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700; color: var(--text-muted);
+      padding: 4px 5px; text-align: center;
+      font-size: 10px; letter-spacing: 0.5px;
+    }
+    .heatmap-table th:first-child { text-align: left; }
+    .heatmap-table td { padding: 3px 3px; }
+    .heatmap-table tr:hover td { background: rgba(240,249,240,0.5); }
+    .hm-name {
+      font-size: 12px; font-weight: 500; color: var(--text-mid);
+      white-space: nowrap; padding: 4px 8px 4px 4px; text-align: left;
+    }
+    .hm-cell {
+      display: block; width: 30px; height: 22px;
+      border-radius: 5px; margin: auto;
+      font-size: 9px; line-height: 22px; font-weight: 700;
+      text-align: center; letter-spacing: 0;
+    }
+    .hm-peak { background: var(--green-200); color: var(--green-800); }
+    .hm-good { background: var(--earth-100); color: var(--earth-700); }
+    .hm-low  { background: #f3f4f6; color: #9ca3af; }
+    .hm-none { background: transparent; color: transparent; }
 
-  border: 1px solid var(--green-100);
-  background: var(--green-50);
+    /* ── EMPTY STATE ────────────────────────────────────────── */
+    .empty-state {
+      text-align: center; padding: 48px 24px;
+      color: var(--text-muted); font-size: 14px;
+    }
 
-  font-size: 13px;
-  color: var(--text-mid);
-
-  transition: all 0.2s ease;
-}
-
-.filter-tab.active {
-  background: var(--green-600);
-  color: white;
-  border-color: var(--green-600);
-}
-
-  /* Produce grid */
-  .produce-section h3 {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-dark);
-
-  margin-bottom: 10px;
-}
-  .produce-grid {
-    display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:10px;
-  }
-  .produce-card {
-  background: white;
-  border-radius: 20px;
-  padding: 14px;
-
-  border: 1px solid var(--green-100);
-  box-shadow: 0 4px 20px rgba(30,60,35,0.08);
-
-  text-align: center;
-  text-decoration: none;
-  color: var(--text-dark);
-
-  transition: all 0.25s ease;
-}
-
-.produce-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(30,60,35,0.15);
-}
-
-.p-name {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-  /* Season badge */
-  .produce-card.peak   { border-top:3px solid #3B6D11; }
-  .produce-card.good   { border-top:3px solid #BA7517; }
-  .produce-card.low    { border-top:3px solid #e5e7eb; }
-
-  .peak-badge {
-    display:inline-block; font-size:10px; font-weight:600; padding:1px 6px;
-    border-radius:99px; margin-top:4px;
-  }
-  .badge-peak { background:#d1fae5; color:#065f46; }
-  .badge-good { background:#fef3c7; color:#92400e; }
-  .badge-low  { background:#f3f4f6; color:#6b7280; }
-
-  /* Current month header */
-  .current-header {
-    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
-    gap:8px; margin-bottom:1.5rem;
-  }
-  .current-header h2 { font-size:1.4rem; font-weight:700; color:#1a3a1a; }
-  .current-header span { font-size:13px; color:#6b7280; }
-
-  /* Year overview mini heatmap */
-  .heatmap-section { margin-top:2rem; }
-  .heatmap-section h2 { font-size:1rem; font-weight:700; color:#1a3a1a; margin-bottom:1rem; }
-  .heatmap-table { width:100%; border-collapse:collapse; font-size:11px; }
-  .heatmap-table th { font-weight:600; color:#9ca3af; padding:4px 6px; text-align:center; }
-  .heatmap-table td { padding:5px 3px; text-align:center; }
-  .hm-cell {
-    display:block; width:28px; height:22px; border-radius:4px; margin:auto;
-    font-size:9px; line-height:22px; font-weight:600;
-  }
-  .hm-peak { background:#3B6D11; color:#fff; }
-  .hm-good { background:#BA7517; color:#fff; }
-  .hm-low  { background:#f3f4f6; color:#9ca3af; }
-  .hm-none { background:#fff; color:#e5e7eb; }
-#navbar.scrolled {
-  box-shadow: 0 6px 30px rgba(30,60,35,0.08);
-}
-
-/* ── LOGO ───────────────────────────────── */
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 700;
-
-  color: var(--green-800);
-  text-decoration: none;
-}
-
-.nav-logo-leaf {
-  width: 34px;
-  height: 34px;
-
-  background: linear-gradient(135deg, var(--green-400), var(--green-600));
-  border-radius: 50% 12px 50% 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 16px;
-
-  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
-}
-
-/* ── LINKS ───────────────────────────────── */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  list-style: none;
-}
-
-.nav-links li {
-  list-style: none;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-mid);
-
-  font-size: 14px;
-  font-weight: 500;
-
-  padding: 8px 18px;
-  border-radius: 50px;
-
-  transition: all 0.2s ease;
-}
-
-/* Hover */
-.nav-links a:hover {
-  background: var(--green-50);
-  color: var(--green-600);
-}
-
-/* Active page */
-.nav-links a.active {
-  background: var(--green-50);
-  color: var(--green-600);
-}
-
-/* CTA Button */
-.nav-cta {
-  background: var(--green-600) !important;
-  color: white !important;
-
-  box-shadow: 0 4px 14px rgba(45,122,69,0.3);
-}
-
-.nav-cta:hover {
-  background: var(--green-800) !important;
-  transform: translateY(-1px);
-}
-
-/* ── RESPONSIVE ───────────────────────────── */
-@media (max-width: 768px) {
-  #navbar {
-    padding: 12px 20px;
-  }
-
-  .nav-links {
-    display: none; /* later you can add hamburger */
-  }
-}
-
-</style>
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .page-hero { padding: 110px 24px 48px; }
+      .cal-wrap  { padding: 40px 24px 64px; }
+      .months-strip { grid-template-columns: repeat(6, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .months-strip { grid-template-columns: repeat(4, 1fr); }
+      .produce-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
 
+<!-- ── NAVBAR ── -->
 <nav id="navbar">
   <a class="nav-logo" href="index.html">
-    <div class="nav-logo-leaf">🌿</div>
+    <div class="nav-logo-leaf"></div>
     Harvestpedia
   </a>
-
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="fruits.html">Fruits</a></li>
     <li><a href="vegetables.html">Vegetables</a></li>
     <li><a href="plants.html">Plants</a></li>
-    <li><a href="compare.html" >Compare</a></li>
+    <li><a href="compare.html">Compare</a></li>
     <li><a href="recipes.html">Recipes</a></li>
-    <li><a href="index.html" class="nav-cta">Explore</a></li>
+    <li><a href="fruits.html" class="nav-cta">Explore</a></li>
   </ul>
 </nav>
 
-<section class="cal-hero">
-  <h1>🗓️ Seasonal Calendar</h1>
-  <p>Discover what's fresh and at peak flavour each month.</p>
-</section>
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="page-hero-inner">
+    <div class="hero-badge">Seasonal Guide</div>
+    <h1>Eat with the <span class="accent">Season</span></h1>
+    <p>Discover what's fresh, at peak flavour, and most nutritious each month. Seasonal produce tastes better, costs less, and is kinder to the environment.</p>
+  </div>
+</div>
 
+<!-- ── MAIN ── -->
 <main class="cal-wrap">
 
   <!-- Month strip -->
   <div class="months-strip" id="months-strip"></div>
 
-  <!-- Legend -->
-  <div class="season-legend">
-    <div class="leg-item"><div class="leg-dot" style="background:#3B6D11"></div> Peak season</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#BA7517"></div> Good availability</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#d1d5db"></div> Limited / off-season</div>
-  </div>
-
-  <!-- Filter -->
-  <div class="filter-tabs">
-    <button class="filter-tab active" data-type="all">All</button>
-    <button class="filter-tab" data-type="fruit">🍎 Fruits</button>
-    <button class="filter-tab" data-type="veg">🥦 Vegetables</button>
+  <!-- Legend + Filter in one row -->
+  <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; margin-bottom:28px;">
+    <div class="season-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--green-400)"></div> Peak season</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--earth-300)"></div> Good availability</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#d1d5db"></div> Limited</div>
+    </div>
+    <div class="filter-tabs" id="filter-tabs">
+      <button class="filter-tab active" data-type="all">All</button>
+      <button class="filter-tab" data-type="fruit">Fruits</button>
+      <button class="filter-tab" data-type="veg">Vegetables</button>
+    </div>
   </div>
 
   <!-- Month header -->
   <div class="current-header">
-    <h2 id="month-title">—</h2>
-    <span id="month-subtitle"></span>
+    <h2 id="month-title"></h2>
+    <span class="month-sub" id="month-subtitle"></span>
   </div>
 
-  <!-- Produce grid -->
+  <!-- Produce groups -->
   <div id="produce-area"></div>
 
-  <!-- Year overview heatmap -->
+  <!-- Year heatmap -->
   <div class="heatmap-section" id="heatmap-section"></div>
+
 </main>
+
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo">
-        <div class="footer-leaf">🌿</div>
+        <div class="footer-leaf"></div>
         Harvestpedia
       </div>
       <p>Your trusted plant-based knowledge platform. Explore, learn, and grow with nature's best.</p>
@@ -333,7 +318,7 @@
       <a href="recipes.html">Recipes</a>
     </div>
     <div class="footer-col">
-      <a href="about.html"><h5>About</h5></a>
+      <h5>About</h5>
       <a href="about.html#mission">Our Mission</a>
       <a href="about.html#contributors">Contributors</a>
       <a href="about.html#contact">Contact</a>
@@ -342,425 +327,103 @@
   </div>
   <div class="footer-bottom">
     <span>© 2025 Harvestpedia. All rights reserved.</span>
-    <span>Made with 🌿 for nature lovers</span>
+    <span>Made with care for nature lovers</span>
   </div>
 </footer>
 
 <script>
-// ============================================================
-// SEASONAL DATA
-// status per month (1-12): "peak" | "good" | "low" | null
-// ============================================================
-const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+/* ================================================================
+   CONSTANTS
+   ================================================================ */
+const MONTHS      = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const MONTH_SEASON = ["Winter","Winter","Spring","Spring","Spring","Summer","Summer","Summer","Autumn","Autumn","Autumn","Winter"];
+const SEASON_LABEL = { Spring:"Spring", Summer:"Summer", Autumn:"Autumn", Winter:"Winter" };
 
-  const PRODUCE = [
 
-  // ── FRUITS ──────────────────────────────────────────────
-  { name:"Apple", type:"fruit", url:"../fruits/fruit_detail.html?name=Apple",
+
+/* ================================================================
+   DATA  — status[0..11] = Jan..Dec  |  "peak" | "good" | "low" | null
+   ================================================================ */
+const PRODUCE = [
+  // ── FRUITS ──────────────────────────────────────────────────
+  { name:"Apple",         type:"fruit", url:"fruit_detail.html?fruit=Apple",
     season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] },
-
-  { name:"Apricot", type:"fruit", url:"../fruits/fruit_detail.html?name=Apricot",
+  { name:"Apricot",       type:"fruit", url:"fruit_detail.html?fruit=Apricot",
     season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Avocado", type:"fruit", url:"../fruits/fruit_detail.html?name=Avocado",
+  { name:"Avocado",       type:"fruit", url:"fruit_detail.html?fruit=Avocado",
     season:["good","good","good","peak","peak","good","good","good","good","good","good","good"] },
-
-  { name:"Banana", type:"fruit", url:"../fruits/fruit_detail.html?name=Banana",
+  { name:"Banana",        type:"fruit", url:"fruit_detail.html?fruit=Banana",
     season:["peak","peak","peak","peak","peak","good","good","good","peak","peak","peak","peak"] },
-
-  { name:"Blueberry", type:"fruit", url:"../fruits/fruit_detail.html?name=Blueberry",
+  { name:"Blueberry",     type:"fruit", url:"fruit_detail.html?fruit=Blueberry",
     season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Cherry", type:"fruit", url:"../fruits/fruit_detail.html?name=Cherry",
+  { name:"Cherry",        type:"fruit", url:"fruit_detail.html?fruit=Cherry",
     season:[null,null,null,null,"good","peak","peak","low",null,null,null,null] },
-
-  { name:"Coconut", type:"fruit", url:"../fruits/fruit_detail.html?name=Coconut",
-    season:["peak","peak","peak","peak","peak","peak","peak","peak","peak","peak","peak","peak"] },
-
-  { name:"Dragon Fruit", type:"fruit", url:"../fruits/fruit_detail.html?name=Dragon%20Fruit",
+  { name:"Coconut",       type:"fruit", url:"fruit_detail.html?fruit=Coconut",
+    season:["good","good","good","good","good","good","good","good","good","good","good","good"] },
+  { name:"Dragon Fruit",  type:"fruit", url:"fruit_detail.html?fruit=Dragon%20Fruit",
     season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Durian", type:"fruit", url:"../fruits/fruit_detail.html?name=Durian",
-    season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Fig", type:"fruit", url:"../fruits/fruit_detail.html?name=Fig",
-    season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Grape", type:"fruit", url:"../fruits/fruit_detail.html?name=Grape",
+  { name:"Grape",         type:"fruit", url:"fruit_detail.html?fruit=Grape",
     season:[null,null,null,null,null,"low","good","peak","peak","good",null,null] },
-
-  { name:"Grapefruit", type:"fruit", url:"../fruits/fruit_detail.html?name=Grapefruit",
+  { name:"Grapefruit",    type:"fruit", url:"fruit_detail.html?fruit=Grapefruit",
     season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] },
-
-  { name:"Guava", type:"fruit", url:"../fruits/fruit_detail.html?name=Guava",
+  { name:"Guava",         type:"fruit", url:"fruit_detail.html?fruit=Guava",
     season:["good","peak","peak","good","low","low","low","good","peak","peak","good","good"] },
-
-  { name:"Jackfruit", type:"fruit", url:"../fruits/fruit_detail.html?name=Jackfruit",
+  { name:"Jackfruit",     type:"fruit", url:"fruit_detail.html?fruit=Jackfruit",
     season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Kiwi", type:"fruit", url:"../fruits/fruit_detail.html?name=Kiwi",
+  { name:"Kiwi",          type:"fruit", url:"fruit_detail.html?fruit=Kiwi",
     season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] },
-
-  { name:"Lemon", type:"fruit", url:"../fruits/fruit_detail.html?name=Lemon",
+  { name:"Lemon",         type:"fruit", url:"fruit_detail.html?fruit=Lemon",
     season:["peak","peak","peak","peak","peak","peak","peak","peak","peak","peak","peak","peak"] },
-
-  { name:"Lychee", type:"fruit", url:"../fruits/fruit_detail.html?name=Lychee",
+  { name:"Lychee",        type:"fruit", url:"fruit_detail.html?fruit=Lychee",
     season:[null,null,null,null,"good","peak","peak","low",null,null,null,null] },
-
-  { name:"Mango", type:"fruit", url:"../fruits/fruit_detail.html?name=Mango",
+  { name:"Mango",         type:"fruit", url:"fruit_detail.html?fruit=Mango",
     season:["low","low","good","peak","peak","peak","good","good","low","low","low","low"] },
-
-  { name:"Melon", type:"fruit", url:"../fruits/fruit_detail.html?name=Melon",
+  { name:"Melon",         type:"fruit", url:"fruit_detail.html?fruit=Melon",
     season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Orange", type:"fruit", url:"../fruits/fruit_detail.html?name=Orange",
+  { name:"Orange",        type:"fruit", url:"fruit_detail.html?fruit=Orange",
     season:["peak","peak","peak","good","low",null,null,null,"low","good","peak","peak"] },
-
-  { name:"Papaya", type:"fruit", url:"../fruits/fruit_detail.html?name=Papaya",
+  { name:"Papaya",        type:"fruit", url:"fruit_detail.html?fruit=Papaya",
     season:["good","good","good","good","good","good","good","good","good","good","good","good"] },
-
-  { name:"Peach", type:"fruit", url:"../fruits/fruit_detail.html?name=Peach",
+  { name:"Peach",         type:"fruit", url:"fruit_detail.html?fruit=Peach",
     season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Pear", type:"fruit", url:"../fruits/fruit_detail.html?name=Pear",
+  { name:"Pear",          type:"fruit", url:"fruit_detail.html?fruit=Pear",
     season:[null,null,null,null,null,null,"low","good","peak","peak","good","low"] },
-
-  { name:"Pineapple", type:"fruit", url:"../fruits/fruit_detail.html?name=Pineapple",
+  { name:"Pineapple",     type:"fruit", url:"fruit_detail.html?fruit=Pineapple",
     season:["low","low","good","peak","peak","peak","good","good","good","low","low","low"] },
-
-  { name:"Plum", type:"fruit", url:"../fruits/fruit_detail.html?name=Plum",
+  { name:"Plum",          type:"fruit", url:"fruit_detail.html?fruit=Plum",
     season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Pomegranate", type:"fruit", url:"../fruits/fruit_detail.html?name=Pomegranate",
+  { name:"Pomegranate",   type:"fruit", url:"fruit_detail.html?fruit=Pomegranate",
     season:[null,null,null,null,null,null,"good","peak","peak","peak","good","low"] },
-
-  { name:"Raspberry", type:"fruit", url:"../fruits/fruit_detail.html?name=Raspberry",
+  { name:"Raspberry",     type:"fruit", url:"fruit_detail.html?fruit=Raspberry",
     season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Starfruit", type:"fruit", url:"../fruits/fruit_detail.html?name=Starfruit",
+  { name:"Starfruit",     type:"fruit", url:"fruit_detail.html?fruit=Starfruit",
     season:["good","peak","peak","good","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Strawberry", type:"fruit", url:"../fruits/fruit_detail.html?name=Strawberry",
+  { name:"Strawberry",    type:"fruit", url:"fruit_detail.html?fruit=Strawberry",
     season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Watermelon", type:"fruit", url:"../fruits/fruit_detail.html?name=Watermelon",
+  { name:"Watermelon",    type:"fruit", url:"fruit_detail.html?fruit=Watermelon",
     season:[null,null,null,"good","peak","peak","peak","good","low",null,null,null] },
-
-    { name:"Passion Fruit", type:"fruit", url:"../fruits/fruit_detail.html?name=Passion%20Fruit",
+  { name:"Passion Fruit", type:"fruit", url:"fruit_detail.html?fruit=Passion%20Fruit",
     season:["good","good","peak","peak","good","good","good","good","good","good","good","good"] },
-
-  { name:"Mulberry", type:"fruit", url:"../fruits/fruit_detail.html?name=Mulberry",
+  { name:"Mulberry",      type:"fruit", url:"fruit_detail.html?fruit=Mulberry",
     season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Mandarin", type:"fruit", url:"../fruits/fruit_detail.html?name=Mandarin",
+  { name:"Mandarin",      type:"fruit", url:"fruit_detail.html?fruit=Mandarin",
     season:["peak","peak","peak","good","low",null,null,null,"low","good","peak","peak"] },
-
-  { name:"Cranberry", type:"fruit", url:"../fruits/fruit_detail.html?name=Cranberry",
+  { name:"Cranberry",     type:"fruit", url:"fruit_detail.html?fruit=Cranberry",
     season:[null,null,null,null,null,null,"good","peak","peak","peak","good","low"] },
-
-  { name:"Blackberry", type:"fruit", url:"../fruits/fruit_detail.html?name=Blackberry",
+  { name:"Blackberry",    type:"fruit", url:"fruit_detail.html?fruit=Blackberry",
     season:[null,null,null,null,"good","peak","peak","good","low",null,null,null] },
-
-  { name:"Custard Apple", type:"fruit", url:"../fruits/fruit_detail.html?name=Custard%20Apple",
+  { name:"Custard Apple", type:"fruit", url:"fruit_detail.html?fruit=Custard%20Apple",
     season:["good","good","peak","peak","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Sapota", type:"fruit", url:"../fruits/fruit_detail.html?name=Sapota",
+  { name:"Sapota",        type:"fruit", url:"fruit_detail.html?fruit=Sapota",
     season:["good","good","peak","peak","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Tamarind", type:"fruit", url:"../fruits/fruit_detail.html?name=Tamarind",
-    season:["good","good","peak","peak","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Physalis", type:"fruit", url:"../fruits/fruit_detail.html?name=Physalis",
-    season:["good","good","good","good","good","good","good","good","good","good","good","good"] },
-
-  { name:"Rambutan", type:"fruit", url:"../fruits/fruit_detail.html?name=Rambutan",
-    season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Persimmon", type:"fruit", url:"../fruits/fruit_detail.html?name=Persimmon",
-    season:[null,null,null,null,null,null,"good","peak","peak","peak","good","low"] },
-
-  { name:"Pomelo", type:"fruit", url:"../fruits/fruit_detail.html?name=Pomelo",
-    season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] },
-
-  { name:"Jujube", type:"fruit", url:"../fruits/fruit_detail.html?name=Jujube",
-    season:[null,null,null,null,null,null,"good","peak","peak","good","good","good"] },
-
-  { name:"Star Gooseberry", type:"fruit", url:"../fruits/fruit_detail.html?name=Star%20Gooseberry",
-    season:["good","peak","peak","good","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Longan", type:"fruit", url:"../fruits/fruit_detail.html?name=Longan",
-    season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Loquat", type:"fruit", url:"../fruits/fruit_detail.html?name=Loquat",
-    season:[null,null,null,null,"good","peak","good",null,null,null,null,null] },
-
-  { name:"Kumquat", type:"fruit", url:"../fruits/fruit_detail.html?name=Kumquat",
-    season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] },
-
-  { name:"Salak", type:"fruit", url:"../fruits/fruit_detail.html?name=Salak",
-    season:["good","good","good","good","good","good","good","good","good","good","good","good"] },
-
-  { name:"Ackee", type:"fruit", url:"../fruits/fruit_detail.html?name=Ackee",
-    season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Breadfruit", type:"fruit", url:"../fruits/fruit_detail.html?name=Breadfruit",
-    season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Carambola", type:"fruit", url:"../fruits/fruit_detail.html?name=Carambola",
-    season:["good","peak","peak","good","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Cherimoya", type:"fruit", url:"../fruits/fruit_detail.html?name=Cherimoya",
-    season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Sapodilla", type:"fruit", url:"../fruits/fruit_detail.html?name=Sapodilla",
-    season:["good","good","peak","peak","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Santol", type:"fruit", url:"../fruits/fruit_detail.html?name=Santol",
-    season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Mangaba", type:"fruit", url:"../fruits/fruit_detail.html?name=Mangaba",
-    season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  { name:"Canistel", type:"fruit", url:"../fruits/fruit_detail.html?name=Canistel",
-    season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
-
-  // ── VEGETABLES ──────────────────────────────────────────
-  { name:"Sweet Potato", type:"veg", url:"../vegetables/vegetable_detail.html?name=Sweet%20Potato",
-    season:["peak","peak","peak","good","good","good","good","peak","peak","peak","peak","peak"] },
-
-  { name:"Beetroot", type:"veg", url:"../vegetables/vegetable_detail.html?name=Beetroot",
-    season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] },
-
-  { name:"Radish", type:"veg", url:"../vegetables/vegetable_detail.html?name=Radish",
-    season:["peak","peak","peak","good","low","low","low","low","good","peak","peak","peak"] },
-
-  { name:"Turnip", type:"veg", url:"../vegetables/vegetable_detail.html?name=Turnip",
-    season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] },
-
-  { name:"Rutabaga", type:"veg", url:"../vegetables/vegetable_detail.html?name=Rutabaga",
-    season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] },
-
-  { name:"Celeriac", type:"veg", url:"../vegetables/vegetable_detail.html?name=Celeriac",
-    season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] },
-
-  { name:"Cassava", type:"veg", url:"../vegetables/vegetable_detail.html?name=Cassava",
-    season:["good","good","good","good","good","peak","peak","peak","good","good","good","good"] },
-
-  { name:"Ginger", type:"veg", url:"../vegetables/vegetable_detail.html?name=Ginger",
-    season:["good","good","good","good","good","peak","peak","peak","good","good","good","good"] },
-
-  { name:"Turmeric", type:"veg", url:"../vegetables/vegetable_detail.html?name=Turmeric",
-    season:["good","good","good","good","good","peak","peak","peak","good","good","good","good"] },
-
-  { name:"Daikon", type:"veg", url:"../vegetables/vegetable_detail.html?name=Daikon",
-    season:["peak","peak","peak","good","low","low","low","low","good","peak","peak","peak"] },
-
-  { name:"Parsnip", type:"veg", url:"../vegetables/vegetable_detail.html?name=Parsnip",
-    season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] },  
-  
-  { name:"Spinach", type:"veg", url:"../vegetables/vegetable_detail.html?name=Spinach",
-    season:["good","peak","peak","good","low",null,null,null,"good","peak","peak","good"] },
-
-  { name:"Kale", type:"veg", url:"../vegetables/vegetable_detail.html?name=Kale",
-    season:["good","peak","peak","good","low",null,null,null,"good","peak","peak","good"] },
-
-  { name:"Cabbage", type:"veg", url:"../vegetables/vegetable_detail.html?name=Cabbage",
-    season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] },
-
-  { name:"Lettuce", type:"veg", url:"../vegetables/vegetable_detail.html?name=Lettuce",
-    season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] },
-
-  { name:"Swiss Chard", type:"veg", url:"../vegetables/vegetable_detail.html?name=Swiss%20Chard",
-    season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] },
-
-  { name:"Mustard Greens", type:"veg", url:"../vegetables/vegetable_detail.html?name=Mustard%20Greens",
-    season:["peak","peak","peak","good","low",null,null,null,"good","peak","peak","peak"] },
-
-  { name:"Bok Choy", type:"veg", url:"../vegetables/vegetable_detail.html?name=Bok%20Choy",
-    season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] },
-
-  { name:"Collard Greens", type:"veg", url:"../vegetables/vegetable_detail.html?name=Collard%20Greens",
-    season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] },
-
-  { name:"Arugula", type:"veg", url:"../vegetables/vegetable_detail.html?name=Arugula",
-    season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] },
-
-  { name:"Romaine", type:"veg", url:"../vegetables/vegetable_detail.html?name=Romaine",
-    season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] },
-
-  { name:"Broccoli", type:"veg", url:"../vegetables/vegetable_detail.html?name=Broccoli",
-    season:["good","good","peak","peak","good",null,null,null,"good","peak","peak","good"] },
-
-  { name:"Cauliflower", type:"veg", url:"../vegetables/vegetable_detail.html?name=Cauliflower",
-    season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] },
-
-  { name:"Brussels Sprouts", type:"veg", url:"../vegetables/vegetable_detail.html?name=Brussels%20Sprouts",
-    season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] },
-
-  { name:"Kohlrabi", type:"veg", url:"../vegetables/vegetable_detail.html?name=Kohlrabi",
-    season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] },
-
-  { name:"Cabbage Red", type:"veg", url:"../vegetables/vegetable_detail.html?name=Cabbage%20Red",
-    season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] },
-
-  { name:"Tomato", type:"veg", url:"../vegetables/vegetable_detail.html?name=Tomato",
-    season:[null,null,null,"good","peak","peak","peak","good","low",null,null,null] },
-
-  { name:"Bell Pepper", type:"veg", url:"../vegetables/vegetable_detail.html?name=Bell%20Pepper",
-    season:[null,null,null,"good","peak","peak","peak","good","low",null,null,null] },
-
-  { name:"Chili Pepper", type:"veg", url:"../vegetables/vegetable_detail.html?name=Chili%20Pepper",
-    season:["good","good","good","peak","peak","peak","good","good","good","good","good","good"] },
-
-  { name:"Cucumber", type:"veg", url:"../vegetables/vegetable_detail.html?name=Cucumber",
-    season:[null,null,null,null,"good","peak","peak","peak","good","low",null,null] },
-
-  { name:"Zucchini", type:"veg", url:"../vegetables/vegetable_detail.html?name=Zucchini",
-    season:[null,null,null,null,"good","peak","peak","peak","good","low",null,null] },
-
-  { name:"Eggplant", type:"veg", url:"../vegetables/vegetable_detail.html?name=Eggplant",
-    season:["good","good","good","peak","peak","peak","good","good","good","good","good","good"] },
-
-  { name:"Okra", type:"veg", url:"../vegetables/vegetable_detail.html?name=Okra",
-    season:[null,null,null,"good","peak","peak","peak","good","low",null,null,null] },
-
-  { name:"Pumpkin", type:"veg", url:"../vegetables/vegetable_detail.html?name=Pumpkin",
-    season:["good","good","good","good","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Butternut Squash", type:"veg", url:"../vegetables/vegetable_detail.html?name=Butternut%20Squash",
-    season:["good","good","good","good","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Acorn Squash", type:"veg", url:"../vegetables/vegetable_detail.html?name=Acorn%20Squash",
-    season:["good","good","good","good","good","good","good","good","peak","peak","good","good"] },
-
-  { name:"Parsley", type:"veg", url:"../vegetables/vegetable_detail.html?name=Parsley",
-    season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] },
-
-  { name:"Coriander", type:"veg", url:"../vegetables/vegetable_detail.html?name=Coriander",
-    season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] },
-
-  { name:"Cilantro", type:"veg", url:"../vegetables/vegetable_detail.html?name=Cilantro",
-    season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] },
-
-  { name:"Mint", type:"veg", url:"../vegetables/vegetable_detail.html?name=Mint",
-    season:["good","good","good","good","good","good","good","good","good","good","good","good"] },
-
-  { name:"Rosemary", type:"veg", url:"../vegetables/vegetable_detail.html?name=Rosemary",
-    season:["good","good","good","good","good","good","good","good","good","good","good","good"] },
-
-  { name:"Thyme", type:"veg", url:"../vegetables/vegetable_detail.html?name=Thyme",
-    season:["good","good","good","good","good","good","good","good","good","good","good","good"] },
-
-  { name:"Basil", type:"veg", url:"../vegetables/vegetable_detail.html?name=Basil",
-    season:["good","good","good","good","good","good","good","good","good","good","good","good"] },
-
-  { name:"Lettuce Iceberg", type:"veg", url:"../vegetables/vegetable_detail.html?name=Lettuce%20Iceberg",
-    season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] }
-
-];
-// ── State ─────────────────────────────────────────────────
-let currentMonth = new Date().getMonth(); // 0-indexed
-let activeType   = "all";
-
-// ── Month strip ───────────────────────────────────────────
-function renderMonthStrip() {
-  const el = document.getElementById("months-strip");
-  el.innerHTML = MONTHS.map((m, i) => `
-    <button class="month-btn ${i === currentMonth ? "active" : ""}"
-      onclick="selectMonth(${i})">${m}<br><small style="font-weight:400">${seasonEmoji(i)}</small></button>
-  `).join("");
-}
-
-function seasonEmoji(mi) {
-  const s = MONTH_SEASON[mi];
-  return s === "Spring" ? "🌸" : s === "Summer" ? "☀️" : s === "Autumn" ? "🍂" : "❄️";
-}
-
-function selectMonth(i) {
-  currentMonth = i;
-  renderMonthStrip();
-  renderProduce();
-}
-
-// ── Produce area ──────────────────────────────────────────
-function renderProduce() {
-  const mi = currentMonth;
-  const title = document.getElementById("month-title");
-  const sub   = document.getElementById("month-subtitle");
-  title.textContent = MONTH_NAMES[mi];
-  sub.textContent   = `${MONTH_SEASON[mi]} — best picks for this month`;
-
-  let data = PRODUCE.filter(p => activeType === "all" || p.type === activeType);
-  const peak = data.filter(p => p.season[mi] === "peak");
-  const good = data.filter(p => p.season[mi] === "good");
-  const low  = data.filter(p => p.season[mi] === "low");
-
-  let html = "";
-  if (peak.length) html += renderGroup("🌟 Peak Season", peak, mi);
-  if (good.length) html += renderGroup("✅ Good Availability", good, mi);
-  if (low.length)  html += renderGroup("⬇️ Limited", low, mi);
-  if (!peak.length && !good.length && !low.length) {
-    html = `<p style="color:#9ca3af;text-align:center;padding:2rem">No data for this selection.</p>`;
-  }
-  document.getElementById("produce-area").innerHTML = html;
-}
-
-function renderGroup(title, items, mi) {
-  const cards = items.map(p => {
-    const status = p.season[mi];
-    const badge = status === "peak" ? '<span class="peak-badge badge-peak">Peak</span>'
-                : status === "good" ? '<span class="peak-badge badge-good">Good</span>'
-                : '<span class="peak-badge badge-low">Low</span>';
-    return `
-      <a class="produce-card ${status}" href="${p.url}">
-        <span class="p-emoji">${p.emoji}</span>
-        <div class="p-name">${p.name}</div>
-        ${badge}
-      </a>`;
-  }).join("");
-  return `<div class="produce-section"><h3>${title} <span style="font-weight:400">(${items.length})</span></h3><div class="produce-grid">${cards}</div></div>`;
-}
-
-// ── Heatmap ───────────────────────────────────────────────
-function renderHeatmap() {
-  const items = PRODUCE.filter(p => activeType === "all" || p.type === activeType).slice(0, 15);
-  if (!items.length) { document.getElementById("heatmap-section").innerHTML = ""; return; }
-
-  const header = `<tr><th style="text-align:left">Item</th>${MONTHS.map(m=>`<th>${m}</th>`).join("")}</tr>`;
-  const rows = items.map(p => {
-    const cells = p.season.map((s, mi) => {
-      const cls = s === "peak" ? "hm-peak" : s === "good" ? "hm-good" : s === "low" ? "hm-low" : "hm-none";
-      const label = s === "peak" ? "▲" : s === "good" ? "●" : s === "low" ? "▽" : "";
-      return `<td><span class="hm-cell ${cls}" title="${MONTH_NAMES[mi]}: ${s||'off-season'}">${label}</span></td>`;
-    }).join("");
-    return `<tr><td style="font-size:12px;white-space:nowrap;padding:4px 6px">${p.emoji} ${p.name}</td>${cells}</tr>`;
-  }).join("");
-
-  document.getElementById("heatmap-section").innerHTML = `
-    <h2>📅 Year-at-a-glance</h2>
-    <div style="overflow-x:auto">
-      <table class="heatmap-table"><thead>${header}</thead><tbody>${rows}</tbody></table>
-    </div>
-  `;
-}
-
-// ── Filter tabs ───────────────────────────────────────────
-document.querySelectorAll(".filter-tab").forEach(tab => {
-  tab.addEventListener("click", () => {
-    document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
-    activeType = tab.dataset.type;
-    renderProduce();
-    renderHeatmap();
-  });
-});
-
-// ── Init ──────────────────────────────────────────────────
-renderMonthStrip();
-renderProduce();
-renderHeatmap();
+  { name:"Tamarind", type:"fruit", url:"fruit_detail.html?fruit=Tamarind", season:["good","good","peak","peak","good","good","good","good","peak","peak","good","good"] }, { name:"Physalis", type:"fruit", url:"fruit_detail.html?fruit=Physalis", season:["good","good","good","good","good","good","good","good","good","good","good","good"] }, { name:"Rambutan", type:"fruit", url:"fruit_detail.html?fruit=Rambutan", season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] }, { name:"Persimmon", type:"fruit", url:"fruit_detail.html?fruit=Persimmon", season:[null,null,null,null,null,null,"good","peak","peak","peak","good","low"] }, { name:"Pomelo", type:"fruit", url:"fruit_detail.html?fruit=Pomelo", season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] }, { name:"Jujube", type:"fruit", url:"fruit_detail.html?fruit=Jujube", season:[null,null,null,null,null,null,"good","peak","peak","good","good","good"] }, { name:"Star Gooseberry",type:"fruit",url:"fruit_detail.html?fruit=Star%20Gooseberry", season:["good","peak","peak","good","good","good","good","good","peak","peak","good","good"] }, { name:"Longan", type:"fruit", url:"fruit_detail.html?fruit=Longan", season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] }, { name:"Loquat", type:"fruit", url:"fruit_detail.html?fruit=Loquat", season:[null,null,null,null,"good","peak","good",null,null,null,null,null] }, { name:"Kumquat", type:"fruit", url:"fruit_detail.html?fruit=Kumquat", season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] }, { name:"Salak", type:"fruit", url:"fruit_detail.html?fruit=Salak", season:["good","good","good","good","good","good","good","good","good","good","good","good"] }, { name:"Ackee", type:"fruit", url:"fruit_detail.html?fruit=Ackee", season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] }, { name:"Breadfruit", type:"fruit", url:"fruit_detail.html?fruit=Breadfruit", season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] }, { name:"Carambola", type:"fruit", url:"fruit_detail.html?fruit=Carambola", season:["good","peak","peak","good","good","good","good","good","peak","peak","good","good"] }, { name:"Cherimoya", type:"fruit", url:"fruit_detail.html?fruit=Cherimoya", season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] }, { name:"Sapodilla", type:"fruit", url:"fruit_detail.html?fruit=Sapodilla", season:["good","good","peak","peak","good","good","good","good","peak","peak","good","good"] }, { name:"Santol", type:"fruit", url:"fruit_detail.html?fruit=Santol", season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] }, { name:"Mangaba", type:"fruit", url:"fruit_detail.html?fruit=Mangaba", season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] }, { name:"Canistel", type:"fruit", url:"fruit_detail.html?fruit=Canistel", season:[null,null,null,null,"good","peak","peak","good",null,null,null,null] },
+// ── VEGETABLES ────────────────────────────────────────────── { name:"Sweet Potato", type:"veg", url:"vegetable_detail.html?vegetable=Sweet%20Potato", season:["peak","peak","peak","good","good","good","good","peak","peak","peak","peak","peak"] }, { name:"Beetroot", type:"veg", url:"vegetable_detail.html?vegetable=Beetroot", season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] }, { name:"Radish", type:"veg", url:"vegetable_detail.html?vegetable=Radish", season:["peak","peak","peak","good","low","low","low","low","good","peak","peak","peak"] }, { name:"Turnip", type:"veg", url:"vegetable_detail.html?vegetable=Turnip", season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] }, { name:"Rutabaga", type:"veg", url:"vegetable_detail.html?vegetable=Rutabaga", season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] }, { name:"Celeriac", type:"veg", url:"vegetable_detail.html?vegetable=Celeriac", season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] }, { name:"Cassava", type:"veg", url:"vegetable_detail.html?vegetable=Cassava", season:["good","good","good","good","good","peak","peak","peak","good","good","good","good"] }, { name:"Ginger", type:"veg", url:"vegetable_detail.html?vegetable=Ginger", season:["good","good","good","good","good","peak","peak","peak","good","good","good","good"] }, { name:"Turmeric", type:"veg", url:"vegetable_detail.html?vegetable=Turmeric", season:["good","good","good","good","good","peak","peak","peak","good","good","good","good"] }, { name:"Daikon", type:"veg", url:"vegetable_detail.html?vegetable=Daikon", season:["peak","peak","peak","good","low","low","low","low","good","peak","peak","peak"] }, { name:"Parsnip", type:"veg", url:"vegetable_detail.html?vegetable=Parsnip", season:["peak","peak","good","good","low","low","low","low","good","peak","peak","peak"] }, { name:"Spinach", type:"veg", url:"vegetable_detail.html?vegetable=Spinach", season:["good","peak","peak","good","low",null,null,null,"good","peak","peak","good"] }, { name:"Kale", type:"veg", url:"vegetable_detail.html?vegetable=Kale", season:["good","peak","peak","good","low",null,null,null,"good","peak","peak","good"] }, { name:"Cabbage", type:"veg", url:"vegetable_detail.html?vegetable=Cabbage", season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] }, { name:"Lettuce", type:"veg", url:"vegetable_detail.html?vegetable=Lettuce", season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] }, { name:"Swiss Chard", type:"veg", url:"vegetable_detail.html?vegetable=Swiss%20Chard", season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] }, { name:"Mustard Greens", type:"veg", url:"vegetable_detail.html?vegetable=Mustard%20Greens", season:["peak","peak","peak","good","low",null,null,null,"good","peak","peak","peak"] }, { name:"Bok Choy", type:"veg", url:"vegetable_detail.html?vegetable=Bok%20Choy", season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] }, { name:"Collard Greens", type:"veg", url:"vegetable_detail.html?vegetable=Collard%20Greens", season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] }, { name:"Arugula", type:"veg", url:"vegetable_detail.html?vegetable=Arugula", season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] }, { name:"Romaine", type:"veg", url:"vegetable_detail.html?vegetable=Romaine", season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] }, { name:"Broccoli", type:"veg", url:"vegetable_detail.html?vegetable=Broccoli", season:["good","good","peak","peak","good",null,null,null,"good","peak","peak","good"] }, { name:"Cauliflower", type:"veg", url:"vegetable_detail.html?vegetable=Cauliflower", season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] }, { name:"Brussels Sprouts",type:"veg", url:"vegetable_detail.html?vegetable=Brussels%20Sprouts", season:["peak","peak","good","low",null,null,null,null,"low","good","peak","peak"] }, { name:"Kohlrabi", type:"veg", url:"vegetable_detail.html?vegetable=Kohlrabi", season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] }, { name:"Cabbage Red", type:"veg", url:"vegetable_detail.html?vegetable=Cabbage%20Red", season:["peak","peak","good","good","low",null,null,null,"good","peak","peak","peak"] }, { name:"Tomato", type:"veg", url:"vegetable_detail.html?vegetable=Tomato", season:[null,null,null,"good","peak","peak","peak","good","low",null,null,null] }, { name:"Bell Pepper", type:"veg", url:"vegetable_detail.html?vegetable=Bell%20Pepper", season:[null,null,null,"good","peak","peak","peak","good","low",null,null,null] }, { name:"Chili Pepper", type:"veg", url:"vegetable_detail.html?vegetable=Chili%20Pepper", season:["good","good","good","peak","peak","peak","good","good","good","good","good","good"] }, { name:"Cucumber", type:"veg", url:"vegetable_detail.html?vegetable=Cucumber", season:[null,null,null,null,"good","peak","peak","peak","good","low",null,null] }, { name:"Zucchini", type:"veg", url:"vegetable_detail.html?vegetable=Zucchini", season:[null,null,null,null,"good","peak","peak","peak","good","low",null,null] }, { name:"Eggplant", type:"veg", url:"vegetable_detail.html?vegetable=Eggplant", season:["good","good","good","peak","peak","peak","good","good","good","good","good","good"] }, { name:"Okra", type:"veg", url:"vegetable_detail.html?vegetable=Okra", season:[null,null,null,"good","peak","peak","peak","good","low",null,null,null] }, { name:"Pumpkin", type:"veg", url:"vegetable_detail.html?vegetable=Pumpkin", season:["good","good","good","good","good","good","good","good","peak","peak","good","good"] }, { name:"Butternut Squash",type:"veg", url:"vegetable_detail.html?vegetable=Butternut%20Squash", season:["good","good","good","good","good","good","good","good","peak","peak","good","good"] }, { name:"Acorn Squash", type:"veg", url:"vegetable_detail.html?vegetable=Acorn%20Squash", season:["good","good","good","good","good","good","good","good","peak","peak","good","good"] }, { name:"Parsley", type:"veg", url:"vegetable_detail.html?vegetable=Parsley", season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] }, { name:"Coriander", type:"veg", url:"vegetable_detail.html?vegetable=Coriander", season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] }, { name:"Cilantro", type:"veg", url:"vegetable_detail.html?vegetable=Cilantro", season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] }, { name:"Mint", type:"veg", url:"vegetable_detail.html?vegetable=Mint", season:["good","good","good","good","good","good","good","good","good","good","good","good"] }, { name:"Rosemary", type:"veg", url:"vegetable_detail.html?vegetable=Rosemary", season:["good","good","good","good","good","good","good","good","good","good","good","good"] }, { name:"Thyme", type:"veg", url:"vegetable_detail.html?vegetable=Thyme", season:["good","good","good","good","good","good","good","good","good","good","good","good"] }, { name:"Basil", type:"veg", url:"vegetable_detail.html?vegetable=Basil", season:["good","good","good","good","good","good","good","good","good","good","good","good"] }, { name:"Lettuce Iceberg", type:"veg", url:"vegetable_detail.html?vegetable=Lettuce%20Iceberg", season:["good","good","peak","peak","good","low",null,null,"good","peak","peak","good"] }, ]; /*
+================================================================ STATE ================================================================ */ let currentMonth = new Date().getMonth(); let activeType = "all"; /* ================================================================ MONTH STRIP ================================================================ */ function renderMonthStrip() { const el = document.getElementById("months-strip"); el.innerHTML = MONTHS.map((m, i) => ` <button class="month-btn ${i === currentMonth ? "active" : ""}" data-month="${i}"> <span class="m-season">${MONTH_SEASON[i]}</span> ${m} </button> `).join(""); } document.getElementById("months-strip").addEventListener("click", e => { const btn = e.target.closest(".month-btn"); if (!btn) return; currentMonth = +btn.dataset.month; renderMonthStrip(); renderProduce(); }); /* ================================================================ PRODUCE ================================================================ */ function renderProduce() { const mi = currentMonth; document.getElementById("month-title").textContent = MONTH_NAMES[mi]; document.getElementById("month-subtitle").textContent = `${MONTH_SEASON[mi]} — best picks for this month`; const filtered = PRODUCE.filter(p => activeType === "all" || p.type === activeType); const peak = filtered.filter(p => p.season[mi] === "peak"); const good = filtered.filter(p => p.season[mi] === "good"); const low = filtered.filter(p => p.season[mi] === "low"); const area = document.getElementById("produce-area"); if (!peak.length && !good.length && !low.length) { area.innerHTML = `<div class="empty-state">No data for this selection.</div>`; return; } area.innerHTML = [ peak.length ? buildGroup("Peak Season", peak, mi, "peak") : "", good.length ? buildGroup("Good Availability", good, mi, "good") : "", low.length ? buildGroup("Limited / Off-season", low, mi, "low") : "", ].join(""); } function sortAZ(items) { const fruits = items.filter(p => p.type === "fruit").sort((a, b) => a.name.localeCompare(b.name)); const vegs = items.filter(p => p.type === "veg") .sort((a, b) => a.name.localeCompare(b.name)); return [...fruits, ...vegs]; } function buildGroup(label, items, mi, status) { const sorted = sortAZ(items); const cards = sorted.map(p => buildCard(p, status)).join(""); return ` <div class="produce-group"> <div class="group-label"> ${label} <span class="group-count">${items.length} items</span> </div> <div class="produce-grid">${cards}</div> </div>`; } function buildCard(p, status) { const typeLabel = p.type === "veg" ? "Vegetable" : "Fruit"; const badgeHTML = { peak: `<span class="peak-badge badge-peak">Peak</span>`, good: `<span class="peak-badge badge-good">Good</span>`, low: `<span class="peak-badge badge-low">Limited</span>`, }[status]; return ` <a class="produce-card ${status}" href="${p.url}"> <div class="p-name">${p.name}</div> <div class="p-type">${typeLabel}</div> ${badgeHTML} </a>`; } /* ================================================================ HEATMAP ================================================================ */ function renderHeatmap() { const filtered = PRODUCE.filter(p => activeType === "all" || p.type === activeType); const sorted = [...filtered].sort((a, b) => { if (a.type !== b.type) return a.type === "fruit" ? -1 : 1; return a.name.localeCompare(b.name); }); const items = sorted.slice(0, 18); const section = document.getElementById("heatmap-section"); if (!items.length) { section.innerHTML = ""; return; } const headerCells = MONTHS.map(m => `<th>${m}</th>`).join(""); const rows = items.map(p => { const cells = p.season.map((s, mi) => { const cls = s === "peak" ? "hm-peak" : s === "good" ? "hm-good" : s === "low" ? "hm-low" : "hm-none"; const label = s === "peak" ? "▲" : s === "good" ? "●" : s === "low" ? "▽" : ""; return `<td><span class="hm-cell ${cls}" title="${MONTH_NAMES[mi]}: ${s || 'off-season'}">${label}</span></td>`; }).join(""); return `<tr> <td class="hm-name"><a href="${p.url}" style="color:inherit;text-decoration:none;">${p.name}</a></td> ${cells} </tr>`; }).join(""); section.innerHTML = ` <div class="section-label">Year at a Glance</div> <div class="heatmap-title">Availability Heatmap</div> <div class="heatmap-sub">Top ${items.length} items — scroll right on mobile to see all months.</div> <div class="heatmap-wrap"> <table class="heatmap-table"> <thead><tr><th>Item</th>${headerCells}</tr></thead> <tbody>${rows}</tbody> </table> </div>`; } /* ================================================================ FILTER TABS — delegated listener ================================================================ */ document.getElementById("filter-tabs").addEventListener("click", e => { const tab = e.target.closest(".filter-tab"); if (!tab) return; document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active")); tab.classList.add("active"); activeType = tab.dataset.type; renderProduce(); renderHeatmap(); }); /*
+================================================================ NAVBAR SCROLL SHADOW ================================================================ */ window.addEventListener("scroll", () => { document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 40); }); /* ================================================================ SCROLL REVEAL ================================================================ */ const revealObserver = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.1 }); document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el)); /* ================================================================ INIT ================================================================ */ renderMonthStrip(); 
+renderProduce(); 
+renderHeatmap(); 
 </script>
 </body>
 </html>
+
