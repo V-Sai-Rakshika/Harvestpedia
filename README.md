@@ -19,7 +19,6 @@
 - [API Setup](#api-setup)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -180,11 +179,6 @@ Please keep code style consistent with the existing codebase (vanilla JS, CSS va
 
 ---
 
-## License
-
-MIT License — free to use, modify, and distribute with attribution.
-
----
 
 <p align="center">
   Made with 🌿 for nature lovers · Built with vanilla HTML, CSS & JS
